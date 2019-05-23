@@ -39,6 +39,12 @@ return array(
     'menu' => [
         '用户与权限' => [
             'users',
+            'roles',
+            'permissions',
+        ],
+        '电子书管理' => [
+            'books',
+            'bookContent'
         ],
     ],
 
