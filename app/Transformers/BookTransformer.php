@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-05-24 11:10:31
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-05-24 12:32:51
+ * @Last Modified time: 2019-05-24 16:14:49
  */
 namespace App\Transformers;
 
@@ -30,11 +30,15 @@ class BookTransformer extends TransformerAbstract
         ];
     }
 
-
+    /**
+     * [includeContents 电子书内容]
+     * @param  Book   $book [description]
+     * @return [type]       [description]
+     */
     public function includeContents(Book $book)
     {
     	if($book->contents){
-			return $this->collection($book->contents, new BookContentTransformer());
+			return $this->collection($book->contents()->orderBy('sort', 'asc')->get(), new BookContentTransformer());
 		}
     }
 }

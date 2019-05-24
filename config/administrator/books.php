@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-05-23 15:40:17
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-05-23 18:17:33
+ * @Last Modified time: 2019-05-24 15:52:45
  */
 use App\Models\Book;
 
@@ -66,6 +66,11 @@ return [
 			'select' => "IF((:table).is_release, 'Yes', 'No')",
 		],
 
+		'sort' => [
+			'title' => '排序',
+			'sortable' => true,
+		],
+
 		'operation' => [
 			'title' => '管理',
 			'sortable' => false,
@@ -99,6 +104,10 @@ return [
 		'is_release' => [
 			'type' => 'bool',
 			'title' => '是否发布'
+		],
+
+		'sort' => [
+			'title' => '排序',
 		],
 
 	],
