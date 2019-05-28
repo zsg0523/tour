@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-05-23 15:40:17
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-05-24 15:52:45
+ * @Last Modified time: 2019-05-28 11:39:54
  */
 use App\Models\Book;
 
@@ -20,11 +20,16 @@ return [
 
 		'id' => [
 			'title' => 'ID',
+			'output' => function($id, $model)
+			{
+				return '<a target="_blank" href="http://47.91.218.205/wenno/index.html?book='.$id.'">'.$id.'</a>';
+			}
 		],
 
 		'name' => [
 			'title' => '名称',
 			'sortable' => false,
+			
 		],
 
 		'introduction' => [
@@ -37,7 +42,7 @@ return [
 			// 默认情况直接输出数据，可是使用 output 选项来定制输出内容
 			'output' => function($cover, $model)
 			{
-				return empty($cover) ? 'N/A' : '<img src="'.$cover.'" width="40">';
+				return empty($cover) ? 'N/A' : '<a target="_blank" href="'.$cover.'"><img src="'.$cover.'" width="40"></a>';
 			},
 
 			// 是否允许排序
@@ -49,7 +54,7 @@ return [
 			// 默认情况直接输出数据，可是使用 output 选项来定制输出内容
 			'output' => function($map, $model)
 			{
-				return empty($map) ? 'N/A' : '<img src="'.$map.'" width="40">';
+				return empty($map) ? 'N/A' : '<a target="_blank" href="'.$map.'"><img src="'.$map.'" width="40"></a>';
 			},
 
 			// 是否允许排序
