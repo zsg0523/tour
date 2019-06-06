@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-05-23 15:40:17
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-05-28 11:39:54
+ * @Last Modified time: 2019-05-28 16:37:22
  */
 use App\Models\Book;
 
@@ -20,6 +20,7 @@ return [
 
 		'id' => [
 			'title' => 'ID',
+			'sort_field' => 'id asc',
 			'output' => function($id, $model)
 			{
 				return '<a target="_blank" href="http://47.91.218.205/wenno/index.html?book='.$id.'">'.$id.'</a>';
