@@ -238,8 +238,8 @@
 					var equal = bookList[0].indexOf("=");
 					var parameter = bookList[0].substr(equal + 1);//问号之后的URL
 					console.log(parameter);
-//					var url = 'http://47.91.218.205/api/books/'+parameter+'?include=contents';
-                    var url = 'http://wennoanimal.test/api/books/'+parameter+'?include=contents';
+					var url = 'http://47.91.218.205/api/books/'+parameter+'?include=contents';
+                    // var url = 'http://wennoanimal.test/api/books/'+parameter+'?include=contents';
 					$.ajax({
 				        url:url,
 				        type:'GET',
