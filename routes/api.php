@@ -49,6 +49,10 @@ $api->version('v1', [
     		$api->get('book/contents', 'BookContentsController@index');
     		// 电子书详情
     		$api->get('book/contents/{content}', 'BookContentsController@show');
+            // 動物列表
+            $api->get('animals', 'AnimalsController@index');
+            // 动物详细资料
+            $api->get('animals/{animal}', 'AnimalsController@show');
 
             // 需 token 验证的接口
             $api->group(['middleware' => 'api.auth'], function ($api) {
