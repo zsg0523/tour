@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-06-10 16:02:49
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-06-10 18:11:06
+ * @Last Modified time: 2019-06-11 16:04:25
  */
 namespace App\Transformers;
 
@@ -43,13 +43,14 @@ class AnimalTransformer extends TransformerAbstract
 
 	/** [includeStudent 获取动物的详细资料] */
 	public function includeTranslations(Animal $animal)
-	{
-		if ($animal->translations) {
+	{	
 
-			$translation = $animal->translations()->where('lang', $this->lang)->first();
+		$translation = $animal->translations()->where('lang', $this->lang)->first();
 
+		if ($translation) {
 			return $this->item($translation, new AnimalTranslationTransformer());
 		}
+		
 	}
 
 

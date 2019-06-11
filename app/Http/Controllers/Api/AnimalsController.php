@@ -10,20 +10,35 @@ use App\Transformers\AnimalTransformer;
 class AnimalsController extends Controller
 {
 	/** [index 动物列表] */
-    public function index()
+    public function index(AnimalRequest $request)
     {
-    	return $this->response->collection(Animal::all(), new AnimalTransformer());
+       $lang = $this->getLang($request); 
+
+    	return $this->response->collection(Animal::all(), new AnimalTransformer($lang));
     }
 
     /** [show 动物详情] */
     public function show(AnimalRequest $request, Animal $animal)
     {
-    	$lang = $request->header('accept-language') ?? 'en';
-
-    	// if ($lang == "") {
-    	// 	return $this->response->errorMessage('未选择语言！');
-    	// }
+    	$lang = $this->getLang($request);
 
     	return $this->response->item($animal, new AnimalTransformer($lang));
     }
+
+    /**
+     * [getLang 获取当前语言]
+     * @param  [type] $request [路由请求参数]
+     * @return [type]          [description]
+     */
+    private function getLang($request)
+    {
+        $lang = $request->header('accept-language') ?? 'en';
+
+        if ($lang == "") {
+            return $this->errorResponse(404, '未选择语言！', 1001);
+        }
+
+        return $lang;
+    }
+
 }	
