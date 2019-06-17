@@ -23,9 +23,27 @@ class Animal extends Model
              $thumbnail_path = config('app.url')."/uploads/animals/thumbnail/$path";
         }
 
-        $this->attributes['image'] = $original_path;
-        $this->attributes['image_resize'] = $resize_path;
-        $this->attributes['image_thumbnail'] = $thumbnail_path;
+        // $this->attributes['image'] = $original_path;
+        // $this->attributes['image_resize'] = $resize_path;
+        // $this->attributes['image_thumbnail'] = $thumbnail_path;
+    }
+
+    // 原图
+    public function getImageOriginalAttribute($value)
+    {
+        return $this->attributes['image_original'] = config('app.url')."/uploads/animals/original/{$this->image}";
+    }
+
+    // 中图
+    public function getImageResizeAttribute($value)
+    {
+        return $this->attributes['image_resize'] = config('app.url')."/uploads/animals/resize/{$this->image}";
+    }
+
+    // 缩略图
+    public function getImageThumbnailAttribute($value)
+    {
+        return $this->attributes['image_thumbnail'] = config('app.url')."/uploads/animals/thumbnail/{$this->image}";
     }
 
     

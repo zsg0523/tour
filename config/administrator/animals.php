@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-06-12 17:16:58
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-06-14 17:26:55
+ * @Last Modified time: 2019-06-17 17:40:18
  */
 use App\Models\Animal;
 
@@ -33,43 +33,10 @@ return [
 			'sortable' => false,
 		],
 
-		// 'image' => [
-		// 	'title' => '原图',
-		// 	// 默认情况直接输出数据，可是使用 output 选项来定制输出内容
-		// 	'output' => function($image, $model)
-		// 	{
-		// 		return empty($image) ? '' : '<a target="_blank" href="'.$image.'"><img src="'.$image.'" width="40"></a>';
-		// 	},
-
-		// 	// 是否允许排序
-		// 	'sortable' => false,
-		// ],
-
-		// 'image_resize' => [
-		// 	'title' => '中图',
-		// 	// 默认情况直接输出数据，可是使用 output 选项来定制输出内容
-		// 	'output' => function($image_resize, $model)
-		// 	{
-		// 		return empty($image_resize) ? '' : '<a target="_blank" href="'.$image_resize.'"><img src="'.$image_resize.'" width="40"></a>';
-		// 	},
-
-		// 	// 是否允许排序
-		// 	'sortable' => false,
-		// ],
-
-		'image_thumbnail' => [
-			'title' => '缩略图',
-			// 默认情况直接输出数据，可是使用 output 选项来定制输出内容
-			'output' => function($image_thumbnail, $model)
-			{
-				return empty($image_thumbnail) ? '' : '<a target="_blank" href="'.$image_thumbnail.'"><img src="'.$image_thumbnail.'" width="40"></a>';
-			},
-
-			// 是否允许排序
-			'sortable' => false,
+		'image' => [
+			'title' => '图片',
 		],
-
-
+		
 		// 'code' => [
 		// 	'title' => 'code',
 		// 	'sortable' => false,
@@ -133,12 +100,14 @@ return [
 			'type' => 'image',
 			// 原图
 			'location' => public_path() . '/uploads/animals/original/',
+			'naming' => 'keep',
 			'sizes' => array(
 				// 中图
 	 			array(250, 250, 'crop', public_path() . '/uploads/animals/resize/', 100),
 	 			// 缩略图
 	 			array(200, 200, 'crop', public_path() . '/uploads/animals/thumbnail/', 100),
-	 		)
+	 		),
+	 		'hint' => '会同时保存大中小三张'
 		],
 
 
