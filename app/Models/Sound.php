@@ -12,4 +12,9 @@ class Sound extends Model
     {
     	return $this->hasMany(AnimalTranslation::class);
     }
+
+    public function getPathAttribute($value)
+    {
+       return $this->attributes['path'] = config('app.url') . "/uploads/sound";
+    }
 }

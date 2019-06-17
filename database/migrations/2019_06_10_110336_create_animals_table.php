@@ -20,6 +20,8 @@ class CreateAnimalsTable extends Migration
             $table->string('product_name')->index()->nullable();
             $table->string('image_family')->nullable();
             $table->string('image')->nullable();
+            $table->string('image_resize')->nullable();
+            $table->string('image_thumbnail')->nullable();
             $table->string('code')->nullable();
             $table->string('image_endangeredLevel')->nullable();
             $table->string('icon_diet')->nullable();

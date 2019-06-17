@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-06-10 16:02:49
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-06-11 16:04:25
+ * @Last Modified time: 2019-06-17 16:13:04
  */
 namespace App\Transformers;
 
@@ -25,7 +25,7 @@ class AnimalTransformer extends TransformerAbstract
 	{
 		return [
 			'id' => $animal->id,
-			'name' => $animal->product_name,
+			'product_name' => $animal->product_name,
 			'image_family' => $animal->image_family,
 			'image' => $animal->image,
 			'code' => $animal->code,

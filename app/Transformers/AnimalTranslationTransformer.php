@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-06-10 16:56:50
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-06-10 17:48:58
+ * @Last Modified time: 2019-06-17 12:52:45
  */
 namespace App\Transformers;
 
@@ -13,6 +13,8 @@ use League\Fractal\TransformerAbstract;
 
 class AnimalTranslationTransformer extends TransformerAbstract
 {
+
+	protected $availableIncludes = ['sound'];
 
 	public function transform(AnimalTranslation $animaltranslation)
 	{
@@ -41,5 +43,18 @@ class AnimalTranslationTransformer extends TransformerAbstract
 			'created_at' => $animaltranslation->created_at ? $animaltranslation->created_at->toDateTimeString() : '',
 			'updated_at' => $animaltranslation->updated_at ? $animaltranslation->created_at->toDateTimeString(): '',
 		];
+	}
+
+
+	/** [includeStudent 获取动物的详细资料] */
+	public function includeSound(AnimalTranslation $animaltranslation)
+	{	
+
+		$sound = $animaltranslation->sound;
+
+		if ($sound) {
+			return $this->item($sound, new SoundTransformer());
+		}
+		
 	}
 }
