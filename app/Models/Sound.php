@@ -15,6 +15,6 @@ class Sound extends Model
 
     public function getPathAttribute($value)
     {
-       return $this->attributes['path'] = config('app.url') . "/uploads/sound";
+       return $this->attributes['path'] = config('app.url') . "/uploads/sound_animal/{$this->lang}/{$this->name}.{$this->type}";
     }
 }
