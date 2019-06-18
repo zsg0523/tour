@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-06-10 16:02:49
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-06-17 17:56:11
+ * @Last Modified time: 2019-06-18 15:38:43
  */
 namespace App\Transformers;
 
@@ -13,13 +13,6 @@ use League\Fractal\TransformerAbstract;
 
 class AnimalTransformer extends TransformerAbstract
 {
-	protected $availableIncludes = ['translations'];
-
-	/** [__construct 设置语言选择] */
-	public function __construct($lang)
-	{
-		$this->lang = $lang;
-	}
 
 	public function transform(Animal $animal)
 	{
@@ -42,18 +35,6 @@ class AnimalTransformer extends TransformerAbstract
 			'created_at' => $animal->created_at->toDateTimeString(),
 			'updated_at' => $animal->updated_at->toDateTimeString(),
 		];
-	}
-
-	/** [includeStudent 获取动物的详细资料] */
-	public function includeTranslations(Animal $animal)
-	{	
-
-		$translation = $animal->translations()->where('lang', $this->lang)->first();
-
-		if ($translation) {
-			return $this->item($translation, new AnimalTranslationTransformer());
-		}
-		
 	}
 
 

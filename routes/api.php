@@ -19,7 +19,7 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
     // 手动注册模型中间件bindings
-	'middleware' => ['serializer:array','bindings', 'change-locale']
+    'middleware' => ['serializer:array','bindings', 'change-locale']
 ], function($api) {
     $api->group([
         'middleware' => 'api.throttle',
@@ -41,22 +41,25 @@ $api->version('v1', [
             // // 删除 token
             // $api->delete('authorizations/current', 'AuthorizationsController@destroy');
 
-    		// 电子书
-    		$api->get('books', 'BooksController@index');
-    		// 电子书封面
-    		$api->get('books/{book}', 'BooksController@show');
-    		// 所有电子书内容
-    		$api->get('book/contents', 'BookContentsController@index');
-    		// 电子书详情
-    		$api->get('book/contents/{content}', 'BookContentsController@show');
-            // 動物列表
-            $api->get('animals', 'AnimalsController@index');
-            // 动物详细资料
-            $api->get('animals/{animal}', 'AnimalsController@show');
+            // 电子书
+            $api->get('books', 'BooksController@index');
+            // 电子书封面
+            $api->get('books/{book}', 'BooksController@show');
+            // 所有电子书内容
+            $api->get('book/contents', 'BookContentsController@index');
+            // 电子书详情
+            $api->get('book/contents/{content}', 'BookContentsController@show');
+
+            
             // 动物音频资料列表
             $api->get('animals/sounds', 'AnimalsController@soundsIndex');
             // 动物音频资料详情
             $api->get('animals/sounds/{sound}', 'AnimalsController@sounds');
+
+            // 动物列表
+            $api->get('animals', 'AnimalTranslationsController@index');
+            // 动物详细资料
+            $api->get('animals/{animal}', 'AnimalTranslationsController@show');
 
             // 需 token 验证的接口
             $api->group(['middleware' => 'api.auth'], function ($api) {
