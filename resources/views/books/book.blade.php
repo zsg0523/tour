@@ -244,34 +244,6 @@
 					//console.log(bookList[0]);
 					var equal = bookList[0].indexOf("=");
 					var parameter = bookList[0].substr(equal + 1);//问号之后的URL
-<<<<<<< HEAD
-					console.log(parameter);
-					var url = 'http://47.75.178.168/api/books/'+parameter+'?include=contents';
-                    // var url = 'http://wennoanimal.test/api/books/'+parameter+'?include=contents';
-					$.ajax({
-				        url:url,
-				        type:'GET',
-				        success:function(data) {
-//				            console.log(JSON.stringify(data));
-				            self.message = data.name;
-				            self.images = data.contents.data;
-				            self.imgMap = data.map;
-				            self.length = data.contents.data.length;
-				            if(data.contents.data.length==1){
-				               self.prevLeft = 'prev left prevlock';
-				               self.nextRight = 'next right nextlock';
-				            }else{
-				               self.prevLeft = 'prev left prevlock';
-				               self.nextRight = 'next right nextnromal';				            	
-				            }
-				        },
-				        error:function(XMLHttpRequest, textStatus, errorThrown) {
-				            console.log(XMLHttpRequest.status);
-				            console.log(XMLHttpRequest.readyState);
-				            console.log(textStatus);
-				        }
-				    });	   
-=======
 					//console.log(parameter);
 					var iparameter = parseInt(parameter);
 				    if(!isNaN(iparameter)){
@@ -305,8 +277,6 @@
 				        alert("error");
 				        return;
 				    }
-	   
->>>>>>> animal
 	            }
 	        },
 	        created:function(){
