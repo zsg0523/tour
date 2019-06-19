@@ -167,6 +167,14 @@
                 isNextClick:true,
                 currentIndex:0 //一开始设置为 0
 	        },
+			watch: {
+			    images: function() {
+			        this.$nextTick(function(){
+			          /*现在数据已经渲染完毕*/
+					    console.log();
+			        })
+			    }
+			},
 	        methods:{// 对象内容是js函数
 	            prevHandler(e) {
 	                console.log(e);
@@ -185,7 +193,6 @@
                     $('.btn-audio').css({'background':'url(./images/transmit.png) no-repeat 30% 60%','background-size':'auto 60%'});
 	            },	           
 	            nextHandler(e){
-	                console.log(e);
 	                this.currentIndex++;
 	                this.isPrevClick=true;//解方上一页点击事件
 	                if (this.currentIndex == this.length-1){ //js的if判断语句
@@ -229,14 +236,15 @@
 	            getData(){//AJAX是异步函数（关于异步可以去看我上一篇博客），它的回调函数执行环境是全局作用域，所以在getData中AJAX的this指向的是window。这有两个解决方法，一个是像我这样的用self把this存起来，还有一种就是用箭头函数this绑定。
 	            	let self = this;
   		            var nameURL = window.location.href;
-//			        var nameURL = 'http://47.91.218.205/wenno/index.html?book=1&k=0';
+			        // var nameURL = 'http://47.91.218.205/wenno/index.html?book=1&k=0';
 			        var num = nameURL.indexOf("?");//问号之前的位置
 			        var book = nameURL.substr(num + 1);//问号之后的URL
-					console.log(book);
+					//console.log(book);
 					var bookList = book.split("&");
-					console.log(bookList[0]);
+					//console.log(bookList[0]);
 					var equal = bookList[0].indexOf("=");
 					var parameter = bookList[0].substr(equal + 1);//问号之后的URL
+<<<<<<< HEAD
 					console.log(parameter);
 					var url = 'http://47.75.178.168/api/books/'+parameter+'?include=contents';
                     // var url = 'http://wennoanimal.test/api/books/'+parameter+'?include=contents';
@@ -263,6 +271,42 @@
 				            console.log(textStatus);
 				        }
 				    });	   
+=======
+					//console.log(parameter);
+					var iparameter = parseInt(parameter);
+				    if(!isNaN(iparameter)){
+				       // alert(parameter +"是数字");					
+				        var url = 'http://47.75.178.168/api/books/'+parameter+'?include=contents';
+	                    // var url = 'http://wennoanimal.test/api/books/'+parameter+'?include=contents';
+						$.ajax({
+					        url:url,
+					        type:'GET',
+					        success:function(data) {
+	//				            console.log(JSON.stringify(data));
+					            self.message = data.name;
+					            self.images = data.contents.data;
+					            self.imgMap = data.map;
+					            self.length = data.contents.data.length;
+					            if(data.contents.data.length==1){
+					               self.prevLeft = 'prev left prevlock';
+					               self.nextRight = 'next right nextlock';
+					            }else{
+					               self.prevLeft = 'prev left prevlock';
+					               self.nextRight = 'next right nextnromal';				            	
+					            }
+					        },
+					        error:function(XMLHttpRequest, textStatus, errorThrown) {
+					            console.log(XMLHttpRequest.status);
+					            console.log(XMLHttpRequest.readyState);
+					            console.log(textStatus);
+					        }
+					    });
+				    } else{
+				        alert("error");
+				        return;
+				    }
+	   
+>>>>>>> animal
 	            }
 	        },
 	        created:function(){
