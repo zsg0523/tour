@@ -235,18 +235,23 @@
 	            },
 	            getData(){//AJAX是异步函数（关于异步可以去看我上一篇博客），它的回调函数执行环境是全局作用域，所以在getData中AJAX的this指向的是window。这有两个解决方法，一个是像我这样的用self把this存起来，还有一种就是用箭头函数this绑定。
 	            	let self = this;
-  		            var nameURL = window.location.href;
-			        // var nameURL = 'http://47.91.218.205/wenno/index.html?book=1&k=0';
-			        var num = nameURL.indexOf("?");//问号之前的位置
-			        var book = nameURL.substr(num + 1);//问号之后的URL
-					//console.log(book);
-					var bookList = book.split("&");
-					//console.log(bookList[0]);
-					var equal = bookList[0].indexOf("=");
-					var parameter = bookList[0].substr(equal + 1);//问号之后的URL
-					//console.log(parameter);
-					var iparameter = parseInt(parameter);
-				    if(!isNaN(iparameter)){
+	            	function GetQueryString(name){
+						var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+						var r = window.location.search.substr(1).match(reg);
+						if(r!=null)return unescape(r[2]); return null;
+					}
+  		 //            var nameURL = window.location.href;
+			  //       // var nameURL = 'http://47.91.218.205/wenno/index.html?book=1&k=0';
+			  //       var num = nameURL.indexOf("?");//问号之前的位置
+			  //       var book = nameURL.substr(num + 1);//问号之后的URL
+					// //console.log(book);
+					// var bookList = book.split("&");
+					// //console.log(bookList[0]);
+					// var equal = bookList[0].indexOf("=");
+					// var parameter = bookList[0].substr(equal + 1);//问号之后的URL
+					// //console.log(parameter);
+					var iparameter = GetQueryString("book");
+				    if(!isNaN(parameter)){
 				       // alert(parameter +"是数字");					
 				        var url = 'http://47.75.178.168/api/books/'+parameter+'?include=contents';
 	                    // var url = 'http://wennoanimal.test/api/books/'+parameter+'?include=contents';
