@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\AnimalTranslation;
+use App\Models\ThemesTranslation;
+use App\Models\Theme;
 use App\Transformers\AnimalTranslationTransformer;
 
 class AnimalTranslationsController extends Controller
@@ -15,13 +17,19 @@ class AnimalTranslationsController extends Controller
 	 */
     public function index(Request $request)
     {
-    	$lang = $this->getLang($request); 
-        $theme = $request->theme ?? '';
+    	$lang = $this->getLang($request);
+
+        // 獲取主題翻譯內容
+        $themes = $this->getThemes($request);
+
+        $theme = $request->theme ?? $themes[0]['title_page'];
+
         $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme)->get();
-    	return $this->response->collection($animals, new AnimalTranslationTransformer());
+
+    	return $this->response->collection($animals, new AnimalTranslationTransformer())->setMeta($themes->toArray());
     }
 
-
+    /** [show 动物详情] */
     public function show(Request $request, AnimalTranslation $animal)
     {
     	$lang = $this->getLang($request);
@@ -44,5 +52,17 @@ class AnimalTranslationsController extends Controller
         }
 
         return $lang;
+    }
+
+    /** [getThemes 获取主题] */
+    private function getThemes($request)
+    {
+        $lang = $request->header('accept-language') ?? 'en';
+
+        $theme_ids = Theme::all()->pluck('id');
+
+        $themes = ThemesTranslation::where('lang', $lang)->whereIn('theme_id', $theme_ids)->select('lang', 'title_page')->get();
+
+        return $themes;
     }
 }
