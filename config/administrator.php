@@ -46,6 +46,11 @@ return array(
             'books',
             'bookContent'
         ],
+        '动物资料库' => [
+            'animals',
+            'translation',
+            'sounds',
+        ],
     ],
 
     /*

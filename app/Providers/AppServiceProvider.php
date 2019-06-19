@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        \API::error(function  (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException  $exception)  {
+            throw new \Symfony\Component\HttpKernel\Exception\HttpException(404,  '404 Not Found');  
+        });
     }
 
     /**
