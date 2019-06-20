@@ -240,17 +240,7 @@
 						var r = window.location.search.substr(1).match(reg);
 						if(r!=null)return unescape(r[2]); return null;
 					}
-  		 //            var nameURL = window.location.href;
-			  //       // var nameURL = 'http://47.91.218.205/wenno/index.html?book=1&k=0';
-			  //       var num = nameURL.indexOf("?");//问号之前的位置
-			  //       var book = nameURL.substr(num + 1);//问号之后的URL
-					// //console.log(book);
-					// var bookList = book.split("&");
-					// //console.log(bookList[0]);
-					// var equal = bookList[0].indexOf("=");
-					// var parameter = bookList[0].substr(equal + 1);//问号之后的URL
-					// //console.log(parameter);
-					var iparameter = GetQueryString("book");
+					var parameter = GetQueryString("book");
 				    if(!isNaN(parameter)){
 				       // alert(parameter +"是数字");					
 				        var url = 'http://47.75.178.168/api/books/'+parameter+'?include=contents';

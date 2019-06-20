@@ -36,7 +36,6 @@
 				             		<img class="data-image"  v-bind:src="item.img"  v-on:error.once="moveErrorImg($event)"/>
 				             		<p>@{{item.description}}</p>	
 			             	    </a>
-
 			             	</li>
 			             </ul>
 			        </div>
@@ -63,7 +62,7 @@
 			        this.$nextTick(function(){
 			          /*现在数据已经渲染完毕*/
 					    var swiper = new Swiper('.swiper-container', {
-					       slidesPerView: 2.5,
+					       slidesPerView: 2,
 					       spaceBetween:0,
 					       freeMode: true
 					    });
