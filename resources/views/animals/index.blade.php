@@ -7,8 +7,7 @@
 	</head>
     <link rel="stylesheet" href="./css/swiper.min.css" />
     <link rel="stylesheet" href="./css/animalIndex.css">
-    <style>
-    </style>
+    <script type="text/javascript" src="./js/orientationchange.js" ></script>
     <body class="HolyGrail">
         <div  id="HolyGrail-body">
 			<header>
