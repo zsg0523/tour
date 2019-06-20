@@ -42,7 +42,6 @@
 			    </div>
 	        </div>
         </div>
-
     </body>
     <script type="text/javascript" src="./js/swiper.js" ></script>
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
@@ -79,9 +78,42 @@
                 getSwiper(){
                     let self = this;
                     self.animalName = 'Animal Database';
-                    self.imageArray = [{'img':'','description':'elephant_1'},{'img':'./images/zebra.png','description':'elephant_2'},{'img':'./images/zebra.png','description':'elephant_3'},{'img':'./images/zebra.png','description':'elephant_4'},{'img':'','description':'elephant_5'}];
+                    $.ajax({
+				        url:'http://47.75.178.168/api/animals?include=sound,animal',
+				        type:'GET',
+				        headers: {
+				           'Accept-Language':'zh-CN'
+				        },
+				        success:function(data) {
+				            console.log(JSON.stringify(data));
+			            	let meta = data.meta;
+				            let types=[];
+					        for(let i in meta){
+								let json = {title:meta[i].title_page};
+								types.push(json);
+							}
+							self.swiper = types;
+							if(data.data.length==0){
+                                alert("无数据");
+				            }else{
+                                let Data = data.data;
+					            let listImg=[];
+						        for(let j in Data){
+									let jsons = {img:Data[j].animal.image_thumbnail,description:Data[j].title};
+									listImg.push(jsons);
+								}	
+								self.imageArray = listImg;									            	
+				            }
+				        },
+				        error:function(XMLHttpRequest, textStatus, errorThrown) {
+				            console.log(XMLHttpRequest.status);
+				            console.log(XMLHttpRequest.readyState);
+				            console.log(textStatus);
+				        }
+				    });
+                    // self.imageArray = [{'img':'','description':'elephant_1'},{'img':'./images/zebra.png','description':'elephant_2'},{'img':'./images/zebra.png','description':'elephant_3'},{'img':'./images/zebra.png','description':'elephant_4 elephant_4 elephant_4 elephant_4 elephant_4 elephant_4'},{'img':'','description':'elephant_5'}];
 
-                    self.swiper = [{'title':'Elephant'},{'title':'Monkey'},{'title':'Giraffe'},{'title':'Rabbit'},{'title':'Siberian Tiger'},{'title':'Panda'}];
+                    // self.swiper = [{'title':'Elephant'},{'title':'Monkey'},{'title':'Giraffe'},{'title':'Rabbit'},{'title':'Siberian Tiger'},{'title':'Panda'}];
                 }
 			},
 			created:function(){

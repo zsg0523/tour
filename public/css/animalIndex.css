@@ -40,7 +40,7 @@ header{
     width:100%;
     height:100%;
     color:#fff;
-    font-size:1.1rem;
+    font-size:1rem;
 }
 
 .title span img{
@@ -65,7 +65,7 @@ header{
 
 nav{
 /*          flex: 0 0 10%;*/
-    height:52px;
+    height:48px;
     width:100%;
     background:rgba(216,202,155,1);         
 }
@@ -82,7 +82,7 @@ nav{
 
 .swiper-slide {
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
     background:rgba(216,202,155,1);
     color:rgba(53,45,41,1);
     display: -webkit-box;
@@ -100,7 +100,8 @@ nav{
 }
 
 .swiper-slide.active a{
-    padding:0.3rem 0.6rem;
+    display:block;
+    padding:0.2rem 0.6rem;
     background:rgba(98,76,63,1);
     border-radius:4em;
     color:#fff;
@@ -126,7 +127,7 @@ nav{
 .container ul{
     width:100%;
     height:100%;
-    margin:1em auto;
+    margin:0.5em auto;
     padding:0px;
 }
 
@@ -150,9 +151,9 @@ nav{
     text-decoration:none;
 }
 .container ul li a>img{
-   width:90%;
-   display:block;
-   margin:1em auto 0.6em auto;
+    width:90%;
+    display:block;
+    margin:0.6em auto 0.3em auto;
     border-radius:8px;
     -moz-border-radius:8px;
     -webkit-border-radius:8px;
@@ -163,8 +164,9 @@ nav{
     color:#624c3f;
     background:#fff;
     text-align: center;
-    height:40px;
+    font-size:0.8rem;
+    height:30px;
     word-break:break-all;
-    margin:0px auto 1em auto;
+    margin:0px auto 0.6em auto;
     overflow: hidden;text-overflow: ellipsis;display: box;display: -webkit-box;-webkit-line-clamp:2;-webkit-box-orient: vertical;
 }
