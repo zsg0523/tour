@@ -100,7 +100,7 @@ nav{
 }
 
 .swiper-slide.active a{
-    padding:0.3rem 1.3rem;
+    padding:0.3rem 0.6rem;
     background:rgba(98,76,63,1);
     border-radius:4em;
     color:#fff;
