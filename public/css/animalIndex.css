@@ -41,6 +41,8 @@ header{
     height:100%;
     color:#fff;
     font-size:1rem;
+    z-index:1;
+    position:relative;
 }
 
 .title span img{
@@ -48,9 +50,17 @@ header{
     height:26px;
     display:block;
 }
-
+.setting{
+    width:30px;
+    height:30px;
+    background:#624c3f url(../images/set_up.png)50% 50% no-repeat;
+    background-size:25px auto;
+    position:absolute;
+    z-index:9;
+    right:2%;
+}
 .item{
-    padding:0em 1em;
+    padding:0em 0.5em;
 }
 
 .HolyGrail-body {
@@ -103,7 +113,7 @@ nav{
     display:block;
     padding:0.2rem 0.6rem;
     background:rgba(98,76,63,1);
-    border-radius:4em;
+    border-radius:2em;
     color:#fff;
 }
 

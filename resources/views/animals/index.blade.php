@@ -12,6 +12,7 @@
         <div  id="HolyGrail-body">
 			<header>
 				<div class="title">
+				   <a class="setting" href="{{url('animals/chooseLanguage')}}"></a>
 				   <span><img src="./images/tipLeft.png"></span>
 				   <span class="item">@{{animalName}}</span>
 				   <span><img src="./images/tipRight.png"></span>
@@ -110,9 +111,6 @@
 				            console.log(textStatus);
 				        }
 				    });
-                    // self.imageArray = [{'img':'','description':'elephant_1'},{'img':'./images/zebra.png','description':'elephant_2'},{'img':'./images/zebra.png','description':'elephant_3'},{'img':'./images/zebra.png','description':'elephant_4 elephant_4 elephant_4 elephant_4 elephant_4 elephant_4'},{'img':'','description':'elephant_5'}];
-
-                    // self.swiper = [{'title':'Elephant'},{'title':'Monkey'},{'title':'Giraffe'},{'title':'Rabbit'},{'title':'Siberian Tiger'},{'title':'Panda'}];
                 }
 			},
 			created:function(){

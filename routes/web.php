@@ -27,6 +27,10 @@ Route::get('animals/database', function () {
     return view('animals.database');
 });
 
+Route::get('animals/chooseLanguage', function () {
+    return view('animals.chooseLanguage');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
