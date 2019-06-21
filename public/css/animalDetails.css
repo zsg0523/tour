@@ -17,8 +17,14 @@ li{
 body,html{
     margin:0px;
     padding:0px;
+    width:100%;
+    height:100%;
     font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;
 } 
+body{
+    background:#d3bfaa url(../images/bj_map.png) 50% 50% no-repeat;
+    background-size:100% 100%;
+}
 .database {
     display: flex;    
     flex:1;
@@ -29,10 +35,9 @@ body,html{
 }
 
 #database{
-	position:absolute;
+	position:relative;
 	width:100%;
 	height:100%;
-    background:#cdb499;
 }
 
 header{ 
@@ -41,6 +46,7 @@ header{
     margin:0px;
     padding:0px;
     z-index:1;
+    position:relative;
 }   
 
 .tipImg{
@@ -62,70 +68,74 @@ header{
 
 .contentBox{
     width:100%;
-    height:100%;
-    background:url(../images/bj_2.png) 50% 50% no-repeat;
-    background-size:100% 100%;
-    position:absolute;
-    z-index:1;
-    margin-top:-4px;
+    height:auto;
+    background:red;
+    position:relative;
+    z-index:2;
 }
 .record{
-	width:100%;
-	height:60px;
-	background:rgba(0,0,0,0);
-	position:absolute;
-	margin-top:-32px;
-	z-index:3;
+    width:100%;
+    height:60px;
+    background:rgba(0,0,0,0);
+    position:absolute;
+    top:-32px;
+    z-index:4;
 }
 .record>div{
-	width:50%;
-	height:100%;
-	float:left;
+    width:50%;
+    height:100%;
+    float:left;
 }
 .record>div.listen{
-	 background:url(../images/sound.png) 30% 50% no-repeat;
-	 background-size: auto 50px;
+     background:url(../images/sound.png) 30% 50% no-repeat;
+     background-size: auto 50px;
 }
 .record>div.talk{
-	 background:url(../images/recording.png) 70% 50% no-repeat;
-	 background-size: auto 50px;
+     background:url(../images/recording.png) 70% 50% no-repeat;
+     background-size: auto 50px;
 }
-.content{
-	width:92%;
-	height:40px;
-	background:rgba(246,133,13,0);
-	margin:38px auto 8px auto;
+
+.title{
+    width:100%;
+    height:46px;
+    line-height:46px;
+    position:absolute;
+    margin-top:20px;
+    z-index:3;
 }
-.content>p.animalName{
-	width:100%;
-	height:30px;
-	line-height:30px;
-	color:rgba(98,76,63,1);
-	text-align: center;
-	font-size:0.9rem;
-	font-weight:550;
+.title>p.animalName{
+    width:100%;
+    height:30px;
+    line-height:30px;
+    color:rgba(98,76,63,1);
+    text-align: center;
+    font-size:0.9rem;
+    font-weight:550;
 }
 .Question{
-	width:100%;
-	height:auto;
+    width:92%;
+    height:66px;
+    position:absolute;
+    z-index:3;
+    top:80px;
+    left:4%;
 }
 .Question>div.doYouKnow{
-	width:24%;
-	float:left;
-	height:66px;
+    width:23%;
+    height:66px;
     float:left;
 }
 .Question>div.doYouKnow a{
-	display:block;
-	text-align: center;
+    display:block;
+    text-align: center;
     width:66px;
     height:66px;  
     background: url(../images/doYouKnow.png) 50% 50% no-repeat;
     background-size:auto 66px;
     /*margin:0px auto;*/
-	font-size:0.8rem;
-	color:#624c3f;
-	font-weight:650;
+    font-size:0.7rem;
+    color:#624c3f;
+    font-weight:bold;
 }
 .Question>div.doYouKnow a>i{
     width:100%;
@@ -135,21 +145,21 @@ header{
     padding-top:8px;
 }
 .Question>div.problemTopic{
-   width:76%;
+   width:75%;
    height:62px;
    background:#fff;
    border:2px solid #f1c770;
    border-radius:8px;
    -moz-border-radius:8px;
    -webkit-border-radius:8px;
-   margin-left:25%;
+   margin-left:24%;
 }
 .Question>div.problemTopic span{
     width:96%;
     height:58px;
     margin:2px auto;
     line-height:19px;
-    font-size:0.85rem;
+    font-size:0.8rem;
     color:#624c3f;
     display:block;
     word-break:break-all;
@@ -163,55 +173,77 @@ header{
 .detailsList{
     width:100%;
     height:auto;
-    margin:18px auto;
+    position:absolute;
+    top:160px;
 }
-.detailsList ul.upon{
-    width:100%;
-    height:100%;
-    background:rgba(98,76,63,1);
-    margin:0px auto;
+.detailsList ul{
+   list-style-type:none;
+   position:relative;
+   background:#624c3f;
+   width:92%;
+   height:100%;
+   padding:1rem 0px;
+   margin:10px auto;
+   border-radius:8px;
+   -moz-border-radius:8px;
+   -webkit-border-radius:8px;
+}
+.detailsList ul li{
+    width:96%;
+    color:#fff;
+    line-height:26px;
+    font-size:0.8rem;
+    margin:0px;
     padding:0px;
-    list-style-type:none;
+    margin:2px auto;
+    list-style: none;
 }
-.detailsList ul.upon>li{
-    width:100%;
-    height:auto;
-    background:rgba(98,76,63,1);
 
-    float:left;
-    margin:0px auto;
-}
-.detailsList ul.upon>li>a.list_icon{
+.detailsList ul li>a.list_icon{
     width:8%;
     height:28px;
     display:block;
     float:left;
 }
-.detailsList ul.upon>li:first-child{
-    padding-top:1rem;   
-    border-top-left-radius:8px;
-    -moz-border-top-left-radius:8px;
-    -webkit-border-top-left-radius:8px;   
-    border-top-right-radius:8px;
-    -moz-border-top-right-radius:8px;
-    -webkit-border-top-right-radius:8px;
+
+.detailsList ul li.intermediate{
+    width:94%;
+    margin:0px auto;
+    background:#d8ca9b;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
 }
-.detailsList ul.upon>li:last-child{
-    padding-bottom:1rem;
-    border-bottom-left-radius:8px;
-    -moz-border-bottom-left-radius:8px;
-    -webkit-border-bottom-left-radius:8px;   
-    border-bottom-right-radius:8px;
-    -moz-border-bottom-right-radius:8px;
-    -webkit-border-bottom-right-radius:8px;
-}
-.detailsList ul.upon>li span{
-    display:block;
-    float:right;
+.detailsList ul li.intermediate p{
     width:92%;
-    line-height:28px;
-    font-size:0.8em;
-    color:#fff;
+    height:32px;
+    line-height:32px;
+    margin:0.28rem auto;
+    font-size:0.65rem;
+    background:rgba(216,202,155,1);
+    border-radius:8px;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+}
+
+.detailsList ul li.intermediate p>a{
+    width:48%;
+    height:32px;
+    line-height:32px;
+    color:#624c3f;
+    display:block; 
+    float:left;
+    word-break:break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: box;
+    display: -webkit-box;
+    -webkit-line-clamp:1;
+    -webkit-box-orient: vertical;
+}
+.detailsList ul li.intermediate p>a.classification{
+    float:right;
+    text-align:right;
 }
 .Scientific_Name{
     background:url(../images/Scientific_Name.png) 50% 50% no-repeat;
@@ -237,9 +269,48 @@ header{
     background:url(../images/group-name.png) 50% 50% no-repeat;
     background-size:16px 16px;    
 }
-.intermediate{
-    width:90%;
-    height:52px;
-    line-height:52px;
-    background:rgba(216,202,155,1);
+.weight{
+    background:url(../images/weight.png) 50% 50% no-repeat;
+    background-size:14px 14px;
 }
+.size{
+    background:url(../images/size.png) 50% 50% no-repeat;
+    background-size:14px 14px;
+}
+.speed{
+    background:url(../images/speed.png) 50% 50% no-repeat;
+    background-size:14px 14px;
+}
+.Endangered{
+    background:url(../images/Endangered.png) 50% 50% no-repeat;
+    background-size:16px 16px;    
+}
+.bottom{
+    width:100%;
+    height:auto;
+    background:url(../images/about_bj.png) 50% 50% no-repeat;
+    background-size:100% 100%;
+    margin-top:20px;
+}
+.bottom_box{
+    width:92%;
+    padding:1rem 0rem;
+    margin:0px auto;
+}
+.bottom_title{
+    width:100%;
+    line-height:22px;
+    font-size:0.9rem;
+    font-weight:550;
+    text-align:center;
+    color:#624c3f;
+    margin-top:10px;
+}
+.bottom_box span{
+    width:100%;
+    display:block;
+    line-height:20px;
+    word-break:break-all;
+    font-size:0.75rem;
+    color:#624c3f;
+} 
