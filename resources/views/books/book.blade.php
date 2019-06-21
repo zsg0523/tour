@@ -192,7 +192,7 @@
 					var parameter = GetQueryString("book");
 				    if(!isNaN(parameter)){
 				       // alert(parameter +"是数字");					
-				        var url = 'http://47.75.178.168/api/books/'+parameter+'?include=contents';
+				        var url = '/api/books/'+parameter+'?include=contents';
 	                    // var url = 'http://wennoanimal.test/api/books/'+parameter+'?include=contents';
 						$.ajax({
 					        url:url,
