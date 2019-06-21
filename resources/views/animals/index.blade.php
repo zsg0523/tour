@@ -78,7 +78,7 @@
                     let self = this;
                     self.animalName = 'Animal Database';
                     $.ajax({
-				        url:'http://47.75.178.168/api/animals?include=sound,animal',
+				        url:'/api/animals?include=sound,animal',
 				        type:'GET',
 				        headers: {
 				           'Accept-Language':'zh-CN'

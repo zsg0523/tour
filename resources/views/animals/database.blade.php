@@ -10,7 +10,7 @@
     <body class="database">
         <div id="database">
          	<header>
-                <a class="back" href=""></a>                
+                <a class="back" href="{{url('animals')}}"></a>                
                 <img class="tipImg" src="../images/bear.png" >
          	</header>
             <div class="contentBox">
