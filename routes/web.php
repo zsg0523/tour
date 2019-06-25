@@ -23,8 +23,8 @@ Route::get('animals', function () {
     return view('animals.index');
 });
 
-Route::get('animals/database', function () {
-    return view('animals.database');
+Route::get('animals/database/{id?}', function ($id = null) {
+    return view('animals.database', ['id' => $id]);
 });
 
 Auth::routes();

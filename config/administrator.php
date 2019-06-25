@@ -47,6 +47,7 @@ return array(
             'bookContent'
         ],
         '动物资料库' => [
+            'themes',
             'animals',
             'translation',
             'sounds',
