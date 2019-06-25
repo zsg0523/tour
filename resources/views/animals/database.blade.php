@@ -11,19 +11,19 @@
         <div id="database">
          	<header>
                 <a class="back" href="{{url('animals')}}"></a>                
-                <img class="tipImg" src="../images/bear.png" >
+                <img class="tipImg" v-bind:src="database.animal.image_original" >
          	</header>
             <div class="contentBox">
             	<div class="record">
-	          		<div class="listen">
-	          			<audio id="mp3Btn"  hidden="true" ></audio>
+	          		<div class="listen" @click="audioSoundPlay">
+	          			<audio id="mp3Btn" ref="audio"  hidden="true" :src="database.sound.path"></audio>
 	          		</div>
 	         		<div class="talk">
-	         			<audio id="mp3Btn"  hidden="true" ></audio>
+	         			<audio   hidden="true" ></audio>
 	         		</div>           		
             	</div>
             	<div class="title">
-            		<p class="animalName"> African Elephant</p>
+            		<p class="animalName">@{{database.title}}</p>
             	</div>
          	    <div class="Question">
          	    	<div class="doYouKnow">
@@ -35,22 +35,22 @@
          	    </div>
                 <div class="detailsList">
                 	<ul>
-         	    		<li><a class="list_icon Scientific_Name"></a><span>Scientific Name: Users Americanus</span></li>
-         	    		<li><a class="list_icon family"></a><span>Family:Elephantidae</span></li>
-         	    		<li><a class="list_icon diet"></a><span>Diet:Herbivores</span></li>
-         	    		<li><a class="list_icon habitat"></a><span>Habitat:Prairie、Savannh</span></li>
-         	    		<li><a class="list_icon location"></a><span>Location:North America</span></li>
-                        <li><a class="list_icon group-name"></a><span>Group name:Herd</span></li>
+         	    		<li><a class="list_icon Scientific_Name"></a><span>Scientific Name: @{{database.genus}}</span></li>
+         	    		<li><a class="list_icon family"></a><span>Family:@{{database.family}}</span></li>
+         	    		<li><a class="list_icon diet"></a><span>Diet:@{{database.diet}}</span></li>
+         	    		<li><a class="list_icon habitat"></a><span>Habitat:@{{database.habitat}}</span></li>
+         	    		<li><a class="list_icon location"></a><span>Location:@{{database.location}}</span></li>
+                        <li><a class="list_icon group-name"></a><span>Group name:</span></li>
          	    	    <li class="intermediate">
          	    	       <p>
          	    	          <a class="lifespan">Lifespan:Up to 70 years</a>
-         	    	          <a class="classification">Classification:Mammal</a>
+         	    	          <a class="classification">Classification:@{{database.classification}}</a>
          	    	       </p>
          	    	    </li>
-         	    	    <li><a class="list_icon weight"></a><span>Weight:2.5 to 7 tons</span></li>
-         	    	    <li><a class="list_icon size"></a><span>Size:Height at the shoulder,8.2 to 13 ft</span></li>
-         	    	    <li><a class="list_icon speed"></a><span>Top Speed:40km/h</span></li>
-         	    	    <li><a class="list_icon Endangered "></a><span>Endangered level:Vulnerable</span></li>
+         	    	    <li><a class="list_icon weight"></a><span>Weight:@{{database.weight}}</span></li>
+         	    	    <li><a class="list_icon size"></a><span>Size:@{{database.animal_height}}</span></li>
+         	    	    <li><a class="list_icon speed"></a><span>Top Speed:@{{database.speed}}</span></li>
+         	    	    <li><a class="list_icon Endangered "></a><span>Endangered level:@{{database.endangered_level}}</span></li>
 	         	    </ul>
 	                <div class="bottom">
 	                	<div class="bottom_box">
@@ -72,8 +72,53 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
     <script>
 		var vm = new Vue({
 			el: "#database",
-			data:{}
-		});
-
+			data:{
+                database:[]
+            },
+            methods:{
+                audioSoundPlay(e){
+                    var audio = document.getElementById('mp3Btn');
+                    audio.onplay = function(){
+                        console.log("视频已经开始播放");
+                    };
+                    $('#mp3Btn').on('ended', function(){
+                        console.log("音频已播放完成");
+                    });
+                    e.stopPropagation();//防止冒泡
+                    if(audio.paused){ //如果当前是暂停状态
+                        audio.play(); //播放
+                        return;
+                    }else{
+                        audio.pause(); //暂停
+                    }
+                },
+                animalsInfo(){
+                    let self = this;
+                    function GetQueryString(name){
+                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                        var r = window.location.search.substr(1).match(reg);
+                        if(r!=null)return unescape(r[2]); return null;
+                    }
+                    $.ajax({
+                        url:'/api/animals/'+GetQueryString("id")+'?include=sound,animal',
+                        type:'GET',
+                        success:function(data) {
+                            console.log(JSON.stringify(data));
+                            console.log(data.animal.image_original);
+                            self.database = data;
+                        },
+                        error:function(XMLHttpRequest, textStatus, errorThrown) {
+                            console.log(XMLHttpRequest.status);
+                            console.log(XMLHttpRequest.readyState);
+                            console.log(textStatus);
+                        }
+                    });                     
+                }
+            },
+            created:function(){
+                var that=this;
+                that.animalsInfo();
+            }
+        });
  </script>
 </html>

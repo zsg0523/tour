@@ -8,7 +8,7 @@
     .HolyGrail-content {
      flex: auto;
   }
-} 
+}
 li{
     list-style:none;
     margin:0px;
@@ -86,11 +86,11 @@ header{
     height:100%;
     float:left;
 }
-.record>div.listen{
+.listen{
      background:url(../images/sound.png) 30% 50% no-repeat;
      background-size: auto 50px;
 }
-.record>div.talk{
+.talk{
      background:url(../images/recording.png) 70% 50% no-repeat;
      background-size: auto 50px;
 }
