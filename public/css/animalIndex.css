@@ -10,7 +10,93 @@
     flex: auto;
   }
 }
-
+@media screen and (max-width: 300px){
+    .container ul li div>img{
+        max-width:90%;
+        height:72px;
+    }
+    .title span img{
+        width:18px;
+        height:18px;
+        display:block;
+    }
+    .setting{
+        width:26px;
+        height:26px;    
+    }
+}
+@media screen and (min-width: 310px) and (max-width: 500px){
+    .container ul li div>img{
+        max-width:92%;
+        height:90px;
+    }
+    .title span img{
+        width:24px;
+        height:24px;
+        display:block;
+    }
+    .setting{
+        width:34px;
+        height:34px;    
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 600px){
+    .container ul li div>img{
+        max-width:92%;
+        height:110px;
+    }
+}
+@media screen and (min-width: 600px) and (max-width: 760px){
+    .container ul li div>img{
+        max-width:92%;
+        height:120px;
+    }
+}
+@media screen and (min-width: 760px) and (max-width: 1000px){
+    .container ul li div>img{
+        max-width:92%;
+        height:200px;
+    }
+    .title span img{
+        width:30px;
+        height:30px;
+        display:block;
+    }
+    .setting{
+        width:46px;
+        height:46px;    
+    }
+}
+@media screen and (min-width: 1000px) and (max-width: 1024px){
+    .container ul li div>img{
+        max-width:92%;
+        height:280px;
+    }
+    .title span img{
+        width:36px;
+        height:36px;
+        display:block;
+    }
+    .setting{
+        width:52px;
+        height:52px;    
+    }
+}
+@media screen and (min-width: 1025px){
+    .container ul li div>img{
+        max-width:92%;
+        height:460px;
+    }
+    .title span img{
+        width:36px;
+        height:36px;
+        display:block;
+    }
+    .setting{
+        width:54px;
+        height:54px;    
+    }
+}
 body,html{
     margin:0px;
     padding:0px;
@@ -46,15 +132,11 @@ header{
 }
 
 .title span img{
-    width:26px;
-    height:26px;
     display:block;
 }
 .setting{
-    width:30px;
-    height:30px;
     background:#624c3f url(../images/set_up.png)50% 50% no-repeat;
-    background-size:25px auto;
+    background-size:60% auto;
     position:absolute;
     z-index:9;
     right:2%;
@@ -107,6 +189,7 @@ nav{
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+    cursor:pointer;
 }
 
 .swiper-slide.active a{
@@ -155,21 +238,21 @@ nav{
     -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
-.container ul li a{
+.container ul li div{
     display: block;
     color:rgba(53,45,41,1);
     text-decoration:none;
 }
-.container ul li a>img{
-    width:90%;
+
+.container ul li div>img{
     display:block;
     margin:0.6em auto 0.3em auto;
     border-radius:8px;
     -moz-border-radius:8px;
     -webkit-border-radius:8px;
+    -ms-interpolation-mode: bicubic;
 }
-
-.container ul li a>p{
+.container ul li div>p{
     width: 90%;
     color:#624c3f;
     background:#fff;
@@ -178,5 +261,10 @@ nav{
     height:30px;
     word-break:break-all;
     margin:0px auto 0.6em auto;
-    overflow: hidden;text-overflow: ellipsis;display: box;display: -webkit-box;-webkit-line-clamp:2;-webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: box;
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;
 }
