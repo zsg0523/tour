@@ -2,6 +2,6 @@
 
 return [
 
-    'Animal Database' => '动物资料库'
+    'AnimalDatabase' => '动物资料库'
 
 ];

@@ -18,8 +18,9 @@
 	          		<div class="listen" @click="audioSoundPlay">
 	          			<audio id="mp3Btn" ref="audio"  hidden="true" :src="database.sound.path"></audio>
 	          		</div>
-	         		<div class="talk">
-	         			<audio   hidden="true" ></audio>
+                    <div class="transcription" onclick="startRecording();"> </div> 
+	         		<div class="talk" onclick="playRecording();">
+	         			<audio id="transcription" hidden="true" controls autoplay></audio>
 	         		</div>           		
             	</div>
             	<div class="title">
@@ -67,8 +68,26 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
             </div>
         </div>
     </body>
+    <script type="text/javascript" src="../js/HZRecorder.js"></script>
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/vue/2.2.3/vue.min.js"></script>
+    <script>
+        var recorder;
+        var audio = document.getElementById('transcription');
+        function startRecording() {
+            HZRecorder.get(function (rec) {
+                recorder = rec;
+                console.log(recorder);
+                recorder.start();
+            });
+        }
+        function stopRecording() {
+            recorder.stop();
+        }
+        function playRecording() {
+            recorder.play(audio);
+        }
+    </script>
     <script>
 		var vm = new Vue({
 			el: "#database",
