@@ -14,7 +14,7 @@
 				<div class="title">
 				   <a class="setting" href="{{url('animals/chooseLanguage')}}"></a>
 				   <span><img src="./images/tipLeft.png"></span>
-				   <span class="item">Animal Database</span>
+				   <span class="item">{{ __('animals.page-title') }}</span>
 				   <span><img src="./images/tipRight.png"></span>
 				</div>
 			</header>
