@@ -4,15 +4,15 @@
  * @Author: Eden
  * @Date:   2019-06-12 17:59:50
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-06-14 17:14:17
+ * @Last Modified time: 2019-06-21 15:32:52
  */
 use App\Models\AnimalTranslation;
 
 return [
 
-	'title' => '详细资料',
+	'title' => '动物资料',
 
-	'single' => '详细资料',
+	'single' => '动物资料',
 
 	'model' => AnimalTranslation::class,
 

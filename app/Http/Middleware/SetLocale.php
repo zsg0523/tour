@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Session;
 
-class ChangeLocale
+class SetLocale
 {
     /**
      * Handle an incoming request.
@@ -15,12 +16,9 @@ class ChangeLocale
      */
     public function handle($request, Closure $next)
     {
-        $language = $request->header('accept-language');
-        
-        if ($language) {
-            \App::setLocale($language);
+        if (Session::has('locale') && in_array(Session::get('locale'), ['en', 'zh-HK', 'zh-CN'])) {
+            \App::setLocale(Session::get('locale') ?? 'en');
         }
-
         return $next($request);
     }
 }
