@@ -18,8 +18,8 @@
 	          		<div class="listen" @click="audioSoundPlay">
 	          			<audio id="mp3Btn" ref="audio"  hidden="true" :src="database.sound.path"></audio>
 	          		</div>
-                    <div class="transcription" onclick="startRecording();"> </div> 
-	         		<div class="talk" onclick="playRecording();">
+                    <div class="transcription" onclick="startRecording()"> </div> 
+	         		<div class="talk" onclick="playRecording()">
 	         			<audio id="transcription" hidden="true" controls autoplay></audio>
 	         		</div>           		
             	</div>
