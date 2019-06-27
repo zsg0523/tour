@@ -15,6 +15,9 @@ class SetLocaleController extends Controller
             session(['locale' => $request->lang ?? 'en']);
         }
 
+        // api 设置本地化语言
+        \App::setLocale($request->lang);
+
         return $this->response->array(['message' => 'change language success', 'lang' => $request->lang])->setStatusCode(201);      
     }
 }
