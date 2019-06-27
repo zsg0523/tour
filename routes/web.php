@@ -12,10 +12,6 @@
 */
 
 
-/** 多语言切换 */
-Route::get('/setLocale/{locale}', 'SetLocaleController@setLocale');
-
-
 Route::group(['middleware' => ['setLocale']], function() {
 	Route::get('/', function () {
 	    return view('welcome');
