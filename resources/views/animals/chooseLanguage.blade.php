@@ -62,6 +62,12 @@
 				        type:'GET',
 				        success:function(data) {
 							console.log(JSON.stringify(data));
+							if(data){
+				                window.location.reload();
+				                setTimeout(function() { 
+								    window.history.go(-1);
+							    },1000);
+							}
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
 				            console.log(XMLHttpRequest.status);

@@ -10,7 +10,8 @@
     <body class="database">
         <div id="database">
          	<header>
-                <a class="back" href="{{url('animals')}}"></a>              
+                <!-- <a class="back" href="{{url('animals')}}"></a> -->  
+                <span class="back" @click=backHistory></span>            
                 <img class="tipImg" v-bind:src="database.animal.image_original" >
          	</header>
             <div class="contentBox">
@@ -95,6 +96,9 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
                 database:[]
             },
             methods:{
+                backHistory(){
+                    window.history.go(-1);
+                },
                 audioSoundPlay(e){
                     var audio = document.getElementById('mp3Btn');
                     audio.onplay = function(){
