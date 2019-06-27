@@ -28,7 +28,7 @@
             	</div>
          	    <div class="Question">
          	    	<div class="doYouKnow">
-         	    		<a><i>DO YOU KNOM</i></a>
+         	    		<a><i>{{ __('animals.do-you-know') }}</i></a>
          	    	</div>
          	    	<div class="problemTopic">
          	    	   <span>The black bear actually comes in six colors:black,blone,red,blue,chocolate and cinnamon</span>
@@ -36,7 +36,7 @@
          	    </div>
                 <div class="detailsList">
                 	<ul>
-         	    		<li><a class="list_icon Scientific_Name"></a><span>Scientific Name: @{{database.genus}}</span></li>
+         	    		<li><a class="list_icon Scientific_Name"></a><span>{{ __('animals.do-you-know') }}:@{{database.genus}}</span></li>
          	    		<li><a class="list_icon family"></a><span>Family:@{{database.family}}</span></li>
          	    		<li><a class="list_icon diet"></a><span>Diet:@{{database.diet}}</span></li>
          	    		<li><a class="list_icon habitat"></a><span>Habitat:@{{database.habitat}}</span></li>

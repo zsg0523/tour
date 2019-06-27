@@ -16,7 +16,6 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {   
-        dd(Session('locale'));
         if (Session::has('locale') && in_array(Session::get('locale'), ['en', 'zh-HK', 'zh-CN'])) {
             \App::setLocale(Session::get('locale') ?? 'en');
         }

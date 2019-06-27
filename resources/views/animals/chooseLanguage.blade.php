@@ -13,15 +13,17 @@
          	<div class="icon">
          	 	<a class="back" href="{{url('animals')}}"></a>
          	 	<img src="../images/logo_set.png">
-         	 	<a class="sure" @click="backHistory"></a>
          	</div>
-         	<p class="choose">Choose Your Language</p>
+         	<p class="choose">{{ __('animals.choose-your-language') }}</p>
 			<div class="swiper-container">
 			    <div class="swiper-wrapper">
-				    <div class="swiper-slide"  v-for="item in language" :key="item">@{{item.language}}</div>
+				    <div class="swiper-slide"  v-for="item in language" :key="item" :title="item.title">@{{item.language}}</div>
 			    </div>
 			    <div class="swiper-button-next"></div>
 			    <div class="swiper-button-prev"></div>
+			</div>
+			<div class="sure" @click="chooseLanguage">
+				<p>{{ __('animals.determine') }}</p>
 			</div>
          </div>
     </body>
@@ -44,7 +46,6 @@
 					         prevEl: '.swiper-button-prev',
 					       },
 					    });
-					    alert($(".swiper-slide-active").text());
 			        })
 			    }			
 			},
@@ -52,9 +53,26 @@
                 backHistory(){
 
                 },
+                chooseLanguage(){
+                      // alert($(".swiper-slide-active").attr('title'));
+                    let language = $(".swiper-slide-active").attr('title');
+                    console.log(language);
+                    $.ajax({
+				        url:'/api/setLocale?lang='+language,
+				        type:'GET',
+				        success:function(data) {
+							console.log(JSON.stringify(data));
+				        },
+				        error:function(XMLHttpRequest, textStatus, errorThrown) {
+				            console.log(XMLHttpRequest.status);
+				            console.log(XMLHttpRequest.readyState);
+				            console.log(textStatus);
+				        }
+				    });
+                },
                 getSwiper(){
                     let self = this;
-                    self.language = [{'language':'English'},{'language':'中文简体'},{'language':'中文繁體'}];
+                    self.language = [{'language':'English','title':'en'},{'language':'中文简体','title':'zh-CN'},{'language':'中文繁體','title':'zh-HK'}];
                 }
 			},
 			created:function(){
