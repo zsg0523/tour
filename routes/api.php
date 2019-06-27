@@ -19,7 +19,7 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
     // 手动注册模型中间件bindings
-    'middleware' => ['serializer:array','bindings', 'change-locale']
+    'middleware' => ['serializer:array','bindings', 'setLocale']
 ], function($api) {
     $api->group([
         'middleware' => 'api.throttle',
