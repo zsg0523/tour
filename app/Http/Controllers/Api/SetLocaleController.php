@@ -12,9 +12,9 @@ class SetLocaleController extends Controller
     public function setLocale(Request $request)
     {
         if (in_array($request->lang, ['en', 'zh-CN', 'zh-HK'])) {
-            session(['locale' => $request->lang]);
+            session(['locale' => $request->lang ?? 'en']);
         }
 
-        return $this->response->array(['message' => '多语言设置成功', 'lang' => $request->lang])->setStatusCode(201);      
+        return $this->response->array(['message' => 'change language success', 'lang' => $request->lang])->setStatusCode(201);      
     }
 }
