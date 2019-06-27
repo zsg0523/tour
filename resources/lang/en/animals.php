@@ -7,7 +7,7 @@
  * @Last Modified time: 2019-06-26 16:59:14
  */
 return [
-	'page-title' => 'animal database',
+	'page-title' => 'Animal Database',
 	'choose-your-language' => 'Choose Your Language',
 	'determine' => 'Determine',
 	'do-you-know' => 'DO YOU KNOM',

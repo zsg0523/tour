@@ -63,10 +63,7 @@
 				        success:function(data) {
 							console.log(JSON.stringify(data));
 							if(data){
-				                window.location.reload();
-				                setTimeout(function() { 
-								    window.history.go(-1);
-							    },1000);
+								window.history.go(-1);
 							}
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
