@@ -50,9 +50,6 @@
 			    }			
 			},
 			methods:{
-                backHistory(){
-
-                },
                 chooseLanguage(){
                       // alert($(".swiper-slide-active").attr('title'));
                     let language = $(".swiper-slide-active").attr('title');
@@ -63,7 +60,8 @@
 				        success:function(data) {
 							console.log(JSON.stringify(data));
 							if(data){
-								window.history.go(-1);
+								// window.history.go(-1);
+								window.location.href = document.referrer;
 							}
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -75,7 +73,7 @@
                 },
                 getSwiper(){
                     let self = this;
-                    self.language = [{'language':'English','title':'en'},{'language':'中文简体','title':'zh-CN'},{'language':'中文繁體','title':'zh-HK'}];
+                    self.language = [{'language':'English','title':'en'},{'language':'中文简体','title':'zh-CN'},{'language':'中文繁體','title':'zh-TW'}];
                 }
 			},
 			created:function(){
