@@ -45,7 +45,7 @@
         .right{float:right;}
         .content{width:100%;height:15%;background:url(./images/ani.png)50% 100% no-repeat;background-size:94% auto;}
         .prev,.next{width:18%;height:100%;}
-        .prevnromal{background:url(./images/up.png) 50% 50% no-repeat;background-size:24% auto;}
+        .prevnromal{background:url(./images/prev.png) 50% 50% no-repeat;background-size:24% auto;}
         .nextnromal{background:url(./images/next.png) 50% 50% no-repeat;background-size:24% auto;}
         .prevlock{background:url(./images/up_no.png) 50% 50% no-repeat;background-size:24% auto;}
         .nextlock{background:url(./images/next_no.png) 50% 50% no-repeat;background-size:24% auto;}
