@@ -36,7 +36,7 @@
          	    </div>
                 <div class="detailsList">
                 	<ul>
-         	    		<li><a class="list_icon Scientific_Name"></a><span>{{ __('animals.do-you-know') }}:@{{database.genus}}</span></li>
+         	    		<li><a class="list_icon Scientific_Name"></a><span>Scientific Name: @{{database.genus}}</span></li>
          	    		<li><a class="list_icon family"></a><span>Family:@{{database.family}}</span></li>
          	    		<li><a class="list_icon diet"></a><span>Diet:@{{database.diet}}</span></li>
          	    		<li><a class="list_icon habitat"></a><span>Habitat:@{{database.habitat}}</span></li>
