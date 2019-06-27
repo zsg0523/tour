@@ -62,6 +62,9 @@
 				        type:'GET',
 				        success:function(data) {
 							console.log(JSON.stringify(data));
+							if(data){
+								window.history.go(-1);
+							}
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
 				            console.log(XMLHttpRequest.status);

@@ -78,9 +78,6 @@
                     $.ajax({
 				        url:'/api/animals?theme='+title+'&include=sound,animal',
 				        type:'GET',
-				        headers: {
-				           'Accept-Language':'zh-CN'
-				        },
 				        success:function(data) {
 							if(data.data.length==0){
                                 alert("无数据");
