@@ -61,6 +61,9 @@ $api->version('v1', [
             // 动物详细资料
             $api->get('animals/{animal}', 'AnimalTranslationsController@show');
 
+            /** 多语言切换 */
+            $api->get('setLocale', 'SetLocaleController@setLocale');
+
             // 需 token 验证的接口
             $api->group(['middleware' => 'api.auth'], function ($api) {
                 // 当前登录用户信息
