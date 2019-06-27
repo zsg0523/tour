@@ -45,7 +45,7 @@ class AnimalTranslationsController extends Controller
      */
     private function getLang($request)
     {
-        $lang = $request->header('accept-language') ?? 'en';
+        $lang = session('locale') ?? 'en';
 
         if ($lang == "") {
             return $this->errorResponse(404, '未选择语言！', 1001);
@@ -57,7 +57,7 @@ class AnimalTranslationsController extends Controller
     /** [getThemes 获取主题] */
     private function getThemes($request)
     {
-        $lang = $request->header('accept-language') ?? 'en';
+        $lang = session('locale') ?? 'en';
 
         $theme_ids = Theme::all()->pluck('id');
 
