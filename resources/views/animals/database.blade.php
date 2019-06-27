@@ -10,7 +10,7 @@
     <body class="database">
         <div id="database">
          	<header>
-                <a class="back" href="{{url('animals')}}"></a>                
+                <a class="back" href="{{url('animals')}}"></a>              
                 <img class="tipImg" v-bind:src="database.animal.image_original" >
          	</header>
             <div class="contentBox">

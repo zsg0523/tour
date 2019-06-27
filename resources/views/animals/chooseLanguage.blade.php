@@ -13,11 +13,12 @@
          	<div class="icon">
          	 	<a class="back" href="{{url('animals')}}"></a>
          	 	<img src="../images/logo_set.png">
+         	 	<a class="sure" @click="backHistory"></a>
          	</div>
          	<p class="choose">Choose Your Language</p>
 			<div class="swiper-container">
 			    <div class="swiper-wrapper">
-				    <div class="swiper-slide" v-for="item in language" :key="item">@{{item.language}}</div>
+				    <div class="swiper-slide"  v-for="item in language" :key="item">@{{item.language}}</div>
 			    </div>
 			    <div class="swiper-button-next"></div>
 			    <div class="swiper-button-prev"></div>
@@ -43,10 +44,14 @@
 					         prevEl: '.swiper-button-prev',
 					       },
 					    });
+					    alert($(".swiper-slide-active").text());
 			        })
 			    }			
 			},
 			methods:{
+                backHistory(){
+
+                },
                 getSwiper(){
                     let self = this;
                     self.language = [{'language':'English'},{'language':'中文简体'},{'language':'中文繁體'}];

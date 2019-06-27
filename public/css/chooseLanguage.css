@@ -272,3 +272,13 @@ body{
 	left: auto;
 	cursor: pointer;
 }
+
+.sure{
+	position:absolute;
+	z-index:3;
+	width:50px;
+	height:50px;
+	right:3%;
+	top:2%;
+	background:red;
+}
