@@ -59,7 +59,7 @@ $api->version('v1', [
             // 动物列表
             $api->get('animals', 'AnimalTranslationsController@index');
             // 动物详细资料
-            $api->get('animals/{animal}', 'AnimalTranslationsController@show');
+            $api->get('animals', 'AnimalTranslationsController@show');
 
             /** 多语言切换 */
             $api->get('setLocale', 'SetLocaleController@setLocale');

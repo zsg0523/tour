@@ -34,6 +34,8 @@ class AnimalTranslationsController extends Controller
     {
     	$lang = $this->getLang($request);
 
+        $animal = $animal->where('title', $request->title)->where('lang', $lang)->first();
+
     	return $this->response->item($animal, new AnimalTranslationTransformer());
     }
 
@@ -45,7 +47,7 @@ class AnimalTranslationsController extends Controller
      */
     private function getLang($request)
     {
-        $lang = session('locale') ?? 'zh-CN';
+        $lang = $request->lang ?? (session('locale') ?? 'zh-CN');
 
         if ($lang == "") {
             return $this->errorResponse(404, '未选择语言！', 1001);
@@ -57,7 +59,7 @@ class AnimalTranslationsController extends Controller
     /** [getThemes 获取主题] */
     private function getThemes($request)
     {
-        $lang = session('locale') ?? 'zh-CN';
+        $lang = $request->lang ?? (session('locale') ?? 'zh-CN');
 
         $theme_ids = Theme::all()->pluck('id');
 
