@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-06-10 16:56:50
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-07-03 16:54:32
+ * @Last Modified time: 2019-07-05 15:38:48
  */
 namespace App\Transformers;
 
@@ -32,6 +32,7 @@ class AnimalTranslationTransformer extends TransformerAbstract
 			'title_classification' => $animaltranslation->title_classification,
 			'classification' => $animaltranslation->classification,
 			'title_lifespan' => $animaltranslation->title_lifespan,
+			'lifespan' => $animaltranslation->lifespan,
 			'title_diet' => $animaltranslation->title_diet,
 			'diet' => $animaltranslation->diet,
 			'weight' => $animaltranslation->weight,
