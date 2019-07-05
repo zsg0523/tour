@@ -64,6 +64,8 @@ $api->version('v1', [
             /** 多语言切换 */
             $api->get('setLocale', 'SetLocaleController@setLocale');
 
+            $api->get('lang', 'SetLocaleController@index');
+
             // 需 token 验证的接口
             $api->group(['middleware' => 'api.auth'], function ($api) {
                 // 当前登录用户信息

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Models\AnimalTranslation;
 
 class SetLocaleController extends Controller
 {
@@ -16,5 +17,13 @@ class SetLocaleController extends Controller
         }
 
         return $this->response->array(['message' => 'change language success', 'lang' => $request->lang])->setStatusCode(201);      
+    }
+
+    /** [index 多语言列表] */
+    public function index()
+    {
+        $lang = AnimalTranslation::groupBy('lang')->pluck('lang')->toArray();
+
+        return $this->response->array($lang);
     }
 }
