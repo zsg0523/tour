@@ -73,7 +73,41 @@
                 },
                 getSwiper(){
                     let self = this;
-                    self.language = [{'language':'English','title':'en'},{'language':'中文简体','title':'zh-CN'},{'language':'中文繁體','title':'zh-TW'}];
+                    $.ajax({
+                        url:'/api/lang',
+                        type:'GET',
+                        success:function(data) {
+                            console.log(JSON.stringify(data));
+                        },
+                        error:function(XMLHttpRequest, textStatus, errorThrown) {
+                            console.log(XMLHttpRequest.status);
+                            console.log(XMLHttpRequest.readyState);
+                            console.log(textStatus);
+                        }
+                    }); 
+                    self.language = [
+                    {'language':'English','title':'en'},
+                    {'language':'Deutsch','title':'de'},
+                    {'language':'Français','title':'fr'},
+                    {'language':'Italiano','title':'it'},
+                    {'language':'Türkçe','title':'tr'},
+                    {'language':'Nederlands','title':'nl'},
+                    {'language':'Dansk','title':'da'},
+                    {'language':'Português','title':'pt'},
+                    {'language':'Svenska','title':'sv'},
+                    {'language':'ภาษาไทย','title':'th'},
+                    {'language':'한국어','title':'ko'},
+                    {'language':'Norsk','title':'no'},
+                    {'language':'بهاس ملايو','title':'ms'},
+                    {'language':'中文简体','title':'zh-CN'},
+                    {'language':'中文繁體','title':'zh-TW'},
+                    {'language':'العَرَبِية','title':'ar'},
+                    {'language':'Español','title':'es'},
+                    {'language':'русский язык','title':'ru'},
+                    {'language':'हिन्दी','title':'hi'},
+                    {'language':'Finnish','title':'fi'},
+                    {'language':'日本語','title':'ja'},
+                    {'language':'українська мова','title':'uk'}];
                 }
 			},
 			created:function(){

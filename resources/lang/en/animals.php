@@ -19,8 +19,11 @@ return [
 	'group-name' => 'Group name',
 	'lifespan' => 'Lifespan',
 	'classification' => 'Classification',
+	'date_of_naming' => 'Date of Naming',
+	'order' => 'Order',
 	'weight' => 'Weight',
 	'size' => 'Size',
 	'top-speed' => 'Top Speed',
-	'endangered-level' => 'Endangered level'
+	'endangered-level' => 'Endangered level',
+	'fossils_discovered' => 'Fossils Discovered'
 ];
