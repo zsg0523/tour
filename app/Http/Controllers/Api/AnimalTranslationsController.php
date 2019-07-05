@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\AnimalTranslation;
 use App\Models\ThemesTranslation;
 use App\Models\Theme;
+use App\Models\Animal;
 use App\Transformers\AnimalTranslationTransformer;
 
 class AnimalTranslationsController extends Controller
@@ -33,6 +34,10 @@ class AnimalTranslationsController extends Controller
     public function show(Request $request, AnimalTranslation $animal)
     {
     	$lang = $this->getLang($request);
+        
+        $animal_id = Animal::where('product_name', $request->product_name)->value('id');
+
+        $animal = $animal->where('animal_id', $animal_id)->where('lang', $lang)->first();
 
     	return $this->response->item($animal, new AnimalTranslationTransformer());
     }
@@ -45,7 +50,7 @@ class AnimalTranslationsController extends Controller
      */
     private function getLang($request)
     {
-        $lang = session('locale') ?? 'zh-CN';
+        $lang = $request->lang ? session('lang', $request->lang) : (session('lang') ?? 'en');
 
         if ($lang == "") {
             return $this->errorResponse(404, '未选择语言！', 1001);
@@ -57,7 +62,7 @@ class AnimalTranslationsController extends Controller
     /** [getThemes 获取主题] */
     private function getThemes($request)
     {
-        $lang = session('locale') ?? 'zh-CN';
+        $lang = $request->lang ? session('lang', $request->lang) : (session('lang') ?? 'en');
 
         $theme_ids = Theme::all()->pluck('id');
 
