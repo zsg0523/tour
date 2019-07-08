@@ -31,7 +31,7 @@
 			    <div class="slideUpDown">
 			        <div class="container">
 			             <ul>
-			             	<li v-for ="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.title)">
+			             	<li v-for ="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
 			             	    <div>
 				             		<img class="data-image"  v-bind:src="item.animal.image_original"  v-on:error.once="moveErrorImg($event)"/>
 				             		<p>@{{item.title}}</p>	
