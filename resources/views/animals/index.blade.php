@@ -31,7 +31,7 @@
 			    <div class="slideUpDown">
 			        <div class="container">
 			             <ul>
-			             	<li v-for ="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.id)">
+			             	<li v-for ="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
 			             	    <div>
 				             		<img class="data-image"  v-bind:src="item.animal.image_original"  v-on:error.once="moveErrorImg($event)"/>
 				             		<p>@{{item.title}}</p>	
@@ -68,9 +68,8 @@
 			    }
 			},
 			methods:{
-				database(id){
-                    //alert(id);
-                   window.location.href = './animals/database?id='+id+'';
+				database(title){
+                    window.location.href = './animals/database?product_name='+title;
 				},
                 selectTimer(index,title) {
 				    this.imageIndex = index;
@@ -101,9 +100,6 @@
                     $.ajax({
 				        url:'/api/animals?include=sound,animal',
 				        type:'GET',
-				        headers: {
-				           'Accept-Language':'zh-CN'
-				        },
 				        success:function(data) {
 				            self.swiper = data.meta;
 							if(data.data.length==0){

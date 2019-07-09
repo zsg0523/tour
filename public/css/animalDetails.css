@@ -82,12 +82,12 @@ header{
     z-index:4;
 }
 .record>div{
-    width:33%;
+    width:100%;
     height:100%;
     float:left;
 }
 .listen{
-     background:url(../images/sound.png) 30% 50% no-repeat;
+     background:url(../images/sound.png) 50% 50% no-repeat;
      background-size: auto 50px;
 }
 .transcription{
@@ -177,7 +177,7 @@ header{
     width:100%;
     height:auto;
     position:absolute;
-    top:160px;
+    top:70px;
 }
 .detailsList ul{
    list-style-type:none;

@@ -16,11 +16,14 @@ return [
 	'diet' => '生活习性',
 	'habitat' => '栖息环境',
 	'location' => '分布区域',
-	'group-name' => 'Group name',
+	'group-name' => '组别',
 	'lifespan' => '寿命',
 	'classification' => '分类',
+	'date_of_naming' => '命名日期',
+	'order' => '目',
 	'weight' => '重量',
 	'size' => '尺寸',
 	'top-speed' => '最高速度',
-	'endangered-level' => '濒危程度'
+	'endangered-level' => '濒危程度',
+	'fossils_discovered' => '发现化石'
 ];
