@@ -10,5 +10,5 @@ use App\Transformers\AnimalTransformer;
 
 class AnimalsController extends Controller
 {
-
+	
 }	
