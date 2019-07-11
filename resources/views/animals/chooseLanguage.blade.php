@@ -31,7 +31,6 @@
     </body>
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
-	<script>
 		$(function (){
 			var lang = 'uk';
 	        var language = [{
@@ -204,6 +203,5 @@
 		        }
 		    });
 		});
-	</script>
     </script>
 </html>
