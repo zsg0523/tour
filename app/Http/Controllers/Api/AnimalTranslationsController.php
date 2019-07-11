@@ -22,6 +22,9 @@ class AnimalTranslationsController extends Controller
         // 獲取主題翻譯內容
         $themes = $this->getThemes($request);
 
+        // 移除农场动物分类：该分类无内容
+        unset($themes[5]);
+
         $theme = $request->theme ?? trim($themes[0]['title_page']);
 
         $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme)->get();
