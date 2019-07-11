@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\AnimalTranslation;
-use App\Models\ThemesTranslation;
-use App\Models\Theme;
-use App\Models\Animal;
+use App\Models\{AnimalTranslation, ThemesTranslation, Theme, Animal};
 use App\Transformers\AnimalTranslationTransformer;
 
 class AnimalTranslationsController extends Controller
@@ -21,9 +18,6 @@ class AnimalTranslationsController extends Controller
     	$lang = $this->getLang($request);
         // 獲取主題翻譯內容
         $themes = $this->getThemes($request);
-
-        // 移除农场动物分类：该分类无内容
-        unset($themes[5]);
 
         $theme = $request->theme ?? trim($themes[0]['title_page']);
 
@@ -72,4 +66,46 @@ class AnimalTranslationsController extends Controller
 
         return $themes;
     }
+
+    // 筛选相关语言无数据的分类
+    public function check(Request $request)
+    {   
+        // 多语言种类
+        $langs = AnimalTranslation::groupBy('lang')->pluck('lang')->toArray();
+
+        foreach ($langs as $lang) {
+            // 主题
+            $theme_ids = Theme::all()->pluck('id');
+            // 主题多语言
+            $themes = ThemesTranslation::where('lang', $lang)->whereIn('theme_id', $theme_ids)->select('lang', 'title_page')->get();
+
+            foreach ($themes as $theme) {
+                $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme->title_page)->get();
+                if($animals->toArray() == []) {
+                    echo "语言：" . $lang . "|" . "分类:" . $theme->title_page . "\n\r";
+                }
+            }
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 }
