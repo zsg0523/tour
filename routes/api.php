@@ -61,9 +61,9 @@ $api->version('v1', [
             // 动物详细资料
             $api->get('animal', 'AnimalTranslationsController@show');
 
-            /** 多语言切换 */
+            // 多语言设置
             $api->get('setLocale', 'SetLocaleController@setLocale');
-
+            // 多语言列表
             $api->get('lang', 'SetLocaleController@index');
 
             // 需 token 验证的接口
@@ -79,30 +79,6 @@ $api->version('v1', [
                 // // 图片资源
                 // $api->post('images', 'ImagesController@store');
                 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             });
             
