@@ -22,7 +22,7 @@ class AnimalTranslationsController extends Controller
         // 獲取主題翻譯內容
         $themes = $this->getThemes($request);
 
-        $theme = $request->theme ?? $themes[0]['title_page'];
+        $theme = $request->theme ?? trim($themes[0]['title_page']);
 
         $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme)->get();
 
