@@ -89,7 +89,7 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
             },
             methods:{
                 backHistory(){
-                    window.history.go(-1);
+                    window.location.href = document.referrer;
                 },
                 audioSoundPlay(e){
                     var audio = document.getElementById('mp3Btn');
