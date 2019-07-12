@@ -7,11 +7,6 @@
 	</head>
     <link rel="stylesheet" href="../css/chooseLanguage.css">
     <script type="text/javascript" src="../js/orientationchange.js" ></script>
-    <style>
-    	.chooseBox{width:100%;height:80px;}
-    	.chooseBox select{width:80%;height:40px;margin:10px auto;display:block;outline: 0;border:3px solid #fff;text-indent:1em;background:rgba(0,0,0,0);-webkit-appearance: none;-moz-appearance: none;appearance: none;}
-    	.chooseBox select option{text-indent:1em;background-color: #fff; }
-    </style>
     <body class="language">
          <div class="chooseLanguage" id="chooseLanguage">
          	<div class="icon">
@@ -20,19 +15,18 @@
          	</div>
 			<p class="choose"></p>
 			<div class="chooseBox">
-				<select class="selectBox" name="selectBox" id="selectBox">
-				
+				<select class="selectBox" name="selectBox" id="selectBox">	
 				</select>
 			</div>
 			<div class="sure">
-				<p class="determine"></p>
+				<!-- <p class="determine"></p> -->
 			</div>
          </div>
     </body>
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
 		$(function (){
-			var lang = 'uk';
+			var lang = 'zh-CN';
 	        var language = [{
 					'language': 'English',
 					'title': 'en',
@@ -171,11 +165,11 @@
 	            if(language[i].title==lang){
 	               $(".choose").text(language[i].choose);
                    option+='<option value="'+language[i].language+'" title="'+language[i].title+'" choose="'+language[i].choose+'" determine="'+language[i].determine+'" selected>'+language[i].language+'</option>';	            	
-	               $(".determine").text(language[i].determine);
+	               //$(".determine").text(language[i].determine);
 	            }else{
 	               option+='<option value="'+language[i].language+'" title="'+language[i].title+'" choose="'+language[i].choose+'" determine="'+language[i].determine+'">'+language[i].language+'</option>';
 	               $(".choose").text(language[0].choose);
-	               $(".determine").text(language[0].determine);
+	              // $(".determine").text(language[0].determine);
 	            }
 		    }
 		    $('#selectBox').append(option);			
@@ -183,7 +177,7 @@
 		
 		$("#selectBox").change(function(){
 	       $(".choose").text($('#selectBox').find("option:selected").attr("choose"));
-	       $(".determine").text($('#selectBox').find("option:selected").attr("determine"));
+	      // $(".determine").text($('#selectBox').find("option:selected").attr("determine"));
 		});
 		$(".sure").click(function(){
             var language = $('#selectBox').find("option:selected").attr("title");
