@@ -22,7 +22,7 @@
 	            <nav>
 				    <div class="swiper-container">
 				    	<div class="swiper-wrapper">
-				    	    <div class="swiper-slide"  :class="imageIndex === index ? 'active' : '' " v-for="(arr,index) in swiper" :key="'time' + index" :title="arr.title_page"  @click="selectTimer(index,arr.title_page)">
+				    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :title="arr.title_page"  @click="selectTimer(index,arr.title_page)">
 				    	        <a>@{{arr.title_page}}</a>
 				    	    </div>
 				    	</div>
@@ -59,11 +59,37 @@
 			    swiper: function() {
 			        this.$nextTick(function(){
 			          /*现在数据已经渲染完毕*/
+			            // var hrefg = '?theme=Asia';
+			            var initialSlide;
+	                    function GetQueryString(name){
+	                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	                         var r = window.location.search.substr(1).match(reg);
+	                        // var r = hrefg.substr(1).match(reg);
+	                        if(r!=null)return unescape(r[2]); return null;
+	                    }
+	                    var theme = GetQueryString("theme");
+	                    if(theme==null||theme==undefined){
+	                    	initialSlide=0
+	                    }else{
+	                        var goodslength = $(".swiper-slide").length;
+	                        for(var i=0;i<goodslength;i++){
+	                        	var html = $(".swiper-slide").eq(i).text();
+	                        	if(html==theme){
+	                        	    initialSlide=i;
+	                        	}
+	                        }
+
+	                    }
 					    var swiper = new Swiper('.swiper-container', {
-					       slidesPerView: 2,
+					       slidesPerView: 2.5,
 					       spaceBetween:0,
+					       initialSlide:initialSlide,
+					       slideToClickedSlide:true,
+					       centeredSlides:true,
 					       freeMode: true
 					    });
+					    var goodslength = $(".swiper-slide").length;
+					    $(".swiper-slide").eq(initialSlide).addClass("active");
 			        })
 			    }
 			},
@@ -73,6 +99,8 @@
 				},
                 selectTimer(index,title) {
 				    this.imageIndex = index;
+				    $(".swiper-slide").removeClass("active");
+				    $(".swiper-slide").eq(index).addClass("active");
 				    const self=this;
                     $.ajax({
 				        url:'/api/animals?theme='+title+'&include=sound,animal',
@@ -97,8 +125,21 @@
 	            },
                 getSwiper(url,status,thisx){
                     let self = this;
+                    function GetQueryString(name){
+                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                        var r = window.location.search.substr(1).match(reg);
+                        if(r!=null)return unescape(r[2]); return null;
+                    }
+                    var theme = GetQueryString('theme');
+                    var lang = GetQueryString('lang');
+                    if(theme==null||theme==undefined){
+                        var url = '/api/animals?include=animal';
+                    }else{
+                        var url = '/api/animals?theme='+theme+'&lang='+lang+'l&include=animal';
+                    }
+
                     $.ajax({
-				        url:'/api/animals?include=sound,animal',
+				        url:url,
 				        type:'GET',
 				        success:function(data) {
 				            self.swiper = data.meta;
