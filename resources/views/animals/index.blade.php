@@ -63,8 +63,8 @@
 			            var initialSlide;
 	                    function GetQueryString(name){
 	                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-	                         var r = window.location.search.substr(1).match(reg);
-	                        // var r = hrefg.substr(1).match(reg);
+	                        var r = window.location.search.substr(1).match(reg);
+	                        //var r = href.substr(1).match(reg);
 	                        if(r!=null)return unescape(r[2]); return null;
 	                    }
 	                    var theme = GetQueryString("theme");
@@ -124,18 +124,19 @@
 	                event.currentTarget.src = "./images/loadingLogo.png";//默认图片
 	            },
                 getSwiper(url,status,thisx){
-                    let self = this;
+                    let self = this
                     function GetQueryString(name){
                         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
                         var r = window.location.search.substr(1).match(reg);
                         if(r!=null)return unescape(r[2]); return null;
                     }
+
                     var theme = GetQueryString('theme');
                     var lang = GetQueryString('lang');
                     if(theme==null||theme==undefined){
                         var url = '/api/animals?include=animal';
                     }else{
-                        var url = '/api/animals?theme='+theme+'&lang='+lang+'l&include=animal';
+                        var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=animal';
                     }
 
                     $.ajax({
