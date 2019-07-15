@@ -149,7 +149,7 @@
 				},
 				{
 					'language': '日本語',
-					'title': 'ja',
+					'title': 'jp',
 					'choose':'言語を選んでください',
 					'determine':'定めます'
 				},
@@ -181,6 +181,7 @@
 		});
 		$(".sure").click(function(){
             var language = $('#selectBox').find("option:selected").attr("title");
+            sessionStorage.setItem('language',language);
             $.ajax({
 		        url:'/api/setLocale?lang='+language,
 		        type:'GET',
