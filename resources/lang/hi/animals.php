@@ -10,6 +10,7 @@ return [
 	'page-title' => 'पशु डाटाबेस',
 	'choose-your-language' => 'अपनी भाषा चुनिए',
 	'determine' => 'निर्धारित',
+	'noData' => 'जल्द आ रहा है',
 	'do-you-know' => 'क्या आपको पता है',
 	'scientific-name' => 'वैज्ञानिक नाम',
 	'family' => 'परिवार',

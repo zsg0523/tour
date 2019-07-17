@@ -10,6 +10,7 @@ return [
 	'page-title' => 'Pangkalan haiwan',
 	'choose-your-language' => 'Pilih Bahasa anda',
 	'determine' => 'menentukan',
+	'noData' => 'Akan datang',
 	'do-you-know' => 'Adakah awak tahu',
 	'scientific-name' => 'Nama saintifik',
 	'family' => 'Keluarga',

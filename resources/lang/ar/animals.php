@@ -10,6 +10,7 @@ return [
 	'page-title' => 'قاعدة بيانات الحيوان',
 	'choose-your-language' => 'اختر لغتك',
 	'determine' => 'تحديد',
+	'noData' => 'قريبا',
 	'do-you-know' => 'هل تعرف',
 	'scientific-name' => 'الاسم العلمي',
 	'family' => 'عائلة',

@@ -10,6 +10,7 @@ return [
 	'page-title' => 'eläintietokantojen',
 	'choose-your-language' => 'Valitse kielesi',
 	'determine' => 'määrittää',
+	'noData' => 'Tulossa pian',
 	'do-you-know' => 'Tiedätkö',
 	'scientific-name' => 'Tieteellinen nimi',
 	'family' => 'Perhe',

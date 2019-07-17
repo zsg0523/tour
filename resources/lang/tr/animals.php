@@ -10,6 +10,7 @@ return [
 	'page-title' => 'Hayvan Veritabanı',
 	'choose-your-language' => 'Dilinizi seçin',
 	'determine' => 'belirlemek',
+	'noData' => 'Çok yakında',
 	'do-you-know' => 'Biliyor musun',
 	'scientific-name' => 'Bilimsel ad',
 	'family' => 'Aile',

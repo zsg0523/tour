@@ -10,6 +10,7 @@ return [
 	'page-title' => '동물 데이터베이스',
 	'choose-your-language' => '당신의 언어를 선택하세요',
 	'determine' => '결정',
+	'noData' => '출시 예정',
 	'do-you-know' => '당신은 알고 계십니까',
 	'scientific-name' => '과학적인 이름',
 	'family' => '가족',

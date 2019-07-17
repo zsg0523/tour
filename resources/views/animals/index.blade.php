@@ -105,7 +105,8 @@
 				        type:'GET',
 				        success:function(data) {
 							if(data.data.length==0){
-                                alert("无数据");
+								var noData = "{{ __('animals.noData') }}";
+                                alert(noData);
                                 self.imageArray = [];
 				            }else{
 				            	self.imageArray = data.data;								        	
@@ -148,7 +149,8 @@
 				        success:function(data) {
 				            self.swiper = data.meta;
 							if(data.data.length==0){
-                                alert("无数据");
+								var noData = "{{ __('animals.noData') }}";
+                                alert(noData);
                                 self.imageArray = [];
 				            }else{
 				            	self.imageArray = data.data;							        	

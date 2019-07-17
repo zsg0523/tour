@@ -10,6 +10,7 @@ return [
 	'page-title' => 'Animal Database',
 	'choose-your-language' => 'Velg ditt språk',
 	'determine' => 'Fastslå',
+	'noData' => 'Kommer snart',
 	'do-you-know' => 'Vet du',
 	'scientific-name' => 'Vitenskapelig navn',
 	'family' => 'Familie',

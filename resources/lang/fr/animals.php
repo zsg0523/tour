@@ -10,6 +10,7 @@ return [
 	'page-title' => 'Base de données des animaux',
 	'choose-your-language' => 'Choisissez votre langue',
 	'determine' => 'Déterminer',
+	'noData' => 'Arrive bientôt',
 	'do-you-know' => 'Savez-vous',
 	'scientific-name' => 'Nom scientifique',
 	'family' => 'Famille',

@@ -10,6 +10,7 @@ return [
 	'page-title' => '動物データベース',
 	'choose-your-language' => '言語を選んでください',
 	'determine' => '定めます',
+	'noData' => '近日公開',
 	'do-you-know' => 'あなたは知っていますか',
 	'scientific-name' => '学名',
 	'family' => '家族',

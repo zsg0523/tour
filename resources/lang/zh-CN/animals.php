@@ -10,6 +10,7 @@ return [
 	'page-title' => '动物资料库',
 	'choose-your-language' => '请选择你的语言',
 	'determine' => '确定',
+	'noData' => '快来了',
 	'do-you-know' => '你知道吗',
 	'scientific-name' => '学名',
 	'family' => '科',

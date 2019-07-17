@@ -10,6 +10,7 @@ return [
 	'page-title' => 'ฐานข้อมูลสัตว์',
 	'choose-your-language' => 'เลือกภาษาของคุณ',
 	'determine' => 'กำหนด',
+	'noData' => 'เร็ว ๆ นี้',
 	'do-you-know' => 'คุณรู้หรือไม่',
 	'scientific-name' => 'ชื่อทางวิทยาศาสตร์',
 	'family' => 'ครอบครัว',
