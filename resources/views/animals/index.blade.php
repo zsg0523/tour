@@ -122,8 +122,8 @@
 	            moveErrorImg:function (event) {
 	                event.currentTarget.src = "./images/loadingLogo.png";//默认图片
 	            },
-                getSwiper(url,status,thisx){
-                    let self = this
+                getSwiper(){
+                    let self = this;
                     function GetQueryString(name){
                         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
                         var r = window.location.search.substr(1).match(reg);
@@ -133,7 +133,6 @@
                     var lang = GetQueryString('lang');
                     var language = sessionStorage.getItem('language');
                     console.log(language);
-
                     if(theme==null&lang==null){
                        	if(language!=null){
                             var url = '/api/animals?lang='+language+'&include=animal';

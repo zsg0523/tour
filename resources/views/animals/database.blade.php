@@ -16,10 +16,11 @@
             </header>
             <div class="contentBox">
                 <div class="record">
-                    <div class="listen" @click="audioSoundPlay">
-                        <audio id="mp3Btn" ref="audio"  hidden="true" :src="database.sound.path"></audio>
+                    <div class="listen"  @click="audioSoundPlay" v-if="path">
+                        <audio id="mp3Btn"  hidden="true"  :src="database.sound.path"></audio>
                     </div>
-<!--                     <div class="transcription" onclick="startRecording()"> </div> 
+                    <div class="listen"  @click="noData" v-if="sound"></div>
+<!--                <div class="transcription" onclick="startRecording()"> </div> 
                     <div class="talk" onclick="playRecording()">
                         <audio id="transcription" hidden="true" controls autoplay></audio>
                     </div>  -->                 
@@ -83,6 +84,8 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
             el: "#database",
             data:{
                 database:[],
+                sound:false,
+                path:false,
                 dinosaur:false,
                 animal:false
 
@@ -90,6 +93,10 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
             methods:{
                 backHistory(){
                     window.location.href = document.referrer;
+                },
+                noData(){
+                    var noData = "{{ __('animals.noData') }}";
+                    alert(noData);                    
                 },
                 audioSoundPlay(e){
                     var audio = document.getElementById('mp3Btn');
@@ -130,12 +137,20 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
                     $.ajax({
                         url:url,
                         type:'GET',
-                        success:function(data) {
-                            console.log(JSON.stringify(data));
-                            console.log(data.animal.image_original);
+                        success:function(data){
+                            // console.log(JSON.stringify(data));
+                            // console.log(data.animal.image_original);
                             self.database = data;
+                            var sound = data.sound;
+                            if(sound==undefined){//没有获取到sound
+                                self.sound = true;
+                                self.path = false;
+                            }else{
+                                self.sound = false;
+                                self.path = true;
+                            }
                             var theme_name = data.theme_name;
-                            console.log(theme_name);
+                            //console.log(theme_name);
                             if(theme_name=='Mesozoic Era'){//恐龙
                                 self.dinosaur = true;
                                 self.animal = false;
