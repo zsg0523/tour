@@ -29,7 +29,10 @@
 				    </div>
 	            </nav>
 			    <div class="slideUpDown">
-			        <div class="container">
+			    	 <div class="NoData" v-show="noData">
+			    	 	<span>{{ __('animals.noData') }}</span>
+			    	 </div>
+			        <div class="container" v-show="haveData">
 			             <ul>
 			             	<li v-for ="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
 			             	    <div>
@@ -53,7 +56,9 @@
 				swiper:[],
 				imageArray:[],
 				swiperIndex:0,
-				imageIndex:0
+				imageIndex:0,
+				noData:false,
+				haveData:false
 			},
 			watch: {
 			    swiper: function() {
@@ -105,10 +110,14 @@
 				        type:'GET',
 				        success:function(data) {
 							if(data.data.length==0){
-								var noData = "{{ __('animals.noData') }}";
-                                alert(noData);
+								// var noData = "{{ __('animals.noData') }}";
+        //                         alert(noData);
+                                self.noData = true;
+                                self.haveData = false;
                                 self.imageArray = [];
 				            }else{
+                                self.noData = false;
+                                self.haveData = true;
 				            	self.imageArray = data.data;								        	
 				            }
 				        },
@@ -148,10 +157,14 @@
 				        success:function(data) {
 				            self.swiper = data.meta;
 							if(data.data.length==0){
-								var noData = "{{ __('animals.noData') }}";
-                                alert(noData);
+								// var noData = "{{ __('animals.noData') }}";
+        //                         alert(noData);
+                                self.noData = true;
+                                self.haveData = false;
                                 self.imageArray = [];
 				            }else{
+                                self.noData = false;
+                                self.haveData = true;
 				            	self.imageArray = data.data;							        	
 				            }
 				        },

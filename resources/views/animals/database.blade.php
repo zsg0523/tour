@@ -87,12 +87,37 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
                 sound:false,
                 path:false,
                 dinosaur:false,
-                animal:false
-
+                animal:false,
+                locationReload:false
+            },
+            watch: {
+                database: function() {
+                    var locationReload = this.locationReload;
+                
+                    if(locationReload==false){
+                       let self = this;
+                       self.locationReload = true;
+                    }else{
+                        return
+                    }
+                }
             },
             methods:{
                 backHistory(){
-                    window.location.href = document.referrer;
+                    function GetQueryString(name){
+                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                        var r = window.location.search.substr(1).match(reg);
+                        // var r = search.substr(1).match(reg);
+                        if(r!=null)return unescape(r[2]); return null;
+                    }
+                    var searchRoot = GetQueryString("root");
+                    if(searchRoot==null||searchRoot==undefined){
+                        window.location.href = document.referrer;
+                    }else{
+                        var lang = GetQueryString("lang");
+                        sessionStorage.setItem('language',lang);
+                        window.location.href="/animals";
+                    }
                 },
                 noData(){
                     var noData = "{{ __('animals.noData') }}";
@@ -158,6 +183,7 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
                                 self.dinosaur = false;
                                 self.animal = true;                                
                             }
+
                         },
                         error:function(XMLHttpRequest, textStatus, errorThrown) {
                             console.log(XMLHttpRequest.status);

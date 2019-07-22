@@ -24,8 +24,12 @@
         width:26px;
         height:26px;    
     }
+    .NoData{
+        background:url(../images/COMING.png) 50% 56% no-repeat;
+        background-size: 100% auto;        
+    }
 }
-@media screen and (min-width: 310px) and (max-width: 500px){
+@media screen and (min-width: 310px) and (max-width: 320px){
     .container ul li div>img{
         max-width:92%;
         height:90px;
@@ -39,17 +43,96 @@
         width:34px;
         height:34px;    
     }
+    .NoData{
+        background:url(../images/COMING.png) 50% 54% no-repeat;
+        background-size: 100% auto;        
+    }
 }
-@media screen and (min-width: 500px) and (max-width: 600px){
+@media screen and (min-width: 320px) and (max-width: 374px){
+    .container ul li div>img{
+        max-width:92%;
+        height:90px;
+    }
+    .title span img{
+        width:24px;
+        height:24px;
+        display:block;
+    }
+    .setting{
+        width:34px;
+        height:34px;    
+    }
+    .NoData{
+        background:url(../images/COMING.png) 50% 55.5% no-repeat;
+        background-size: 100% auto;        
+    }
+}
+@media screen and (min-width: 375px) and (max-width: 410px){
+    .container ul li div>img{
+        max-width:92%;
+        height:90px;
+    }
+    .title span img{
+        width:24px;
+        height:24px;
+        display:block;
+    }
+    .setting{
+        width:34px;
+        height:34px;    
+    }
+    .NoData{
+        background:url(../images/COMING.png) 50% 55% no-repeat;
+        background-size: 100% auto;        
+    }
+}
+@media screen and (min-width: 411px) and (max-width: 500px){
+    .container ul li div>img{
+        max-width:92%;
+        height:90px;
+    }
+    .title span img{
+        width:24px;
+        height:24px;
+        display:block;
+    }
+    .setting{
+        width:34px;
+        height:34px;    
+    }
+    .NoData{
+        background:url(../images/COMING.png) 50% 55.5% no-repeat;
+        background-size: 100% auto;        
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 599px){
     .container ul li div>img{
         max-width:92%;
         height:110px;
     }
+    .NoData{
+        background:url(../images/COMING.png) 50% 57% no-repeat;
+        background-size: 100% auto;        
+    }
 }
-@media screen and (min-width: 600px) and (max-width: 760px){
+@media screen and (min-width: 600px) and (max-width: 639px){
     .container ul li div>img{
         max-width:92%;
         height:120px;
+    }
+    .NoData{
+        background:url(../images/COMING.png) 50% 56.5% no-repeat;
+        background-size: 100% auto;        
+    }
+}
+@media screen and (min-width: 640px) and (max-width: 759px){
+    .container ul li div>img{
+        max-width:92%;
+        height:120px;
+    }
+    .NoData{
+        background:url(../images/COMING.png) 50% 66% no-repeat;
+        background-size: 70% auto;        
     }
 }
 @media screen and (min-width: 760px) and (max-width: 1000px){
@@ -66,6 +149,10 @@
         width:46px;
         height:46px;    
     }
+    .NoData{
+        background:url(../images/COMING.png) 50% 59% no-repeat;
+        background-size: 100% auto;        
+    }
 }
 @media screen and (min-width: 1000px) and (max-width: 1024px){
     .container ul li div>img{
@@ -81,8 +168,12 @@
         width:52px;
         height:52px;    
     }
+    .NoData{
+        background:url(../images/COMING.png) 50% 60% no-repeat;
+        background-size: 100% auto;        
+    }
 }
-@media screen and (min-width: 1025px){
+@media screen and (min-width: 1025px) and (max-width: 1440px){
     .container ul li div>img{
         max-width:92%;
         height:460px;
@@ -95,6 +186,29 @@
     .setting{
         width:54px;
         height:54px;    
+    }
+    .NoData{
+        background:url(../images/COMING.png) 50% 67% no-repeat;
+        background-size: 74% auto;        
+    }
+}
+@media screen and (min-width: 1441px){
+    .container ul li div>img{
+        max-width:92%;
+        height:460px;
+    }
+    .title span img{
+        width:36px;
+        height:36px;
+        display:block;
+    }
+    .setting{
+        width:54px;
+        height:54px;    
+    }
+    .NoData{
+        background:url(../images/COMING.png) 50% 67% no-repeat;
+        background-size: 58% auto;        
     }
 }
 body,html{
@@ -267,4 +381,29 @@ nav{
     display: -webkit-box;
     -webkit-line-clamp:2;
     -webkit-box-orient: vertical;
+}
+
+.NoData{
+    width: 50%;
+    position:absolute;
+    text-align: center;
+    margin:auto;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
+}
+
+.NoData span{
+    width: 100%;
+    height:40px;
+    color:#624c3f;
+    text-align: center;
+    display:block;
+    margin:auto;
+    position: absolute;  
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0; 
 }
