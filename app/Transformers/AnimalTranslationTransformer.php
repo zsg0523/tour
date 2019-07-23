@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-06-10 16:56:50
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-07-05 15:38:48
+ * @Last Modified time: 2019-07-24 10:15:14
  */
 namespace App\Transformers;
 
@@ -24,6 +24,7 @@ class AnimalTranslationTransformer extends TransformerAbstract
 			'animal_id' => $animaltranslation->animal_id,
 			'sound_id' => $animaltranslation->sound_id,
 			'lang' => $animaltranslation->lang,
+			'view' => $animaltranslation->view,
 			'title' => $animaltranslation->title,
 			'genus' => $animaltranslation->genus,
 			'family' => $animaltranslation->family,
@@ -44,7 +45,7 @@ class AnimalTranslationTransformer extends TransformerAbstract
 			'theme_name' => $animaltranslation->theme_name,
 			'group_name' => $animaltranslation->group_name,
 			'created_at' => $animaltranslation->created_at ? $animaltranslation->created_at->toDateTimeString() : '',
-			'updated_at' => $animaltranslation->updated_at ? $animaltranslation->created_at->toDateTimeString(): '',
+			'updated_at' => $animaltranslation->updated_at ? $animaltranslation->updated_at->toDateTimeString(): '',
 		];
 	}
 

@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-06-12 17:59:50
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-06-21 15:32:52
+ * @Last Modified time: 2019-07-24 10:16:48
  */
 use App\Models\AnimalTranslation;
 
@@ -26,6 +26,11 @@ return [
 		'lang' => [
 			'title' => '语言',
 			'sortable' => false,
+		],
+
+		'view' => [
+			'title' => '浏览量',
+			'sortable' => true,
 		],
 
 		'title' => [
