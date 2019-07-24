@@ -100,7 +100,7 @@
 					'determine':'Fastslå'
 				},
 				{
-					'language': 'بهاس ملايو',
+					'language': 'Bahasa Melayu',
 					'title': 'ms',
 					'choose':'Pilih Bahasa anda',
 					'determine':'menentukan'
