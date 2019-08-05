@@ -19,6 +19,8 @@ class AnimalTranslationsController extends Controller
         // 獲取主題翻譯內容
         $themes = $this->getThemes($request);
 
+        // dd($themes->toArray());
+
         $theme = $request->theme ?? trim($themes[0]['title_page']);
 
         $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme)->get();
@@ -34,6 +36,8 @@ class AnimalTranslationsController extends Controller
         $animal_id = Animal::where('product_name', $request->product_name)->value('id');
 
         $animal = $animal->where('animal_id', $animal_id)->where('lang', $lang)->first();
+
+        $animal->increment('view');
 
     	return $this->response->item($animal, new AnimalTranslationTransformer());
     }
