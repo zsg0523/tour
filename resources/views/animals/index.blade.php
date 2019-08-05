@@ -72,7 +72,7 @@
 	                    }
 	                    var theme = GetQueryString("theme");
 	                    if(theme==null||theme==undefined){
-	                    	initialSlide=0
+	                    	initialSlide=0;
 	                    }else{
 	                        var goodslength = $(".swiper-slide").length;
 	                        for(var i=0;i<goodslength;i++){
@@ -97,7 +97,6 @@
 			},
 			methods:{
 				database(title){
-
                     window.location.href = './animals/database?product_name='+title;
 				},
                 selectTimer(index,title) {
@@ -135,22 +134,55 @@
                     let self = this;
                     function GetQueryString(name){
                         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-                        var r = window.location.search.substr(1).match(reg);
+                        var r =  window.location.search.substr(1).match(reg);
                         if(r!=null)return unescape(r[2]); return null;
                     }
                     var theme = GetQueryString('theme');
                     var lang = GetQueryString('lang');
                     var language = sessionStorage.getItem('language');
                     console.log(language);
-                    if(theme==null&lang==null){
-                       	if(language!=null){
-                            var url = '/api/animals?lang='+language+'&include=animal';
-                       	}else{
-                       	    var url = '/api/animals?include=animal';
-                       	}
-                    }else{
-                        var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=animal';
+                    console.log(lang);
+                    console.log(theme);
+                    if(theme!=null&&lang!=null){
+                        console.log(44);
+                        var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=sound,animal';
                     }
+
+                    if(theme!=null&&lang==null&&language!=null){
+                   		console.log(33);
+                        var url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
+                    }
+
+                    if(theme==null&&lang==null&&language!=null){
+                   		console.log(22);
+                        var url = '/api/animals?lang='+language+'&include=sound,animal';
+                    }
+
+                    if(theme==null&&lang!=null&&language==null){
+                   		console.log(11);
+                        var url = '/api/animals?lang='+lang+'&include=sound,animal';
+                    }
+
+                    if(theme==null&&lang==null&&language==null){
+                   		console.log(00);
+                        var url = '/api/animals?include=animal';
+                    }
+
+                    // if(theme==null&lang==null){
+                    //    	if(language!=null){
+                    //    		console.log(11);
+                    //         var url = '/api/animals?lang='+language+'&include=animal';
+                    //    	}else if(lang!=null){
+                    //    		console.log(22);
+                    //    		var url = '/api/animals?lang='+lang+'&include=animal';
+                    //    	}else{
+                    //    	    console.log(33);
+                    //    	    var url = '/api/animals?include=animal';
+                    //    	}
+                    // }else{
+                    //     console.log(44);
+                    //     var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=animal';                    	
+                    // }
                     $.ajax({
 				        url:url,
 				        type:'GET',
