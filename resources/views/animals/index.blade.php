@@ -62,6 +62,14 @@
 			},
 			watch: {
 			    swiper: function() {
+			        //location.reload();
+			        var myVar;
+			        myFunction();
+			        function myFunction() {
+					    myVar = setTimeout(function(){ location.reload(); }, 1000);
+					};
+ 
+			        clearTimeout(myVar);
 			        this.$nextTick(function(){
 			          /*现在数据已经渲染完毕*/
 			            var initialSlide;
@@ -94,7 +102,7 @@
 					    $(".swiper-slide").eq(initialSlide).addClass("active");
 			        })
 			    }
-			},
+			}, 
 			methods:{
 				database(title){
                     window.location.href = './animals/database?product_name='+title;
@@ -144,12 +152,10 @@
                     console.log(lang);
                     console.log(theme);
                     if(theme!=null&&lang!=null){
-                        console.log(44);
                         var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=sound,animal';
                     }
 
                     if(theme!=null&&lang==null&&language!=null){
-                   		console.log(33);
                         var url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
                     }
 
@@ -158,35 +164,16 @@
                     }
 
                     if(theme==null&&lang==null&&language!=null){
-                   		console.log(22);
                         var url = '/api/animals?lang='+language+'&include=sound,animal';
                     }
 
                     if(theme==null&&lang!=null&&language==null){
-                   		console.log(11);
                         var url = '/api/animals?lang='+lang+'&include=sound,animal';
                     }
 
                     if(theme==null&&lang==null&&language==null){
-                   		console.log(00);
                         var url = '/api/animals?include=animal';
                     }
-
-                    // if(theme==null&lang==null){
-                    //    	if(language!=null){
-                    //    		console.log(11);
-                    //         var url = '/api/animals?lang='+language+'&include=animal';
-                    //    	}else if(lang!=null){
-                    //    		console.log(22);
-                    //    		var url = '/api/animals?lang='+lang+'&include=animal';
-                    //    	}else{
-                    //    	    console.log(33);
-                    //    	    var url = '/api/animals?include=animal';
-                    //    	}
-                    // }else{
-                    //     console.log(44);
-                    //     var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=animal';                    	
-                    // }
                     $.ajax({
 				        url:url,
 				        type:'GET',
