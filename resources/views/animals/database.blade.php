@@ -148,15 +148,27 @@ The elephant is now the largest terrestrial mammal in the world. Elephants are s
                     }
                     var lang = GetQueryString("lang");
                     var language = sessionStorage.getItem('language');
-                    if(lang==null||lang==undefined){
-                        if(language!=null){
-                            var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
-                        }else{
-                            var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
-                        }
-                    }else{
-                       var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
+                    if(lang!=null){
+                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
                     }
+
+                    if(lang==null&&language!=null){
+                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
+
+                    }
+
+                    if(lang==null&&language==null){
+                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
+                    }
+                    // if(lang==null||lang==undefined){
+                    //     if(language!=null){
+                    //         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
+                    //     }else{
+                    //         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
+                    //     }
+                    // }else{
+                    //    var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
+                    // }
                     // var lang = "{{ Session::get('lang') }}";
                     // alert(lang);
                     $.ajax({
