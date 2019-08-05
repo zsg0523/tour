@@ -153,6 +153,10 @@
                         var url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
                     }
 
+                    if(theme==null&&lang!=null&&language!=null){
+                        var url = '/api/animals?lang='+lang+'&include=sound,animal';
+                    }
+
                     if(theme==null&&lang==null&&language!=null){
                    		console.log(22);
                         var url = '/api/animals?lang='+language+'&include=sound,animal';
