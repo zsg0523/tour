@@ -58,18 +58,11 @@
 				swiperIndex:0,
 				imageIndex:0,
 				noData:false,
-				haveData:false
+				haveData:false,
+				locationReload:false
 			},
 			watch: {
 			    swiper: function() {
-			        //location.reload();
-			        var myVar;
-			        myFunction();
-			        function myFunction() {
-					    myVar = setTimeout(function(){ location.reload(); }, 1000);
-					};
- 
-			        clearTimeout(myVar);
 			        this.$nextTick(function(){
 			          /*现在数据已经渲染完毕*/
 			            var initialSlide;
@@ -101,7 +94,16 @@
 					    var goodslength = $(".swiper-slide").length;
 					    $(".swiper-slide").eq(initialSlide).addClass("active");
 			        })
-			    }
+			    },
+			    imageArray: function() {
+                    var locationReload = this.locationReload;
+                    if(locationReload==false){
+                       let self = this;
+                       self.locationReload = true;
+                    }else{
+                        return
+                    }
+                }
 			}, 
 			methods:{
 				database(title){
