@@ -14,7 +14,7 @@
 				<div class="title">
 				   <a class="setting" href="{{url('animals/chooseLanguage')}}"></a>
 				   <span><img src="./images/tipLeft.png"></span>
-				   <span class="item">{{ __('animals.page-title') }}</span>
+				   <span class="item">@{{pageTitle}}</span>
 				   <span><img src="./images/tipRight.png"></span>
 				</div>
 			</header>
@@ -59,6 +59,7 @@
 				imageIndex:0,
 				noData:false,
 				haveData:false,
+				pageTitle:'',
 				locationReload:false
 			},
 			watch: {
@@ -155,27 +156,106 @@
                     console.log(theme);
                     if(theme!=null&&lang!=null){
                         var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=sound,animal';
+                        langTitle(lang);
                     }
 
                     if(theme!=null&&lang==null&&language!=null){
                         var url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
+                        langTitle(language);
                     }
 
                     if(theme==null&&lang!=null&&language!=null){
                         var url = '/api/animals?lang='+lang+'&include=sound,animal';
+                        langTitle(lang);
                     }
 
                     if(theme==null&&lang==null&&language!=null){
                         var url = '/api/animals?lang='+language+'&include=sound,animal';
+                        langTitle(language);
                     }
 
                     if(theme==null&&lang!=null&&language==null){
                         var url = '/api/animals?lang='+lang+'&include=sound,animal';
+                        langTitle(lang);
                     }
 
                     if(theme==null&&lang==null&&language==null){
                         var url = '/api/animals?include=animal';
+                        langTitle();
                     }
+                   
+                    function langTitle(langTitles){
+	                   	switch (langTitles) {
+						    case 'ar':
+						        self.pageTitle = "قاعدة بيانات الحيوان";
+						        break;
+						    case 'da':
+						        self.pageTitle = "Animal Database";
+						         break;
+						    case 'de':
+						         self.pageTitle= "Tier Datenbank";
+						         break;
+						    case 'en':
+						        self.pageTitle = "Animal Database";
+						         break;
+						    case 'es':
+						        self.pageTitle = "Base de datos de animales";
+						         break;
+						    case 'fi':
+						        self.pageTitle = "eläintietokantojen";
+						         break;
+						    case 'fr':
+						        self.pageTitle = "Base de données des animaux";
+						        break;
+						    case 'hi':
+						        self.pageTitle = "पशु डाटाबेस";
+						         break;
+						    case 'it':
+						        self.pageTitle = "Database degli animali";
+						         break;
+						    case 'jp':
+						        self.pageTitle = "動物データベース";
+						         break;
+						    case 'ko':
+						        self.pageTitle = "동물 데이터베이스";
+						         break;
+						    case 'ms':
+						        self.pageTitle = "Pangkalan haiwan";
+						         break;
+						    case 'nl':
+						        self.pageTitle = "Animal Database";
+						        break;
+						    case 'no':
+						        self.pageTitle = "Animal Database";
+						        break;
+						    case 'pt':
+						        self.pageTitle = "Banco de Dados de animais";
+						         break;
+						    case 'ru':
+						        self.pageTitle = "База данных животных";
+						         break;
+						    case 'sv':
+						        self.pageTitle = "Animal Database";
+						         break;
+						    case 'th':
+						        self.pageTitle = "ฐานข้อมูลสัตว์";
+						         break;
+						    case 'tr':
+						        self.pageTitle = "Hayvan Veritabanı";
+						         break;
+						    case 'uk':
+						        self.pageTitle = "База даних тварин";
+						        break;
+						    case 'zh-CN':
+						        self.pageTitle = "动物资料库";
+						         break;
+						    case 'zh-TW':
+						        self.pageTitle = "動物資料庫";
+						        break;
+						    default:
+						        self.pageTitle = "Animal Database";
+						} 
+                   }
                     $.ajax({
 				        url:url,
 				        type:'GET',
