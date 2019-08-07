@@ -10,40 +10,49 @@
     <script type="text/javascript" src="./js/orientationchange.js" ></script>
     <body class="HolyGrail">
         <div  id="HolyGrail-body">
-			<header>
-				<div class="title">
-				   <a class="setting" href="{{url('animals/chooseLanguage')}}"></a>
-				   <span><img src="./images/tipLeft.png"></span>
-				   <span class="item">@{{pageTitle}}</span>
-				   <span><img src="./images/tipRight.png"></span>
+			<div id="Loading" v-show="Loading">
+				<div class="loader-inner ball-beat">
+					<div></div>
+					<div></div>
+					<div></div>
 				</div>
-			</header>
-	        <div class="HolyGrail-body">
-	            <nav>
-				    <div class="swiper-container">
-				    	<div class="swiper-wrapper">
-				    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :title="arr.title_page"  @click="selectTimer(index,arr.title_page)">
-				    	        <a>@{{arr.title_page}}</a>
-				    	    </div>
-				    	</div>
+			</div>
+			<div v-show="LoadCompleted"  v-cloak>
+				<header>
+					<div class="title">
+					   <a class="setting" href="{{url('animals/chooseLanguage')}}"></a>
+					   <span><img src="./images/tipLeft.png"></span>
+					   <span class="item">@{{pageTitle}}</span>
+					   <span><img src="./images/tipRight.png"></span>
+					</div>
+				</header>
+		        <div class="HolyGrail-body">
+		            <nav>
+					    <div class="swiper-container">
+					    	<div class="swiper-wrapper">
+					    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :title="arr.title_page"  @click="selectTimer(index,arr.title_page)">
+					    	        <a>@{{arr.title_page}}</a>
+					    	    </div>
+					    	</div>
+					    </div>
+		            </nav>
+				    <div class="slideUpDown">
+				    	 <div class="NoData" v-show="noData">
+				    	 	<span>{{ __('animals.noData') }}</span>
+				    	 </div>
+				        <div class="container" v-show="haveData">
+				             <ul>
+				             	<li v-for ="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
+				             	    <div>
+					             		<img class="data-image"  v-bind:src="item.animal.image_original"  v-on:error.once="moveErrorImg($event)"/>
+					             		<p>@{{item.title}}</p>	
+				             	    </div>
+				             	</li>
+				             </ul>
+				        </div>
 				    </div>
-	            </nav>
-			    <div class="slideUpDown">
-			    	 <div class="NoData" v-show="noData">
-			    	 	<span>{{ __('animals.noData') }}</span>
-			    	 </div>
-			        <div class="container" v-show="haveData">
-			             <ul>
-			             	<li v-for ="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
-			             	    <div>
-				             		<img class="data-image"  v-bind:src="item.animal.image_original"  v-on:error.once="moveErrorImg($event)"/>
-				             		<p>@{{item.title}}</p>	
-			             	    </div>
-			             	</li>
-			             </ul>
-			        </div>
-			    </div>
-	        </div>
+		        </div>
+			</div>
         </div>
     </body>
     <script type="text/javascript" src="./js/swiper.js" ></script>
@@ -60,7 +69,8 @@
 				noData:false,
 				haveData:false,
 				pageTitle:'',
-				locationReload:false
+				Loading:false,
+				LoadCompleted:false
 			},
 			watch: {
 			    swiper: function() {
@@ -94,17 +104,11 @@
 					    });
 					    var goodslength = $(".swiper-slide").length;
 					    $(".swiper-slide").eq(initialSlide).addClass("active");
-			        })
-			    },
-			    imageArray: function() {
-                    var locationReload = this.locationReload;
-                    if(locationReload==false){
-                       let self = this;
-                       self.locationReload = true;
-                    }else{
-                        return
-                    }
-                }
+  
+			        });
+			        this.Loading = false;	
+			        this.LoadCompleted = true;  
+			    }
 			}, 
 			methods:{
 				database(title){
@@ -267,10 +271,14 @@
                                 self.noData = true;
                                 self.haveData = false;
                                 self.imageArray = [];
+                                self.Loading = true;
+				            	self.LoadCompleted = false; 
 				            }else{
                                 self.noData = false;
                                 self.haveData = true;
-				            	self.imageArray = data.data;							        	
+				            	self.imageArray = data.data;
+				            	self.Loading = true;
+				            	self.LoadCompleted = false; 							        	
 				            }
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
