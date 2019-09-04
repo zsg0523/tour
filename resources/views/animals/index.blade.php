@@ -89,7 +89,7 @@
 	                        var goodslength = $(".swiper-slide").length;
 	                        for(var i=0;i<goodslength;i++){
 	                        	var html = $(".swiper-slide").eq(i).text();
-	                        	if(html==theme){
+	                        	if(html==decodeURI(theme)){
 	                        	    initialSlide=i;
 	                        	}
 	                        }
