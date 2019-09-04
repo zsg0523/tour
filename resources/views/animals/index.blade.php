@@ -80,7 +80,10 @@
 	                    function GetQueryString(name){
 	                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 	                        var r = window.location.search.substr(1).match(reg);
-	                        if(r!=null)return unescape(r[2]); return null;
+	                        if(r!=null)
+	                        // return unescape(r[2]); 
+	                        return r[2];
+	                        return null;
 	                    }
 	                    var theme = GetQueryString("theme");
 	                    if(theme==null||theme==undefined){
@@ -89,11 +92,13 @@
 	                        var goodslength = $(".swiper-slide").length;
 	                        for(var i=0;i<goodslength;i++){
 	                        	var html = $(".swiper-slide").eq(i).text();
+	                        	console.log(decodeURI(theme));
 	                        	if(html==decodeURI(theme)){
 	                        	    initialSlide=i;
 	                        	}
 	                        }
 	                    }
+	                    console.log(initialSlide);
 					    var swiper = new Swiper('.swiper-container', {
 					       slidesPerView: 2.5,
 					       spaceBetween:0,
@@ -124,8 +129,6 @@
 				        type:'GET',
 				        success:function(data) {
 							if(data.data.length==0){
-								// var noData = "{{ __('animals.noData') }}";
-        //                         alert(noData);
                                 self.noData = true;
                                 self.haveData = false;
                                 self.imageArray = [];
@@ -150,42 +153,45 @@
                     function GetQueryString(name){
                         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
                         var r =  window.location.search.substr(1).match(reg);
-                        if(r!=null)return unescape(r[2]); return null;
+                        if(r!=null){
+                        	return r[2]; 
+                        }else{
+                        	return null;
+                        }
                     }
-                    var theme = GetQueryString('theme');
+                    var theme = decodeURI(GetQueryString('theme'));
                     var lang = GetQueryString('lang');
                     var language = sessionStorage.getItem('language');
                     console.log(language);
                     console.log(lang);
                     console.log(theme);
-                    if(theme!=null&&lang!=null){
-                        var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=sound,animal';
-                        langTitle(lang);
-                    }
-
-                    if(theme!=null&&lang==null&&language!=null){
-                        var url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
-                        langTitle(language);
-                    }
-
-                    if(theme==null&&lang!=null&&language!=null){
-                        var url = '/api/animals?lang='+lang+'&include=sound,animal';
-                        langTitle(lang);
-                    }
-
-                    if(theme==null&&lang==null&&language!=null){
-                        var url = '/api/animals?lang='+language+'&include=sound,animal';
-                        langTitle(language);
-                    }
-
-                    if(theme==null&&lang!=null&&language==null){
-                        var url = '/api/animals?lang='+lang+'&include=sound,animal';
-                        langTitle(lang);
-                    }
-
-                    if(theme==null&&lang==null&&language==null){
-                        var url = '/api/animals?include=animal';
-                        langTitle();
+                    if(theme==null){
+                          if(lang==null){
+                          	   if(language==null){
+			                        var url = '/api/animals?include=animal';
+			                        langTitle();  
+			                    }else{
+			                        var url = '/api/animals?lang='+language+'&include=sound,animal';
+			                        langTitle(language);			                    	
+			                    }
+                          }else{
+		                        var url = '/api/animals?lang='+lang+'&include=sound,animal';
+		                        langTitle(lang);
+                          }
+                    }else{
+                    	//theme!=null
+                    	if(lang==null){
+                             if(language==null){
+		                        var url = '/api/animals?include=animal';
+		                        langTitle();                                  
+                             }else{
+		                        var url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
+		                        langTitle(language);
+                             }
+                    	}else{
+	                        var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=sound,animal';
+	                        langTitle(lang);
+                    	}
                     }
                    
                     function langTitle(langTitles){
@@ -266,8 +272,6 @@
 				        success:function(data) {
 				            self.swiper = data.meta;
 							if(data.data.length==0){
-								// var noData = "{{ __('animals.noData') }}";
-        //                         alert(noData);
                                 self.noData = true;
                                 self.haveData = false;
                                 self.imageArray = [];
