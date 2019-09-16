@@ -38,7 +38,9 @@
 		            </nav>
 				    <div class="slideUpDown">
 				    	 <div class="NoData" v-show="noData">
-				    	 	<span>{{ __('animals.noData') }}</span>
+				    	 	<div class="NoDataBg">
+                                 <span>{{ __('animals.noData') }}</span>
+				    	 	</div>
 				    	 </div>
 				        <div class="container" v-show="haveData">
 				             <ul>
