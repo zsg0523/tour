@@ -37,7 +37,7 @@
 					    </div>
 		            </nav>
 				    <div class="slideUpDown">
-				    	 <div class="NoData" v-show="noData">
+				    	 <div class="NoData" v-if="noData">
 				    	 	<div class="NoDataBg">
                                  <span>{{ __('animals.noData') }}</span>
 				    	 	</div>
@@ -69,7 +69,7 @@
 				swiperIndex:0,
 				imageIndex:0,
 				noData:false,
-				haveData:false,
+				haveData:true,
 				pageTitle:'',
 				Loading:false,
 				LoadCompleted:false
@@ -151,7 +151,7 @@
 	                event.currentTarget.src = "./images/loadingLogo.png";//默认图片
 	            },
                 getSwiper(){
-                    let self = this;
+                    let self = this;          
                     function GetQueryString(name){
                         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
                         var r =  window.location.search.substr(1).match(reg);
@@ -162,36 +162,38 @@
                         }
                     }
                     var theme = decodeURI(GetQueryString('theme'));
+                    sessionStorage.getItem('theme');
                     var lang = GetQueryString('lang');
                     var language = sessionStorage.getItem('language');
                     console.log(language);
                     console.log(lang);
                     console.log(theme);
-                    if(theme==null){
+                    var url = '/api/animals?include=animal';
+                    if(theme){
                           if(lang==null){
                           	   if(language==null){
-			                        var url = '/api/animals?include=animal';
+			                        url = '/api/animals?include=animal';
 			                        langTitle();  
 			                    }else{
-			                        var url = '/api/animals?lang='+language+'&include=sound,animal';
-			                        langTitle(language);			                    	
+			                        url = '/api/animals?lang='+language+'&include=sound,animal';
+			                        langTitle(language);		                    	
 			                    }
                           }else{
-		                        var url = '/api/animals?lang='+lang+'&include=sound,animal';
-		                        langTitle(lang);
+		                        url = '/api/animals?lang='+lang+'&include=sound,animal';
+		                        langTitle(lang);	
                           }
                     }else{
                     	//theme!=null
                     	if(lang==null){
                              if(language==null){
-		                        var url = '/api/animals?include=animal';
-		                        langTitle();                                  
+		                        url = '/api/animals?include=animal';
+		                        langTitle();                                
                              }else{
-		                        var url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
+		                        url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
 		                        langTitle(language);
                              }
                     	}else{
-	                        var url = '/api/animals?theme='+theme+'&lang='+lang+'&include=sound,animal';
+	                        url = '/api/animals?theme='+theme+'&lang='+lang+'&include=sound,animal';
 	                        langTitle(lang);
                     	}
                     }
@@ -295,7 +297,7 @@
 				    });
                 }
 			},
-			created:function(){
+			mounted:function(){
 	        	var that=this;
 	        	that.getSwiper();
 	        }
