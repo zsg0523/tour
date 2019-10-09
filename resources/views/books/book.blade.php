@@ -56,6 +56,16 @@
         .audioBox .text{width:84%;height:90%;line-height:90%;margin-left:16%;position: relative;display:block;color:#b98857;font-size:1rem;}
         .text p{position:absolute;/*font-size:1rem;*/border-radius:1rem;color:#b98857;display:block;top:50%;left:21%;-webkit-transform:translate(-50%,-21%);transform:translate(-50%,-21%);}
         .btn-audio{position:absolute;left:0px;top:0px;width:18%;height:100%;background:url(./images/transmit.png) no-repeat 30% 60%;background-size:auto 60%;}
+        [v-cloak] {
+		    display: none !important;
+		}
+		#Loading { top: 50%;left: 50%; position: absolute; -webkit-transform: translateY(-50%) translateX(-50%); transform: translateY(-50%) translateX(-50%); z-index: 100}
+
+		@-webkit-keyframes ball-beat {50% {opacity: 0.2;-webkit-transform: scale(0.75);transform: scale(0.75);}100% { opacity: 1;-webkit-transform: scale(1); transform: scale(1);}}
+		@keyframes ball-beat {50% { opacity: 0.2; -webkit-transform: scale(0.75); transform: scale(0.75);} 100% {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}}
+		.ball-beat>div { background-color: #fff; width: 15px;height: 15px; border-radius: 100% !important; margin: 2px; -webkit-animation-fill-mode: both; animation-fill-mode: both; display: inline-block; -webkit-animation: ball-beat 0.7s 0s infinite linear; animation: ball-beat 0.7s 0s infinite linear;}
+
+		.ball-beat>div:nth-child(2n-1) { -webkit-animation-delay: 0.35s !important;animation-delay: 0.35s !important;} 
    </style>
     <script type="text/javascript">
    		document.addEventListener('plusready', function(){
@@ -66,46 +76,55 @@
 </head>
 <body>
 	<div id="weenoBox">
-	    <div id="header">
-	       <a class="headerIconL left"></a>
-	       <p>WENNO-BOOKS</p>
-	       <a class="headerIconR right"></a>
-	    </div>
-	    <div id="middle">
-			<div class="middleBox">
-				<div class="imgBox">
-					<img class="imgMap" :src="imgMap">
-				</div>
-				<div class="title">
-					<p>@{{message}}</p>
-				</div>
-				<div class="nav">
-					<div :class="prevLeft" id="prev" @click="isPrevClick&&prevHandler()"></div>
-					<div class="photo">
-					    <li><img class="images" :src="images[currentIndex].image" v-bind:length="images.length" alt="" @click="imgHandler"></li>
-					</div>
-				    <div :class="nextRight" id="next"  @click="isNextClick&&nextHandler()"></div>				
-				</div>
-				<div class="content">
-					<div class="audioBox">
-						<!--<div class="btn-audio" @click="audioPlay"></div>-->
-						<div class="btn-audio" @click="audioPlay"><audio id="mp3Btn" ref="audio"   hidden="true"  :src="images[currentIndex].file" v-bind:length="images.length"></audio></div>
-					    <div class="text">
-					    	<p>Read story</p>
-					    </div>
-					</div>
-				</div>				
+		<div id="Loading" v-show="Loading">
+			<div class="loader-inner ball-beat">
+				<div></div>
+				<div></div>
+				<div></div>
 			</div>
-	    </div>
-	    <div id="footer">
-	       <p>2016-2019 Wenno 版权所有</p>
+		</div>
+		<div v-show="LoadCompleted">
+		    <div id="header">
+		       <a class="headerIconL left"></a>
+		       <p>WENNO-BOOKS</p>
+		       <a class="headerIconR right"></a>
+		    </div>
+		    <div id="middle" v-cloak>
+				<div class="middleBox">
+					<div class="imgBox">
+						<img class="imgMap" :src="imgMap">
+					</div>
+					<div class="title">
+						<p>@{{message}}</p>
+					</div>
+					<div class="nav">
+						<div :class="prevLeft" id="prev" @click="isPrevClick&&prevHandler()"></div>
+						<div class="photo">
+						    <li><img class="images" :src="images[currentIndex].image" v-bind:length="images.length" alt="" @click="imgHandler"></li>
+						</div>
+					    <div :class="nextRight" id="next"  @click="isNextClick&&nextHandler()"></div>				
+					</div>
+					<div class="content">
+						<div class="audioBox">
+							<!--<div class="btn-audio" @click="audioPlay"></div>-->
+							<div class="btn-audio" @click="audioPlay"><audio id="mp3Btn" ref="audio"   hidden="true"  :src="images[currentIndex].file" v-bind:length="images.length"></audio></div>
+						    <div class="text">
+						    	<p>Read story</p>
+						    </div>
+						</div>
+					</div>				
+				</div>
+		    </div>
+		    <div id="footer">
+		       <p>2016-2019 Wenno 版权所有</p>
+		    </div>
 	    </div>
 	</div>
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/vue/2.2.3/vue.min.js"></script>
     <script>
 		let vm = new Vue({   // 声明变量  实例化一个对象vm(指的是vue的实例)  controls autoplay="autoplay" hidden="true"<!--autoplay="autoplay"controls-->
-	        el:"#middle",    //绑定根元素
+	        el:"#weenoBox",    //绑定根元素
 	        data:{
 	        	images:[],
                 message: '',
@@ -114,13 +133,16 @@
                 nextRight:'next right',
                 isPrevClick:false,
                 isNextClick:true,
-                currentIndex:0 //一开始设置为 0
+                currentIndex:0,//一开始设置为 0
+				Loading:false,
+				LoadCompleted:false 
 	        },
 			watch: {
 			    images: function() {
 			        this.$nextTick(function(){
 			          /*现在数据已经渲染完毕*/
-					    console.log();
+				        this.Loading = false;	
+				        this.LoadCompleted = true; 
 			        })
 			    }
 			},
@@ -203,6 +225,8 @@
 					            self.images = data.contents.data;
 					            self.imgMap = data.map;
 					            self.length = data.contents.data.length;
+				            	self.Loading = true;
+				            	self.LoadCompleted = false; 
 					            if(data.contents.data.length==1){
 					               self.prevLeft = 'prev left prevlock';
 					               self.nextRight = 'next right nextlock';
