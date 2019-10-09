@@ -18,7 +18,7 @@ Route::group(['middleware' => ['setLocale']], function() {
 	});
 
 	Route::get('books', function () {
-	    return view('books.book');
+	    return view('books.book'); 
 	});
 
 	Route::get('animals', function () {
