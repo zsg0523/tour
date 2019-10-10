@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrandsTable extends Migration
+class CreateMediasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('medias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->nullable()->comment('评论');
-            $table->text('content')->nullable()->comment('内容');
-            $table->string('image')->nullable()->comment('图片');
+            $table->string('media')->nullable()->comment('媒体资料');
+            $table->integer('type')->nullable()->comment('类型');
+            $table->integer('location')->nullable()->comment('位置');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('medias');
     }
 }

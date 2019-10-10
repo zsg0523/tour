@@ -15,7 +15,7 @@ class BrandController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Models\Brand';
+    protected $title = 'Brand';
 
     /**
      * Make a grid builder.
@@ -28,8 +28,8 @@ class BrandController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('title', __('Title'));
-        $grid->column('content', __('Content'));
-        $grid->column('image', __('Image'));
+        $grid->column('content', __('Content'))->width(500);
+        $grid->column('image', __('Image'))->image(env('APP_URL').'/uploads', 100, 100);
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -49,7 +49,7 @@ class BrandController extends AdminController
         $show->field('id', __('Id'));
         $show->field('title', __('Title'));
         $show->field('content', __('Content'));
-        $show->field('image', __('Image'));
+        $show->field('image', __('Image'))->image();
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -66,7 +66,7 @@ class BrandController extends AdminController
         $form = new Form(new Brand);
 
         $form->text('title', __('Title'));
-        $form->text('content', __('Content'));
+        $form->textarea('content', __('Content'));
         $form->image('image', __('Image'));
 
         return $form;
