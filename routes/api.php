@@ -69,6 +69,9 @@ $api->version('v1', [
             // 查找空分类数据
             $api->get('check-data', 'AnimalTranslationsController@check');
 
+            // 新闻列表
+            $api->get('news', 'WebController@getNews');
+
             // 需 token 验证的接口
             $api->group(['middleware' => 'api.auth'], function ($api) {
                 // 当前登录用户信息
