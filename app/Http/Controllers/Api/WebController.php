@@ -16,4 +16,10 @@ class WebController extends Controller
     {
     	return $this->response->collection(News::all(), new NewsTransformer());
     }
+
+    /** [getNewsData 获取新闻详情] */
+    public function getNewsData(News $news)
+    {
+    	return $this->response->item($news, new NewsTransformer());
+    }
 }
