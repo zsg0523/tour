@@ -12,4 +12,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
 
+    $router->resource('brands', BrandController::class); //首页品牌模块
+
 });
