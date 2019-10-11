@@ -11,9 +11,19 @@ use App\Transformers\BrandTransformer;
 class WebController extends Controller
 {	
 	/** [getNews 新闻列表] */
-    public function getNews()
+    public function getNews(Request $request)
     {
-    	return $this->response->collection(News::all(), new NewsTransformer());
+    	switch ($request->is_push) {
+    		case '0':
+    			$news = News::where('is_push', 0)->get();
+    			break;
+    		
+    		case '1':
+    			$news = News::where('is_push', 1)->get();
+    			break;
+    	}
+
+    	return $this->response->collection($news, new NewsTransformer());
     }
 
     /** [getNewsData 新闻详情] */

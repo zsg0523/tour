@@ -31,6 +31,7 @@ class NewsController extends AdminController
         $grid->column('cover', __('Cover'));
         $grid->column('introduction', __('Introduction'))->limit(30);
         $grid->column('content', __('Content'))->limit(30);
+        $grid->column('is_push', __('Recommend'))->switch();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
         $grid->fixColumns(3, -2);
@@ -71,6 +72,7 @@ class NewsController extends AdminController
         $form->text('title', __('Title'));
         $form->image('cover', __('Cover'));
         $form->textarea('introduction', __('Introduction'));
+        $form->switch('is_push');
         $form->editor('content');
 
         return $form;
