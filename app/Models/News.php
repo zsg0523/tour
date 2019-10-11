@@ -7,10 +7,4 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     protected $unguard = [];
-
-    /** [getMediaAttribute 设置路径] */
-    public function getCoverAttribute($value)
-    {	
-    	return url('/uploads/' . $value);
-    }
 }

@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-10-11 10:59:09
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-10-11 11:00:26
+ * @Last Modified time: 2019-10-11 11:41:22
  */
 namespace App\Transformers;
 
@@ -17,7 +17,7 @@ class MediaTransformer extends TransformerAbstract
 	{
 		return [
 			'id' => $media->id,
-			'media' => $media->media,
+			'media' => url('uploads/' . $media->media),
 			'type' => $media->type,
 			'location' => $media->location,
 			'created_at' => $media->created_at->toDateTimeString(),
