@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\{News, Media};
+use App\Models\{News, Media, Brand};
 use App\Transformers\NewsTransformer;
 use App\Transformers\MediaTransformer;
+use App\Transformers\BrandTransformer;
 
 class WebController extends Controller
 {	
@@ -34,8 +35,14 @@ class WebController extends Controller
     	return $this->response->collection($data, new MediaTransformer());
     }
 
+    /** [getBrand 品牌推广] */
+    public function getBrand()
+    {
+    	return $this->response->collection(Brand::all(), new BrandTransformer());
+    }
 
 
 
-    
+
+
 }

@@ -73,6 +73,7 @@ $api->version('v1', [
             $api->get('news', 'WebController@getNews'); // 新闻列表
             $api->get('news/{news}', 'WebController@getNewsData'); // 新闻详情
             $api->get('medias', 'WebController@getMediaData'); // 多媒体资料
+            $api->get('brands', 'WebController@getBrand'); // 品牌推广
 
             // 需 token 验证的接口
             $api->group(['middleware' => 'api.auth'], function ($api) {
