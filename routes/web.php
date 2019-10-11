@@ -14,7 +14,7 @@
 
 Route::group(['middleware' => ['setLocale']], function() {
 	Route::get('/', function () {
-	    return view('welcome');
+	    return view('index'); 
 	});
 
 	Route::get('books', function () {
