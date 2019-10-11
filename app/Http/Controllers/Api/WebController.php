@@ -50,6 +50,12 @@ class WebController extends Controller
     	return $this->response->collection(Brand::all(), new BrandTransformer());
     }
 
+    /** [getBrandData 品牌详情] */
+    public function getBrandData(Brand $brand)
+    {
+    	return $this->response->item($brand, new BrandTransformer());
+    }
+
 
 
 
