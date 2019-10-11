@@ -15,15 +15,14 @@ class WebController extends Controller
     {
     	switch ($request->is_push) {
     		case '0':
-    			$news = News::where('is_push', 0)->get();
-    			break;
-    		
+    			$news = News::where('is_push', 0)->paginate();
+    			return $this->response->paginator($news, new NewsTransformer());    		
     		case '1':
     			$news = News::where('is_push', 1)->get();
-    			break;
+    			return $this->response->collection($news, new NewsTransformer());
     	}
 
-    	return $this->response->collection($news, new NewsTransformer());
+    	
     }
 
     /** [getNewsData 新闻详情] */
