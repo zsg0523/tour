@@ -13,9 +13,8 @@
 
 
 Route::group(['middleware' => ['setLocale']], function() {
-	Route::get('/', function () {
-	    return view('welcome'); 
-	});
+
+	Route::redirect('/', 'http://47.75.178.168/web');
 
 	Route::get('books', function () {
 	    return view('books.book'); 
