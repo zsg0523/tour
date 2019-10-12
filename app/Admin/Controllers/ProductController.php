@@ -2,11 +2,12 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\{Product, Category};
+use App\Models\{Product, Category, Attribute};
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Encore\Admin\Widgets\Table;
 
 class ProductController extends AdminController
 {
@@ -31,8 +32,17 @@ class ProductController extends AdminController
             $category = Category::find($category_id);
             return $category ? $category->title : '';
         })->filter('like');
+        $grid->column('cover', __('Cover'))->image(env('APP_URL').'/uploads', 30, 30);
         $grid->column('type', __('Type'))->using([10 => '单品', 20 => '套装'])->label()->filter([10=>'单品', 20=>'套装']);
-        $grid->column('cover', __('Cover'))->image(env('APP_URL').'/uploads', 100, 100);
+        // $grid->column('attribute')->expand(function($model) {
+        //     $attributes = $model->attributes()->get()->map(function ($attributes) {
+        //         return $attributes->only('id', 'content', 'created_at');
+        //     });
+        //         return new Table(['ID', '内容', '发布时间'], $attributes->toArray());
+        // });
+        $grid->column('attributes')->display(function ($model){
+            return array_column($model, 'content');
+        })->label();
         $grid->column('name', __('Name'));
         $grid->column('code', __('Code'));
         $grid->column('local', __('Local'));
@@ -40,6 +50,7 @@ class ProductController extends AdminController
         $grid->column('size', __('Size'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
+        $grid->fixColumns(3, -2);
 
         return $grid;
     }
@@ -80,6 +91,7 @@ class ProductController extends AdminController
 
         $form->select('category_id', __('Category'))->options('/api/admin/categories');
         $form->radio('type', __('Type'))->options([10 => '单品', 20=> '套装'])->default(10);
+        $form->multipleSelect('attributes')->options(Attribute::all()->pluck('content', 'id'));
         $form->image('cover', __('Cover'));
         $form->text('name', __('Name'));
         $form->text('code', __('Code'));
