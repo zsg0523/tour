@@ -16,5 +16,7 @@ Route::group([
     $router->resource('medias',MediaController::class); // 首页视频展示模块
     $router->resource('news', NewsController::class); // 新闻
     $router->resource('categories', CategoryController::class); // 产品分类
+    $router->resource('products', ProductController::class); //产品
+    $router->resource('attributes', AttibuteController::class); //产品参数
 
 });

@@ -13,6 +13,6 @@ class AdminController extends Controller
     {
         $q = $request->get('q');
 
-        return Category::where('title', 'like', "%$q%")->paginate(null, ['id', 'title as text']);
+        return Category::where('title', 'like', "%$q%")->get(['id', 'title as text']);
     }
 }
