@@ -18,5 +18,6 @@ Route::group([
     $router->resource('categories', CategoryController::class); // 产品分类
     $router->resource('products', ProductController::class); //产品
     $router->resource('attributes', AttibuteController::class); //产品参数
+    $router->resource('abouts', AboutController::class); // About us
 
 });

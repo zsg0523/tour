@@ -2,20 +2,20 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\News;
+use App\Models\About;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class NewsController extends AdminController
+class AboutController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = 'News';
+    protected $title = 'About us';
 
     /**
      * Make a grid builder.
@@ -24,17 +24,12 @@ class NewsController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new News);
+        $grid = new Grid(new About);
 
-        $grid->column('id', __('Id'));
-        $grid->column('title', __('Title'));
-        $grid->column('cover', __('Cover'))->image(env('APP_UTL') . '/uploads', 30, 30);
-        $grid->column('introduction', __('Introduction'))->limit(30);
-        $grid->column('content', __('Content'))->limit(30);
-        $grid->column('is_push', __('Recommend'))->switch();
+        // $grid->column('id', __('Id'));
+        $grid->column('content', __('Content'))->limit(200);
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
-        $grid->fixColumns(3, -2);
 
         return $grid;
     }
@@ -47,12 +42,9 @@ class NewsController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(News::findOrFail($id));
+        $show = new Show(About::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('title', __('Title'));
-        $show->field('cover', __('Cover'));
-        $show->field('introduction', __('Introduction'));
         $show->field('content', __('Content'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -67,12 +59,8 @@ class NewsController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new News);
+        $form = new Form(new About);
 
-        $form->text('title', __('Title'));
-        $form->image('cover', __('Cover'));
-        $form->textarea('introduction', __('Introduction'));
-        $form->switch('is_push');
         $form->editor('content');
 
         return $form;

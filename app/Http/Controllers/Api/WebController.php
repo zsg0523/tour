@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\{News, Media, Brand, Product, Category};
+use App\Models\{News, Media, Brand, Product, Category, About};
 use App\Transformers\NewsTransformer;
 use App\Transformers\MediaTransformer;
 use App\Transformers\BrandTransformer;
@@ -73,6 +73,12 @@ class WebController extends Controller
     public function getProduct(Product $product)
     {
     	return $this->response->item($product, new ProductTransformer());
+    }
+
+    /** [getAboutUs About us] */
+    public function getAboutUs()
+    {
+        return $this->response->array(About::find(1));
     }
 
 
