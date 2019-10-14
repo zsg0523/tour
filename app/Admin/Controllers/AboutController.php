@@ -31,6 +31,21 @@ class AboutController extends AdminController
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
+        $grid->disableCreateButton();
+        $grid->disableExport();
+        $grid->disableFilter();
+        $grid->actions(function ($actions) {
+
+            // 去掉删除
+            $actions->disableDelete();
+
+            // 去掉编辑
+            // $actions->disableEdit();
+
+            // 去掉查看
+            $actions->disableView();
+        });
+
         return $grid;
     }
 
