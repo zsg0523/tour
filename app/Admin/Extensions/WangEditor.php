@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-10-10 15:55:19
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-10-10 15:56:02
+ * @Last Modified time: 2019-10-14 15:52:53
  */
 namespace App\Admin\Extensions;
 
@@ -30,6 +30,7 @@ class WangEditor extends Field
 
 var E = window.wangEditor
 var editor = new E('#{$this->id}');
+editor.customConfig.debug = location.href.indexOf('wangeditor_debug_mode=1') > 0
 editor.customConfig.zIndex = 0
 editor.customConfig.uploadImgShowBase64 = true
 editor.customConfig.onchange = function (html) {
