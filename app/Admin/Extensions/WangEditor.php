@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-10-10 15:55:19
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-10-14 15:52:53
+ * @Last Modified time: 2019-10-14 16:41:12
  */
 namespace App\Admin\Extensions;
 
@@ -25,14 +25,18 @@ class WangEditor extends Field
     public function render()
     {
         $name = $this->formatName($this->column);
+        $token = csrf_token();
 
         $this->script = <<<EOT
 
 var E = window.wangEditor
 var editor = new E('#{$this->id}');
-editor.customConfig.debug = location.href.indexOf('wangeditor_debug_mode=1') > 0
 editor.customConfig.zIndex = 0
-editor.customConfig.uploadImgShowBase64 = true
+editor.customConfig.uploadImgServer = '/api/admin/up_image';
+editor.customConfig.uploadFileName = "upload_file";
+editor.customConfig.uploadImgParams = {
+    _token: '{$token}'  
+}
 editor.customConfig.onchange = function (html) {
     $('input[name=\'$name\']').val(html);
 }

@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 
 $api = app('Dingo\Api\Routing\Router');
 
-
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
     // 手动注册模型中间件bindings
@@ -26,50 +25,23 @@ $api->version('v1', [
         'limit' => config('api.rate_limits.sign.limit'),
         'expires' => config('api.rate_limits.sign.expires'),
     ], function($api) {
-            // 短信验证码
-            // $api->post('verificationCodes', 'VerificationCodesController@store');
-            // // 用户注册
-            // $api->post('users', 'UsersController@store');
-            // // 图片验证码
-            // $api->post('captchas', 'CaptchasController@store');
-            // // 第三方登录
-            // $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore');
-            // // 获取 token 授权凭证
-            // $api->post('authorizations', 'AuthorizationsController@store');
-            // // 刷新 token
-            // $api->put('authorizations/current', 'AuthorizationsController@update');
-            // // 删除 token
-            // $api->delete('authorizations/current', 'AuthorizationsController@destroy');
+            /************************* wennoanimal ebook *****************************/
+            $api->get('books', 'BooksController@index'); // 电子书
+            $api->get('books/{book}', 'BooksController@show'); // 电子书封面
+            $api->get('book/contents', 'BookContentsController@index'); // 所有电子书内容
+            $api->get('book/contents/{content}', 'BookContentsController@show'); // 电子书详情
 
-            // 电子书
-            $api->get('books', 'BooksController@index');
-            // 电子书封面
-            $api->get('books/{book}', 'BooksController@show');
-            // 所有电子书内容
-            $api->get('book/contents', 'BookContentsController@index');
-            // 电子书详情
-            $api->get('book/contents/{content}', 'BookContentsController@show');
+            /************************ wennoanimal database ****************************/
+            $api->get('animals/sounds', 'AnimalsController@soundsIndex'); // 动物音频资料列表
+            $api->get('animals/sounds/{sound}', 'AnimalsController@sounds'); // 动物音频资料详情
+            $api->get('animals', 'AnimalTranslationsController@index'); // 动物列表
+            $api->get('animal', 'AnimalTranslationsController@show'); // 动物详细资料
+            $api->get('setLocale', 'SetLocaleController@setLocale'); // 多语言设置
+            $api->get('lang', 'SetLocaleController@index'); // 多语言列表
 
-            
-            // 动物音频资料列表
-            $api->get('animals/sounds', 'AnimalsController@soundsIndex');
-            // 动物音频资料详情
-            $api->get('animals/sounds/{sound}', 'AnimalsController@sounds');
+            $api->get('check-data', 'AnimalTranslationsController@check'); // 查找空分类数据
 
-            // 动物列表
-            $api->get('animals', 'AnimalTranslationsController@index');
-            // 动物详细资料
-            $api->get('animal', 'AnimalTranslationsController@show');
-
-            // 多语言设置
-            $api->get('setLocale', 'SetLocaleController@setLocale');
-            // 多语言列表
-            $api->get('lang', 'SetLocaleController@index');
-
-            // 查找空分类数据
-            $api->get('check-data', 'AnimalTranslationsController@check');
-
-            
+            /*********************** wennoanimal Web ***********************************/
             $api->get('news', 'WebController@getNews'); // 新闻列表
             $api->get('news/{news}', 'WebController@getNewsData'); // 新闻详情
             $api->get('medias', 'WebController@getMediaData'); // 多媒体资料
@@ -78,24 +50,9 @@ $api->version('v1', [
             $api->get('products', 'WebController@getProducts'); // 产品列表
             $api->get('products/{product}', 'WebController@getProduct'); // 产品详情
 
-            // 后台分类选项
-            $api->get('/admin/categories', 'AdminController@getCategories');
-
-            // 需 token 验证的接口
-            $api->group(['middleware' => 'api.auth'], function ($api) {
-                // 当前登录用户信息
-                // $api->get('user', 'UsersController@me');
-                // // 编辑用户信息
-                // $api->patch('user', 'UsersController@update');
-                // // 更改手机号
-                // $api->patch('update/phone', 'UsersController@updatePhone');
-                // // 更改密码
-                // $api->patch('reset/password', 'UsersController@reset');
-                // // 图片资源
-                // $api->post('images', 'ImagesController@store');
-                
-
-            });
+            /*********************** wennoanimal backend ********************************/
+            $api->get('/admin/categories', 'AdminController@getCategories'); // 后台分类选项
+            $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
             
         });
 });
