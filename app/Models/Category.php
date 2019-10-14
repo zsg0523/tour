@@ -11,4 +11,9 @@ class Category extends Model
 	use ModelTree, AdminBuilder;
 	
     protected $unguard = [];
+
+    public function products()
+    {
+    	return $this->hasMany(Product::class);
+    }
 }

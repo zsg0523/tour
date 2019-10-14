@@ -75,6 +75,7 @@ $api->version('v1', [
             $api->get('medias', 'WebController@getMediaData'); // 多媒体资料
             $api->get('brands', 'WebController@getBrand'); // 品牌推广
             $api->get('brands/{brand}', 'WebController@getBrandData'); // 品牌推广
+            $api->get('products', 'WebController@getProducts'); // 产品列表
 
             // 后台分类选项
             $api->get('/admin/categories', 'AdminController@getCategories');
