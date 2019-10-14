@@ -59,14 +59,20 @@ class WebController extends Controller
     }
 
     /**
-     * [getProducts description]
+     * [getProducts 产品列表]
      * @param  Request $request [10-单品， 20-套装]
      * @return [type]           [description]
      */
     public function getProducts(Request $request)
-    {
-    	
+    {	
     	return $this->response->collection(Category::all(), new CategoryTransformer());
+    }
+
+
+    /** [getProduct 商品详情] */
+    public function getProduct(Product $product)
+    {
+    	return $this->response->item($product, new ProductTransformer());
     }
 
 
