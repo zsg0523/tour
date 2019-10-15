@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -49,11 +48,13 @@ $api->version('v1', [
             $api->get('brands/{brand}', 'WebController@getBrandData'); // 品牌推广
             $api->get('products', 'WebController@getProducts'); // 产品列表
             $api->get('products/{product}', 'WebController@getProduct'); // 产品详情
-            $api->get('about-us', 'WebController@getAboutUs'); // 产品详情
+            $api->get('about-us', 'WebController@getAboutUs'); // 关于我们
+            $api->post('contact', 'WebController@contact'); //联系我们
 
             /*********************** wennoanimal backend ********************************/
             $api->get('/admin/categories', 'AdminController@getCategories'); // 后台分类选项
             $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
+
             
         });
 });

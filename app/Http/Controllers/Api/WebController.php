@@ -9,6 +9,8 @@ use App\Transformers\MediaTransformer;
 use App\Transformers\BrandTransformer;
 use App\Transformers\ProductTransformer;
 use App\Transformers\CategoryTransformer;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactUs;
 
 class WebController extends Controller
 {	
@@ -81,6 +83,13 @@ class WebController extends Controller
         return $this->response->array(About::find(1));
     }
 
-
+    public function contact(Request $request)
+    {
+        $name = $request->name;
+        $email = $request->email;
+        $message = $request->message;
+        
+        Mail::to(config('mail.reply_to.address'))->send(new ContactUs($name, $email, $message));
+    }
 
 }

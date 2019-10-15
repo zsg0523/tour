@@ -39,4 +39,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// contact us 邮件模版测试
+Route::get('mailable', function () {
+    return new App\Mail\ContactUs('Eden', 'shenggen93@163.com', '打算大的撒放水淀粉');
+});
+
 
