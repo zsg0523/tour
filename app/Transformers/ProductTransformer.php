@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-10-14 12:12:01
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-10-14 12:43:26
+ * @Last Modified time: 2019-10-15 12:37:53
  */
 namespace App\Transformers;
 
@@ -24,6 +24,7 @@ class ProductTransformer extends TransformerAbstract
 			'name' => $product->name,
 			'type' => $product->type,
 			'cover' => url('uploads/' . $product->cover),
+			'image' => url('uploads/' . $product->image),
 			'code' => $product->code,
 			'local' => $product->local,
 			'case' => $product->case,

@@ -33,13 +33,8 @@ class ProductController extends AdminController
             return $category ? $category->title : '';
         })->filter('like');
         $grid->column('cover', __('Cover'))->image(env('APP_URL').'/uploads', 30, 30);
+        $grid->column('image', __('Image'))->image(env('APP_URL').'/uploads', 30, 30);
         $grid->column('type', __('Type'))->using([10 => '单品', 20 => '套装'])->label()->filter([10=>'单品', 20=>'套装']);
-        // $grid->column('attribute')->expand(function($model) {
-        //     $attributes = $model->attributes()->get()->map(function ($attributes) {
-        //         return $attributes->only('id', 'content', 'created_at');
-        //     });
-        //         return new Table(['ID', '内容', '发布时间'], $attributes->toArray());
-        // });
         $grid->column('attributes')->display(function ($model){
             return array_column($model, 'content');
         })->label();
@@ -69,6 +64,7 @@ class ProductController extends AdminController
         $show->field('category_id', __('Category id'));
         $show->field('type', __('Type'));
         $show->field('cover', __('Cover'));
+        $show->field('image', __('Image'));
         $show->field('name', __('Name'));
         $show->field('code', __('Code'));
         $show->field('local', __('Local'));
@@ -93,6 +89,7 @@ class ProductController extends AdminController
         $form->radio('type', __('Type'))->options([10 => '单品', 20=> '套装'])->default(10);
         $form->multipleSelect('attributes')->options(Attribute::all()->pluck('content', 'id'));
         $form->image('cover', __('Cover'));
+        $form->image('image', __('Image'));
         $form->text('name', __('Name'));
         $form->text('code', __('Code'));
         $form->text('local', __('Local'));
