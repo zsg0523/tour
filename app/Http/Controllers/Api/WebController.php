@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\{News, Media, Brand, Product, Category, About};
+use App\Models\{News, Media, Brand, Product, Category, About, Retail};
 use App\Transformers\NewsTransformer;
 use App\Transformers\MediaTransformer;
 use App\Transformers\BrandTransformer;
 use App\Transformers\ProductTransformer;
 use App\Transformers\CategoryTransformer;
+use App\Transformers\RetailTransformer;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUs;
 
@@ -83,6 +84,7 @@ class WebController extends Controller
         return $this->response->array(About::find(1));
     }
 
+    /** [contact contact us 发送邮件] */
     public function contact(Request $request)
     {
         $name = $request->name;
@@ -90,6 +92,22 @@ class WebController extends Controller
         $message = $request->message;
         
         Mail::to(config('mail.reply_to.address'))->send(new ContactUs($name, $email, $message));
+    }
+
+    /** [local 零售店地域] */
+    public function local()
+    {
+        $names = Retail::all()->pluck('name')->unique();
+       
+        return $this->response->array($names);
+    }
+
+    /** [retails 零售店] */
+    public function retails(Request $request)
+    {
+        $retails = Retail::where('name', $request->name)->get();
+
+        return $this->response->collection($retails, new RetailTransformer());
     }
 
 }
