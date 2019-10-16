@@ -74,7 +74,7 @@ class WebController extends Controller
      */
     public function getProducts(Request $request)
     {	
-    	return $this->response->collection(Category::all(), new CategoryTransformer());
+    	return $this->response->collection(Category::where('lang', $this->lang)->get(), new CategoryTransformer());
     }
 
 
@@ -87,7 +87,7 @@ class WebController extends Controller
     /** [getAboutUs About us] */
     public function getAboutUs()
     {
-        return $this->response->array(About::find(1));
+        return $this->response->array(About::where('lang', $this->lang)->first());
     }
 
     /** [contact contact us 发送邮件] */

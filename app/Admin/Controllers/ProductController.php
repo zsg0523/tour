@@ -91,7 +91,7 @@ class ProductController extends AdminController
 
         $form->select('category_id', __('Category'))->options('/api/admin/categories');
         $form->radio('type', __('Type'))->options([10 => '单品', 20=> '套装'])->default(10);
-        $form->multipleSelect('attributes')->options(Attribute::all()->pluck('content', 'id'));
+        $form->listbox('attributes')->options(Attribute::all()->pluck('content', 'id'));
         $form->image('cover', __('Cover'));
         $form->image('image', __('Image'));
         $form->text('name', __('Name'));

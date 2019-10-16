@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use App\Admin\Actions\Post\Replicate;
 
 class AboutController extends AdminController
 {
@@ -27,9 +28,10 @@ class AboutController extends AdminController
         $grid = new Grid(new About);
 
         // $grid->column('id', __('Id'));
-        $grid->column('content', __('Content'))->limit(200);
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('lang', __('Lang'))->label();
+        $grid->column('content', __('Content'))->limit(500);
+        // $grid->column('created_at', __('Created at'));
+        // $grid->column('updated_at', __('Updated at'));
 
         $grid->disableCreateButton();
         $grid->disableExport();
@@ -38,12 +40,9 @@ class AboutController extends AdminController
 
             // 去掉删除
             $actions->disableDelete();
-
-            // 去掉编辑
-            // $actions->disableEdit();
-
             // 去掉查看
             $actions->disableView();
+            $actions->add(new Replicate);
         });
 
         return $grid;
@@ -60,6 +59,7 @@ class AboutController extends AdminController
         $show = new Show(About::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('lang', __('Lang'));
         $show->field('content', __('Content'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -75,7 +75,7 @@ class AboutController extends AdminController
     protected function form()
     {
         $form = new Form(new About);
-
+        $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->editor('content');
 
         return $form;

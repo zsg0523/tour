@@ -7,6 +7,8 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use App\Admin\Actions\Post\Replicate;
+
 
 class AttibuteController extends AdminController
 {
@@ -15,7 +17,7 @@ class AttibuteController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Models\Attribute';
+    protected $title = 'Attributes';
 
     /**
      * Make a grid builder.
@@ -27,10 +29,13 @@ class AttibuteController extends AdminController
         $grid = new Grid(new Attribute);
 
         $grid->column('id', __('Id'));
+        $grid->column('lang', __('Lang'));
         $grid->column('content', __('Content'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
-
+        $grid->actions(function ($actions) {
+            $actions->add(new Replicate);
+        });
         return $grid;
     }
 
@@ -45,6 +50,7 @@ class AttibuteController extends AdminController
         $show = new Show(Attribute::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('lang', __('Lang'));
         $show->field('content', __('Content'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -60,7 +66,7 @@ class AttibuteController extends AdminController
     protected function form()
     {
         $form = new Form(new Attribute);
-
+        $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->text('content', __('Content'));
 
         return $form;
