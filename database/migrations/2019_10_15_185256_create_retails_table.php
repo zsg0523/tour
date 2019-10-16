@@ -16,6 +16,7 @@ class CreateRetailsTable extends Migration
         Schema::create('retails', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('location_id')->unsigned()->index();
+            $table->string('lang');
             $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();

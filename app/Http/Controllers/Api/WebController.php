@@ -16,6 +16,11 @@ use App\Mail\ContactUs;
 
 class WebController extends Controller
 {	
+    public function __construct()
+    {
+        $this->lang = session('locale') ?? 'en';
+    }
+
 	/** [getNews 新闻列表] */
     public function getNews(Request $request)
     {
@@ -99,9 +104,9 @@ class WebController extends Controller
     public function local(Request $request)
     {
         if ($request->location) {
-            $retails = Location::where('location', $request->location)->get();
+            $retails = Location::where('location', $request->location)->where('lang', $this->lang)->get();
         } else {
-            $retails = Location::all();
+            $retails = Location::where('lang', $this->lang)->get();
         }
         return $this->response->collection($retails, new LocationTransformer());
     }

@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-10-16 11:52:41
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-10-16 12:02:11
+ * @Last Modified time: 2019-10-16 12:28:21
  */
 namespace App\Transformers;
 
@@ -20,6 +20,7 @@ class LocationTransformer extends TransformerAbstract
 	{
 		return [
 			'id' => $location->id,
+			'lang' => $location->lang,
 			'location' => $location->location,
 			'created_at' => $location->created_at->toDateTimeString(),
 			'updated_at' => $location->updated_at->toDateTimeString()

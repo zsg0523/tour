@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use App\Admin\Actions\Post\Replicate;
 
 class LocationController extends AdminController
 {
@@ -15,7 +16,7 @@ class LocationController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Models\Location';
+    protected $title = 'Region';
 
     /**
      * Make a grid builder.
@@ -27,10 +28,13 @@ class LocationController extends AdminController
         $grid = new Grid(new Location);
 
         $grid->column('id', __('Id'));
+        $grid->column('lang', __('Lang'));
         $grid->column('location', __('Location'))->label();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
-
+        $grid->actions(function ($actions) {
+            $actions->add(new Replicate);
+        });
         return $grid;
     }
 
@@ -45,6 +49,7 @@ class LocationController extends AdminController
         $show = new Show(Location::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('lang', __('Lang'));
         $show->field('location', __('Location'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -60,7 +65,7 @@ class LocationController extends AdminController
     protected function form()
     {
         $form = new Form(new Location);
-
+        $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->text('location', __('Location'));
 
         return $form;
