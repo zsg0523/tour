@@ -8,6 +8,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Encore\Admin\Widgets\Table;
+use App\Admin\Actions\Post\Replicate;
 
 class ProductController extends AdminController
 {
@@ -32,8 +33,8 @@ class ProductController extends AdminController
             $category = Category::find($category_id);
             return $category ? $category->title : '';
         })->filter('like');
-        $grid->column('cover', __('Cover'))->image(env('APP_URL').'/uploads', 30, 30);
-        $grid->column('image', __('Image'))->image(env('APP_URL').'/uploads', 30, 30);
+        // $grid->column('cover', __('Cover'))->image(env('APP_URL').'/uploads', 30, 30);
+        // $grid->column('image', __('Image'))->image(env('APP_URL').'/uploads', 30, 30);
         $grid->column('type', __('Type'))->using([10 => '单品', 20 => '套装'])->label()->filter([10=>'单品', 20=>'套装']);
         $grid->column('attributes')->display(function ($model){
             return array_column($model, 'content');
@@ -46,6 +47,9 @@ class ProductController extends AdminController
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
         $grid->fixColumns(3, -2);
+        $grid->actions(function ($actions) {
+            $actions->add(new Replicate);
+        });
 
         return $grid;
     }
@@ -63,8 +67,8 @@ class ProductController extends AdminController
         $show->field('id', __('Id'));
         $show->field('category_id', __('Category id'));
         $show->field('type', __('Type'));
-        $show->field('cover', __('Cover'));
-        $show->field('image', __('Image'));
+        $show->field('cover', __('Cover'))->image();
+        $show->field('image', __('Image'))->image();
         $show->field('name', __('Name'));
         $show->field('code', __('Code'));
         $show->field('local', __('Local'));

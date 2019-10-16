@@ -37,6 +37,7 @@ class CategoryController extends Controller
                 $row->column(6, function (Column $column) {
 
                     $form = new \Encore\Admin\Widgets\Form();
+                    $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
                     $form->action(admin_base_path('/categories'));
                     $form->text('title', __('Title'));
                     $form->select('parent_id', __('Parent id'))->options(Category::selectOptions());
@@ -81,6 +82,9 @@ class CategoryController extends Controller
     {
         return Category::tree(function (Tree $tree) {
             $tree->disableCreate();
+            $tree->branch(function ($branch){
+                return "{$branch['id']} - {$branch['lang']} - {$branch['title']}";
+            });
             return $tree;
         });
     }
@@ -96,6 +100,7 @@ class CategoryController extends Controller
         $grid = new Grid(new Category);
 
         $grid->column('id', __('Id'));
+        $grid->column('lang', __('Lang'));
         $grid->column('parent_id', __('Parent id'));
         $grid->column('title', __('Title'));
         $grid->column('created_at', __('Created at'));
@@ -115,6 +120,7 @@ class CategoryController extends Controller
         $show = new Show(Category::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('lang', __('Lang'));
         $show->field('parent_id', __('Parent id'));
         $show->field('title', __('Title'));
         $show->field('created_at', __('Created at'));
@@ -132,6 +138,7 @@ class CategoryController extends Controller
     {
         $form = new Form(new Category);
 
+        $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->number('parent_id', __('Parent id'));
         $form->number('order', __('Order'));
         $form->text('title', __('Title'));
