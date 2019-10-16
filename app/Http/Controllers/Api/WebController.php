@@ -26,10 +26,10 @@ class WebController extends Controller
     {
     	switch ($request->is_push) {
     		case '0':
-    			$news = News::where('is_push', 0)->paginate(6);
+    			$news = News::where('is_push', 0)->where('lang', $this->lang)->paginate(6);
     			return $this->response->paginator($news, new NewsTransformer());    		
     		case '1':
-    			$news = News::where('is_push', 1)->get();
+    			$news = News::where('is_push', 1)->where('lang', $this->lang)->get();
     			return $this->response->collection($news, new NewsTransformer());
     	}
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLangToBrandsTable extends Migration
+class AddLangToNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddLangToBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::table('brands', function (Blueprint $table) {
+        Schema::table('news', function (Blueprint $table) {
             $table->string('lang')->nullable()->default('en')->index()->after('id');
         });
     }
@@ -25,7 +25,7 @@ class AddLangToBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::table('brands', function (Blueprint $table) {
+        Schema::table('news', function (Blueprint $table) {
             $table->dropColumn('lang');
         });
     }

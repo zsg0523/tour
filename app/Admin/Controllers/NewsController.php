@@ -7,6 +7,8 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use App\Admin\Actions\Post\Replicate;
+
 
 class NewsController extends AdminController
 {
@@ -27,6 +29,7 @@ class NewsController extends AdminController
         $grid = new Grid(new News);
 
         $grid->column('id', __('Id'));
+        $grid->column('lang', __('Lang'));
         $grid->column('title', __('Title'));
         $grid->column('cover', __('Cover'))->image(env('APP_UTL') . '/uploads', 30, 30);
         $grid->column('introduction', __('Introduction'))->limit(30);
@@ -34,8 +37,9 @@ class NewsController extends AdminController
         $grid->column('is_push', __('Recommend'))->switch();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
-        $grid->fixColumns(3, -2);
-
+        $grid->actions(function ($actions) {
+            $actions->add(new Replicate);
+        });
         return $grid;
     }
 
@@ -50,6 +54,7 @@ class NewsController extends AdminController
         $show = new Show(News::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('lang', __('Lang'));
         $show->field('title', __('Title'));
         $show->field('cover', __('Cover'));
         $show->field('introduction', __('Introduction'));
@@ -69,6 +74,7 @@ class NewsController extends AdminController
     {
         $form = new Form(new News);
 
+        $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->text('title', __('Title'));
         $form->image('cover', __('Cover'));
         $form->textarea('introduction', __('Introduction'));
