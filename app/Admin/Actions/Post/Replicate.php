@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Replicate extends RowAction
 {
-    public $name = 'Copy';
+    public $name = 'Duplicate';
 
     public function handle(Model $model)
     {
