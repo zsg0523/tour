@@ -19,6 +19,7 @@ Route::group([
     $router->resource('products', ProductController::class); //产品
     $router->resource('attributes', AttibuteController::class); //产品参数
     $router->resource('abouts', AboutController::class); // About us
+    $router->resource('locations', LocationController::class); // 零售地域
     $router->resource('retails', RetailController::class); // 零售店
 
 });

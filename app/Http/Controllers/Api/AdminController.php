@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\{Category, Location};
 use App\Handlers\ImageUploadHandler;
 use App\Http\Controllers\Controller;
 
@@ -15,6 +15,15 @@ class AdminController extends Controller
         $q = $request->get('q');
 
         return Category::where('title', 'like', "%$q%")->get(['id', 'title as text']);
+    }
+
+
+    /** [getCategories 分类列表] */
+    public function getLocations(Request $request)
+    {
+        $q = $request->get('q');
+
+        return Location::where('location', 'like', "%$q%")->get(['id', 'location as text']);
     }
 
     /**

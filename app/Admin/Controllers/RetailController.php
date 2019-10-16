@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Retail;
+use App\Models\{Retail, Location};
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -15,7 +15,7 @@ class RetailController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Models\Retail';
+    protected $title = 'Retail';
 
     /**
      * Make a grid builder.
@@ -27,6 +27,10 @@ class RetailController extends AdminController
         $grid = new Grid(new Retail);
 
         $grid->column('id', __('Id'));
+        $grid->column('location_id', __('Region'))->display(function($location_id){
+            $location = Location::find($location_id);
+            return $location ? $location->location : '';
+        })->label();
         $grid->column('name', __('Name'));
         $grid->column('address', __('Address'));
         $grid->column('phone', __('Phone'));
@@ -67,6 +71,7 @@ class RetailController extends AdminController
     {
         $form = new Form(new Retail);
 
+        $form->select('location_id', __('Location'))->options('/api/admin/locations');
         $form->text('name', __('Name'));
         $form->text('address', __('Address'));
         $form->mobile('phone', __('Phone'));

@@ -51,10 +51,10 @@ $api->version('v1', [
             $api->get('about-us', 'WebController@getAboutUs'); // 关于我们
             $api->post('contact', 'WebController@contact'); //联系我们
             $api->get('locals', 'WebController@local'); // 零售地域
-            $api->get('retails', 'WebController@retails'); // 零售店
 
             /*********************** wennoanimal backend ********************************/
             $api->get('/admin/categories', 'AdminController@getCategories'); // 后台分类选项
+            $api->get('/admin/locations', 'AdminController@getLocations'); // 后台分类选项
             $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
 
             

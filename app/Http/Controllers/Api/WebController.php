@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\{News, Media, Brand, Product, Category, About, Retail};
+use App\Models\{News, Media, Brand, Product, Category, About, Location, Retail};
 use App\Transformers\NewsTransformer;
 use App\Transformers\MediaTransformer;
 use App\Transformers\BrandTransformer;
 use App\Transformers\ProductTransformer;
 use App\Transformers\CategoryTransformer;
+use App\Transformers\LocationTransformer;
 use App\Transformers\RetailTransformer;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUs;
@@ -95,19 +96,14 @@ class WebController extends Controller
     }
 
     /** [local 零售店地域] */
-    public function local()
+    public function local(Request $request)
     {
-        $names = Retail::all()->pluck('name')->unique();
-       
-        return $this->response->array($names);
-    }
-
-    /** [retails 零售店] */
-    public function retails(Request $request)
-    {
-        $retails = Retail::where('name', $request->name)->get();
-
-        return $this->response->collection($retails, new RetailTransformer());
+        if ($request->location) {
+            $retails = Location::where('location', $request->location)->get();
+        } else {
+            $retails = Location::all();
+        }
+        return $this->response->collection($retails, new LocationTransformer());
     }
 
 }
