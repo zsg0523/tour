@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-10-11 11:47:11
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-10-11 11:48:10
+ * @Last Modified time: 2019-10-16 15:25:53
  */
 namespace App\Transformers;
 
@@ -17,6 +17,7 @@ class BrandTransformer extends TransformerAbstract
 	{
 		return [
 			'id' => $brand->id,
+			'lang' => $brand->lang,
 			'image' => url('uploads/' . $brand->image),
 			'title' => $brand->title,
 			'content' => $brand->content,

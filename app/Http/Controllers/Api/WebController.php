@@ -58,7 +58,7 @@ class WebController extends Controller
     /** [getBrand 品牌推广] */
     public function getBrand()
     {
-    	return $this->response->collection(Brand::all(), new BrandTransformer());
+    	return $this->response->collection(Brand::where('lang', $this->lang)->get(), new BrandTransformer());
     }
 
     /** [getBrandData 品牌详情] */
