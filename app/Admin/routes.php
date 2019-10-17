@@ -22,4 +22,5 @@ Route::group([
     $router->resource('locations', LocationController::class); // 零售地域
     $router->resource('retails', RetailController::class); // 零售店
 
+    $router->resource('animals', AnimalController::class); //动物资料
 });
