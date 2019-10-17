@@ -10,7 +10,7 @@ class Category extends Model
 {
 	use ModelTree, AdminBuilder;
 	
-    protected $unguard = [];
+    protected $guarded = [];
 
     public function products()
     {

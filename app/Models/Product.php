@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $unguard = [];
+    protected $guarded = [];
 
     public function attributes()
     {
