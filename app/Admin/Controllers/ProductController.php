@@ -35,7 +35,7 @@ class ProductController extends AdminController
         })->filter('like');
         // $grid->column('cover', __('Cover'))->image(env('APP_URL').'/uploads', 30, 30);
         // $grid->column('image', __('Image'))->image(env('APP_URL').'/uploads', 30, 30);
-        $grid->column('type', __('Type'))->using([10 => '单品', 20 => '套装'])->label()->filter([10=>'单品', 20=>'套装']);
+        $grid->column('type', __('Type'))->using([10 => 'unit', 20 => 'package'])->label()->filter([10=>'unit', 20=>'package']);
         $grid->column('attributes')->display(function ($model){
             return array_column($model, 'content');
         })->label();
@@ -90,7 +90,7 @@ class ProductController extends AdminController
         $form = new Form(new Product);
 
         $form->select('category_id', __('Category'))->options('/api/admin/categories');
-        $form->radio('type', __('Type'))->options([10 => '单品', 20=> '套装'])->default(10);
+        $form->radio('type', __('Type'))->options([10 => 'unit', 20=> 'package'])->default(10);
         $form->listbox('attributes')->options(Attribute::all()->pluck('content', 'id'));
         $form->image('cover', __('Cover'));
         $form->image('image', __('Image'));

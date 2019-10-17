@@ -50,7 +50,7 @@ class WebController extends Controller
     public function getMediaData(Request $request)
     {	
     	$location = trim($request->location);
-    	$data = Media::where('location', $location)->get();
+    	$data = Media::where('location', $location)->where('lang', $this->lang)->get();
 
     	return $this->response->collection($data, new MediaTransformer());
     }

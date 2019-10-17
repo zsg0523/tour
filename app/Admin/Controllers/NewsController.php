@@ -78,7 +78,7 @@ class NewsController extends AdminController
         $form->text('title', __('Title'));
         $form->image('cover', __('Cover'));
         $form->textarea('introduction', __('Introduction'));
-        $form->switch('is_push');
+        $form->switch('is_push', __('Recommend'));
         $form->editor('content');
 
         return $form;

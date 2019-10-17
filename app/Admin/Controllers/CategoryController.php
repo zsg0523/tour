@@ -40,7 +40,7 @@ class CategoryController extends Controller
                     $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
                     $form->action(admin_base_path('/categories'));
                     $form->text('title', __('Title'));
-                    $form->select('parent_id', __('Parent id'))->options(Category::selectOptions());
+                    $form->select('parent_id', __('Category'))->options(Category::selectOptions());
 
                     $column->append((new Box(trans('admin.new'), $form))->style('success'));
                 });

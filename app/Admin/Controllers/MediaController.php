@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use App\Admin\Actions\Post\Replicate;
 
 class MediaController extends AdminController
 {
@@ -27,6 +28,7 @@ class MediaController extends AdminController
         $grid = new Grid(new Media);
 
         $grid->column('id', __('Id'));
+        $grid->column('lang', __('Lang'));
         $grid->column('media', __('Media'))->display(function($media){
             switch ($this->type) {
                 case '1':
@@ -49,6 +51,9 @@ class MediaController extends AdminController
 
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
+        $grid->actions(function ($actions) {
+            $actions->add(new Replicate);
+        });
 
         return $grid;
     }
@@ -81,6 +86,7 @@ class MediaController extends AdminController
     {
         $form = new Form(new Media);
 
+        $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->file('media', __('Media'));
         $file = [
             '1' => 'vedio',
