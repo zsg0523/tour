@@ -31,7 +31,7 @@ class AnimalController extends AdminController
         // $grid->column('product_series_id', __('Product series id'));
         $grid->column('product_name', __('Product name'));
         $grid->column('image_family', __('Image family'));
-        $grid->column('image', __('Image'))->image();
+        $grid->column('image', __('Image'))->image(env('APP_URL') . '/uploads/animals/original', 30, 30);
         $grid->column('code', __('Code'));
         $grid->column('image_endangeredLevel', __('Image endangeredLevel'));
         // $grid->column('icon_diet', __('Icon diet'));
