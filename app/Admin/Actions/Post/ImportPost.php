@@ -4,6 +4,9 @@ namespace App\Admin\Actions\Post;
 
 use Encore\Admin\Actions\Action;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\AnimalTransImport;
+use App\Models\AnimalTranslation;
 
 class ImportPost extends Action
 {
@@ -11,8 +14,11 @@ class ImportPost extends Action
 
     public function handle(Request $request)
     {
+
         // 下面的代码获取到上传的文件，然后使用`maatwebsite/excel`等包来处理上传你的文件，保存到数据库
-        $request->file('file');
+        AnimalTranslation::truncate();
+
+        Excel::import(new AnimalTransImport, $request->file('file'));
 
         return $this->response()->success('Success message...')->refresh();
     }
