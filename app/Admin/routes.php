@@ -23,7 +23,7 @@ Route::group([
     $router->resource('retails', RetailController::class); // 零售店
 
     $router->resource('themes', ThemeController::class); // 主题资料英文档
-    $router->resource('themes-translations', ThemesTransCOntroller::class); // 主题资料翻译档案
+    $router->resource('themes-translations', ThemesTransController::class); // 主题资料翻译档案
     $router->resource('animals', AnimalController::class); //动物资料英文档
     $router->resource('animal-translations', AnimalsTransController::class); //动物资料翻译档案
 });

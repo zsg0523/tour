@@ -101,7 +101,7 @@ class CategoryController extends Controller
 
         $grid->column('id', __('Id'));
         $grid->column('lang', __('Lang'));
-        $grid->column('parent_id', __('Parent id'));
+        $grid->column('parent_id', __('Category'));
         $grid->column('title', __('Title'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
@@ -121,7 +121,7 @@ class CategoryController extends Controller
 
         $show->field('id', __('Id'));
         $show->field('lang', __('Lang'));
-        $show->field('parent_id', __('Parent id'));
+        $show->field('parent_id', __('Category'));
         $show->field('title', __('Title'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
