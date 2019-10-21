@@ -14,7 +14,7 @@
 
 Route::group(['middleware' => ['setLocale']], function() {
 
-	Route::redirect('/', 'http://47.75.178.168/web');
+	Route::redirect('/', 'http://www.wennoanimal.com/web/');
 
 	Route::get('books', function () {
 	    return view('books.book'); 
