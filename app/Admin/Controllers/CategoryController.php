@@ -139,7 +139,7 @@ class CategoryController extends Controller
         $form = new Form(new Category);
 
         $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
-        $form->number('parent_id', __('Parent id'));
+        $form->number('parent_id', __('Category'));
         $form->number('order', __('Order'));
         $form->text('title', __('Title'));
 
