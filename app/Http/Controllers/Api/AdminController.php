@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\{Category, Location};
 use App\Handlers\ImageUploadHandler;
 use App\Http\Controllers\Controller;
+use App\Handlers\GenerateQrcodeHandler;
 
 class AdminController extends Controller
 {
@@ -24,6 +25,15 @@ class AdminController extends Controller
         $q = $request->get('q');
 
         return Location::where('location', 'like', "%$q%")->get(['id', 'location as text']);
+    }
+
+    /** [generateQrcode 生成二维码] */
+    public function generateQrcode(Request $request, GenerateQrcodeHandler $qrcode)
+    {
+        $content = 'https://www.wennoanimal.com/animals/database?product_name=AMERICAN_BLACK_BEAR&lang=en&root=0';
+        $qrcode_name = 'qrcode.png';
+        $logo_path = public_path().'/logo.png';
+        $qrcode->generateQrcode($content, $qrcode_name, $logo_path);
     }
 
     /**

@@ -12,6 +12,7 @@
         "dingo/api": "^2.2",
         "doctrine/dbal": "^2.9",
         "encore/laravel-admin": "^1.7",
+        "endroid/qr-code": "^3.7",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
