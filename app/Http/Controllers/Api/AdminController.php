@@ -33,7 +33,7 @@ class AdminController extends Controller
         $content = 'https://www.wennoanimal.com/animals/database?product_name=AMERICAN_BLACK_BEAR&lang=en&root=0';
         $qrcode_name = 'qrcode.png';
         $logo_path = public_path().'/logo.png';
-        $qrcode->generateQrcode($content, $qrcode_name, $logo_path);
+        $result = $qrcode->generateQrcode($content, $qrcode_name, $logo_path);
     }
 
     /**
