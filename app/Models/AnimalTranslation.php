@@ -26,8 +26,7 @@ class AnimalTranslation extends Model
         $translation = $this->where('animal_id', $this->animal_id)
                             ->where('lang', 'en')
                             ->first('group_name');
-
-        return $this->attributes['group_name'] = $translation->attributes['group_name'];
+        return $this->attributes['group_name'] = $translation ? $translation->attributes['group_name'] : '';
     }
 
 

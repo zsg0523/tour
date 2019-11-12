@@ -27,7 +27,7 @@ class AnimalController extends AdminController
         $grid = new Grid(new Animal);
 
         $grid->column('id', __('Id'))->sortable()->filter();
-        $grid->column('product_name', __('Product name'))->filter('like')->copyable();
+        $grid->column('product_name', __('Product name'))->copyable()->filter();
         $grid->column('code', __('Code'))->filter('like')->copyable();
         $grid->column('created_at', __('Created at'))->sortable();
         $grid->column('updated_at', __('Updated at'))->sortable();
@@ -51,7 +51,7 @@ class AnimalController extends AdminController
         $show->field('id', __('Id'));
         
         $show->field('product_name', __('Product name'));
-        $show->field('image', __('Image'))->image(env('APP_URL') . '/uploads/animals/original/', 200, 200);
+        $show->field('image', __('Image'))->image(env('APP_URL') . '/uploads/', 150, 75);
         $show->field('code', __('Code'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));

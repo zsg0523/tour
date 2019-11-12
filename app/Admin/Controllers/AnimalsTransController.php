@@ -29,11 +29,11 @@ class AnimalsTransController extends AdminController
         $grid = new Grid(new AnimalTranslation);
 
         $grid->column('id', __('Id'));
-        // $grid->column('animal_id', __('Animal id'));
-        // $grid->column('sound_id', __('Sound id'));
+        $grid->column('animal_id', __('Animal id'));
+        $grid->column('sound_id', __('Sound id'));
         $grid->column('lang', __('Lang'))->filter();
         $grid->column('view', __('View'));
-        $grid->column('title', __('Title'));
+        $grid->column('title', __('Title'))->filter();
         $grid->column('genus', __('Genus'));
         $grid->column('family', __('Family'));
         $grid->column('habitat', __('Habitat'));
