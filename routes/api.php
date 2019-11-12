@@ -55,6 +55,7 @@ $api->version('v1', [
             /*********************** wennoanimal backend ********************************/
             $api->get('/admin/categories', 'AdminController@getCategories'); // 后台分类选项
             $api->get('/admin/locations', 'AdminController@getLocations'); // 后台分类选项
+            $api->get('/admin/animals', 'AdminController@getAnimals'); // 后台分类选项
             $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
             $api->post('/qrcode', 'AdminController@generateQrcode'); // 生成二维码
 
