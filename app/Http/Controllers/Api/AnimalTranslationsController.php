@@ -19,7 +19,7 @@ class AnimalTranslationsController extends Controller
         // 獲取主題翻譯內容
         $themes = $this->getThemes($request);
 
-        // dd($themes->toArray());
+        dd($themes->toArray());
 
         $theme = $request->theme ?? trim($themes[0]['title_page']);
 

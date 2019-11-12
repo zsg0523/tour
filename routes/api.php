@@ -58,6 +58,8 @@ $api->version('v1', [
             $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
             $api->post('/qrcode', 'AdminController@generateQrcode'); // 生成二维码
 
+            $api->get('/url', 'AnimalsController@images');
+
             
         });
 });

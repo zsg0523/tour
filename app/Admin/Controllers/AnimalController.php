@@ -26,11 +26,9 @@ class AnimalController extends AdminController
     {
         $grid = new Grid(new Animal);
 
-        $grid->column('id', __('Id'));
-        $grid->column('product_name', __('Product name'))->filter('like');
-        $grid->column('image_family', __('Image family'))->filter('like');
-        $grid->column('code', __('Code'))->filter('like');
-        $grid->column('image_endangeredLevel', __('Image endangeredLevel'));        
+        $grid->column('id', __('Id'))->sortable()->filter();
+        $grid->column('product_name', __('Product name'))->filter('like')->copyable();
+        $grid->column('code', __('Code'))->filter('like')->copyable();
         $grid->column('created_at', __('Created at'))->sortable();
         $grid->column('updated_at', __('Updated at'))->sortable();
         $grid->actions(function (Grid\Displayers\Actions $actions){
@@ -53,11 +51,8 @@ class AnimalController extends AdminController
         $show->field('id', __('Id'));
         
         $show->field('product_name', __('Product name'));
-        $show->field('image_family', __('Image family'));
-        $show->field('image', __('Image'))->image(env('APP_URL') . '/uploads/', 200, 200);
+        $show->field('image', __('Image'))->image(env('APP_URL') . '/uploads/animals/original/', 200, 200);
         $show->field('code', __('Code'));
-        $show->field('image_endangeredLevel', __('Image endangeredLevel'));
-        
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -73,11 +68,15 @@ class AnimalController extends AdminController
     {
         $form = new Form(new Animal);
 
+        $form->hidden('product_series_id')->default(1);
         $form->text('product_name', __('Product name'));
-        $form->text('image_family', __('Image family'));
-        $form->image('image', __('Image'))->move('animals/original')->removable();
+        $form->image('image', __('Image'))
+             ->removable()
+             ->thumbnail([
+                'thumbnail' => [60, 30],
+                'resize' => [300, 150],
+            ])->move('animals/original');
         $form->text('code', __('Code'));
-        $form->text('image_endangeredLevel', __('Image endangeredLevel'));
 
         return $form;
     }

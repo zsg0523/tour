@@ -10,5 +10,15 @@ use App\Transformers\AnimalTransformer;
 
 class AnimalsController extends Controller
 {
-	
+	public function images(Animal $animal)
+	{
+		$animals = Animal::all();
+
+		foreach ($animals as $animal) {
+			$animal['image'] = 'animals/original/' . $animal['image'];
+
+			$animal->update($animal->toArray());
+		}
+		
+	}
 }	
