@@ -34,16 +34,15 @@ class AnimalsTransController extends AdminController
             $animal = Animal::find($animal_id);
             return $animal ? $animal->product_name : '';
         })->copyable();
-        // $grid->column('sound_id', __('Sound id'));
-        $grid->column('title', __('Title'))->filter();
-        $grid->column('genus', __('Scientific Name'));
-        $grid->column('family', __('Family'));
-        $grid->column('habitat', __('Habitat'));
-        $grid->column('location', __('Location'));
-        $grid->column('title_classification', __('Title classification'));
-        $grid->column('classification', __('Classification'));
-        $grid->column('title_lifespan', __('Title lifespan'));
-        $grid->column('lifespan', __('Lifespan'));
+        $grid->column('title', __('Title'))->filter('like');
+        $grid->column('genus', __('Scientific Name'))->filter('like')->style('font-style:italic');
+        $grid->column('family', __('Family'))->filter('like');
+        $grid->column('habitat', __('Habitat'))->filter('like');
+        $grid->column('location', __('Location'))->filter('like');
+        $grid->column('title_classification', __('Title classification'))->filter('like');
+        $grid->column('classification', __('Classification'))->filter('like');
+        $grid->column('title_lifespan', __('Title lifespan'))->filter('like');
+        $grid->column('lifespan', __('Lifespan'))->filter('like');
         $grid->column('title_diet', __('Title diet'));
         $grid->column('diet', __('Diet'));
         $grid->column('weight', __('Weight'));
@@ -54,15 +53,15 @@ class AnimalsTransController extends AdminController
             return str_limit($fun_tips, 10, '...');
         });
         $grid->column('endangered_level', __('Endangered level'));
-        $grid->column('theme_name', __('Theme name'));
-        $grid->column('group_name', __('Group name'));
+        $grid->column('theme_name', __('Theme name'))->filter('like');
+        $grid->column('group_name', __('Group name'))->filter('like');
         $grid->column('about', __('About'))->display(function($about){
             return str_limit($about, 10, '...');
         });
         $grid->column('more_details', __('More Details'))->display(function($more_details){
             return str_limit($more_details, 10, '...');
         });
-        $grid->column('view', __('View'));
+        $grid->column('view', __('View'))->sortable();
         $grid->column('updated_at', __('Updated at'))->sortable();
         $grid->column('created_at', __('Created at'))->sortable();
 
