@@ -53,7 +53,7 @@ class AnimalsTransController extends AdminController
             return str_limit($fun_tips, 10, '...');
         });
         $grid->column('endangered_level', __('Endangered level'));
-        $grid->column('theme_name', __('Theme name'))->filter('like');
+        $grid->column('theme_name', __('Theme name'))->editable()->filter('like');
         $grid->column('group_name', __('Group name'))->filter('like');
         $grid->column('about', __('About'))->display(function($about){
             return str_limit($about, 10, '...');

@@ -72,7 +72,7 @@ class AnimalController extends AdminController
         $form->text('product_name', __('Product name'));
         $form->image('image', __('Image'))
              ->removable()
-             ->thumbnail('thumbnail', $width = 150, $height = 75)->move('animals/original');
+             ->thumbnail('thumbnail', $width = 300, $height = 150)->move('animals/original');
         $form->text('code', __('Code'));
 
         return $form;

@@ -16,7 +16,7 @@ class ImportPost extends Action
     {
 
         // 下面的代码获取到上传的文件，然后使用`maatwebsite/excel`等包来处理上传你的文件，保存到数据库
-        AnimalTranslation::truncate();
+        // AnimalTranslation::truncate();
 
         Excel::import(new AnimalTransImport, $request->file('file'));
 
