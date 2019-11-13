@@ -14,8 +14,8 @@ class AddDetailToAnimalsTranslation extends Migration
     public function up()
     {
         Schema::table('animals_translations', function (Blueprint $table) {
-            $table->string('about')->nullable()->after('group_name');
-            $table->string('more_details')->nullable()->after('about');
+            $table->text('about')->nullable()->after('group_name');
+            $table->text('more_details')->nullable()->after('about');
         });
     }
 
@@ -27,8 +27,8 @@ class AddDetailToAnimalsTranslation extends Migration
     public function down()
     {
         Schema::table('animals_translations', function (Blueprint $table) {
-            $table->dropcloumn('about');
-            $table->dropcloumn('more_details');
+            $table->dropcolumn('about');
+            $table->dropcolumn('more_details');
         });
     }
 }

@@ -159,7 +159,7 @@ class AnimalsTransController extends AdminController
         $form->text('endangered_level', __('Endangered level'));
         $form->text('theme_name', __('Theme name'));
         $form->text('group_name', __('Group name'));
-        $form->text('about', __('About'));
+        $form->textarea('about', __('About'));
         $form->textarea('more_details', __('More Details'));
 
         return $form;
