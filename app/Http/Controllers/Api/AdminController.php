@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\{Category, Location, Animal};
+use App\Models\{Category, Location, Animal, AnimalTranslation};
 use App\Handlers\ImageUploadHandler;
 use App\Http\Controllers\Controller;
 use App\Handlers\GenerateQrcodeHandler;
+use App\Jobs\GenerateQrcode;
 
 class AdminController extends Controller
 {
@@ -38,10 +39,14 @@ class AdminController extends Controller
     /** [generateQrcode 生成二维码] */
     public function generateQrcode(Request $request, GenerateQrcodeHandler $qrcode)
     {
-        $content = 'https://www.wennoanimal.com/animals/database?product_name=AMERICAN_BLACK_BEAR&lang=en&root=0';
-        $qrcode_name = 'qrcode.png';
+        // 动物资料（翻译后的）
+        $animal_translation = AnimalTranslation::where('lang', $request->lang)->where('animal_id', $request->animal_id)->first();
+        
+        // 二维码 icon 图片链接
         $logo_path = public_path().'/logo.png';
-        $result = $qrcode->generateQrcode($content, $qrcode_name, $logo_path);
+        
+        // 推送任务队列
+        dispatch(new GenerateQrcode($animal_translation, $logo_path));
     }
 
     /**

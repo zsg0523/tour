@@ -25,5 +25,6 @@ Route::group([
     $router->resource('themes', ThemeController::class); // 主题资料英文档
     $router->resource('themes-translations', ThemesTransController::class); // 主题资料翻译档案
     $router->resource('animals', AnimalController::class); //动物资料英文档
-    $router->resource('animal-translations', AnimalsTransController::class); //动物资料翻译档案
+    $router->resource('animal-translations', AnimalsTransController::class); // 动物资料翻译档案
+    $router->resource('animal-qrcodes', AnimalQrcodeController::class); // 动物资料库动物资料二维码
 });
