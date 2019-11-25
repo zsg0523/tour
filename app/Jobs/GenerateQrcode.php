@@ -41,15 +41,24 @@ class GenerateQrcode implements ShouldQueue
         // 单只动物链接
         $url = 'https://www.wennoanimal.com/animals/database?product_name=' . $this->animal_translation->animal->product_name . '&lang=' . $this->animal_translation->lang . '&root=0';
 
-        // 二维码名称
-        $qrcode_name = $this->animal_translation->animal->product_name . '_' . $this->animal_translation->lang . '.png';
+        // url 二维码名称
+        $url_qrcode_name = $this->animal_translation->animal->product_name . '_' . $this->animal_translation->lang . '.png';
 
-        // 生成二维码
-        $result = app(GenerateQrcodeHandler::class)->generateQrcode($url, $qrcode_name, $this->logo_path); 
+        // url 二维码
+        $result = app(GenerateQrcodeHandler::class)->generateQrcode($url, $url_qrcode_name, $this->logo_path); 
 
-        // 二维码链接
-        $qrcode = url('uploads/qrcodes/'. $qrcode_name);
+        // product 二维码名称
+        $product_qrcode_name = $this->animal_translation->animal->product_name . '.png';
 
+        // product 二维码
+        $result = app(GenerateQrcodeHandler::class)->generateQrcode($this->animal_translation->animal->product_name, $product_qrcode_name, $this->logo_path);
+
+        // url二维码链接
+        $url_qrcode = url('uploads/qrcodes/'. $url_qrcode_name);
+
+        // product 二维码
+        $product_qrcode = url('uploads/qrcodes/' . $product_qrcode_name);
+        
         // 存储二维码信息
         AnimalQrcode::updateOrCreate(
         [
@@ -58,9 +67,10 @@ class GenerateQrcode implements ShouldQueue
         ], 
         [
             'product_name' => $this->animal_translation->animal->product_name,
+            'product_qrcode' => $product_qrcode,
             'lang' => $this->animal_translation->lang,
             'url' => $url,
-            'qrcode' => $qrcode
+            'url_qrcode' => $url_qrcode
         ]);
 
     }

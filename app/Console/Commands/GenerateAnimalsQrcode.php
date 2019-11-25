@@ -45,7 +45,7 @@ class GenerateAnimalsQrcode extends Command
         $animal_translations = AnimalTranslation::all();
         
         // 二维码 icon 图片链接
-        $logo_path = public_path().'/logo.png';
+        $logo_path = public_path().'/white.png';
         
         $this->info('开始推送队列，进行生成二维码');
 

@@ -43,7 +43,7 @@ class AdminController extends Controller
         $animal_translation = AnimalTranslation::where('lang', $request->lang)->where('animal_id', $request->animal_id)->first();
         
         // 二维码 icon 图片链接
-        $logo_path = public_path().'/logo.png';
+        $logo_path = public_path().'/white.png';
         
         // 推送任务队列
         dispatch(new GenerateQrcode($animal_translation, $logo_path));

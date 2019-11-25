@@ -16,9 +16,10 @@ class CreateAnimalQrcodesTable extends Migration
         Schema::create('animal_qrcodes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('product_name')->nullable()->index();
+            $table->string('product_qrcode')->nullable()->comment('二维码链接');
             $table->string('lang')->nullable()->index();
             $table->string('url')->nullable()->comment('二维码内容');
-            $table->string('qrcode')->nullable()->comment('二维码链接');
+            $table->string('url_qrcode')->nullable()->comment('二维码链接');
             $table->timestamps();
         });
     }

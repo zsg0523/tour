@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-11-08 11:45:56
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-11-08 12:55:26
+ * @Last Modified time: 2019-11-25 10:58:05
  */
 namespace App\Handlers;
 
@@ -31,7 +31,7 @@ class GenerateQrcodeHandler
 		if ($logo_path !== null) {
 			$qrCode->setLogoPath($logo_path);
 		}
-		$qrCode->setLogoSize(150, 150);
+		$qrCode->setLogoSize(100, 100);
 		$qrCode->setRoundBlockSize(true);
 		$qrCode->setValidateResult(false);
 		$qrCode->setWriterOptions(['exclude_xml_declaration' => true]);

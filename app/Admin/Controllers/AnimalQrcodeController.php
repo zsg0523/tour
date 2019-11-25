@@ -30,7 +30,8 @@ class AnimalQrcodeController extends AdminController
         $grid->column('product_name', __('Product name'))->filter()->label()->copyable();
         $grid->column('lang', __('Lang'))->filter()->label('info');
         $grid->column('url', __('Url'))->copyable();
-        $grid->column('qrcode', __('Qrcode'))->image();
+        $grid->column('product_qrcode', __('Product Name Qrcode'))->image();
+        $grid->column('url_qrcode', __('Url Qrcode'))->image();
         $grid->disableActions();
         $grid->disableCreateButton();
         $grid->disableFilter(false);
