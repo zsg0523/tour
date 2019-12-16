@@ -61,6 +61,14 @@ $api->version('v1', [
 
             $api->get('/url', 'AnimalsController@images');
 
+            /*********************** wennoanimal questions game *************************/
+            $api->post('/questions', 'QuestionsController@store'); // 用户答题
+
+
+
+
+
+
             
         });
 });

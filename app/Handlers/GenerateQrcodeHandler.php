@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-11-08 11:45:56
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-11-25 10:58:05
+ * @Last Modified time: 2019-12-16 11:29:31
  */
 namespace App\Handlers;
 
@@ -15,7 +15,7 @@ use Endroid\QrCode\Response\QrCodeResponse;
 
 class GenerateQrcodeHandler
 {
-	public function generateQrcode($content, $qrcode_name, $logo_path = null)
+	public function generateQrcode($content, $qrcode_name, $folder, $logo_path = null)
 	{
 		// Create a basic QR code
 		$qrCode = new QrCode($content);
@@ -41,7 +41,7 @@ class GenerateQrcodeHandler
 		// echo $qrCode->writeString();
 
 		// Save it to a file
-		$qrCode->writeFile(public_path('uploads/qrcodes/').$qrcode_name);
+		$qrCode->writeFile(public_path('uploads/' . $folder . '/').$qrcode_name);
 
 		// Create a response object
 		$response = new QrCodeResponse($qrCode);
