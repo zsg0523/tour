@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/animalIndex.css">
     <script type="text/javascript" src="./js/orientationchange.js" ></script>
     <body class="HolyGrail">
-        <div  id="HolyGrail-body">
+        <div  id="HolyGrailBody">
 			<div id="Loading" v-show="Loading">
 				<div class="loader-inner ball-beat">
 					<div></div>
@@ -57,12 +57,12 @@
 			</div>
         </div>
     </body>
+    <script src="../js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="./js/swiper.js" ></script>
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdn.bootcss.com/vue/2.2.3/vue.min.js"></script>
+    <script src="../js/vue.min.js"></script>
     <script>
 		var vm = new Vue({
-			el: "#HolyGrail-body",
+			el: "#HolyGrailBody",
 			data:{
 				swiper:[],
 				imageArray:[],
@@ -151,7 +151,7 @@
 	                event.currentTarget.src = "./images/loadingLogo.png";//默认图片
 	            },
                 getSwiper(){
-                    let self = this;          
+                    var self = this;          
                     function GetQueryString(name){
                         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
                         var r =  window.location.search.substr(1).match(reg);
@@ -162,14 +162,13 @@
                         }
                     }
                     var theme = decodeURI(GetQueryString('theme'));
-                    sessionStorage.getItem('theme');
                     var lang = GetQueryString('lang');
                     var language = sessionStorage.getItem('language');
                     console.log(language);
                     console.log(lang);
                     console.log(theme);
                     var url = '/api/animals?include=animal';
-                    if(theme){
+                    if(!theme||theme=='null'){
                           if(lang==null){
                           	   if(language==null){
 			                        url = '/api/animals?include=animal';
@@ -197,7 +196,6 @@
 	                        langTitle(lang);
                     	}
                     }
-                   
                     function langTitle(langTitles){
 	                   	switch (langTitles) {
 						    case 'ar':
@@ -300,7 +298,7 @@
 			mounted:function(){
 	        	var that=this;
 	        	that.getSwiper();
-	        }
+	        },
 		});
     </script>
 </html>
