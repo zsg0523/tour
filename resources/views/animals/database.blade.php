@@ -87,8 +87,8 @@
 
         </div>
     </body>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue/2.2.3/vue.min.js"></script>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/vue.min.js"></script>
     <script>
         var vm = new Vue({
             el: "#database",
@@ -109,7 +109,7 @@
                         this.Loading = false;   
                         this.LoadCompleted = true;  
                         if(locationReload==false){
-                           let self = this;
+                           var self = this;
                            self.locationReload = true;
                         }else{
                             return
@@ -155,7 +155,7 @@
                     }
                 },
                 animalsInfo(){
-                    let self = this;
+                    var self = this;
                     function GetQueryString(name){
                         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
                         var r = window.location.search.substr(1).match(reg);

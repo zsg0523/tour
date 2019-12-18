@@ -32,6 +32,9 @@ Route::group(['middleware' => ['setLocale']], function() {
 	Route::get('animals/chooseLanguage', function () {
 	    return view('animals.chooseLanguage');
 	});
+	Route::get('result', function () {
+	    return view('result.index');
+	});
 
 	Route::get('downloadpdf', 'SetLocaleController@downloadpdf');
 });

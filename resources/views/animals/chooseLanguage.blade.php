@@ -23,7 +23,7 @@
 			</div>
          </div>
     </body>
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../js/jquery-3.4.1.min.js"></script>
     <script>
 		$(function (){
 			var lang = 'zh-CN';
@@ -188,7 +188,7 @@
 		        success:function(data) {
 					console.log(JSON.stringify(data));
 					if(data){
-						window.location.href = document.referrer;
+						window.location.href = '/animals';
 					}
 		        },
 		        error:function(XMLHttpRequest, textStatus, errorThrown) {
