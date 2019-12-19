@@ -27,7 +27,7 @@ class QuestionsController extends Controller
     	}
 
     	$user_count = GameUser::where('answer','>', $true_count)->count();
-
+        $users = GameUser::all()->count();
     	// 玩家排名
     	$rank = $user_count + 1;
 
@@ -35,7 +35,7 @@ class QuestionsController extends Controller
     	$user = GameUser::create(['answer' => $true_count, 'url' => $rank ]);
 
     	// 二维码内容
-    	$url = url('result?rank=' . $rank . '&lang=' . $data['lang']);
+    	$url = url('result?rank=' . $rank . '/' . $users . '&lang=' . $data['lang']);
 
     	// 生成二维码
     	$qrcode = app(GenerateQrcodeHandler::class)->generateQrcode($url, $user->id . '.png', 'rank');
