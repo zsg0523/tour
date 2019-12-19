@@ -90,10 +90,10 @@
         <div class="main">  
             <div class="head">
                 <img src="{{asset('resultImg/phb.png')}}" alt="">
-                <div class="title" id="title">排行榜</div>
+                <div class="title" id="title"></div>
             </div>
             <div class="rank" id="rank"></div>
-            <div class="tips" id="tips">请点击下面动物，查看它们的详细资料。</div>
+            <div class="tips" id="tips"></div>
             <div class="animals">
                 <div class="item" onclick="toDataBase(1)">
                     <img src="{{asset('resultImg/1.png')}}" alt="">
@@ -138,7 +138,7 @@
             var text={
                 en:{
                     title:'Ranking',
-                    tips:'Please click on the animals to check out their details.'
+                    tips:'Please click on the animals<br/>to check out their details.'
                 },
                 cn:{
                     title:'排行榜',
@@ -149,27 +149,27 @@
                     tips:'請點擊下面動物，查看它們的詳細資料。'
                 },
             }
-            var rank=GetQueryString('rank')?GetQueryString('rank'):'???';
-            var lang=GetQueryString('lang')?GetQueryString('lang'):'zh-CN';
+            var rank=GetQueryString('rank')?GetQueryString('rank'):'???';   
+            var lang=GetQueryString('lang')?GetQueryString('lang'):'zh-CN'; 
             $(function(){
+                switch (lang) {
+                    case 'zh-CN':
+                        // zh-CN
+                        $('#title').text(text.cn.title);
+                        $('#tips').html(text.cn.tips);
+                        break;
+                    case 'zh-TW':
+                        // zh-TW
+                        $('#title').text(text.hk.title);
+                        $('#tips').html(text.hk.tips);
+                        break;
+                    default:
+                        $('#title').text(text.en.title);
+                        $('#tips').html(text.en.tips);
+                        break;
+                }
+                $('#rank').text(rank);
             });
-            switch (lang) {
-                case 'zh-CN':
-                    // zh-CN
-                    $('#title').text(text.cn.title);
-                    $('#tips').text(text.cn.tips);
-                    break;
-                case 'zh-TW':
-                    // zh-TW
-                    $('#title').text(text.hk.title);
-                    $('#tips').text(text.hk.tips);
-                    break;
-                default:
-                    $('#title').text(text.en.title);
-                    $('#tips').text(text.en.tips);
-                    break;
-            }
-            $('#rank').text(rank);
             function GetQueryString(name){
                 var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
                 var r =  window.location.search.substr(1).match(reg);
