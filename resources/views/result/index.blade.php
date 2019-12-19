@@ -58,7 +58,7 @@
             }
             .tips{
                 width: 90%;
-                margin-left: 5%;
+                margin:15px 5%;
                 min-height: 25px;
                 line-height: 25px;
                 font-size: 14px;
