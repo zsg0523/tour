@@ -41,7 +41,7 @@ body{
 }
 
 header{ 
-	height:auto;
+	min-height:50px;
     width:100%;
     margin:0px;
     padding:0px;
