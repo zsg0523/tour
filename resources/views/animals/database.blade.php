@@ -165,6 +165,21 @@
                     var language = sessionStorage.getItem('language');
                     if(lang!=null){
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
+                                    $.ajax({
+                            url:'/api/setLocale?lang='+lang,
+                            type:'GET',
+                            success:function(data) {
+                                console.log(JSON.stringify(data));
+                                if(data){
+                                    // window.location.href = '/animals';
+                                }
+                            },
+                            error:function(XMLHttpRequest, textStatus, errorThrown) {
+                                console.log(XMLHttpRequest.status);
+                                console.log(XMLHttpRequest.readyState);
+                                console.log(textStatus);
+                            }
+                        });
                     }
 
                     if(lang==null&&language!=null){
