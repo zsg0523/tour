@@ -14,7 +14,8 @@
                 width: 100%;
                 height: 100vh;
                 background:url('./resultImg/bg.png') no-repeat;
-                background-size: 100% auto;
+                background-size: 100% 100%;
+                background-position:center;
                 overflow: auto;
             }
             .head{
