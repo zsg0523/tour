@@ -16,7 +16,7 @@ class Animal extends Model
     // 原图
     public function getImageOriginalAttribute($value)
     {
-        return $this->attributes['image_original'] = config('app.url') . "/uploads/" . substr($this->image, 0 , strpos($this->image, '.')) . ".png";
+        return $this->attributes['image_original'] = config('app.url') . "/uploads/" . $this->image;
     }
 
     // 中图
