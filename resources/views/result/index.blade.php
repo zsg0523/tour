@@ -14,7 +14,7 @@
                 width: 100%;
                 height: 100vh;
                 background:url('./resultImg/bg.png') no-repeat;
-                background-size: auto;
+                background-size: cover;
                 background-position:center;
                 overflow: auto;
             }
