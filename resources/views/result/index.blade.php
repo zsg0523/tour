@@ -147,7 +147,7 @@
                 },
                 hk:{
                     title:'排行榜',
-                    tips:'請點擊下面動物，查看它們的詳細資料。'
+                    tips:'請點擊下面動物，查看牠們的詳細資料。'
                 },
             }
             var rank=GetQueryString('rank')?GetQueryString('rank'):'???';   
