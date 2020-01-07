@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-01-07 11:41:50
  * @Last Modified by:   eden
- * @Last Modified time: 2020-01-07 12:04:31
+ * @Last Modified time: 2020-01-07 15:41:26
  */
 namespace App\Services;
 
@@ -42,6 +42,17 @@ class QuestionService
     public function getQuestionById($id)
     {
         return $this->question->find($id);
+    }
+
+    /**
+     * [getQuestionByCode 查询模型]
+     * @param  [type] $code [description]
+     * @param  [type] $lang [description]
+     * @return [type]       [description]
+     */
+    public function getQuestionByCode($code, $lang)
+    {
+    	return $this->question->where('code', $code)->where('lang', $lang)->first();
     }
 
     /**

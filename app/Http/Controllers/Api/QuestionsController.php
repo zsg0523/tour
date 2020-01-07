@@ -19,17 +19,27 @@ class QuestionsController extends Controller
     public function store(Request $request)
     {
     	$data = json_decode($request->data, true);
+        
     	// 更新题库数据
     	$true_count = 0;
     	foreach ($data['questions'] as $question) {
     		switch ($question['answer']) {
     			case '1':
     				$true_count++;
-    				Question::where('code', $question['code'])->where('lang', $data['lang'])->increment('true');
+    				$question = $this->questionService->getQuestionByCode($question['code'], $data['lang']);
+                    $map = [
+                        'true' => $question->true + 1,
+                        'total' => $question->true + 1 + $question->false,
+                    ];
+                    $updateQuestion = $this->questionService->updateById($question->id, $map);
     				break;
-    			
     			case '0':
-    				Question::where('code', $question['code'])->where('lang', $data['lang'])->increment('false');
+    				$question = $this->questionService->getQuestionByCode($question['code'], $data['lang']);
+                    $map = [
+                        'false' => $question->false + 1,
+                        'total' => $question->true + $question->false + 1,
+                    ];
+                    $updateQuestion = $this->questionService->updateById($question->id, $map);
     				break;
     		}
     	}
@@ -51,7 +61,7 @@ class QuestionsController extends Controller
     	return $this->response->array(['qrcode' => url('uploads/rank/' . $user->id . '.png'), 'url' => $url]);
     }
 
-
+    /** [total 更新题目答案总数] */
     public function total()
     {
         $question_ids = $this->questionService->getAllIds();
@@ -63,7 +73,7 @@ class QuestionsController extends Controller
             $total =$this->questionService->getTotal($question->true, $question->false);
 
             $result = $this->questionService->updateById($id, ['total' => $total]);
-            
+
         }
 
     }

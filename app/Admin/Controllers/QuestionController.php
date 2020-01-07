@@ -34,9 +34,7 @@ class QuestionController extends AdminController
         })->filter();
         $grid->column('true', __('True'))->sortable()->label();
         $grid->column('false', __('False'))->sortable()->label('info');
-        $grid->column('total')->display(function(){
-            return $this->true + $this->false;
-        })->label('success');
+        $grid->column('total', __('Tatal'))->sortable()->label('success');
         
         $grid->disableActions();
 
