@@ -14,7 +14,8 @@
                 width: 100%;
                 height: 100vh;
                 background:url('./resultImg/bg.png') no-repeat;
-                background-size: 100% auto;
+                background-size: cover;
+                background-position:center;
                 overflow: auto;
             }
             .head{
@@ -146,7 +147,7 @@
                 },
                 hk:{
                     title:'排行榜',
-                    tips:'請點擊下面動物，查看它們的詳細資料。'
+                    tips:'請點擊下面動物，查看牠們的詳細資料。'
                 },
             }
             var rank=GetQueryString('rank')?GetQueryString('rank'):'???';   
