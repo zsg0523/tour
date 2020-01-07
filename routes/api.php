@@ -63,6 +63,7 @@ $api->version('v1', [
 
             /*********************** wennoanimal questions game *************************/
             $api->post('/questions', 'QuestionsController@store'); // 用户答题
+            $api->get('/total', 'QuestionsController@total');
 
 
 

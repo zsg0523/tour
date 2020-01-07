@@ -5,9 +5,17 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\{Question, GameUser};
 use App\Handlers\GenerateQrcodeHandler;
+use App\Services\QuestionService;
 
 class QuestionsController extends Controller
 {
+
+    /** [__construct 自动注入服务] */
+    public function __construct(QuestionService $questionService)
+    {   
+        $this->questionService = $questionService;
+    }
+
     public function store(Request $request)
     {
     	$data = json_decode($request->data, true);
@@ -42,5 +50,40 @@ class QuestionsController extends Controller
 
     	return $this->response->array(['qrcode' => url('uploads/rank/' . $user->id . '.png'), 'url' => $url]);
     }
+
+
+    public function total()
+    {
+        $question_ids = $this->questionService->getAllIds();
+
+        foreach ($question_ids as $id) {
+
+            $question = $this->questionService->getQuestionById($id);
+           
+            $total =$this->questionService->getTotal($question->true, $question->false);
+
+            $result = $this->questionService->updateById($id, ['total' => $total]);
+            
+        }
+
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
