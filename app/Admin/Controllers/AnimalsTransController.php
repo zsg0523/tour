@@ -139,6 +139,7 @@ class AnimalsTransController extends AdminController
                 return [$animal->id => $animal->product_name];
             }
         })->ajax('/api/admin/animals');
+        $form->hidden('sound_id')->default(0);
         $form->text('lang', __('Lang'))->default('en');
         $form->text('title', __('Title'));
         $form->text('genus', __('Scientific Name'));

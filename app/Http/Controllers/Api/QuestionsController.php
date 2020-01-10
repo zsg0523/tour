@@ -19,6 +19,8 @@ class QuestionsController extends Controller
     public function store(Request $request)
     {
     	$data = json_decode($request->data, true);
+
+        Question::find(1)->dd();
         
     	// 更新题库数据
     	$true_count = 0;
