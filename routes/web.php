@@ -17,7 +17,8 @@ Route::group(['middleware' => ['setLocale']], function() {
 		// 线上官网主页
 		Route::redirect('/', 'https://www.wennoanimal.com/web/');
 	} else {
-		// 商城
+		Route::get('/', 'PagesController@root')->name('root');
+		
 	}
 	Route::redirect('/ios', 'https://apps.apple.com/hk/app/wenno/id1071091237?l=en');
 	Route::redirect('/apk', 'https://play.google.com/store/apps/details?id=com.wennoanimal.wenno');
@@ -46,9 +47,6 @@ Route::group(['middleware' => ['setLocale']], function() {
 	Route::get('downloadpdf', 'SetLocaleController@downloadpdf');
 });
 
-// Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 // contact us 邮件模版测试
 Route::get('mailable', function () {
