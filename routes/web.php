@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::group(['middleware' => ['setLocale']], function() {
 	if (app()->environment('production')) {
 		// 线上官网主页
@@ -54,3 +53,5 @@ Route::get('mailable', function () {
 });
 
 
+
+Auth::routes();
