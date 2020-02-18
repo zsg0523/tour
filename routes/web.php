@@ -13,8 +13,12 @@
 
 
 Route::group(['middleware' => ['setLocale']], function() {
-
-	Route::redirect('/', 'https://www.wennoanimal.com/web/');
+	if (app()->environment('production')) {
+		// 线上官网主页
+		Route::redirect('/', 'https://www.wennoanimal.com/web/');
+	} else {
+		// 商城
+	}
 	Route::redirect('/ios', 'https://apps.apple.com/hk/app/wenno/id1071091237?l=en');
 	Route::redirect('/apk', 'https://play.google.com/store/apps/details?id=com.wennoanimal.wenno');
 	Route::redirect('/appAndroid', 'https://www.wennoanimal.com/uploads/download/Wenno.apk');
@@ -42,13 +46,13 @@ Route::group(['middleware' => ['setLocale']], function() {
 	Route::get('downloadpdf', 'SetLocaleController@downloadpdf');
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 // contact us 邮件模版测试
 Route::get('mailable', function () {
-    return new App\Mail\ContactUs('Eden', 'shenggen93@163.com', '打算大的撒放水淀粉');
+    return new App\Mail\ContactUs('Eden', 'shenggen93@163.com', '邮件模版测试');
 });
 
 
