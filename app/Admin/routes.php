@@ -29,4 +29,7 @@ Route::group([
     $router->resource('animal-qrcodes', AnimalQrcodeController::class); // 动物资料库动物资料二维码
 
     $router->resource('questions', QuestionController::class); // 答题游戏
+
+    // 商城
+    $router->resource('users', UsersController::class);
 });
