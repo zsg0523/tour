@@ -31,5 +31,6 @@ Route::group([
     $router->resource('questions', QuestionController::class); // 答题游戏
 
     // 商城
-    $router->resource('users', UsersController::class);
+    $router->resource('users', UsersController::class); // 用户管理
+    $router->resource('shop-products', ShopProductsController::class); // 商品管理
 });

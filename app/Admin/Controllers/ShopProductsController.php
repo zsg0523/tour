@@ -26,15 +26,17 @@ class ShopProductsController extends AdminController
     {
         $grid = new Grid(new ShopProduct);
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('ID'))->sortable();
         $grid->column('title', __('Title'));
         $grid->column('description', __('Description'));
         $grid->column('image', __('Image'));
-        $grid->column('on_sale', __('On sale'));
+        $grid->column('on_sale', __('On sale'))->display(function ($value){
+            return $value ? 'Yes' : 'No';
+        });
+        $grid->column('price', __('Price'));
         $grid->column('rating', __('Rating'));
         $grid->column('sold_count', __('Sold count'));
         $grid->column('review_count', __('Review count'));
-        $grid->column('price', __('Price'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
