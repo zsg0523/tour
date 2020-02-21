@@ -76,15 +76,17 @@ class ShopProductsController extends AdminController
     protected function form()
     {
         $form = new Form(new ShopProduct);
+
         //  创建一个输入框
         $form->text('title', __('商品名称'))->rules('required');
         // 创建一个选择图片框
         $form->image('image', __('商品图片'))->rules('required|image');
+       
         // 创建一个富文本编辑器
         $form->editor('description', __('描述'));
+        
         // 创建一组单选按钮
         $form->radio('on_sale', __('是否上架'))->options(['1' => '是', '0'=> '否'])->default('0');
-        
         // 直接添加一对多的关联模型
         $form->hasMany('skus', 'SKU 列表', function (Form\NestedForm $form) {
             $form->text('title', 'SKU 名称')->rules('required');
@@ -97,6 +99,7 @@ class ShopProductsController extends AdminController
         $form->saving(function (Form $form){
             $form->model()->price = collect($form->input('skus'))->where(Form::REMOVE_FLAG_NAME, 0)->min('price') ?:0;
         });
+
 
         return $form;
     }
