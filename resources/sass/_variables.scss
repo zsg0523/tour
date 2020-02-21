@@ -1,19 +1,27 @@
+
 // Body
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
-$blue: #3490dc;
+$blue: #efc285;    //蓝色点击按钮改为wenno的棕色 #3490dc -> #efc285
 $indigo: #6574cd;
 $purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
+$pink: #f66D9b;
+$red: #ead3b0;  //红色成功按钮改为wenno的 #e3342f -> #ead3b0
 $orange: #f6993f;
 $yellow: #ffed4a;
-$green: #38c172;
+$green: #ead3b0;   //绿色成功按钮改为wenno的 #38c172 -> #ead3b0
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+//wenno
+/* $wenno-bg1: #f6e5cd; $wenno-bg2: #efc285; $wenno-bg3: #d18901; */
+$wenno-font: #7b5c55;
+$wenno-bg1: #fff6e9;  /* 浅色背景 */
+$wenno-bg2: #ead3b0; /* 深背景 */
+$wenno-bg3: #efc285; /* 按钮 */
