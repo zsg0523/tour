@@ -55,8 +55,8 @@ class ShopProductsController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('title', __('Title'));
-        $show->field('description', __('Description'));
-        $show->field('image', __('Image'));
+        $show->field('description', __('Description'))->homepage()->link();
+        $show->field('image', __('Image'))->image();
         $show->field('on_sale', __('On sale'));
         $show->field('rating', __('Rating'));
         $show->field('sold_count', __('Sold count'));
@@ -81,7 +81,7 @@ class ShopProductsController extends AdminController
         // 创建一个选择图片框
         $form->image('image', __('商品图片'))->rules('required|image');
         // 创建一个富文本编辑器
-        $form->textarea('description', __('描述'));
+        $form->editor('description', __('描述'));
         // 创建一组单选按钮
         $form->radio('on_sale', __('是否上架'))->options(['1' => '是', '0'=> '否'])->default('0');
         
