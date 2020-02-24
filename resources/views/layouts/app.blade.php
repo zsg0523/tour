@@ -9,10 +9,12 @@
     <title>@yield('title', 'Wenno Shop')</title>
     <!-- 样式 -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('swiper/swiper.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app" class="{{ route_class() }}-page">
         @include('layouts._header')
+        @yield('banner')
         <div class="container">
             @yield('content')
         </div>
@@ -20,6 +22,7 @@
     </div>
     <!-- JS 脚本 -->
     <script src="{{ mix('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{asset('swiper/swiper.min.js')}}"></script>
     @yield('scriptsAfterJs')
 </body>
 </html>
