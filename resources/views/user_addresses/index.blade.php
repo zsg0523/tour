@@ -3,48 +3,56 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <div class="card panel-default">
-        <div class="card-header">
-          收货地址列表
-          <a href="{{ route('user_addresses.create') }}" class="float-right">新增收货地址</a>
-        </div>
-        <div class="card-body">
-          <table class="table table-bordered table-striped">
-            <thead>
-            <tr>
-              <th>收货人</th>
-              <th>地址</th>
-              <th>邮编</th>
-              <th>电话</th>
-              <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($addresses as $address)
-              <tr>
-                <td>{{ $address->contact_name }}</td>
-                <td>{{ $address->full_address }}</td>
-                <td>{{ $address->zip }}</td>
-                <td>{{ $address->contact_phone }}</td>
-                <td>
-                  <a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="btn btn-primary">修改</a>
-                  <!-- 把之前删除按钮的表单替换成这个按钮，data-id 属性保存了这个地址的 id，在 js 里会用到 -->
-                  <button class="btn btn-danger btn-del-address" type="button" data-id="{{ $address->id }}">删除</button>
-                </td>
-              </tr>
-            @endforeach
-            </tbody>
-          </table>
-        </div>
+    <div class="user_main disflex">
+      <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+          @include('layouts._menu')
       </div>
+      <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+        <div class="col-md-12">
+          <div class="card panel-default">
+            <div class="card-header">
+              收货地址列表
+              <a href="{{ route('user_addresses.create') }}" class="float-right">新增收货地址</a>
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>收货人</th>
+                  <th>地址</th>
+                  <th>邮编</th>
+                  <th>电话</th>
+                  <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($addresses as $address)
+                  <tr>
+                    <td>{{ $address->contact_name }}</td>
+                    <td>{{ $address->full_address }}</td>
+                    <td>{{ $address->zip }}</td>
+                    <td>{{ $address->contact_phone }}</td>
+                    <td>
+                      <a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="btn btn-primary" style="margin-bottom: 10px;">修改</a>
+                      <!-- 把之前删除按钮的表单替换成这个按钮，data-id 属性保存了这个地址的 id，在 js 里会用到 -->
+                      <button class="btn btn-danger btn-del-address" type="button" data-id="{{ $address->id }}" style="margin-bottom: 10px;">删除</button>
+                    </td>
+                  </tr>
+                @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
     </div>
+  </div>
   </div>
 @endsection
 
 @section('scriptsAfterJs')
   <script>
     $(document).ready(function() {
+     $('.menu_list li.menu_list_address').addClass('active');
       // 删除按钮点击事件
       $('.btn-del-address').click(function() {
         // 获取按钮上 data-id 属性的值，也就是地址 ID
