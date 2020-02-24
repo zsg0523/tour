@@ -54,15 +54,46 @@ class ProductsController extends Controller
     }
 
 
-
+    /** [show 商品详情] */
     public function show(ShopProduct $shopProduct, Request $request)
     {
         // 判断商品是否已上架
         if (!$shopProduct->on_sale) {
             throw new InvalidRequestException('商品未上架');
         }
-        
-        return view('products.show', ['product'=> $shopProduct]);
+
+        $favored = false;
+        // 用户未登录时返回的是 null，已登录时返回的是对应的用户对象
+        if($user = $request->user()) {
+            // 从当前用户已收藏的商品中搜索 id 为当前商品 id 的商品
+            // boolval() 函数用于把值转为布尔值
+            $favored = boolval($user->favoriteProducts()->find($shopProduct->id));
+        }
+
+        return view('products.show', ['product' => $shopProduct, 'favored' => $favored]);
+    }
+
+
+    /** [favor 用户收藏] */
+    public function favor(ShopProduct $shopProduct, Request $request)
+    {
+        $user = $request->user();
+        if ($user->favoriteProducts()->find($shopProduct->id)) {
+            return [];
+        }
+        // attach() 方法的参数可以是模型的 id，也可以是模型对象本身，因此这里还可以写成 attach($shopProduct->id)
+        $user->favoriteProducts()->attach($shopProduct);
+
+        return [];
+    }
+
+    /** [disfavor 取消用户收藏] */
+    public function disfavor(ShopProduct $shopProduct, Request $request)
+    {
+        $user = $request->user();
+        $user->favoriteProducts()->detach($shopProduct);
+
+        return [];
     }
 
 
