@@ -51,4 +51,44 @@ class ProductsController extends Controller
     		],
     	]);
     }
+
+
+
+    public function show(ShopProduct $shopProduct, Request $request)
+    {
+        // 判断商品是否已上架
+        if (!$shopProduct->on_sale) {
+            throw new \Exception('商品未上架');
+        }
+        
+        return view('products.show', ['product'=> $shopProduct]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

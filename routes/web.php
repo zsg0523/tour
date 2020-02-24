@@ -18,6 +18,7 @@ Route::group(['middleware' => ['setLocale']], function() {
 	} else {
 		Route::redirect('/', '/products')->name('root');
 		Route::get('products', 'ProductsController@index')->name('products.index');		
+		Route::get('products/{shopProduct}', 'ProductsController@show')->name('products.show');
 	}
 	Route::redirect('/ios', 'https://apps.apple.com/hk/app/wenno/id1071091237?l=en');
 	Route::redirect('/apk', 'https://play.google.com/store/apps/details?id=com.wennoanimal.wenno');
