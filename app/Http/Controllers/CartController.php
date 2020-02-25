@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddCartRequest;
 use App\Models\CartItem;
+use App\Models\ShopProductSku;
 
 class CartController extends Controller
 {
@@ -30,6 +31,14 @@ class CartController extends Controller
             $cart->shopProductSku()->associate($skuId);
             $cart->save();
         }
+
+        return [];
+    }
+
+    /** [remove 商品移除购物车] */
+    public function remove(ShopProductSku $productSku, Request $request)
+    {   
+        $request->user()->cartItems()->where('shop_product_sku_id', $productSku->id)->delete();
 
         return [];
     }
