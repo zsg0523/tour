@@ -8,6 +8,7 @@ use App\Models\CartItem;
 
 class CartController extends Controller
 {
+    /** [add 添加购物车] */
     public function add(AddCartRequest $request)
     {
         $user = $request->user();
@@ -32,4 +33,13 @@ class CartController extends Controller
 
         return [];
     }
+
+    /** [index 查看购物车] */
+    public function index(Request $request)
+    {
+        $cartItems = $request->user()->cartItems()->with(['ShopProductSku.shopProduct'])->get();
+
+        return view('cart.index', ['cartItems' => $cartItems]);
+    }
+
 }
