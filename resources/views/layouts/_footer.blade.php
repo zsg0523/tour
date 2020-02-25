@@ -1,7 +1,7 @@
 <footer class="footer">
   	<div>
   		<div class="listBottom">
-          	<div class="lister col-lg-10 offset-lg-1">
+          	<div class="lister col-lg-10 offset-lg-1 col-sm-12">
               	<ul class="about list">
 
 	                   <a href="{{ url('/aboutUs') }}" class="titleIcon"><img src="{{asset('images/about.png')}}"></a>

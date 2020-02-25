@@ -126,7 +126,7 @@ body {
       .newsletter{
         width:100px;height:100%;line-height:60px;float:right;margin-right:0px;
         a{
-          display:block;width:46%;display:inline-block;margin:0px;padding:0px;
+          display:block;width:46%;display:inline-block;margin:0px;padding:0px;text-align:center;
           img{width: 30px;height: 30px;}
         }
       }
@@ -693,6 +693,43 @@ body {
     .aboutTitle p li:last-child{width:20%;}
     .usList{width:90%;}
     .usList span{font-size:0.8rem;}
+    body{margin-bottom: 665px;}
+    .footer{
+      .listBottom{
+        width:100%;height:auto;
+        .col-sm-12{padding:0 !important;}
+        .lister{
+          width:100%;height:100%;;margin:0px auto;background:#ead3b0;
+          ul{
+            float:left;
+
+          }
+          ul.list{
+            width:100%;height:auto;position:relative;color:#7b5c55;background:#ead3b0;
+            &:last-child{padding-bottom:30px;}
+            span{text-align:center;font-size: 0.9rem;height: 28px;line-height: 28px;}
+            a.titleIcon{width:100%;height:50px;display:block;}
+            a.titleIcon img{width:30px;height:26px;display:block;margin:18px auto;position:relative;top:6px;}
+            li{text-align:center;height: 28px;line-height:28px; font-size: 0.8rem;}
+          }
+          ul.contact{float:left;margin-left:0%;}
+          ul.retail{
+            float:right;margin-right:0%;
+            li img{width:13px;padding:0rem 0.3rem 0rem 0rem;} 
+          }
+        }
+      }
+      .bottomAdress{
+        height:60px;
+        .copyright{
+          .copyrightContent{
+            width:100%;height:100%;float:left;text-align:center;
+            span a{color:#7b5c55;display:block;height:30px;line-height:36px;text-align:center;font-size:0.96rem;font-weight:bold;}
+          }
+          .newsletter{width:30%;height:100%;margin-right:35%;}
+        }
+      }
+    }
 }
 
 .user_main{
