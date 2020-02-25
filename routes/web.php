@@ -12,13 +12,8 @@
 */
 
 Route::group(['middleware' => ['setLocale']], function() {
-	if (app()->environment('production')) {
-		// 线上官网主页
-		Route::redirect('/', 'https://www.wennoanimal.com/web/');
-	} else {
-		// Route::redirect('/', '/products')->name('root');
-		Route::get('products', 'ProductsController@index')->name('products.index');
-	}
+
+	Route::redirect('/', 'https://www.wennoanimal.com/web/');
 	Route::redirect('/ios', 'https://apps.apple.com/hk/app/wenno/id1071091237?l=en');
 	Route::redirect('/apk', 'https://play.google.com/store/apps/details?id=com.wennoanimal.wenno');
 	Route::redirect('/appAndroid', 'https://www.wennoanimal.com/uploads/download/Wenno.apk');
@@ -58,6 +53,10 @@ Route::get('/aboutUs', function () { return view('user_info/aboutUs'); });
 
 
 Auth::routes(['verify' => true]);
+// 商城首页
+Route::redirect('/shop', '/products')->name('root');
+// 产品页
+Route::get('products', 'ProductsController@index')->name('products.index');
 
 Route::group(['middleware' => ['auth', 'verified']], function() {
 	Route::get('user_addresses', 'UserAddressesController@index')->name('user_addresses.index'); // 收货地址列表
