@@ -10,8 +10,6 @@
 // Swiper
 //@import '~swiper/swiper.scss';
 
-//@import "~@fortawesome/fontawesome-free/css/all.css";
-
 @import "~@fortawesome/fontawesome-free/css/all.css";
 
 /* Sticky footer styles */
@@ -64,14 +62,6 @@ body {
       position: absolute !important;
       margin-top: -30px;
       left: 100%;
-  }
-}
-@media (max-width: 992px) {
-  .dropdown-menu {
-    width: 50%;
-  }
-  .dropdown-menu .dropdown-submenu {
-    width: auto;
   }
 }
 
@@ -136,6 +126,7 @@ body {
   }
 }
 
+/* 菜单 */
 .menu_list{
   padding-left: 25px;
   li{
@@ -392,6 +383,7 @@ body {
    }
 }
 
+/* 购物车页面 */
 .cart-index-page {
   .product_list {
     .preview {
@@ -438,6 +430,7 @@ body {
   }
 }
 
+/* 订单列表详情页面 */
 .orders-index-page {
   .list-group-item {
     font-size: 12px;
@@ -483,6 +476,7 @@ body {
   }
 }
 
+/* 订单详情页面 */
 .orders-show-page {
   font-size: 12px;
   .vertical-middle {
@@ -554,6 +548,7 @@ body {
   }
 }
 
+/* 订单页面 */
 .orders-review-show-page {
   .vertical-middle {
     vertical-align: middle;
@@ -635,7 +630,7 @@ body {
   }
 }
 
-
+/* 联系我们页面 */
 .contactUsList{
   background-color: #fff;
   .aboutTitle{
@@ -680,6 +675,27 @@ body {
     }
   }
 }
+
+.user_main{width: 100%;}
+.table thead th{border-bottom: none;}
+
+.fa, .fas, .far, .fal, .fad, .fab,
+.navbar-light .navbar-nav .nav-link, .dropdown-item{font-size: 1rem;}
+.navbar-right .nav-item .mt-2{display:inline-block;line-height:1;}
+
+.dropdown-item, .btn, .btn-success:hover, .btn-primary:hover,
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus,
+.btn-danger:hover{color: $wenno-font;}
+
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active{ color: $wenno-font;}
+
+.products-show-page .skus .btn-group .btn.active, .products-show-page .skus .btn-group .btn:hover{border: 2px solid $wenno-bg2 !important;}
+
+@media (max-width: 992px) {
+  .dropdown-menu {width: 50%;}
+  .dropdown-menu .dropdown-submenu {width: auto;}
+}
+
 @media screen and (max-width: 768px) {
     .usList{padding-top:1rem;}
     .left{width:100%;height:310px;}
@@ -696,6 +712,14 @@ body {
     .usList{width:90%;}
     .usList span{font-size:0.8rem;}
     body{margin-bottom: 665px;}
+
+    .card{border:none;}
+    .card-body{padding: 0;}
+    .swiper-container{display: none;}
+    .navbar-static-top{margin-bottom: 10px;}
+    .dropdown-menu {width: 50%;}
+    .dropdown-menu .dropdown-submenu {width: auto;}
+
     .footer{
       .listBottom{
         width:100%;height:auto;
@@ -704,7 +728,6 @@ body {
           width:100%;height:100%;;margin:0px auto;background:#ead3b0;
           ul{
             float:left;
-
           }
           ul.list{
             width:100%;height:auto;position:relative;color:#7b5c55;background:#ead3b0;
@@ -733,48 +756,3 @@ body {
       }
     }
 }
-
-.user_main{
-  width: 100%;
-}
-.table thead th{border-bottom: none;}
-
-.fa, .fas, .far, .fal, .fad, .fab,
-.navbar-light .navbar-nav .nav-link, .dropdown-item{font-size: 1rem;}
-
-
-.dropdown-item, .btn, .btn-success:hover, .btn-primary:hover,
-.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus,
-.btn-danger:hover{color: $wenno-font;}
-
-.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active{ color: $wenno-font;}
-
-
-.products-show-page .skus .btn-group .btn.active, .products-show-page .skus .btn-group .btn:hover{border: 2px solid $wenno-bg2 !important;}
-
-
-
-.card-body{
-  @media screen and (max-width: 768px) {
-    padding: 0;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .card{border:none;}
-  .card-body{padding: 0;}
-  .swiper-container{
-    display: none;
-  }
-  .navbar-static-top{margin-bottom: 10px;}
-    .dropdown-menu {
-      width: 50%;
-    }
-    .dropdown-menu .dropdown-submenu {
-      width: auto;
-    }
-}
-
-
-
-
-
