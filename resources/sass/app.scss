@@ -25,7 +25,7 @@ body {
     color: $wenno-font;
     background-color: $body-bg;  /* $wenno-bg1 */
     /* Margin bottom by footer height */
-    margin-bottom: 310px;
+    margin-bottom: 370px;
     ul,li,ol{  list-style:none; }
     a{outline: none;}
     a:link,a:visited,a:hover{text-decoration:none; outline:none;}
@@ -74,11 +74,11 @@ body {
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    width:100%;
-    /* background:rgba(0,0,0,0.9); */
-    margin-top: 1.25rem;
+  position: absolute;
+  bottom: 0;
+  width:100%;
+  /* background:rgba(0,0,0,0.9); */
+  margin-top: 1.25rem;
   .listBottom{
     width:100%;height:290px;background-color: $wenno-bg2;
       .lister{
@@ -91,7 +91,7 @@ body {
           }
           p {
             height:38px;line-height:38px;text-align:center;
-              color:#fff;font-size:0.98rem;font-weight:bold;
+              color:$wenno-font;font-size:0.98rem;font-weight:700;
               margin-bottom: 0;
               a {
                 color: inherit;
@@ -99,7 +99,7 @@ body {
           }
           li{
             width:100%;text-align:center;height:38px;line-height:38px;font-size:0.86rem;
-            img{width:16px;height:18px;margin-right:5px;}
+            img{width:12px;height:13.5px;margin-right:5px;}
           }
         }
         ul.contact{float:left;margin-left: 5%;}
@@ -111,6 +111,26 @@ body {
         }
 
       }
+  }
+  .bottomAdress{
+    width:100%;height:60px;background:#fff;
+    .copyright{
+      width:97%;height:100%;margin:0px auto;
+      .copyrightContent{
+        width:auto;height:100%;float:left;
+        span{
+          a{color:#7b5c55;display:block;height:30px;line-height:36px;text-align:left;font-size:0.96rem;font-weight:bold;}
+        }
+        a{color:#7b5c55;font-size:normal;font-size:0.9rem;display:block;height:20px;line-height:20px;}
+      }
+      .newsletter{
+        width:100px;height:100%;line-height:60px;float:right;margin-right:0px;
+        a{
+          display:block;width:46%;display:inline-block;margin:0px;padding:0px;
+          img{width: 30px;height: 30px;}
+        }
+      }
+    }
   }
 }
 
