@@ -72,7 +72,7 @@
    			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"src="img/africa.png"
    		});  		
     </script>
-    <script type="text/javascript" src="./js/orientationchange.js" ></script>
+    <script type="text/javascript" src="./animal/js/orientationchange.js" ></script>
 </head>
 <body>
 	<div id="weenoBox">

@@ -5,8 +5,8 @@
         <meta charset="UTF-8">
         <title></title>
     </head>
-    <link rel="stylesheet" href="../css/animalDetails.css">
-    <script type="text/javascript" src="../js/orientationchange.js" ></script>
+    <link rel="stylesheet" href="../animal/css/animalDetails.css">
+    <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
     <body class="database">
         <div id="database">
             <div id="Loading" v-show="Loading">
@@ -87,8 +87,8 @@
 
         </div>
     </body>
-    <script src="../js/jquery-3.4.1.min.js"></script>
-    <script src="../js/vue.min.js"></script>
+    <script src="../animal/js/jquery-3.4.1.min.js"></script>
+    <script src="../animal/js/vue.min.js"></script>
     <script>
         var vm = new Vue({
             el: "#database",

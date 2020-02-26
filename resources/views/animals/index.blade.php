@@ -5,9 +5,9 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
-    <link rel="stylesheet" href="./css/swiper.min.css" />
-    <link rel="stylesheet" href="./css/animalIndex.css">
-    <script type="text/javascript" src="./js/orientationchange.js" ></script>
+    <link rel="stylesheet" href="./animal/css/swiper.min.css" />
+    <link rel="stylesheet" href="./animal/css/animalIndex.css">
+    <script type="text/javascript" src="./animal/js/orientationchange.js" ></script>
     <body class="HolyGrail">
         <div  id="HolyGrailBody">
 			<div id="Loading" v-show="Loading">
@@ -57,9 +57,9 @@
 			</div>
         </div>
     </body>
-    <script src="../js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="./js/swiper.js" ></script>
-    <script src="../js/vue.min.js"></script>
+    <script src="../animal/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="./animal/js/swiper.js" ></script>
+    <script src="../animal/js/vue.min.js"></script>
     <script>
 		var vm = new Vue({
 			el: "#HolyGrailBody",

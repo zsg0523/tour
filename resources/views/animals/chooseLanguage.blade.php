@@ -5,8 +5,8 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
-    <link rel="stylesheet" href="../css/chooseLanguage.css">
-    <script type="text/javascript" src="../js/orientationchange.js" ></script>
+    <link rel="stylesheet" href="../animal/css/chooseLanguage.css">
+    <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
     <body class="language">
          <div class="chooseLanguage" id="chooseLanguage">
          	<div class="icon">
