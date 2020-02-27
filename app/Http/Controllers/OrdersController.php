@@ -6,6 +6,7 @@ use App\Http\Requests\OrderRequest;
 use App\Models\{ShopProduct, ShopProductSku, UserAddress, Order};
 use Carbon\Carbon;
 use App\Exceptions\InvalidRequestException;
+use App\Jobs\CloseOrder;
 
 class OrdersController extends Controller
 {
@@ -62,7 +63,10 @@ class OrdersController extends Controller
 		        throw new InvalidRequestException('该商品库存不足');
 		    }
 
+		    return $order;
     	});
+    	
+    	$this->dispatch(new CloseOrder($order, config('app.order_ttl')));
 
     	return $order;
     }
