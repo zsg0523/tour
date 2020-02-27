@@ -72,6 +72,8 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('cart', 'CartController@add')->name('cart.add'); // 添加购物车
     Route::get('cart', 'CartController@index')->name('cart.index'); // 查看购物车
     Route::delete('cart/{productSku}', 'CartController@remove')->name('cart.remove'); //购物车移除商品
+    Route::post('orders', 'OrdersController@store')->name('orders.store'); // 订单
+    
 });
 
 
