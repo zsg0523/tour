@@ -1,14 +1,44 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
   <div class="container">
     <!-- Branding Image -->
-    <a class="navbar-brand " href="{{ url('/shop') }}">
-      <img src="http://bunchparty.com/wenno/static/img/logo.6707dfc.png" style="width: 65.5px;height: 44.5px;">
+    <a class="navbar-brand" href="{{ url('/shop') }}">
+      <img src="http://bunchparty.com/wenno/static/img/logo.6707dfc.png">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- <button class="navbar-toggler nav-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="mobileEnd()"> -->
+    <div class="nav-button" onclick="mobileEnd()">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </div>
+    <!-- 移动端适配——头部导航 -->
+    <div class="nav-box pull-right J-indexNav">
+      	<div class="close" onclick="closeMobileEnd()"><img src="{{asset('images/close.png')}}"></div>
+        <ul class="navMoblie">
+        	@guest
+		        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
+		        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
+	        @else
+	        	<li class="nav-item"><a class="nav-link" href="{{ url('/user_info') }}">个人中心</a></li>
+		        <li class="nav-item"><a class="nav-link" href="{{ route('user_addresses.index') }}">收货地址</a></li>
+		        <li class="nav-item"><a class="nav-link" href="{{ route('products.favorites') }}">我的收藏</a></li>
+		        <li class="nav-item">
+		        	<a class="dropdown-item nav-link" id="logout" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出登录</a>
+		            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+		              {{ csrf_field() }}
+		            </form>
+		        </li>
+            @endguest
+            <li class="nav-item dpn">
+            	<div class="nav-link">
+	                <select>
+	                    <option>中文简体</option>
+	                    <option>ENGLISH</option>
+	                    <option>中文繁體</option>
+	                </select>
+            	</div>
+            </li>
+        </ul>
+    </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse"><!--  id="navbarSupportedContent" -->
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
          
@@ -40,6 +70,15 @@
           </div>
         </li>
         @endguest
+        <li class="nav-item dpn">
+        	<div class="nav-link">
+                <select>
+                    <option>中文简体</option>
+                    <option>ENGLISH</option>
+                    <option>中文繁體</option>
+                </select>
+        	</div>
+        </li>
         <!-- 登录注册链接结束 -->
       </ul>
     </div>

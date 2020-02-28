@@ -24,5 +24,20 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script type="text/javascript" src="{{asset('animal/js/swiper.min.js')}}"></script>
     @yield('scriptsAfterJs')
+    <script type="text/javascript">
+        function mobileEnd(){
+            var $navButton = $('.nav-button');
+            var $navBox = $('.nav-box');
+            $navButton.hide();
+            $navBox.slideDown();
+        }
+        function closeMobileEnd () {
+            var $navButton = $('.nav-button');
+            var $navBox = $('.nav-box');
+            $navBox.slideUp(function() {
+                $navButton.show()
+            });
+        }
+    </script>
 </body>
 </html>
