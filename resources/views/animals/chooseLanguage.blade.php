@@ -23,7 +23,7 @@
 			</div>
          </div>
     </body>
-	<script src="../js/jquery-3.4.1.min.js"></script>
+	<script src="../animal/js/jquery-3.4.1.min.js"></script>
     <script>
 		$(function (){
 			var lang = 'zh-CN';
