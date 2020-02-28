@@ -31,15 +31,15 @@ body{
 		font-size:0.9rem;
 	}
 	.swiper-button-prev{
-		background:url(../images/up.png) 50% 50% no-repeat;
+		background:url(../../images/up.png) 50% 50% no-repeat;
 		background-size:24px 24px;
 	}
 	.swiper-button-next{
-		background:url(../images/down.png) 50% 50% no-repeat;
+		background:url(../../images/down.png) 50% 50% no-repeat;
 		background-size:24px 24px;
 	}
 	.chooseLanguage{
-		 background:#c7ac8f url(../images/set_bj.png) 50% 50% no-repeat;
+		 background:#c7ac8f url(../../images/set_bj.png) 50% 50% no-repeat;
 		 background-size:100% 100%;
 	}
 }
@@ -63,11 +63,11 @@ body{
 		font-size:0.95rem;
 	}
 	.swiper-button-prev{
-		background:url(../images/up.png) 50% 50% no-repeat;
+		background:url(../../images/up.png) 50% 50% no-repeat;
 		background-size:28px 28px;
 	}
 	.swiper-button-next{
-		background:url(../images/down.png) 50% 50% no-repeat;
+		background:url(../../images/down.png) 50% 50% no-repeat;
 		background-size:28px 28px;
 	}
 }
@@ -91,15 +91,15 @@ body{
 		font-size:1rem;
 	}
 	.swiper-button-prev{
-		background:url(../images/up.png) 50% 50% no-repeat;
+		background:url(../../images/up.png) 50% 50% no-repeat;
 		background-size:32px 32px;
 	}
 	.swiper-button-next{
-		background:url(../images/down.png) 50% 50% no-repeat;
+		background:url(../../images/down.png) 50% 50% no-repeat;
 		background-size:32px 32px;
 	}	
 	.chooseLanguage{
-		 background:#c7ac8f url(../images/set_bj.png) 50% 50% no-repeat;
+		 background:#c7ac8f url(../../images/set_bj.png) 50% 50% no-repeat;
 		 background-size:100% 100%;
 	}
 
@@ -124,15 +124,15 @@ body{
 		font-size:1rem;
 	}
 	.swiper-button-prev{
-		background:url(../images/up.png) 50% 50% no-repeat;
+		background:url(../../images/up.png) 50% 50% no-repeat;
 		background-size:32px 32px;
 	}
 	.swiper-button-next{
-		background:url(../images/down.png) 50% 50% no-repeat;
+		background:url(../../images/down.png) 50% 50% no-repeat;
 		background-size:32px 32px;
 	}	
 	.chooseLanguage{
-		 background:#c7ac8f url(../images/set_bj.png) 50% 50% no-repeat;
+		 background:#c7ac8f url(../../images/set_bj.png) 50% 50% no-repeat;
 		 background-size:100% 100%;
 	}
 
@@ -157,15 +157,15 @@ body{
 		font-size:1rem;
 	}
 	.swiper-button-prev{
-		background:url(../images/up.png) 50% 50% no-repeat;
+		background:url(../../images/up.png) 50% 50% no-repeat;
 		background-size:40px 40px;
 	}
 	.swiper-button-next{
-		background:url(../images/down.png) 50% 50% no-repeat;
+		background:url(../../images/down.png) 50% 50% no-repeat;
 		background-size:40px 40px;
 	}	
 	.chooseLanguage{
-		 background:#c7ac8f url(../images/set_bj_768.png) 50% 50% no-repeat;
+		 background:#c7ac8f url(../../images/set_bj_768.png) 50% 50% no-repeat;
 		 background-size:100% 100%;
 	}
 }
@@ -189,15 +189,15 @@ body{
 		font-size:1.1rem;
 	}
 	.swiper-button-prev{
-		background:url(../images/up.png) 50% 50% no-repeat;
+		background:url(../../images/up.png) 50% 50% no-repeat;
 		background-size:40px 40px;
 	}
 	.swiper-button-next{
-		background:url(../images/down.png) 50% 50% no-repeat;
+		background:url(../../images/down.png) 50% 50% no-repeat;
 		background-size:40px 40px;
 	}	
 	.chooseLanguage{
-		 background:#c7ac8f url(../images/set_bj_768.png) 50% 50% no-repeat;
+		 background:#c7ac8f url(../../images/set_bj_768.png) 50% 50% no-repeat;
 		 background-size:100% 100%;
 	}
 }
@@ -207,7 +207,7 @@ body{
 	 width:100%;
 	 height:100%;
 	 position:absolute;
-	 background:#c7ac8f url(../images/set_bj.png) 50% 50% no-repeat;
+	 background:#c7ac8f url(../../images/set_bj.png) 50% 50% no-repeat;
 	 background-size:100% 100%;
 }
 .icon{
@@ -229,7 +229,7 @@ body{
 	height:50px;
 	left:3%;
 	top:2%;
-	background: url(../images/backBtn.png) 50% 50% no-repeat;
+	background: url(../../images/backBtn.png) 50% 50% no-repeat;
 	background-size:20% auto;
 }
 .choose{
@@ -277,7 +277,7 @@ body{
 	width:50%;
 	height:120px;
 	margin:20px auto;
-	background:url(../images/ok.png)50% 50% no-repeat;
+	background:url(../../images/ok.png)50% 50% no-repeat;
 	background-size:50px 50px;
 /*	line-height:38px;
 	background:#624c3f;
@@ -304,7 +304,7 @@ body{
 	outline: none;
 	border: none;
 	text-indent:1em;
-	background:#624c3f url(../images/dropDown.png) 96% 50% no-repeat;
+	background:#624c3f url(../../images/dropDown.png) 96% 50% no-repeat;
 	background-size:10px auto;
     appearance: none;
     -webkit-appearance: none;

@@ -206,7 +206,7 @@ nav{
     display:block;
 }
 .setting{
-    background:#624c3f url(../images/set_up.png)50% 50% no-repeat;
+    background:#624c3f url(../../images/set_up.png)50% 50% no-repeat;
     background-size:60% auto;
     position:absolute;
     z-index:9;
@@ -222,7 +222,7 @@ nav{
     -webkit-flex-direction: column;
     display:flex;
     flex-direction:column;
-    background:url(../images/animalBg.png) 50% 50% no-repeat;
+    background:url(../../images/animalBg.png) 50% 50% no-repeat;
     background-size:100% 100%;
 }
 
@@ -322,7 +322,7 @@ nav{
         left:50%; 
         margin:-90px 0 0 -150px;                          
         z-index:99; 
-        background:url(../images/COMING.png) 50% 50% no-repeat;
+        background:url(../../images/COMING.png) 50% 50% no-repeat;
         background-size: 100% 100%;    
     }
     .NoData span{
@@ -356,7 +356,7 @@ nav{
         left:50%; 
         margin:-135px 0 0 -225px;                          
         z-index:99; 
-        background:url(../images/COMING.png) 50% 50% no-repeat;
+        background:url(../../images/COMING.png) 50% 50% no-repeat;
         background-size: 100% 100%;    
     }
     .NoData span{
@@ -391,7 +391,7 @@ nav{
         left:50%; 
         margin:-90px 0 0 -150px;                          
         z-index:99; 
-        background:url(../images/COMING.png) 50% 50% no-repeat;
+        background:url(../../images/COMING.png) 50% 50% no-repeat;
         background-size: 100% 100%;    
     }
     .NoData span{
@@ -425,7 +425,7 @@ nav{
         left:50%; 
         margin:-30px 0 0 -50px;                          
         z-index:99; 
-        background:url(../images/COMING.png) 50% 50% no-repeat;
+        background:url(../../images/COMING.png) 50% 50% no-repeat;
         background-size: 100% 100%;    
     }
     .NoData span{
@@ -447,7 +447,7 @@ nav{
         left:50%; 
         margin:-73px 0 0 -122px;                          
         z-index:99; 
-        background:url(../images/COMING.png) 50% 50% no-repeat;
+        background:url(../../images/COMING.png) 50% 50% no-repeat;
         background-size: 100% 100%;    
     }
     .NoData span{

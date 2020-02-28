@@ -22,7 +22,7 @@ body,html{
     font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;
 } 
 body{
-    background:#d3bfaa url(../images/bj_map.png) 50% 50% no-repeat;
+    background:#d3bfaa url(../../images/bj_map.png) 50% 50% no-repeat;
     background-size:100% 100%;
 }
 .database {
@@ -62,7 +62,7 @@ header{
 	height:50px;
 	left:3%;
 	top:2%;
-	background: url(../images/backBtn.png) 50% 50% no-repeat;
+	background: url(../../images/backBtn.png) 50% 50% no-repeat;
 	background-size:25% auto;
 }
 
@@ -87,15 +87,15 @@ header{
     float:left;
 }
 .listen{
-     background:url(../images/sound.png) 50% 50% no-repeat;
+     background:url(../../images/sound.png) 50% 50% no-repeat;
      background-size: auto 50px;
 }
 .transcription{
-     background:url(../images/recording.png) 50% 50% no-repeat;
+     background:url(../../images/recording.png) 50% 50% no-repeat;
      background-size: auto 50px;
 }
 .talk{
-     background:url(../images/recording.png) 70% 50% no-repeat;
+     background:url(../../images/recording.png) 70% 50% no-repeat;
      background-size: auto 50px;
 }
 .title{
@@ -133,7 +133,7 @@ header{
     text-align: center;
     width:66px;
     height:66px;  
-    background: url(../images/doYouKnow.png) 50% 50% no-repeat;
+    background: url(../../images/doYouKnow.png) 50% 50% no-repeat;
     background-size:auto 66px;
     /*margin:0px auto;*/
     font-size:0.7rem;
@@ -249,49 +249,49 @@ header{
     text-align:right;
 }
 .Scientific_Name{
-    background:url(../images/Scientific_Name.png) 50% 50% no-repeat;
+    background:url(../../images/Scientific_Name.png) 50% 50% no-repeat;
     background-size:14px 14px;
 }
 .family{
-    background:url(../images/family.png) 50% 50% no-repeat;
+    background:url(../../images/family.png) 50% 50% no-repeat;
     background-size:14px 14px;
 }
 .diet{
-    background:url(../images/diet.png) 50% 50% no-repeat;
+    background:url(../../images/diet.png) 50% 50% no-repeat;
     background-size:14px 14px;
 }
 .habitat{
-    background:url(../images/habitat.png) 50% 50% no-repeat;
+    background:url(../../images/habitat.png) 50% 50% no-repeat;
     background-size:14px 14px;
 }
 .location{
-    background:url(../images/location.png) 50% 50% no-repeat;
+    background:url(../../images/location.png) 50% 50% no-repeat;
     background-size:14px 14px;
 }
 .group-name{
-    background:url(../images/group-name.png) 50% 50% no-repeat;
+    background:url(../../images/group-name.png) 50% 50% no-repeat;
     background-size:16px 16px;    
 }
 .weight{
-    background:url(../images/weight.png) 50% 50% no-repeat;
+    background:url(../../images/weight.png) 50% 50% no-repeat;
     background-size:14px 14px;
 }
 .size{
-    background:url(../images/size.png) 50% 50% no-repeat;
+    background:url(../../images/size.png) 50% 50% no-repeat;
     background-size:14px 14px;
 }
 .speed{
-    background:url(../images/speed.png) 50% 50% no-repeat;
+    background:url(../../images/speed.png) 50% 50% no-repeat;
     background-size:14px 14px;
 }
 .Endangered{
-    background:url(../images/Endangered.png) 50% 50% no-repeat;
+    background:url(../../images/Endangered.png) 50% 50% no-repeat;
     background-size:16px 16px;    
 }
 .bottom{
     width:100%;
     height:auto;
-    background:url(../images/about_bj.png) 50% 50% no-repeat;
+    background:url(../../images/about_bj.png) 50% 50% no-repeat;
     background-size:100% 100%;
     margin-top:20px;
 }
