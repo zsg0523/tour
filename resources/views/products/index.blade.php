@@ -1,27 +1,6 @@
 <style type="text/css">
-    .navbar-static-top{margin-bottom: 0 !important;}
-    .banners{width: 100%;}
-    .swiper-container, .newsSwiper-container{width: 100%;position: relative;}
-    .swiper-wrapper{height: auto !important;}
-    .swiper-slide img{width: 100%;}
-    
-  .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after ,.swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after{content: none !important;}
-
-    .swiper-button-prev {position: absolute;top: 50%;left: 0;z-index: 9;background: url("{{asset('images/home_up.png')}}")0% 50% no-repeat !important;background-size:46px 46px !important;width:46px !important;height: 46px !important;left:0px;}
-  .swiper-button-next {position: absolute;top: 50%;right: 0;z-index: 9;background: url("{{asset('images/home_down.png')}}")0% 50% no-repeat !important;background-size:46px 46px !important;width:46px !important;height: 46px !important;right:0px;}
+  .navbar-static-top{margin-bottom: 0 !important;}
   .row{margin-top: 20px;}
-
-@media screen and (max-width: 768px) {
-  .swiper-button-prev {background: url("{{asset('images/home_up.png')}}")0% 50% no-repeat !important;background-size:20px 20px !important;width:20px !important;height:20px !important;left:0px;}
-  .swiper-button-next {background: url("{{asset('images/home_down.png')}}")0% 50% no-repeat !important;background-size:20px 20px !important;width:20px !important;height: 20px !important;right:0px;}  
-  .productCategory{width:100%;height:150px;}
-  .productCategory>p.categoryName{height:32px;line-height:32px;font-size:0.75rem;}
-  .swiper-container{width:86%;height:120px;}
-  .productBox{width:90%;height:80px;/*margin:10px auto;*/overflow:hidden;}
-  .productBox img{height:54px;display:block;margin:10px auto 0px auto;}
-  .swiper-pagination-bullet{width:6px;height:6px;}
-  .productBox span{height:20px;line-height:20px;font-size:0.4rem;}
-}
 </style>
 @extends('layouts.app')
 @section('title', '商品列表')
@@ -75,6 +54,9 @@
             <option value="rating_asc">评价从低到高</option>
           </select>
         </div>
+
+        <!-- 移动端商品布局 -->
+
       </div>
     </form>
     <!-- 筛选组件结束 -->
