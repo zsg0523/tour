@@ -20,7 +20,7 @@
 				              订单号：{{ $order->no }}
 				              <span class="float-right">{{ $order->created_at->format('Y-m-d H:i:s') }}</span>
 				            </div>
-				            <div class="card-body">
+				            <div class="card-body webList">
 				              <table class="table">
 				                <thead>
 				                <tr>
@@ -71,6 +71,49 @@
 				                  </tr>
 				                @endforeach
 				              </table>
+				            </div>
+
+				            <div class="card-body mobileList">
+				                @foreach($order->items as $index => $item)
+				                  	<div class="product-list">
+					                    <div class="product-info">
+					                      	<div class="preview">
+					                        	<a target="_blank" href="{{ route('products.show', [$item->shop_product_id]) }}">
+					                          		<img src="{{ $item->shopProduct->image_url }}">
+					                        	</a>
+					                      	</div>
+					                      	<div class="product-name">
+					                        	<span class="product-title">
+					                           		<a target="_blank" href="{{ route('products.show', [$item->shop_product_id]) }}">{{ $item->shopProduct->title }}</a>
+					                        	</span>
+					                        	<span class="sku-title">{{ $item->shopProductSku->title }}</span>
+					                      	</div>
+					                    </div>
+					                    <div class="product-price">
+						                    <span class="sku-price text-right">￥{{ $item->price }}</span>
+						                    <span class="sku-amount text-right">x {{ $item->amount }}</span>
+					                    </div>
+				                  	</div>
+				                @endforeach
+				                <div class="product-total">
+				                    <span rowspan="{{ count($order->items) }}" class="text-center total-amount">总价: ￥{{ $order->total_amount }}</span>
+				                    <span rowspan="{{ count($order->items) }}" class="text-center fr"><a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">查看订单</a></span>
+				                    <span rowspan="{{ count($order->items) }}" class="text-center fr">
+				                        @if($order->paid_at)
+				                          @if($order->refund_status === \App\Models\Order::REFUND_STATUS_PENDING)
+				                            已支付
+				                          @else
+				                            {{ \App\Models\Order::$refundStatusMap[$order->refund_status] }}
+				                          @endif
+				                        @elseif($order->closed)
+				                          已关闭
+				                        @else
+				                          未支付<br>
+				                          请于 {{ $order->created_at->addSeconds(config('app.order_ttl'))->format('H:i') }} 前完成支付<br>
+				                          否则订单将自动关闭
+				                        @endif
+				                    </span>
+			                    </div>
 				            </div>
 				          </div>
 				        </li>
