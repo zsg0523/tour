@@ -402,7 +402,7 @@ body {
    }
 }
 
-/* 购物车页面 */
+/* 购物车 */
 .cart-index-page {
   .product_list {
     .preview {
@@ -412,7 +412,6 @@ body {
       }
       margin-right: 20px;
     }
-
     .product_info {
       display: flex;
       flex-direction: row;
@@ -421,7 +420,6 @@ body {
       .product_title, .sku_title, .warning {
         display: block;
       }
-
       .product_title a {
         color: #3c3c3c;
         font-size: 14px;
@@ -435,18 +433,27 @@ body {
         }
       }
     }
-
-    .price {
-      font-size: 12px;
-      font-weight: 700;
-      color: #3c3c3c;
+    .price_info{display:table-cell;
+       .price {
+        font-size: 12px;
+        font-weight: 700;
+        color: #3c3c3c;
+      }
     }
-
     input.amount {
       width: 60px;
       border-radius: 0 !important;
     }
   }
+  .submitBtn{p{display:inline;margin-bottom: 0;margin-right:30px;font-size: 1rem;line-height:2;span{font-weight:bold;}}}
+  .mobileth,.mobileInput{display: none;}
+  .webth{display:table-cell;}
+}
+
+/* 地址列表 */
+.user_addresses-index-page{
+  .webList{display:block;}
+  .mobileList{display:none;}
 }
 
 /* 订单列表详情页面 */
@@ -850,8 +857,15 @@ body {
     }
   }
 
-  .col-lg-10{padding: 0px;
+  .col-lg-10{
+    padding: 0px;
     .card{border:none;}
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding:0;
   }
 
   .container{padding-left:0px;padding-right:0px;}
@@ -860,9 +874,9 @@ body {
   .products-index-page{
     .container{
       .col-lg-10{padding:0;
-        .card{border:none;background-color:transparent;
+        .card{border:none;background-color:transparent;margin-top:20px;
           .card-body{
-            padding: 10px;
+            padding: 0px;
             .form-row{flex-wrap:inherit;justify-content: space-around;
               .col-md-9{width:65%;}
               .col-md-3{width:32%;}
@@ -882,12 +896,68 @@ body {
     }
   }
   /*商品详情*/
-  .products-show-page{.navbar{margin-bottom:0px;}
-    .product-info{padding: 0;
+  .products-show-page{
+    .title{padding-left: 10px;}
+    .navbar{margin-bottom:0px;}
+    .product-info{
+      padding: 0;
       .row{
         display:block;margin-right:0;margin-left:0;
         .col-5{width:100%;max-width:100%;padding:0;}
         .col-7{width:100%;max-width:100%;padding:0;}
+      }
+    }
+  }
+  /*购物车*/
+  .cart-index-page{
+    .card-body{
+      padding:0;
+      .table-striped tbody tr:nth-of-type(odd){background-color:#fff;}
+      .product_list {
+        .price_info{
+           .price {
+            font-size: 12px;
+            font-weight: 700;
+            color: #3c3c3c;
+            text-align:right;
+            display:block;
+          }
+        }
+      }
+      .submitBtn{margin-top:20px;button{float:right;}}
+    }
+    .webth{display:none;text-align:right;}
+    .mobileth{display: table-cell;}
+    .mobileInput{display:none;}
+  }
+  /* 修改地址 */
+  .user_addresses-edit-page,.user_addresses-create-page{
+    .form-group{
+      .col-sm-3{width: 32%;}
+      .btn-primary{margin-top:20px;}
+    }
+  }
+  /* 地址列表 */
+  .user_addresses-index-page{
+    .col-md-12{padding: 0;}
+    .card-body{
+      padding:0;
+      table{
+        thead{display:none;}
+        tbody tr:nth-of-type(odd){background-color:#fff;}
+        tbody{
+          td{border:none;border-top: 1px solid #dee2e6;}
+        }
+      }
+    }
+    .webList{display:none;}
+    .mobileList{display:block;
+      .address_info{background-color: #fff;
+        p{height: 35px;line-height: 35px;margin: 0;padding: 0 15px;}
+        p.full_address{border-bottom: 1px solid #dee2e6;}
+        p.address_btn{margin-bottom: 5px;
+          a{width: 50px;display:inline-block;}
+        }
       }
     }
   }
