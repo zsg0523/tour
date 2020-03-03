@@ -4,7 +4,7 @@
 @section('content')
 <div class="row">
 	<div class="user_main disflex">
-	    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+	    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 mobileMenu">
 	        @include('layouts._menu')
 	    </div>
 	    <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
@@ -13,7 +13,7 @@
 		            <div class="card-header">
 		              	<h4>订单详情</h4>
 		            </div>
-		            <div class="card-body">
+		            <div class="card-body webList">
 		              	<table class="table">
 		                	<thead>
 				                <tr>
@@ -73,6 +73,74 @@
 					          		</div>
 					        	</div>
 					      	</div>
+					    </div>
+		            </div>
+
+		            <div class="card-body mobileList">
+		                <div class="order-summary">
+		                	<div class="total-amount">
+				          		<span>订单状态：</span>
+				          		<div class="value">
+						            @if($order->paid_at)
+						              @if($order->refund_status === \App\Models\Order::REFUND_STATUS_PENDING)
+						                已支付
+						              @else
+						                {{ \App\Models\Order::$refundStatusMap[$order->refund_status] }}
+						              @endif
+						            @elseif($order->closed)
+						              已关闭
+						            @else
+						              未支付
+						            @endif
+				          		</div>
+				        	</div>
+		                	<div class="total-amount">
+								<span>订单号：</span>
+								<div class="value">{{ $order->no }}</div>
+					        </div>
+					        <div class="total-amount">
+								<span>订单金额：</span>
+								<div class="value">￥{{ $order->total_amount }}</div>
+					        </div>
+				      	</div>
+				      	<div class="order-address">
+				      		<span class="line-label">收货人：</span>
+				      		<span class="line-value">{{ join(' ', $order->address) }}</span>				      		
+				      	</div>
+				      	<div class="order-list">
+			                @foreach($order->items as $index => $item)
+			                	<div class="product-list">
+				                    <div class="product-info">
+				                      	<div class="preview">
+				                        	<a target="_blank" href="{{ route('products.show', [$item->shop_product_id]) }}">
+				                          		<img src="{{ $item->shopProduct->image_url }}">
+				                        	</a>
+				                      	</div>
+				                      	<div class="product-name">
+				                        	<span class="product-title">
+				                           		<a target="_blank" href="{{ route('products.show', [$item->shop_product_id]) }}">{{ $item->shopProduct->title }}</a>
+				                        	</span>
+				                        	<span class="sku-title">{{ $item->shopProductSku->title }}</span>
+				                      	</div>
+				                    </div>
+				                    <div class="product-price">
+					                    <span class="sku-price text-right">￥{{ $item->price }}</span>
+					                    <span class="sku-amount text-right">x {{ $item->amount }}</span>
+				                    </div>
+			                  	</div>
+			                @endforeach
+				      	</div>	
+		              	<div class="order-bottom">
+				        	<span class="line-label">订单备注：</span>
+				        	<span class="line-value">{{ $order->remark ?: '-' }}</span>
+					    </div>
+					    <div class="order-amount">
+				        	<span class="line-label">共7件商品</span>
+				        	<span class="line-value">实际付款:￥{{ $order->total_amount }}</span>
+					    </div>
+					    <div class="order-time">
+				        	<span class="line-label">成交时间：</span>
+				        	<span class="line-value">2020-02-03</span>
 					    </div>
 		            </div>
 	          	</div>
