@@ -16,7 +16,7 @@
 					        <th class="webth">数量</th>
 					        <th class="webth">操作</th>
 					        <th class="mobileth">全选</th>
-					        <th class="mobileth" style="text-align: right;" onclick="editShow()">编辑</th>
+					        <th class="mobileth" style="text-align: right;" onclick="editShow(this)">编辑</th>
 				      	</tr>
 			      	</thead>
 			      	<tbody class="product_list">
@@ -40,14 +40,14 @@
 					                <span class="warning">该商品已下架</span>
 					              @endif
 					            </div>
-					            <input type="text" class="form-control form-control-sm amount mobileInput" @if(!$item->shopProductSku->shopProduct->on_sale) disabled @endif name="amount" value="{{ $item->amount }}">
+					            <input type="text" class="form-control form-control-sm amount mobileInput" onblur="amount_input(this,0);" @if(!$item->shopProductSku->shopProduct->on_sale) disabled @endif name="mobileInput" value="{{ $item->amount }}">
 				          	</td>
 				          	<td class="price_info">
 					            <span class="price">￥{{ $item->shopProductSku->price }}</span>
-					            <div class="price mobileth">x {{ $item->amount }}</div>
+					            <div class="price mobileth">x <span class="editAmount">{{ $item->amount }}</span></div>
 				          	</td>
 				          	<td class="webth">
-				            	<input type="text" class="form-control form-control-sm amount" @if(!$item->shopProductSku->shopProduct->on_sale) disabled @endif name="amount" value="{{ $item->amount }}">
+				            	<input type="text" class="form-control form-control-sm amount webInput" onblur="amount_input(this,1);" @if(!$item->shopProductSku->shopProduct->on_sale) disabled @endif name="webInput" value="{{ $item->amount }}">
 				          	</td>
 				          	<td class="webth removeBtn">
 				            	<button class="btn btn-sm btn-danger btn-remove">移除</button>
@@ -154,8 +154,13 @@
 		        if ($checkbox.prop('disabled') || !$checkbox.prop('checked')) {
 		          	return;
 		        }
-		        // 获取当前行中数量输入框
-		        var $input = $(this).find('input[name=amount]');
+		        if($('.mobileth').css('display') == 'none') {
+		        	// 获取当前行中数量输入框
+		        	var $input = $(this).find('input[name=webInput]');
+		        }else{
+		        	// 获取当前行中数量输入框
+		        	var $input = $(this).find('input[name=mobileInput]');
+		        }
 		        // 如果用户将数量设为 0 或者不是一个数字，则也跳过
 		        if ($input.val() == 0 || isNaN($input.val())) {
 		          	return;
@@ -190,20 +195,50 @@
         	});
     	});
   	});
-  	function editShow(){
+  	function editShow(obj){
 	  	if($('.product_name').hasClass('dpn')){
+	  		$(obj).text('编辑');
 		  	$('.removeBtn').css('display','none');
 		  	$('.price_info').css('display','table-cell');
 		  	$('.mobileInput').css('display','none');
 		  	$('.product_name').removeClass('dpn');
+
+	  		$('table tr[data-id]').each(function () {
+		        // 获取当前行中数量输入框
+		        var $input = $(this).find('input[name=mobileInput]');
+		        console.log($input.val());
+		        // 如果用户将数量设为 0 或者不是一个数字，则也跳过
+		        if ($input.val() == 0 || isNaN($input.val())) {
+		          	return;
+		        }else{
+		        	$(this).find('.editAmount').text($input.val());
+		        }
+	  		});
+
 	  	}else{
+	  		$(obj).text('完成');
 	  		$('.removeBtn').css('display','table-cell');
 		  	$('.price_info').css('display','none');
 		  	$('.mobileInput').css('display','block');
 		  	$('.product_name').addClass('dpn');
 	  	}
  	}
- 	function setOrderNum(){
+	//手动修改文本框商品数量与库存的限制
+	function amount_input(tag,status){
+		var amount=parseInt($(tag).val());
+		if(isNaN(amount)){
+			// layer.msg('最少购买量为1');
+			$(tag).val(1);
+		}else{
+			if(amount<1){
+				// layer.msg('最少购买量为1');
+				$(tag).val(1);
+			}
+		}
+		// var val=parseFloat(sellprice)*parseInt($(tag).val());
+		setOrderNum(status);
+	}
+ 	function setOrderNum(status){
  		//获取订单总价
   		var orderSum=[],num = 0;
   		// 遍历 <table> 标签内所有带有 data-id 属性的 <tr> 标签，也就是每一个购物车中的商品 SKU
@@ -215,12 +250,17 @@
 	          	return;
 	        }
 	        // 获取当前行中数量输入框
-	        var $input = $(this).find('input[name=amount]');
+	        if(status==0){
+	        	var $input = $(this).find('input[name=mobileInput]');
+	        }else {
+	        	var $input = $(this).find('input[name=webInput]');
+	        }
+	        console.log($input.val());
 	        // 如果用户将数量设为 0 或者不是一个数字，则也跳过
 	        if ($input.val() == 0 || isNaN($input.val())) {
 	          	return;
 	        }
-	        // 把 SKU id 和数量存入请求参数数组中
+	        // 把单价和数量存入请求参数数组中
 	        orderSum.push({
 	          	price: $(this).data('price'),
 	          	amount: $input.val(),
@@ -229,7 +269,6 @@
   		});
   		num = Number(num).toFixed(2);
   		console.log(orderSum);
-  		console.log(num);
   		$('#orderSum').text(num);
  	}
 </script>

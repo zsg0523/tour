@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Branding Image -->
     <a class="navbar-brand" href="{{ url('/shop') }}">
-      <img src="http://bunchparty.com/wenno/static/img/logo.6707dfc.png">
+      <img src="{{asset('images/logo.png')}}">
     </a>
     <!-- <button class="navbar-toggler nav-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="mobileEnd()"> -->
     <div class="nav-button" onclick="mobileEnd()">
