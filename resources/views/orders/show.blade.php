@@ -10,9 +10,7 @@
 	    <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
 	      	<div class="col-lg-12"><!-- offset-lg-1 -->
 	          	<div class="card">
-		            <div class="card-header">
-		              	<h4>订单详情</h4>
-		            </div>
+		            <div class="card-header">订单详情</div>
 		            <div class="card-body webList">
 		              	<table class="table">
 		                	<thead>

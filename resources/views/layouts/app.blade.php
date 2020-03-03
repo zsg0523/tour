@@ -11,7 +11,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('animal/css/swiper.min.css') }}" rel="stylesheet">
 </head>
-<body>
+<body> 
     <div id="app" class="{{ route_class() }}-page">
         @include('layouts._header')
         @yield('banner')
@@ -19,12 +19,25 @@
             @yield('content')
         </div>
         @include('layouts._footer')
+        <span class="icon-top"></span>
     </div>
     <!-- JS 脚本 -->
     <script src="{{ mix('js/app.js') }}"></script>
     <script type="text/javascript" src="{{asset('animal/js/swiper.min.js')}}"></script>
     @yield('scriptsAfterJs')
     <script type="text/javascript">
+        $(function(){
+            $(window).scroll(function(){
+                if($(document).scrollTop() > 200){
+                    $('.icon-top').fadeIn();
+                }else{
+                    $('.icon-top').fadeOut();
+                }
+            });
+            $('.icon-top').click(function(){
+                $('html,body').animate({'scrollTop':0});
+            })
+        })
         function mobileEnd(){
             var $navButton = $('.nav-button');
             var $navBox = $('.nav-box');
