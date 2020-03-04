@@ -69,7 +69,12 @@ class PaymentController extends Controller
         return app('alipay')->success();
     }
 
-    /** [payByPayPalCheckout Paypal支付] */
+    /**
+     * [payByPayPalCheckout paypal支付]
+     * @param  Order   $order   [description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function payByPayPalCheckout(Order $order, Request $request)
     {
         // 判断订单状态
@@ -79,34 +84,36 @@ class PaymentController extends Controller
         // 得到支付的链接
         $data =
         [
-            'address'      =>'https://www.sandbox.paypal.com/cgi-bin/webscr',//测试,该环境不可用CNY
-            // 'address'      =>'https://www.paypal.com/cgi-bin/webscr',//正式
+            // 'address'      =>'https://www.sandbox.paypal.com/cgi-bin/webscr',//测试沙盒,该环境不可用CNY
+            'address'      =>'https://www.paypal.com/cgi-bin/webscr',//正式地址
             'cmd'          =>'_xclick',
-            'business'     =>'sb-9e8uz1138853@personal.example.com',//测试
-            // 'business'     =>'paypal@ifn-asia.org',
+            // 'business'     =>'paypal@ifn-asia.org',//测试商户账号
+            'business'     =>'ac.dept@shtoys.com.hk',
             'item_name'    =>'test', // 商品描述
             'item_number'  =>'test001',  // 商品编号
             'invoice'      =>$order->no, // 订单编号
             'currency_code'=>'HKD', // 货币种类
             'no_shipping'  =>'1',
-            'amount'       =>'1',
-            'notify_url'   =>route('payment.paypal.notify'),
+            'amount'       =>'1',   // 商品金额，总价
+            'notify_url'   =>route('payment.paypal.notify'), // 后端回调地址
             'cancel_return'=>'', // 客户取消交易返回地址
             'return'       =>route('payment.paypal.return'), // 客户交易返回地址
         ];
 
+        // 拼接组装url
         $url  = $data['address'].'?cmd='.$data['cmd'].'&business='.$data['business'].'&item_name='.$data['item_name'].'&item_number='.$data['item_number'].'&invoice='.$data['invoice'].'&currency_code='.$data['currency_code'].'&no_shipping='.$data['no_shipping'].'&amount='.$data['amount'].'&notify_url='.$data['notify_url'].'&cancel_return='.$data['cancel_return'].'&return='.$data['return'];
         
         // 支付链接
         return redirect($url);
     }
 
-    // 前端回调页面
+    // Paypal前端回调
     public function payPalReturn()
     {
         return view('pages.success', ['msg' => '付款成功']);
     }
 
+    // Paypal后端回调
     public function payPalNotify()
     {
         $jsonStr = file_get_contents("php://input");
@@ -120,6 +127,7 @@ class PaymentController extends Controller
         }
         
         $req  = 'cmd=_notify-validate';
+
         foreach ($map as $key => $value) {        
             if(get_magic_quotes_gpc() == 1){
                 $value =urlencode(stripslashes($value)); 
@@ -129,8 +137,8 @@ class PaymentController extends Controller
            $req.= "&$key=$value";
         }
         
-        $ch = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');//测试
-        // $ch = curl_init('https://www.paypal.com/cgi-bin/webscr');//正式
+        // $ch = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');//测试
+        $ch = curl_init('https://www.paypal.com/cgi-bin/webscr');//正式
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
