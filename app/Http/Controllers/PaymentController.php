@@ -90,7 +90,7 @@ class PaymentController extends Controller
             'currency_code'=>'HKD', // 货币种类
             'no_shipping'  =>'1',
             'amount'       =>'1',
-            'notify_url'   =>route('payment.paypal.notify'),
+            'notify_url'   =>'http://requestbin.net/r/11jh4a31',
             'cancel_return'=>'', // 客户取消交易返回地址
             'return'       =>route('payment.paypal.return'), // 客户交易返回地址
         ];
@@ -109,11 +109,10 @@ class PaymentController extends Controller
 
     public function payPalNotify()
     {
-        // $jsonStr = file_get_contents("php://input");
-        // $data    = explode('&', $jsonStr);
-        $data = '["mc_gross=1.00","invoice=20200303145943647389","protection_eligibility=Ineligible","payer_id=3BGBC8NXLU3SE","payment_date=17%3A50%3A57+Mar+03%2C+2020+PST","payment_status=Pending","charset=gb2312","first_name=John","notify_version=3.9","custom=","payer_status=verified","business=sb-9e8uz1138853%40personal.example.com","quantity=1","verify_sign=AtTcTVACyr9BG0cyHHQ2d5-kuZXUARKgpM7mWUH7rtjpCSvuyYW5RqPp","payer_email=sb-r5exh1138848%40business.example.com","txn_id=07B47393C2340633P","payment_type=instant","payer_business_name=John+Doe%27s+Test+Store","last_name=Doe","receiver_email=sb-9e8uz1138853%40personal.example.com","shipping_discount=0.00","receiver_id=TTTYX474BL746","pending_reason=paymentreview","insurance_amount=0.00","txn_type=web_accept","item_name=test","discount=0.00","mc_currency=HKD","item_number=test001","residence_country=CN","test_ipn=1","shipping_method=Default","transaction_subject=","payment_gross=","ipn_track_id=b7a285860cc6f"]';
-        $data = json_decode($data);
-        // \Log::debug('Paypal notify', $data);
+        $jsonStr = file_get_contents("php://input");
+        $data    = explode('&', $jsonStr);
+        
+        \Log::debug('Paypal notify', $data);
         //签名数据会被转码，需解码urldecode
         foreach ($data as $key => $value) {
             $temp    = explode('=', $value);
