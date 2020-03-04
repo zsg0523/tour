@@ -90,7 +90,7 @@ class PaymentController extends Controller
             'currency_code'=>'HKD', // 货币种类
             'no_shipping'  =>'1',
             'amount'       =>'1',
-            'notify_url'   =>'http://requestbin.net/r/11jh4a31',
+            'notify_url'   =>route('payment.paypal.notify'),
             'cancel_return'=>'', // 客户取消交易返回地址
             'return'       =>route('payment.paypal.return'), // 客户交易返回地址
         ];
