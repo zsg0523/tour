@@ -25,7 +25,7 @@ $factory->define(ShopProduct::class, function (Faker $faker) {
     return [
         // 'title'        => $faker->word,
         'title' => '商品名称',
-        'description'  => $faker->sentence,
+        'description'  => '商品描述',
         'image'        => $image,
         'on_sale'      => true,
         'rating'       => $faker->numberBetween(0, 5),
