@@ -50,6 +50,7 @@ Route::get('mailable', function () {
 Route::get('/user_info', function () { return view('user_info/index'); });
 Route::get('/contact', function () { return view('user_info/contact'); });
 Route::get('/aboutUs', function () { return view('user_info/aboutUs'); });
+Route::get('/retail', function () { return view('user_info/retail'); });
 
 
 Auth::routes(['verify' => true]);

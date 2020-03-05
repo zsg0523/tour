@@ -41,7 +41,7 @@
 	                @endforeach
                 @else
                 	<div class="nodata">
-                		<div class="cartBtn">您还没有收藏商品，<a href="{{ url('/') }}">去逛逛</a></div>
+                		<div class="cartBtn">您还没有收藏商品，<a href="{{ url('/shop') }}">去逛逛</a></div>
                 	</div>
 	            @endif
             </div>

@@ -87,7 +87,7 @@
 			    <!-- 结束 -->
 			    @else
                 	<div class="nodata">
-                		<div class="cartBtn"><p class="tip">购物车快饿瘪了T.T</p><p>主人快给我挑点宝贝吧</p><a class="btn btn-primary" href="{{ url('/') }}">去逛逛</a></div>
+                		<div class="cartBtn"><p class="tip">购物车快饿瘪了T.T</p><p>主人快给我挑点宝贝吧</p><a class="btn btn-primary" href="{{ url('/shop') }}">去逛逛</a></div>
                 	</div>
 	            @endif
 			</div>
