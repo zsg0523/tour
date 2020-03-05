@@ -1,7 +1,12 @@
 <style type="text/css">
 .usList{width:72%;padding:2rem 0rem;margin:0px auto;text-align:left;color:#7b5c55;min-height:calc(100vh - 225px);}
-.usList h3{width:100%;height:60px;line-height:60px;font-size:1.1rem;font-weight:bold;}
-.usList p{display:block;width:100%;line-height:24px;font-size:0.9rem;text-align:justify;text-justify:newspaper}
+.usList >>>h3 ,.usList >>>h4,.usList >>>h2,.usList >>>h1,.usList>>> h3{width:100%;height:60px;line-height:60px;font-size:1.1rem;font-weight:bold;}
+.usList >>>p,.usList >>>li,.usList >>>span{display:block;width:100%;line-height:24px;font-size:0.9rem;text-align:justify;text-justify:newspaper}
+.usList img{/*width:85%;*/padding:0.5rem 0rem;display:block;max-width: 100%}
+@media screen and (max-width: 768px) {
+    .usList{width:90%;}
+    .usList >>>span{font-size:0.8rem;}
+ }
 </style>
 @extends('layouts.app')
 @section('title', '关于WENNO®')
