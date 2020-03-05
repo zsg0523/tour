@@ -52,7 +52,7 @@
 	               
 	            },
 	            success: function(ret) {
-	                var retail = response.data.data[0].retails.data;
+	                var retail = ret.data[0].retails.data;
 	                for(var i = 0;i<retail.length;i++){
 		            	$("#address_info").append("<tr><td class='first'>"+retail[i].name+"</td><td>"+retail[i].address+"</td><td>"+retail[i].phone+"</td><td>"+retail[i].business_hours+"</td></tr>");
 		            }
@@ -68,7 +68,7 @@
 	            },
 	            success: function(ret) {
 	            	console.log(JSON.stringify(ret));
-	                var retail = ret.data.data;
+	                var retail = ret.data;
 	                for(var i = 0;i<retail.length;i++){
 	                	$("#address").append("<option value='"+retail[i].id+"'>"+retail[i].location+"</option>");
 	                }
@@ -86,8 +86,8 @@
 	            	
 	            },
 	            success: function(ret) {
-	                if(ret.data.data!=null){
-		                var retail = ret.data.data[0].retails.data;
+	                if(ret.data!=null){
+		                var retail = ret.data[0].retails.data;
 		                for(var i = 0;i<retail.length;i++){
 			            	$("#address_info").append("<tr><td class='first'>"+retail[i].name+"</td><td>"+retail[i].address+"</td><td>"+retail[i].phone+"</td><td>"+retail[i].business_hours+"</td></tr>");
 			            }

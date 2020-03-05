@@ -32,9 +32,9 @@
 	                            <p><span>会员名</span>{{ Auth::user()->name }}</p>
 	                            <p><span>登录邮箱:</span><span class="info">{{ Auth::user()->email }}</span><a class="dpn" href="">更换邮箱</a></p>
 	                            @if(Auth::user()->phone)
-	                            	<p><span>绑定手机:</span><span class="info">{{ Auth::user()->phone }}</span><a class="dpn" href="">改绑手机号</a></p>
+	                            	<p class="dpn"><span>绑定手机:</span><span class="info">{{ Auth::user()->phone }}</span><a class="dpn" href="">改绑手机号</a></p>
 					            @else
-	                            	<p><span>绑定手机:</span><span class="info">您尚未绑定手机号</span><a class="dpn" href="">绑定手机号</a></p>
+	                            	<p class="dpn"><span>绑定手机:</span><span class="info">您尚未绑定手机号</span><a class="dpn" href="">绑定手机号</a></p>
 					            @endif
 	                        </div>
 	                    </div>
