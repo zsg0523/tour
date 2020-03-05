@@ -149,6 +149,15 @@
 				        	<span class="line-label">成交时间：</span>
 				        	<span class="line-value">2020-02-03</span>
 					    </div>
+					    <!-- 支付按钮开始 -->
+				        @if(!$order->paid_at && !$order->closed)
+				          <div class="payment-buttons">
+				            <a class="btn btn-primary btn-sm" href="{{ route('payment.alipay', ['order' => $order->id]) }}">支付宝支付</a>
+				            <!-- 把之前的微信支付按钮换成这个 -->
+				            <a class="btn btn-sm btn-success" href="{{ route('payment.paypal', ['order' => $order->id]) }}">PayPal支付</a>
+				          </div>
+				        @endif
+				        <!-- 支付按钮结束 -->
 		            </div>
 	          	</div>
 	      	</div>
