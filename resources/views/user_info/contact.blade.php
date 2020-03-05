@@ -54,7 +54,7 @@
 		                message: message
 		            },
 		            success: function(ret) {
-		            	console.log(JSON.stringify(ret.status));
+		            	console.log(JSON.stringify(ret));
 		                if(ret.status==200){
 		                	console.log("已发出");
 		                 }else{
