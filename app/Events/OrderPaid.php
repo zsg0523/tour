@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Order;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -14,6 +15,8 @@ class OrderPaid
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    protected $order;
+
     /**
      * Create a new event instance.
      *
@@ -21,7 +24,7 @@ class OrderPaid
      */
     public function __construct()
     {
-        //
+        $this->order = $order;
     }
 
     /**
@@ -33,4 +36,11 @@ class OrderPaid
     {
         return new PrivateChannel('channel-name');
     }
+
+    /** [getOrder 事件本身不需要有逻辑，只需要包含相关的信息即可] */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
 }

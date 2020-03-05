@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\ShopProduct;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -20,5 +21,17 @@ class ProductsTableSeeder extends Seeder
         	// 找出最低价格的sku,设置为商品的价格
         	$product->update(['price' => $skus->min('price')]);
         }
+
+
+        // 单独处理第一个商品及SKU的数据
+        $product = ShopProduct::find(1);
+        $product->price = 1;
+        $product->title = 'test商品';
+        // 处理sku价格
+        foreach ($product->skus as $sku) {
+            $sku->price = 1;
+            $sku->save();
+        }
+        $product->save();
     }
 }

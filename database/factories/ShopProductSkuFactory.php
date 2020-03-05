@@ -7,8 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(ShopProductSku::class, function (Faker $faker) {
     return [
-        'title'       => $faker->word,
-        'description' => $faker->sentence,
+        'title'       => 'SKU名称',
+        'description' => 'SKU描述',
         'price'       => $faker->randomNumber(4),
         'stock'       => $faker->randomNumber(5),
     ];
