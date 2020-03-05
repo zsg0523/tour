@@ -61,6 +61,7 @@
     </form>
     <!-- 筛选组件结束 -->
     <div class="row products-list">
+    @if ($products->count())
       @foreach($products as $product)
         <div class="col-3 product-item">
           <div class="product-content">
@@ -82,6 +83,11 @@
           </div>
         </div>
       @endforeach
+    @else
+    	<div class="nodata">
+    		<div style="background-color: #fff;margin-bottom:20px;">没有找到相关的宝贝</div>
+    	</div>
+    @endif
     </div>
     <div class="float-right">{{ $products->appends($filters)->render() }}</div>
   </div>

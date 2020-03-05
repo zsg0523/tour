@@ -17,33 +17,33 @@
           <div class="card-header">我的收藏</div>
           <div class="card-body">
             <div class="row products-list">
-                @if($products)
-                @foreach($products as $product)
-                  <div class="col-3 product-item">
-                    <div class="product-content">
-                      <div class="top">
-                        <div class="img">
-                          <a href="{{ route('products.show', ['product' => $product->id]) }}">
-                            <img src="{{ $product->image_url }}" alt="">
-                          </a>
-                        </div>
-                        <div class="price"><b>￥</b>{{ $product->price }}</div>
-                        <div class="title">
-                          <a href="{{ route('products.show', ['product' => $product->id]) }}">{{ $product->title }}</a>
-                        </div>
-                      </div>
-                      <div class="bottom">
-                        <div class="sold_count">销量 <span>{{ $product->sold_count }}笔</span></div>
-                        <div class="review_count">评价 <span>{{ $product->review_count }}</span></div>
-                      </div>
-                    </div>
-                  </div>
-                @endforeach
-              @else
-                <div class="noInfo">
-                  您还没有收藏商品，<a href="{{ url('/') }}">去逛逛></a>
-                </div>
-                @endif
+                @if ($products->count())
+	                @foreach($products as $product)
+	                  <div class="col-3 product-item">
+	                    <div class="product-content">
+	                      <div class="top">
+	                        <div class="img">
+	                          <a href="{{ route('products.show', ['product' => $product->id]) }}">
+	                            <img src="{{ $product->image_url }}" alt="">
+	                          </a>
+	                        </div>
+	                        <div class="price"><b>￥</b>{{ $product->price }}</div>
+	                        <div class="title">
+	                          <a href="{{ route('products.show', ['product' => $product->id]) }}">{{ $product->title }}</a>
+	                        </div>
+	                      </div>
+	                      <div class="bottom">
+	                        <div class="sold_count">销量 <span>{{ $product->sold_count }}笔</span></div>
+	                        <div class="review_count">评价 <span>{{ $product->review_count }}</span></div>
+	                      </div>
+	                    </div>
+	                  </div>
+	                @endforeach
+                @else
+                	<div class="nodata">
+                		<div class="cartBtn">您还没有收藏商品，<a href="{{ url('/') }}">去逛逛</a></div>
+                	</div>
+	            @endif
             </div>
             <div class="float-right">{{ $products->render() }}</div>
           </div>
