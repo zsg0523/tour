@@ -7,6 +7,7 @@
 		<div class="card">
 		  	<div class="card-header">我的购物车</div>
 			<div class="card-body">
+				@if ($cartItems->count())
 			    <table class="table table-striped">
 			      	<thead>
 				      	<tr>
@@ -84,6 +85,11 @@
 			     	</form>
 			    </div>
 			    <!-- 结束 -->
+			    @else
+                	<div class="nodata">
+                		<div class="cartBtn"><p class="tip">购物车快饿瘪了T.T</p><p>主人快给我挑点宝贝吧</p><a class="btn btn-primary" href="{{ url('/shop') }}">去逛逛</a></div>
+                	</div>
+	            @endif
 			</div>
 		</div>
 	</div>

@@ -34,6 +34,12 @@ body {
     .user_main{width: 100%;}
 	.table thead th{border-bottom: none;}
     .icon-top{position: fixed;bottom: 50px;right: 50px;display: none;  width: 40px;height: 40px;background: transparent url('./images/top.png') 100% 100% no-repeat;background-size: 40px 40px;}
+    .nodata{line-height:50px;
+    	.cartBtn{width:100%;text-align:center;
+    		p{line-height:40px;margin-bottom:0;}
+    		p.tip{font-weight:bold;}
+    	}
+    }
 }
 
 /* header */
@@ -51,7 +57,16 @@ body {
       	select{border-radius: .3rem;color: #7b5c55;height:35px;line-height:35px;font-size: .67rem;text-align: left;background: #fff;background-size: 8px 5px;}
     }
 }
-
+/*登录注册*/
+.login-page{
+    .registerBtn{display:none;}
+}
+.register-page{
+	.loginBtn{display:none;}
+}
+.password-request-page{
+	.loginBtn{display:none;}
+}
 /* 分类 */
 .dropdown-submenu {
     position: relative;
@@ -71,7 +86,7 @@ body {
 	    .swiper-button-next {position: absolute;top: 50%;right: 0;z-index: 9;background: url("./images/home_down.png")0% 50% no-repeat !important;background-size:46px 46px !important;width:46px !important;height: 46px !important;right:0px;}
   	}
 }
-
+/*底部*/
 .footer {position: absolute;bottom: 0;width:100%;/* background:rgba(0,0,0,0.9); */ margin-top: 1.25rem;
   	.listBottom{width:100%;height:290px;background-color: $wenno-bg2;
       	.lister{height:100%;
@@ -104,7 +119,6 @@ body {
     	}
   	}
 }
-
 /* 菜单 */
 .menu_list{padding-left: 25px;
   	li{height: 30px;line-height: 30px;margin: 10px 0;padding-left: 8px;
@@ -116,7 +130,24 @@ body {
     	a{color: $wenno-bg3;}
   	}
 }
-
+/*个人中心*/
+.account_info{
+	.photo_info{height: 64px;
+		.user-infoPic{position: relative;width: 64px;height: 64px;overflow: hidden;
+			.inputPic {opacity: 0;ilter: alpha(opacity=0);width: 100%;height: 100%;position: absolute;bottom: 0;left: 0;z-index: 9;}
+			img{width: 64px;height: 64px;}
+			p{position: absolute;bottom: 0;display:none;background-color: #000;opacity: 0.7;font-size: 12px;color: #e1d7ca;margin: 0;width: 64px;text-align: center;}
+			&:hover p{display: block;cursor: pointer;}
+		}
+		.user-info{margin-left: 15px;line-height: 21px;font-size: 14px;
+			p{margin: 0;
+				span{width: 70px;display: inline-block;}
+				span.info{width: 220px;}
+				a{color: #3490dc;}
+			}
+		}
+	}
+}
 /* 商品列表页和收藏页 */
 .products-index-page, .products-favorites-page {
   	.card{/* background-color: $wenno-bg1; */}
@@ -327,6 +358,25 @@ body {
 	      	}
     	}
   	}
+  	.map{width:70%;background:#fff;margin: 0 auto;
+  		.dropDownMenu{width:100%;height:100px;margin:0px auto;
+  			.select{-webkit-appearance: none;width:200px;height:46px;line-height: 46px;border:1px solid #ead3b0;border-radius:6px;text-align:left;float: left;margin-top: 30px;text-indent:1rem;font-size:1rem;color:#836660;background:url(./images/arrow.png)96% 50% no-repeat;background-size: 12px 7px;}
+  		}
+  		.table{width:72%;height:auto;margin:10px auto 20px auto;min-height:calc(100vh - 355px);
+  			table{width:100%;height:auto;
+  				thead tr{width:100%;background:#000;text-align:left;
+  					th{line-height:22px;padding: 1rem 0rem;color:#fff;font-size:1rem;}
+  					.first{text-indent:1rem;}
+  				}
+  				tbody tr{width:100%;background:#000;text-align:left;
+  					td{line-height:22px;padding: 1rem 0rem;font-size:1rem;color:#7b5c55;}
+  					.first{text-indent:1rem;}
+  					&:nth-child(odd){background:#fff;}
+  					&:nth-child(even){background:#ead3b0;}
+  				}
+  			}
+  		}
+  	}
 }
 
 .fa, .fas, .far, .fal, .fad, .fab, .navbar-light .navbar-nav .nav-link, .dropdown-item{font-size: 1rem;}
@@ -356,16 +406,13 @@ body {
 		.col-lg-10{padding: 0px;.card{border:none;}}
 	  	.row {display: flex;flex-wrap: wrap;margin: 0;padding:0;}
 	  	.container{padding-left:0px;padding-right:0px;}
+	  	.user_main{margin-bottom: 20px;}
+	  	.nodata{width: 100%;text-align:center;
+	  		.cartBtn{width:100%;text-align:center;
+	    		p{line-height:30px;margin-bottom:0;}
+	    	}
+	  	}
 	}
-	.usList{width:90%;padding-top:1rem;button{height:46px;line-height:46px;font-size:1rem;letter-spacing:0.5px;}span{font-size:0.8rem;}}
-	.left{width:100%;height:310px;input{height:40px;line-height:40px;width:100%;}span{font-size:0.82rem;}}
-	.contactTitle{font-size:1rem}
-	.right{width:100%;span{font-size:0.82rem;}}
-	.tValue{text-indent:0.2rem;width:100%;max-height:200px;}
-	.aboutTitle p.aboutName{width:90%;height:100%;}
-	.aboutTitle p li{font-size:0.65rem;width:36%;}
-	.aboutTitle p li:first-child{width:44%;font-size:0.9rem;}
-	.aboutTitle p li:last-child{width:20%;}
 
 	/*分类*/
 	.dropdown-menu{width: 50%;.dropdown-submenu{width: auto;}}
@@ -435,12 +482,36 @@ body {
 		        form{width:85%;margin: 0 auto;
 		          	.form-group{margin:15px 0;}
 		          	.form-group.mb-0{margin-bottom: 1rem !important;
-		            	.registerBtn{text-align:center;}
+		          		.btn.btn-primary{margin: 0 0.75rem;}
+		            	.registerBtn{text-align:center;display:inline-block;}
+		            	.btn.btn-link{display:block;text-align:left;}
 		          	}
 		        }
 	      	}
 	    }
   	}
+	.register-page{
+		.form-group.mb-0{margin-top: 20px !important;
+			.loginBtn{display:block;float:right;}
+		}
+	}
+	.password-request-page{
+		.form-group.mb-0{margin-top: 20px !important;
+			.loginBtn{display:block;float:right;}
+		}
+	}
+	/*个人中心*/
+	.account_info{
+		.photo_info{height: 64px;
+			.user-info{margin-left: 15px;line-height: 21px;font-size: 14px;
+				p{margin: 0;
+					span{width: 70px;display: inline-block;}
+					span.info{width: 150px;}
+					a{color: #3490dc;}
+				}
+			}
+		}
+	}
   	/*商品列表页*/
   	.products-index-page{
 	    .container{
@@ -499,7 +570,7 @@ body {
   	}
   	/*购物车*/
   	.cart-index-page{
-	    .card-body{padding:0;
+	    .card-body{padding:0;margin-bottom: 20px;
 	      	.table-striped tbody tr:nth-of-type(odd){background-color:#fff;}
 	      	.product_list {
 	        	.price_info{
@@ -595,4 +666,52 @@ body {
 			}
 	    }
   	}
+  	/* 联系我们页面 */
+	.contactUsList{background-color: #fff;
+	  	.aboutTitle{width:100%;background:$wenno-bg1;height:64px;line-height:64px;
+	    	.aboutName{width:90%;height:100%;
+	      		ul.contact_ul{width:100%;height:100%;
+	        		li.contact_li{font-size:0.65rem;
+	          			&:first-child{font-size:0.9rem;}
+	        		}
+	      		}
+	    	}
+	  	}
+	  	.usList{width:90%;padding-top:1rem;
+	    	button{height:46px;line-height:46px;font-size:1rem;letter-spacing:0.5px;}
+	    	span{font-size:0.8rem;}
+	    	.listBox{
+	      		.left{width:100%;height:310px;
+	      			.contactTitle{font-size:1rem}
+	        		input{height:40px;line-height:40px;width:100%;}
+	        		span{font-size:0.82rem;}
+		      	}
+		      	.right{width:100%;
+		      		.contactTitle{font-size:1rem}
+		        	span{font-size:0.82rem;}
+		        	.conter{width:94%;min-height:120px;max-height:240px;margin-top:26px;overflow:hidden;border-radius:6px;}
+		        	.tValue{text-indent:0.2rem;width:100%;max-height:200px;}
+		      	}
+	    	}
+	  	}
+	  	.map{width:100%;
+	  		.dropDownMenu{width:94%;height:80px;
+	  			.select{height:38px;line-height:38px;margin-top:20px;}
+	  		}
+	  		.table{width:94%;margin:0px auto 60px auto;
+	  			table{width:100%;height:auto;
+	  				thead tr{width:100%;background:#000;text-align:left;
+	  					th{font-size:0.8rem;padding: 0.6rem 0rem;text-align:center;}
+	  					.first{text-indent:0rem;}
+	  				}
+	  				tbody tr{width:100%;background:#000;text-align:left;
+	  					td{font-size:0.8rem;padding: 0.6rem 0rem;text-align:center;}
+	  					.first{text-indent:0rem;}
+	  					&:nth-child(odd){background:#fff;}
+	  					&:nth-child(even){background:#ead3b0;}
+	  				}
+	  			}
+	  		}
+	  	}
+	}
 }
