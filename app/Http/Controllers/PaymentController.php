@@ -10,6 +10,13 @@ use App\Events\OrderPaid;
 
 class PaymentController extends Controller
 {
+    /** [afterPaid 设置事件触发器] */
+    protected function afterPaid(Order $order)
+    {
+        event(new OrderPaid($order));
+    }
+
+
     /** [payByAlipay 支付宝支付] */
     public function payByAlipay(Order $order, Request $request)
     {
