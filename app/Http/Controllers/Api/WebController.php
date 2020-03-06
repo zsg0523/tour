@@ -21,9 +21,11 @@ class WebController extends Controller
         if (in_array(session('locale'), ['en', 'zh-CN', 'zh-TW'])) {
             $this->lang = session('locale');
         } else {
+            // 如果選擇的語言非官網默認三種則選擇英文
             $this->lang = 'en';
+            // 设置当前网站语言为英文
+            session(['locale' => 'en']);
         }
-        
     }
 
 	/** [getNews 新闻列表] */
