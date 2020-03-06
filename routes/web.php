@@ -44,10 +44,8 @@ Route::group(['middleware' => ['setLocale']], function() {
 	Route::get('/contact', function () { return view('user_info/contact'); });
 	Route::get('/aboutUs', function () { return view('user_info/aboutUs'); });
 	Route::get('/retail', function () { return view('user_info/retail'); });
-	
+
 });
-
-
 
 
 // 商城

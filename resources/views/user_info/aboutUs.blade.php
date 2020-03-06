@@ -16,9 +16,9 @@
    	<div class="aboutTitle">
       	<div class="aboutName">
           	<ul class="contact_ul">
-               <li class="contact_li">关于wenno®</li>
-               <li class="contact_li"><a href="{{ url('/contact') }}">联络我们</a></li>
-               <li class="contact_li"><a href="{{ url('/retail') }}">销售地点</a></li>              
+               <li class="contact_li">{{ __('shop.contact.aboutWenno') }}</li>
+               <li class="contact_li"><a href="{{ url('/contact') }}">{{ __('shop.contact.contactUs') }}</a></li>
+               <li class="contact_li"><a href="{{ url('/retail') }}">{{ __('shop.contact.retails') }}</a></li>              
             </ul>
       	</div>
    	</div>

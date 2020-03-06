@@ -6,9 +6,9 @@
        <div class="aboutTitle">
           <div class="aboutName">
             <ul class="contact_ul">
-               <li class="contact_li">联络我们</li>
-               <li class="contact_li"><a href="{{ url('/aboutUs') }}">关于wenno®</a></li>
-               <li class="contact_li"><a href="{{ url('/retail') }}">销售地点</a></li>              
+               <li class="contact_li">{{ __('shop.contact.contactUs') }}</li>
+               <li class="contact_li"><a href="{{ url('/aboutUs') }}">{{ __('shop.contact.aboutWenno') }}</a></li>
+               <li class="contact_li"><a href="{{ url('/retail') }}">{{ __('shop.contact.retails') }}</a></li>              
             </ul>
           </div>
        </div>

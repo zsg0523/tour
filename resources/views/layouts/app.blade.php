@@ -46,7 +46,7 @@
                     success:function(data) {
                         console.log(JSON.stringify(data));
                         if(data){
-                            window.reload();
+                            window.location.reload();
                         }
                     },
                     error:function(XMLHttpRequest, textStatus, errorThrown) {
