@@ -62,7 +62,7 @@ class AnimalTranslationsController extends Controller
     /** [getThemes 获取主题] */
     private function getThemes($request)
     {
-        dd(session('locale'));
+        
         $lang = isset($request->lang) ? (session(['locale'=>$request->lang])?? $request->lang) : (session('locale') ?? 'en');
 
         $theme_ids = Theme::all()->pluck('id');
