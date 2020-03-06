@@ -62,6 +62,7 @@ class AnimalTranslationsController extends Controller
     /** [getThemes 获取主题] */
     private function getThemes($request)
     {
+        
         $lang = isset($request->lang) ? (session(['locale'=>$request->lang])?? $request->lang) : (session('locale') ?? 'en');
 
         $theme_ids = Theme::all()->pluck('id');
@@ -71,28 +72,6 @@ class AnimalTranslationsController extends Controller
         return $themes;
     }
 
-    // 筛选相关语言无数据的分类
-    public function check(Request $request)
-    {   
-        // 多语言种类
-        $langs = AnimalTranslation::groupBy('lang')->pluck('lang')->toArray();
-
-        foreach ($langs as $lang) {
-            // 主题
-            $theme_ids = Theme::all()->pluck('id');
-            // 主题多语言
-            $themes = ThemesTranslation::where('lang', $lang)->whereIn('theme_id', $theme_ids)->select('lang', 'title_page')->get();
-
-            foreach ($themes as $theme) {
-                $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme->title_page)->get();
-                if($animals->toArray() == []) {
-                    echo "语言：" . $lang . "|" . "分类:" . $theme->title_page . "\n\r";
-                }
-            }
-        }
-
-
-    }
 
 
 
