@@ -13,8 +13,8 @@
       	<div class="close" onclick="closeMobileEnd()"><img src="{{asset('images/close.png')}}"></div>
         <ul class="navMoblie">
         	@guest
-		        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
-		        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
+		        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('shop.Login.login') }}</a></li>
+		        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('shop.Login.register') }}</a></li>
 	        @else
 	        	<li class="nav-item"><a class="nav-link" href="{{ url('/user_info') }}">个人中心</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('cart.index') }}">购物车</a></li>
@@ -28,12 +28,12 @@
 		            </form>
 		        </li>
             @endguest
-            <li class="nav-item dpn">
+            <li class="nav-item">
             	<div class="nav-link">
-	                <select>
-	                    <option>中文简体</option>
-	                    <option>ENGLISH</option>
-	                    <option>中文繁體</option>
+	                <select class="selectLang">
+                      <option lang="en" value="0">ENGLISH</option>
+	                    <option lang="zh-CN" value="1">中文简体</option>
+	                    <option lang="zh-TW" value="2">中文繁體</option>
 	                </select>
             	</div>
             </li>
@@ -49,8 +49,8 @@
       <ul class="navbar-nav navbar-right">
         <!-- 登录注册链接开始 -->
         @guest
-        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('shop.Login.login') }}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('shop.Login.register') }}</a></li>
         @else
         <li class="nav-item">
           <a class="nav-link mt-2" href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart"></i></a>
@@ -73,13 +73,13 @@
           </div>
         </li>
         @endguest
-        <li class="nav-item dpn">
+        <li class="nav-item">
         	<div class="nav-link">
-                <select>
-                    <option>中文简体</option>
-                    <option>ENGLISH</option>
-                    <option>中文繁體</option>
-                </select>
+            <select class="selectLang">
+              <option lang="en" value="0">ENGLISH</option>
+              <option lang="zh-CN" value="1">中文简体</option>
+              <option lang="zh-TW" value="2">中文繁體</option>
+            </select>
         	</div>
         </li>
         <!-- 登录注册链接结束 -->

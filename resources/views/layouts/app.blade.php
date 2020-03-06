@@ -37,6 +37,23 @@
             $('.icon-top').click(function(){
                 $('html,body').animate({'scrollTop':0});
             })
+            $(".selectLang").change(function(){
+                var language = $(this).find("option:selected").attr("lang");
+                sessionStorage.setItem('language',language);
+                $.ajax({
+                    url:'https://www.wennoanimal.com/api/setLocale?lang='+language,
+                    type:'GET',
+                    success:function(data) {
+                        console.log(JSON.stringify(data));
+                        if(data){
+                            window.reload();
+                        }
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status+'  '+XMLHttpRequest.readyState+'  '+textStatus);
+                    }
+                });
+            });
         })
         function mobileEnd(){
             var $navButton = $('.nav-button');
