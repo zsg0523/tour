@@ -16,9 +16,12 @@ use App\Mail\ContactUs;
 
 class WebController extends Controller
 {	
+    /**
+     * [__construct 官网数据抓取，仅限简繁英]
+     */
     public function __construct()
     {
-        $this->lang = session('locale') ?? 'en';
+        in_array(session('locale'), ['en', 'zh-CN', 'zh-TW']) ? $this->lang = session('locale') : $this->lang = 'en';
     }
 
 	/** [getNews 新闻列表] */
