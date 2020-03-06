@@ -97,7 +97,7 @@ body {
           		p {height:38px;line-height:38px;text-align:center;color:$wenno-font;font-size:0.98rem;font-weight:700;margin-bottom: 0;
               		a {color: inherit;}
               	}
-          		li{width:100%;text-align:center;height:38px;line-height:38px;font-size:0.86rem;
+          		li{width:100%;text-align:center;height:38px;line-height:38px;font-size:0.86rem;color: $wenno-font;
             		img{width:12px;height:13.5px;margin-right:5px;}
           		}
         	}
@@ -665,6 +665,7 @@ body {
 		        }
 			}
 	    }
+	    .payment-buttons{text-align:center;}
   	}
   	/* 联系我们页面 */
 	.contactUsList{background-color: #fff;
