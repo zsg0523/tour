@@ -53,7 +53,7 @@ Route::get('/aboutUs', function () { return view('user_info/aboutUs'); });
 Route::get('/retail', function () { return view('user_info/retail'); });
 
 // 商城
-Route::group(['middleware' => ['setLocale']], function{
+Route::group(['middleware' => ['setLocale']], function() {
 
 	Auth::routes(['verify' => true]);
 	// 商城首页
