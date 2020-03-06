@@ -26,7 +26,7 @@
 	<script src="../animal/js/jquery-3.4.1.min.js"></script>
     <script>
 		$(function (){
-			var lang = 'zh-CN';
+			var lang = sessionStorage.getItem('language');
 	        var language = [{
 					'language': 'English',
 					'title': 'en',
@@ -168,8 +168,10 @@
 	               //$(".determine").text(language[i].determine);
 	            }else{
 	               option+='<option value="'+language[i].language+'" title="'+language[i].title+'" choose="'+language[i].choose+'" determine="'+language[i].determine+'">'+language[i].language+'</option>';
-	               $(".choose").text(language[0].choose);
 	              // $(".determine").text(language[0].determine);
+	              	if(lang==''||lang==null){
+	              		$(".choose").text(language[0].choose);
+	              	}
 	            }
 		    }
 		    $('#selectBox').append(option);			

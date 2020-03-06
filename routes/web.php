@@ -39,12 +39,6 @@ Route::group(['middleware' => ['setLocale']], function() {
 	});
 
 	Route::get('downloadpdf', 'SetLocaleController@downloadpdf');
-
-	Route::get('/user_info', function () { return view('user_info/index'); });
-	Route::get('/contact', function () { return view('user_info/contact'); });
-	Route::get('/aboutUs', function () { return view('user_info/aboutUs'); });
-	Route::get('/retail', function () { return view('user_info/retail'); });
-
 });
 
 
@@ -80,6 +74,11 @@ Route::group(['middleware' => ['setLocale']], function() {
 	    Route::get('payment/paypal/return', 'PaymentController@payPalReturn')->name('payment.paypal.return'); // paypal前端回调
 	    
 	});
+
+	Route::get('/user_info', function () { return view('user_info/index'); });
+	Route::get('/contact', function () { return view('user_info/contact'); });
+	Route::get('/aboutUs', function () { return view('user_info/aboutUs'); });
+	Route::get('/retail', function () { return view('user_info/retail'); });
 
 	Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify'); // 支付宝后端回调
 	Route::post('payment/paypal/notify', 'PaymentController@payPalNotify')->name('payment.paypal.notify'); // Paypal支付回调
