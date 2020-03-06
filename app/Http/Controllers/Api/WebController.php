@@ -18,7 +18,12 @@ class WebController extends Controller
 {	
     public function __construct()
     {
-        $this->lang = session('locale') ?? 'en';
+        if (in_array(session('locale'), ['en', 'zh-CN', 'zh-TW'])) {
+            $this->lang = session('locale');
+        } else {
+            $this->lang = 'en';
+        }
+        
     }
 
 	/** [getNews 新闻列表] */
@@ -32,8 +37,6 @@ class WebController extends Controller
     			$news = News::where('is_push', 1)->where('lang', $this->lang)->get();
     			return $this->response->collection($news, new NewsTransformer());
     	}
-
-    	
     }
 
     /** [getNewsData 新闻详情] */
