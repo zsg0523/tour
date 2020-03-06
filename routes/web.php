@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => ['setLocale']], function() {
+Route::group(['middleware' => ['setLocale', 'web']], function() {
 
 	Route::redirect('/', 'https://www.wennoanimal.com/web/');
 	Route::redirect('/ios', 'https://apps.apple.com/hk/app/wenno/id1071091237?l=en');
