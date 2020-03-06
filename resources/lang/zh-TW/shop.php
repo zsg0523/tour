@@ -2,17 +2,17 @@
 
 return [
 	'Login' => [
-        'login' => '登录',
-        'register' => '注册',
-        'email' => '邮箱',
-        'password' => '密码',
-        'remember' => '记住我',
-        'forget' => '忘记密码？',
-        'restpass' => '重设密码',
-        'restsend' => '发送重设密码',
+        'login' => '登錄',
+        'register' => '註冊',
+        'email' => '郵箱',
+        'password' => '密碼',
+        'remember' => '記住我',
+        'forget' => '忘記密碼？',
+        'restpass' => '重設密碼',
+        'restsend' => '發送重設密碼',
         'name' => '姓名',
-        'confirmpass' => '确认密码',
-        'returnlogin' => '返回登录',
+        'confirmpass' => '確認密碼',
+        'returnlogin' => '返回登錄',
     ],
 	'product' => [
 		'name' => '',

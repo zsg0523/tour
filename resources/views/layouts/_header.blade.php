@@ -30,10 +30,10 @@
             @endguest
             <li class="nav-item">
             	<div class="nav-link">
-	                <select>
-	                    <option>中文简体</option>
-	                    <option>ENGLISH</option>
-	                    <option>中文繁體</option>
+	                <select class="selectLang">
+                      <option lang="en" value="0">ENGLISH</option>
+	                    <option lang="zh-CN" value="1">中文简体</option>
+	                    <option lang="zh-TW" value="2">中文繁體</option>
 	                </select>
             	</div>
             </li>
@@ -75,11 +75,11 @@
         @endguest
         <li class="nav-item">
         	<div class="nav-link">
-                <select>
-                    <option>中文简体</option>
-                    <option>ENGLISH</option>
-                    <option>中文繁體</option>
-                </select>
+            <select class="selectLang">
+              <option lang="en" value="0">ENGLISH</option>
+              <option lang="zh-CN" value="1">中文简体</option>
+              <option lang="zh-TW" value="2">中文繁體</option>
+            </select>
         	</div>
         </li>
         <!-- 登录注册链接结束 -->
