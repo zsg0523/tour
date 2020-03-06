@@ -6,9 +6,9 @@
 	<div class="aboutTitle">
       	<div class="aboutName">
           	<ul class="contact_ul">
-				<li class="contact_li">销售地点</li>
-				<li class="contact_li"><a href="{{ url('/aboutUs') }}">关于wenno®</a></li>
-				<li class="contact_li"><a href="{{ url('/contact') }}">联络我们</a></li>
+				<li class="contact_li">{{ __('shop.contact.retails') }}</li>
+				<li class="contact_li"><a href="{{ url('/aboutUs') }}">{{ __('shop.contact.aboutWenno') }}</a></li>
+				<li class="contact_li"><a href="{{ url('/contact') }}">{{ __('shop.contact.contactUs') }}</a></li>
             </ul>
       	</div>
    	</div>
@@ -21,10 +21,10 @@
             <table border="0px">           
               	<thead>
                 	<tr>
-	                    <th class="first">名称</th></td>
-	                    <th>地址</th>
-	                    <th>电话</th>
-	                    <th>营业时间</th>
+	                    <th class="first">{{ __('shop.contact.pname') }}</th></td>
+	                    <th>{{ __('shop.contact.address') }}</th>
+	                    <th>{{ __('shop.contact.phone') }}</th>
+	                    <th>{{ __('shop.contact.business') }}</th>
                 	</tr>
               	</thead>
               	<tbody id="address_info"></tbody>
@@ -43,7 +43,6 @@
 	    });
       	$("#address").change(function(){
 	        var address = $("#address").val();
-	        console.log('您选择了'+address);
 	       	$.ajax({
 	            url: 'https://www.wennoanimal.com/api/locals?location='+address+'&include=retails',
 	            type: "get",

@@ -39,6 +39,12 @@ Route::group(['middleware' => ['setLocale']], function() {
 	});
 
 	Route::get('downloadpdf', 'SetLocaleController@downloadpdf');
+
+	Route::get('/user_info', function () { return view('user_info.index'); });
+	Route::get('/contact', function () { return view('user_info.contact'); });
+	Route::get('/aboutUs', function () { return view('user_info.aboutUs'); });
+	Route::get('/retail', function () { return view('user_info.retail'); });
+
 });
 
 
@@ -46,11 +52,6 @@ Route::group(['middleware' => ['setLocale']], function() {
 Route::get('mailable', function () {
     return new App\Mail\ContactUs('Eden', 'shenggen93@163.com', '邮件模版测试');
 });
-
-Route::get('/user_info', function () { return view('user_info/index'); });
-Route::get('/contact', function () { return view('user_info/contact'); });
-Route::get('/aboutUs', function () { return view('user_info/aboutUs'); });
-Route::get('/retail', function () { return view('user_info/retail'); });
 
 
 Auth::routes(['verify' => true]);
