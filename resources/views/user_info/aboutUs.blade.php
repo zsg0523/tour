@@ -51,7 +51,7 @@
 				s = s.replace(/text-indent/gi, "t");
 				s = s.replace(/padding/gi, "p");
 				if(!s){
-					$('.usList').html('<p>尚未添加数据<p>');
+					$('.usList').html('<p>{{ __("shop.contact.nodata") }}<p>');
 				}else{
 					$('.usList').html(s);
 				}

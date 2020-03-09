@@ -5,19 +5,19 @@
 <div class="row">
 	<div class="col-lg-10 offset-lg-1">
 		<div class="card">
-		  	<div class="card-header">我的购物车</div>
+		  	<div class="card-header">{{ __('shop.cart.shoppingcart') }}</div>
 			<div class="card-body">
 				@if ($cartItems->count())
 			    <table class="table table-striped">
 			      	<thead>
 				      	<tr>
 					        <th><input type="checkbox" checked id="select-all"></th>
-					        <th class="webth">商品信息</th>
-					        <th class="webth">单价</th>
-					        <th class="webth">数量</th>
-					        <th class="webth">操作</th>
-					        <th class="mobileth">全选</th>
-					        <th class="mobileth" style="text-align: right;" onclick="editShow(this)">编辑</th>
+					        <th class="webth">{{ __('shop.order.productinfo') }}</th>
+					        <th class="webth">{{ __('shop.order.unitprice') }}</th>
+					        <th class="webth">{{ __('shop.order.quantity') }}</th>
+					        <th class="webth">{{ __('shop.order.operat') }}</th>
+					        <th class="mobileth">{{ __('shop.cart.selectall') }}</th>
+					        <th class="mobileth" style="text-align: right;" onclick="editShow(this)">{{ __('shop.cart.edit') }}</th>
 				      	</tr>
 			      	</thead>
 			      	<tbody class="product_list">
@@ -38,7 +38,7 @@
 					              </span>
 					              <span class="sku_title">{{ $item->shopProductSku->title }}</span>
 					              @if(!$item->shopProductSku->shopProduct->on_sale)
-					                <span class="warning">该商品已下架</span>
+					                <span class="warning">{{ __('shop.cart.productremove') }}</span>
 					              @endif
 					            </div>
 					            <input type="text" class="form-control form-control-sm amount mobileInput" onblur="amount_input(this,0);" @if(!$item->shopProductSku->shopProduct->on_sale) disabled @endif name="mobileInput" value="{{ $item->amount }}">
@@ -51,7 +51,7 @@
 				            	<input type="text" class="form-control form-control-sm amount webInput" onblur="amount_input(this,1);" @if(!$item->shopProductSku->shopProduct->on_sale) disabled @endif name="webInput" value="{{ $item->amount }}">
 				          	</td>
 				          	<td class="webth removeBtn">
-				            	<button class="btn btn-sm btn-danger btn-remove">移除</button>
+				            	<button class="btn btn-sm btn-danger btn-remove">{{ __('shop.cart.remove') }}</button>
 				          	</td>
 				        </tr>
 			      	@endforeach
@@ -61,7 +61,7 @@
 			    <div>
 			      	<form class="form-horizontal" role="form" id="order-form">
 				        <div class="form-group row">
-				          	<label class="col-form-label col-sm-3 text-md-right">选择收货地址</label>
+				          	<label class="col-form-label col-sm-3 text-md-right">{{ __('shop.cart.selectaddress') }}</label>
 				          	<div class="col-sm-9 col-md-7">
 				            	<select class="form-control" name="address">
 				              	@foreach($addresses as $address)
@@ -71,15 +71,15 @@
 				          	</div>
 				        </div>
 				        <div class="form-group row">
-				          	<label class="col-form-label col-sm-3 text-md-right">备注</label>
+				          	<label class="col-form-label col-sm-3 text-md-right">{{ __('shop.cart.note') }}</label>
 				          	<div class="col-sm-9 col-md-7">
 				            	<textarea name="remark" class="form-control" rows="3"></textarea>
 				          	</div>
 				        </div>
 				        <div class="form-group submitBtn">
 				          	<div class="offset-sm-3 col-sm-9 col-md-7">
-				          		<p>合计：￥<span id="orderSum">300</span></p>
-				            	<button type="button" class="btn btn-primary btn-create-order">提交订单</button>
+				          		<p>{{ __('shop.cart.total') }}：￥<span id="orderSum"></span></p>
+				            	<button type="button" class="btn btn-primary btn-create-order">{{ __('shop.cart.submitorder') }}</button>
 				          	</div>
 				        </div>
 			     	</form>
@@ -87,7 +87,7 @@
 			    <!-- 结束 -->
 			    @else
                 	<div class="nodata">
-                		<div class="cartBtn"><p class="tip">购物车快饿瘪了T.T</p><p>主人快给我挑点宝贝吧</p><a class="btn btn-primary" href="{{ url('/shop') }}">去逛逛</a></div>
+                		<div class="cartBtn"><p class="tip">{{ __('shop.cart.carthungry') }}</p><p>{{ __('shop.cart.tip') }}</p><a class="btn btn-primary" href="{{ url('/shop') }}">{{ __('shop.cart.goshopp') }}</a></div>
                 	</div>
 	            @endif
 			</div>
@@ -107,9 +107,9 @@
 			// data('id') 方法可以获取到我们之前设置的 data-id 属性的值，也就是对应的 SKU id
 			var id = $(this).closest('tr').data('id');
 			swal({
-				title: "确认要将该商品移除？",
+				title: "{{ __('shop.cart.sureremove') }}",
 				icon: "warning",
-				buttons: ['取消', '确定'],
+				buttons: ['{{ __("shop.cart.cancel") }}', '{{ __("shop.cart.determine") }}'],
 				dangerMode: true,
 			})
       		.then(function(willDelete) {
@@ -179,7 +179,7 @@
       		});
       		axios.post('{{ route('orders.store') }}', req)
         	.then(function (response) {
-          		swal('订单提交成功', '', 'success')
+          		swal('{{ __("shop.cart.submitsuccess") }}', '', 'success')
           		.then(() => {
             		location.href = '/orders/' + response.data.id;
           		});
@@ -196,19 +196,18 @@
 		            swal({content: $(html)[0], icon: 'error'})
           		} else {
             		// 其他情况应该是系统挂了
-            		swal('系统错误', '', 'error');
+            		swal('{{ __("shop.cart.systemerror") }}', '', 'error');
           		}
         	});
     	});
   	});
   	function editShow(obj){
 	  	if($('.product_name').hasClass('dpn')){
-	  		$(obj).text('编辑');
+	  		$(obj).text('{{ __("shop.cart.edit") }}');
 		  	$('.removeBtn').css('display','none');
 		  	$('.price_info').css('display','table-cell');
 		  	$('.mobileInput').css('display','none');
 		  	$('.product_name').removeClass('dpn');
-
 	  		$('table tr[data-id]').each(function () {
 		        // 获取当前行中数量输入框
 		        var $input = $(this).find('input[name=mobileInput]');
@@ -222,7 +221,7 @@
 	  		});
 
 	  	}else{
-	  		$(obj).text('完成');
+	  		$(obj).text('{{ __("shop.cart.complete") }}');
 	  		$('.removeBtn').css('display','table-cell');
 		  	$('.price_info').css('display','none');
 		  	$('.mobileInput').css('display','block');
