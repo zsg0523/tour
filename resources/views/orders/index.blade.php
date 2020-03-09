@@ -10,7 +10,7 @@
         <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
 	      	<div class="col-lg-12">
 	      		<div class="card">
-				  	<div class="card-header">订单列表</div>
+				  	<div class="card-header">{{ __('shop.order.orderList') }}</div>
 				  	@if ($orders->count())
 				  	<div class="card-body">
 					    <ul class="list-group">
@@ -18,19 +18,19 @@
 					        <li class="list-group-item">
 					          <div class="card">
 					            <div class="card-header">
-					              订单号：{{ $order->no }}
+					              {{ __('shop.order.ordernumber') }}：{{ $order->no }}
 					              <span class="float-right">{{ $order->created_at->format('Y-m-d H:i:s') }}</span>
 					            </div>
 					            <div class="card-body webList">
 					              <table class="table">
 					                <thead>
 					                <tr>
-					                  <th>商品信息</th>
-					                  <th class="text-center">单价</th>
-					                  <th class="text-center">数量</th>
-					                  <th class="text-center">订单总价</th>
-					                  <th class="text-center">状态</th>
-					                  <th class="text-center">操作</th>
+					                  <th>{{ __('shop.order.productinfo') }}</th>
+					                  <th class="text-center">{{ __('shop.order.unitprice') }}</th>
+					                  <th class="text-center">{{ __('shop.order.quantity') }}</th>
+					                  <th class="text-center">{{ __('shop.order.totalprice') }}</th>
+					                  <th class="text-center">{{ __('shop.order.status') }}</th>
+					                  <th class="text-center">{{ __('shop.order.operat') }}</th>
 					                </tr>
 					                </thead>
 					                @foreach($order->items as $index => $item)
@@ -55,19 +55,19 @@
 					                      <td rowspan="{{ count($order->items) }}" class="text-center">
 					                        @if($order->paid_at)
 					                          @if($order->refund_status === \App\Models\Order::REFUND_STATUS_PENDING)
-					                            已支付
+					                            {{ __('shop.order.paid') }}
 					                          @else
 					                            {{ \App\Models\Order::$refundStatusMap[$order->refund_status] }}
 					                          @endif
 					                        @elseif($order->closed)
-					                          已关闭
+					                          {{ __('shop.order.close') }}
 					                        @else
-					                          未支付<br>
-					                          请于 {{ $order->created_at->addSeconds(config('app.order_ttl'))->format('H:i') }} 前完成支付<br>
-					                          否则订单将自动关闭
+					                          {{ __('shop.order.unpaid') }}<br>
+					                          {{ __('shop.order.please') }} {{ $order->created_at->addSeconds(config('app.order_ttl'))->format('H:i') }} {{ __('shop.order.paybefore') }}<br>
+					                          {{ __('shop.order.otherwise') }}
 					                        @endif
 					                      </td>
-					                      <td rowspan="{{ count($order->items) }}" class="text-center"><a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">查看订单</a></td>
+					                      <td rowspan="{{ count($order->items) }}" class="text-center"><a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">{{ __('shop.order.checkorder') }}</a></td>
 					                    @endif
 					                  </tr>
 					                @endforeach
@@ -97,21 +97,21 @@
 					                  	</div>
 					                @endforeach
 					                <div class="product-total">
-					                    <span rowspan="{{ count($order->items) }}" class="text-center total-amount">总价: ￥{{ $order->total_amount }}</span>
-					                    <span rowspan="{{ count($order->items) }}" class="text-center fr"><a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">查看订单</a></span>
+					                    <span rowspan="{{ count($order->items) }}" class="text-center total-amount">{{ __('shop.order.total') }}: ￥{{ $order->total_amount }}</span>
+					                    <span rowspan="{{ count($order->items) }}" class="text-center fr"><a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">{{ __('shop.order.checkorder') }}</a></span>
 					                    <span rowspan="{{ count($order->items) }}" class="text-center fr">
 					                        @if($order->paid_at)
 					                          @if($order->refund_status === \App\Models\Order::REFUND_STATUS_PENDING)
-					                            已支付
+					                            {{ __('shop.order.paid') }}
 					                          @else
 					                            {{ \App\Models\Order::$refundStatusMap[$order->refund_status] }}
 					                          @endif
 					                        @elseif($order->closed)
-					                          已关闭
+					                          {{ __('shop.order.close') }}
 					                        @else
-					                          未支付<br>
-					                          请于 {{ $order->created_at->addSeconds(config('app.order_ttl'))->format('H:i') }} 前完成支付<br>
-					                          否则订单将自动关闭
+					                          {{ __('shop.order.unpaid') }}<br>
+					                          {{ __('shop.order.please') }} {{ $order->created_at->addSeconds(config('app.order_ttl'))->format('H:i') }} {{ __('shop.order.paybefore') }}<br>
+					                          {{ __('shop.order.otherwise') }}
 					                        @endif
 					                    </span>
 				                    </div>
@@ -124,7 +124,7 @@
 				  	</div>
 				  	@else
                     	<div class="nodata">
-                    		<div class="cartBtn"><p>您还没有订单</p><a class="btn btn-primary" href="{{ url('/shop') }}">去逛逛</a></div>
+                    		<div class="cartBtn"><p>{{ __('shop.order.noorder') }}</p><a class="btn btn-primary" href="{{ url('/shop') }}">{{ __('shop.order.goshopp') }}</a></div>
                     	</div>
 		            @endif
 	      		</div>

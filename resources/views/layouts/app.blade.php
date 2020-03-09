@@ -37,24 +37,35 @@
             $('.icon-top').click(function(){
                 $('html,body').animate({'scrollTop':0});
             })
-            $(".selectLang").change(function(){
-                var language = $(this).find("option:selected").attr("lang");
-                sessionStorage.setItem('language',language);
-                $.ajax({
-                    url:'https://www.wennoanimal.com/api/setLocale?lang='+language,
-                    type:'GET',
-                    success:function(data) {
-                        console.log(JSON.stringify(data));
-                        if(data){
-                            window.location.reload();
-                        }
-                    },
-                    error:function(XMLHttpRequest, textStatus, errorThrown) {
-                        console.log(XMLHttpRequest.status+'  '+XMLHttpRequest.readyState+'  '+textStatus);
-                    }
-                });
-            });
+            var lang = sessionStorage.getItem('language');
+            if(lang == 'zh-CN'){
+                $(".selectLang").find("option[lang='zh-CN']").attr("selected",true);
+                $(".moblieselect").find("option[lang='zh-CN']").attr("selected",true);
+            }else if(lang == 'zh-TW'){
+                $(".selectLang").find("option[lang='zh-TW']").attr("selected",true);
+                $(".moblieselect").find("option[lang='zh-TW']").attr("selected",true);
+            }else{
+                $(".selectLang").find("option[lang='en']").attr("selected",true);
+                $(".moblieselect").find("option[lang='en']").attr("selected",true);
+            };
         })
+        $(".selectLang").change(function(){
+            var language = $(this).find("option:selected").attr("lang");
+            sessionStorage.setItem('language',language);
+            $.ajax({
+                url:'https://www.wennoanimal.com/api/setLocale?lang='+language,
+                type:'GET',
+                success:function(data) {
+                    console.log(JSON.stringify(data));
+                    if(data){
+                        window.location.reload();
+                    }
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status+'  '+XMLHttpRequest.readyState+'  '+textStatus);
+                }
+            });
+        });
         function mobileEnd(){
             var $navButton = $('.nav-button');
             var $navBox = $('.nav-box');

@@ -39,6 +39,10 @@ Route::group(['middleware' => ['setLocale']], function() {
 	});
 
 	Route::get('downloadpdf', 'SetLocaleController@downloadpdf');
+
+	Route::get('aplasticocean', function () {
+	    return view('newPage.aplasticocean');
+	});
 });
 
 
