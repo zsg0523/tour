@@ -38,7 +38,7 @@ class WebController extends Controller
     			return $this->response->paginator($news, new NewsTransformer());
             // 推荐新闻，最多五条，按时间排序    		
     		case '1':
-    			$news = News::where('is_push', 1)->where('lang', $this->lang)->orderBy('created_at', 'desc')->limit(5)->get();
+    			$news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->limit(5)->get();
     			return $this->response->collection($news, new NewsTransformer());
     	}
     }
