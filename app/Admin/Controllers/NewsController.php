@@ -76,7 +76,7 @@ class NewsController extends AdminController
 
         $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->text('title', __('Title'));
-        $form->image('cover', __('Cover'));
+        $form->image('cover', __('Cover'))->help('不能超过 100M');
         $form->textarea('introduction', __('Introduction'));
         $form->switch('is_push', __('Recommend'));
         $form->editor('content');
