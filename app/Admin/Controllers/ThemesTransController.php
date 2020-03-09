@@ -33,7 +33,7 @@ class ThemesTransController extends AdminController
              return $theme ? $theme->product_name : '';
         });
         $grid->column('lang', __('Lang'))->filter();
-        $grid->column('title_page', __('Theme name'))->filter('like');
+        $grid->column('title_page', __('Theme name'))->filter('like')->copyable();
         $grid->fixColumns(3, -3);
         $grid->actions(function ($actions) {
             $actions->add(new Replicate);
