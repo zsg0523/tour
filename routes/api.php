@@ -37,9 +37,6 @@ $api->version('v1', [
             $api->get('animal', 'AnimalTranslationsController@show'); // 动物详细资料
             $api->get('setLocale', 'SetLocaleController@setLocale'); // 多语言设置
             $api->get('lang', 'SetLocaleController@index'); // 多语言列表
-
-            $api->get('check-data', 'AnimalTranslationsController@check'); // 查找空分类数据
-
             /*********************** wennoanimal Web ***********************************/
             $api->get('news', 'WebController@getNews'); // 新闻列表
             $api->get('news/{news}', 'WebController@getNewsData'); // 新闻详情
@@ -56,6 +53,7 @@ $api->version('v1', [
             $api->get('/admin/categories', 'AdminController@getCategories'); // 后台分类选项
             $api->get('/admin/locations', 'AdminController@getLocations'); // 后台分类选项
             $api->get('/admin/animals', 'AdminController@getAnimals'); // 后台分类选项
+            $api->get('/admin/themes', 'AdminController@getThemes'); // 后台分类选项
             $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
             $api->post('/qrcode', 'AdminController@generateQrcode'); // 生成二维码
 
