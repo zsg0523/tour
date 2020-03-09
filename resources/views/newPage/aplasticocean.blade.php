@@ -7,15 +7,22 @@
 	</head>
     <link rel="stylesheet" href="./animal/css/swiper.min.css" />
     <style type="text/css">
+    	a {text-decoration: none;background-color: transparent;}
+		a:hover {text-decoration: none;}
+		a:not([href]) {color: inherit;text-decoration: none;}
+		a:not([href]):hover {color: inherit;text-decoration: none;}
     	.HolyGrail{width: 100%;height: 100%;margin: 0;padding: 0;}
     	.header{max-width:1700px;width: 90%;height: 80px;line-height: 80px;margin: 0 auto;}
     	.header .logol{float: left;width: 100px;height: 67px;}
     	.header .logor{float: right;width: 100px;height: 67px;}
     	.header img{width: 100%;height: 100%;vertical-align: middle;}
-    	.main{width: 100%;height:100%;background-color: #d3edfb;}
-    	.main .video{width: 90%;margin: 0 auto;text-align: center;padding-top: 20px;}
-	    .videoBox{width:100%;height:100%;margin:0px auto;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center; justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;font-size:3rem;color:#fff;}
+    	.main{width: 100%;height:100%;background-color: #d3edfb;padding-top: 20px;}
+    	.main .video{width: 90%;margin: 0 auto;text-align: center;border-radius:5px;overflow: hidden;}
+    	.more{margin: 0;text-align: right;height: 35px;line-height: 35px;background: #fff;padding-right: 15px;}
+    	.more img{width: 21px;height: 21px;vertical-align: middle;}
+	    .videoBox{width:100%;height:100%;margin:0px auto;position:relative;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center; justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;font-size:3rem;color:#fff;}
 	   	.videoBox video{width: 100%;}
+	   	.play{width:60px;height: 60px;position: absolute;top: 45%;left: 45%;}
 
     	.main .textinfo{width: 90%;margin: 20px auto;background-color: #697ac3;color: #fff;border-radius: 5px;padding: 10px 0;}
     	.textinfo p{margin: 0;font-size: 0.9rem;line-height: 30px;padding: 0 10px;}
@@ -42,19 +49,31 @@
     	.banners{width: 90%;margin: 0 auto;padding-bottom: 20px;}
     	.swiper-slide img{width: 100%;border-radius: 5px;}
     	.swiper-pagination-bullet {width: 8px;height: 8px;display: inline-block;border-radius: 100%;background: #ead3b0;opacity: 1;color: #7b5c55;font-size: 0.9rem;}
+    	@media screen and (max-width: 768px) {
+       		.header{width: 90%;height: 55px;line-height: 55px;margin: 0 auto;}
+    		.header .logol{float: left;width: 66.66px;height: 44.66px;}
+    		.header .logor{float: right;width: 66.66px;height: 44.66px;}
+   		}
     </style>
     <body class="HolyGrail">
     	<div class="header">
-    		<div class="logol"><img src="./images/logo.png"></div>
-    		<div class="logor"><img src="./images/logo.png"></div>
+    		<a href=""><div class="logol"><img src="./images/logo.png"></div></a>
+    		<a href="https://www.wennoanimal.com"><div class="logor"><img src="./images/logo.png"></div></a>
     	</div>
     	<div class="main">
 	        <div class="video">
+	        	<a href=""><div class="more moreimg">Learn more about the movie <img src="./images/link.png"></div></a>
 	            <div class="videoBox">
-	            	<video id="myvideo" src="https://outin-1fda0e34335d11e98d8200163e1a625e.oss-cn-shanghai.aliyuncs.com/fc2fa607b2a94a8494637e66ec9aa6bb/f09e4f84f496476d84a14c1c8dda0378-486e6ec1e6947cf9597e4a2d269f9c1f-ld.mp4?Expires=1583738871&OSSAccessKeyId=LTAI8bKSZ6dKjf44&Signature=Wo9x2fHl1zYU290dOu3y8K1FHHg%3D" controls="controls" >
+	            	<video poster="./images/bg2.png" id="myvideo" muted controls="controls" autoplay="autoplay">
+	                  	<source  src="https://www.wennoanimal.com/uploads/files/APO_Kids_Version_Cantonese.mp4" type="video/mp4" />
+	                         your browser does not support the video tag
+	                </video> 
+	                <!-- <img class="play" src="./images/playv.png"> -->
+	            	<!-- <video id="myvideo" src="https://outin-1fda0e34335d11e98d8200163e1a625e.oss-cn-shanghai.aliyuncs.com/fc2fa607b2a94a8494637e66ec9aa6bb/f09e4f84f496476d84a14c1c8dda0378-486e6ec1e6947cf9597e4a2d269f9c1f-ld.mp4?Expires=1583738871&OSSAccessKeyId=LTAI8bKSZ6dKjf44&Signature=Wo9x2fHl1zYU290dOu3y8K1FHHg%3D" controls="controls" >
 		                your browser does not support the video tag
-		            </video>
+		            </video> -->
 	            </div>
+	            <div class="more">copyright notice</div>
 	        </div>
     		<div class="textinfo">
     			<p>Vision and Philosophy</p>
@@ -77,7 +96,6 @@ It’s how we dispose of plastic that is causing the problem. Our addiction to p
     			<a href="https://www.wennoanimal.com/animals/database?product_name=Humpback_Whale"><div class="list animallist9"><img src="./images/animal9.png"></div></a>
     			<a href="https://www.wennoanimal.com/animals/database?product_name=Hawksbill_Turtle"><div class="list animallist10"><img src="./images/animal10.png"></div></a>
     			<a href="https://www.wennoanimal.com/animals/database?product_name=Giant_Pacific_Octopus"><div class="list animallist11"><img src="./images/animal11.png"></div></a>
-    			<!-- https://www.wennoanimal.com/animals/database?product_name=MUUSOCTOPUS_LEVIS -->
     			<a href="https://www.wennoanimal.com/animals/database?product_name=Green_Sea_Turtle"><div class="list animallist12"><img src="./images/animal12.png"></div></a>
     			<a href="https://www.wennoanimal.com/animals/database?product_name=HARBOR_SEAL"><div class="list animallist13"><img src="./images/animal13.png"></div></a>
     		</div>
@@ -99,7 +117,7 @@ It’s how we dispose of plastic that is causing the problem. Our addiction to p
     <script src="../animal/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="./animal/js/swiper.min.js" ></script>
     <script type="text/javascript">
-    	$(function(){
+    	$(function(){ 
     		var mySwiper = new Swiper('.swiper-container', {
 		        autoplay: 6000,//可选选项，自动滑动
 		        loop : true,
@@ -109,8 +127,6 @@ It’s how we dispose of plastic that is causing the problem. Our addiction to p
 	                dynamicBullets: true,
 	            },
 		    });
-    		document.getElementById("myvideo").play();
-    		// #d3edfa   #0358d5  #a4765e
     	})
     </script>
 </html>
