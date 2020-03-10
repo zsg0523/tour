@@ -14,11 +14,13 @@
     	.HolyGrail{width: 100%;height: 100%;margin: 0;padding: 0;}
     	.header{max-width:1700px;width: 90%;height: 80px;line-height: 80px;margin: 0 auto;}
     	.header .logol{float: left;width: 100px;height: 67px;}
-    	.header .logor{float: right;width: 100px;height: 67px;}
+    	.header .logor{float: left;width: 100px;height: 67px;margin-left: 10px;}
     	.header img{width: 100%;height: 100%;vertical-align: middle;}
+        .Lang{float: right;}
+        select{border-radius: .3rem;color: #7b5c55;height:35px;line-height:35px;font-size: .67rem;text-align: left;background: #fff;background-size: 8px 5px;}
     	.main{width: 100%;height:100%;background-color: #d3edfb;padding-top: 20px;}
     	.main .video{width: 90%;margin: 0 auto;text-align: center;border-radius:5px;overflow: hidden;}
-    	.more{margin: 0;text-align: right;height: 35px;line-height: 35px;background: #fff;padding-right: 15px;}
+    	.more{margin: 0;text-align: right;height: 35px;line-height: 35px;background: #fff;padding-right: 15px;color: #333;}
     	.more img{width: 21px;height: 21px;vertical-align: middle;}
 	    .videoBox{width:100%;height:100%;margin:0px auto;position:relative;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center; justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;font-size:3rem;color:#fff;}
 	   	.videoBox video{width: 100%;}
@@ -51,37 +53,42 @@
     	.swiper-pagination-bullet {width: 8px;height: 8px;display: inline-block;border-radius: 100%;background: #ead3b0;opacity: 1;color: #7b5c55;font-size: 0.9rem;}
     	@media screen and (max-width: 768px) {
        		.header{width: 90%;height: 55px;line-height: 55px;margin: 0 auto;}
-    		.header .logol{float: left;width: 66.66px;height: 44.66px;}
-    		.header .logor{float: right;width: 66.66px;height: 44.66px;}
+    		.header .logol{width: 66.66px;height: 44.66px;}
+    		.header .logor{width: 66.66px;height: 44.66px;}
    		}
     </style>
     <body class="HolyGrail">
     	<div class="header">
-    		<a href=""><div class="logol"><img src="./images/logo.png"></div></a>
-    		<a href="https://www.wennoanimal.com"><div class="logor"><img src="./images/logo.png"></div></a>
+    		<a href=""><div class="logol"><img src="./images/logo2.png"></div></a>
+    		<a href="https://www.wennoanimal.com"><div class="logor"><img src="./images/logo1.png"></div></a>
+            <div class="Lang">
+                <select class="selectLang">
+                    <option lang="zh-CN" value="1">中文简体</option>
+                    <option lang="en" value="0">ENGLISH</option>
+                    <option lang="zh-TW" value="2">中文繁體</option>
+                </select>
+            </div>
     	</div>
     	<div class="main">
 	        <div class="video">
-	        	<a href=""><div class="more moreimg">Learn more about the movie <img src="./images/link.png"></div></a>
+	        	<a href="http://www.aplasticocean.movie/"><div class="more moreimg">{{ __('aplasticocean.learn') }} <img src="./images/link.png"></div></a>
 	            <div class="videoBox">
 	            	<video poster="./images/bg2.png" id="myvideo" muted controls="controls" autoplay="autoplay">
 	                  	<source  src="https://www.wennoanimal.com/uploads/files/APO_Kids_Version_Cantonese.mp4" type="video/mp4" />
-	                         your browser does not support the video tag
+	                        {{ __('aplasticocean.tag') }}
 	                </video> 
 	                <!-- <img class="play" src="./images/playv.png"> -->
 	            	<!-- <video id="myvideo" src="https://outin-1fda0e34335d11e98d8200163e1a625e.oss-cn-shanghai.aliyuncs.com/fc2fa607b2a94a8494637e66ec9aa6bb/f09e4f84f496476d84a14c1c8dda0378-486e6ec1e6947cf9597e4a2d269f9c1f-ld.mp4?Expires=1583738871&OSSAccessKeyId=LTAI8bKSZ6dKjf44&Signature=Wo9x2fHl1zYU290dOu3y8K1FHHg%3D" controls="controls" >
 		                your browser does not support the video tag
 		            </video> -->
 	            </div>
-	            <div class="more">copyright notice</div>
+	            <div class="more">{{ __('aplasticocean.notice') }}</div>
 	        </div>
     		<div class="textinfo">
-    			<p>Vision and Philosophy</p>
-    			<p>A Plastic Ocean Foundation is a charitable organization registered in Hong Kong, dedicated to creating a wave of change to stop plastic pollution and to be part of the solution through science, education and policy advocacy.</p>
-    			<p>They are not an anti-plastic organization. They agree plastic is an amazing product; versatile, cheap, light, and it saves a lot of lives too – think of plastics used in medicine!
-It’s how we dispose of plastic that is causing the problem. Our addiction to plastic and our ‘disposable’ lifestyle are now starting to pose a threat to the survival of marine species, as well as ourselves!</p>
-    			<p>Please remember plastic does not degrade, or decompose. It is virtually indestructible and while you can throw it away, you cannot get rid of it. It stays with us forever.
-</p>
+    			<p>{{ __('aplasticocean.title') }}</p>
+    			<p>{{ __('aplasticocean.info1') }}</p>
+    			<p>{{ __('aplasticocean.info2') }}</p>
+    			<p>{{ __('aplasticocean.info3') }}</p>
     		</div>
     		<div class="animal">
     			<div class="imgBg"><img class="images" src="./images/bg.png"></div>
@@ -100,17 +107,17 @@ It’s how we dispose of plastic that is causing the problem. Our addiction to p
     			<a href="https://www.wennoanimal.com/animals/database?product_name=HARBOR_SEAL"><div class="list animallist13"><img src="./images/animal13.png"></div></a>
     		</div>
 			<div class="banners">
-			    <div class="swiper-container">
+                <div class="swiper-slide">
+                    <img src="./images/bg2.png">
+                </div>
+			    <!-- <div class="swiper-container">
 			        <div class="swiper-wrapper">
 			            <div class="swiper-slide">
-			                <img src="{{asset('images/banner1.png')}}">
-			            </div>
-			            <div class="swiper-slide">
-			                <img src="{{asset('images/banner2.png')}}">
+			                <img src="./images/bg2.png">
 			            </div>
 			        </div>
 			        <div class="swiper-pagination"></div>
-			    </div>
+			    </div> -->
 			</div>
     	</div>
     </body>
@@ -118,15 +125,32 @@ It’s how we dispose of plastic that is causing the problem. Our addiction to p
     <script type="text/javascript" src="./animal/js/swiper.min.js" ></script>
     <script type="text/javascript">
     	$(function(){ 
-    		var mySwiper = new Swiper('.swiper-container', {
-		        autoplay: 6000,//可选选项，自动滑动
-		        loop : true,
-		        pagination: {
-	                el: '.swiper-pagination',
-	                clickable: true,
-	                dynamicBullets: true,
-	            },
-		    });
+    		// var mySwiper = new Swiper('.swiper-container', {
+		    //     autoplay: 6000,//可选选项，自动滑动
+		    //     loop : true,
+		    //     pagination: {
+	     //            el: '.swiper-pagination',
+	     //            clickable: true,
+	     //            dynamicBullets: true,
+	     //        },
+		    // });
+            $(".selectLang").change(function(){
+                var language = $(this).find("option:selected").attr("lang");
+                sessionStorage.setItem('language',language);
+                $.ajax({
+                    url:'https://www.wennoanimal.com/api/setLocale?lang='+language,
+                    type:'GET',
+                    success:function(data) {
+                        console.log(JSON.stringify(data));
+                        if(data){
+                            window.location.reload();
+                        }
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status+'  '+XMLHttpRequest.readyState+'  '+textStatus);
+                    }
+                });
+            });
     	})
     </script>
 </html>
