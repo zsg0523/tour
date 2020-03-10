@@ -33,4 +33,5 @@ Route::group([
     // 商城
     $router->resource('users', UsersController::class); // 用户管理
     $router->resource('shop-products', ShopProductsController::class); // 商品管理
+    $router->resource('orders', OrdersController::class); // 订单管理
 });
