@@ -7,6 +7,9 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Encore\Admin\Layout\Content;
+use Illuminate\Http\Request;
+use App\Exceptions\InvalidRequestException;
 
 class OrdersController extends AdminController
 {
@@ -16,6 +19,29 @@ class OrdersController extends AdminController
      * @var string
      */
     protected $title = '订单';
+
+    /** [show 订单详情] */
+    public function show($id, Content $content)
+    {
+        return $content
+              ->header('查看订单')
+              ->body(view('admin.orders.show', ['order' => Order::find($id)]));
+    }
+
+    /** [ship 订单发货] */
+    public function ship(Order $order, Request $request)
+    {   
+        // 判断当前订单是否支付
+        if (!$order->paid_at) {
+            throw new InvalidRequestException("该订单未付款");
+        }
+
+        // 判断当前订单发货状态是否为未发货
+        if (!$order->ship_status !== Order::SHIP_STATUS_PENDING) {
+            throw new InvalidRequestException('该订单已发货');
+        }
+
+    }
 
     /**
      * Make a grid builder.
@@ -28,20 +54,17 @@ class OrdersController extends AdminController
 
         $grid->column('no', __('流水号'));
         $grid->column('user.name', __('买家'));
-        // $grid->column('address', __('Address'));
         $grid->column('total_amount', __('总金额'))->sortable();
-        // $grid->column('remark', __('Remark'));
         $grid->column('paid_at', __('支付时间'));
-        // $grid->column('payment_method', __('Payment method'));
-        // $grid->column('payment_no', __('Payment no'));
+        $grid->column('payment_method', __('支付方式'));
         $grid->column('ship_status', __('物流状态'))->display(function ($ship_status){
             return Order::$shipStatusMap[$ship_status];
         });
         $grid->column('refund_status', __('退款状态'))->display(function ($refund_status){
             return Order::$refundStatusMap[$refund_status];
         });
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('created_at', __('创建时间'))->sortable();
+        $grid->column('updated_at', __('更新时间'))->sortable();
 
          // 禁用创建按钮，后台不需要创建订单
         $grid->disableCreateButton();
@@ -56,67 +79,10 @@ class OrdersController extends AdminController
                 $batch->disableDelete();
             });
         });
-
+        $grid->disableExport(false);
         return $grid;
     }
 
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        $show = new Show(Order::findOrFail($id));
 
-        $show->field('id', __('Id'));
-        $show->field('no', __('No'));
-        $show->field('user_id', __('User id'));
-        $show->json('address', __('Address'));
-        $show->field('total_amount', __('Total amount'));
-        $show->field('remark', __('Remark'));
-        $show->field('paid_at', __('Paid at'));
-        $show->field('payment_method', __('Payment method'));
-        $show->field('payment_no', __('Payment no'));
-        $show->field('ship_status', __('Ship status'));
-        $show->field('refund_status', __('Refund status'));
-        $show->field('refund_no', __('Refund no'));
-        $show->field('closed', __('Closed'));
-        $show->field('reviewed', __('Reviewed'));
-        $show->field('ship_data', __('Ship data'));
-        $show->field('extra', __('Extra'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
 
-        return $show;
-    }
-
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
-    protected function form()
-    {
-        $form = new Form(new Order);
-
-        $form->text('no', __('No'));
-        $form->number('user_id', __('User id'));
-        $form->textarea('address', __('Address'));
-        $form->decimal('total_amount', __('Total amount'));
-        $form->textarea('remark', __('Remark'));
-        $form->datetime('paid_at', __('Paid at'))->default(date('Y-m-d H:i:s'));
-        $form->text('payment_method', __('Payment method'));
-        $form->text('payment_no', __('Payment no'));
-        $form->text('ship_status', __('Ship status'))->default('pending');
-        $form->text('refund_status', __('Refund status'))->default('pending');
-        $form->text('refund_no', __('Refund no'));
-        $form->switch('closed', __('Closed'));
-        $form->switch('reviewed', __('Reviewed'));
-        $form->textarea('ship_data', __('Ship data'));
-        $form->textarea('extra', __('Extra'));
-
-        return $form;
-    }
 }
