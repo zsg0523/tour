@@ -35,4 +35,5 @@ Route::group([
     $router->resource('shop-products', ShopProductsController::class); // 商品管理
     $router->get('orders', 'OrdersController@index')->name('admin.orders.index'); // 订单列表
     $router->get('orders/{order}', 'OrdersController@show')->name('admin.orders.show'); // 订单详情
+    $router->post('orders/{order}/ship', 'OrdersController@ship')->name('admin.orders.ship'); // 发货
 });
