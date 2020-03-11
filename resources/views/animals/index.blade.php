@@ -20,7 +20,7 @@
 			<div v-show="LoadCompleted"  v-cloak>
 				<header>
 					<div class="title">
-					   <a href="https://www.wennoanimal.com/" style="position: absolute;left: 2%;width: 75px;"><img src="./images/logo1.png" style="width: 100%;"/></a>
+					   <a href="https://www.wennoanimal.com/" style="position: absolute;left: 2%;width: 75px;"><img src="./images/logo3.png" style="width: 100%;"/></a>
 					   <a class="setting" href="{{url('animals/chooseLanguage')}}"></a>
 					   <span><img src="./images/tipLeft.png"></span>
 					   <span class="item">@{{pageTitle}}</span>
