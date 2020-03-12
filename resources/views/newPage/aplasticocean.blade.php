@@ -88,7 +88,8 @@
     			<p>{{ __('aplasticocean.title') }}</p>
     			<p>{{ __('aplasticocean.info1') }}</p>
     			<p>{{ __('aplasticocean.info2') }}</p>
-    			<p>{{ __('aplasticocean.info3') }}</p>
+                <p>{{ __('aplasticocean.info3') }}</p>
+    			<p>{{ __('aplasticocean.info4') }}</p>
     		</div>
     		<div class="animal">
     			<div class="imgBg"><img class="images" src="./images/bg.png"></div>
@@ -138,7 +139,7 @@
                 var language = $(this).find("option:selected").attr("lang");
                 sessionStorage.setItem('language',language);
                 $.ajax({
-                    url:'https://www.wennoanimal.com/api/setLocale?lang='+language,
+                    url:'/api/setLocale?lang='+language,
                     type:'GET',
                     success:function(data) {
                         console.log(JSON.stringify(data));
