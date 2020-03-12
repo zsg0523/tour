@@ -135,6 +135,14 @@
 	     //            dynamicBullets: true,
 	     //        },
 		    // });
+            var lang = sessionStorage.getItem('language');
+            if(lang == 'zh-CN'){
+                $(".selectLang").find("option[lang='zh-CN']").attr("selected",true);
+            }else if(lang == 'zh-TW'){
+                $(".selectLang").find("option[lang='zh-TW']").attr("selected",true);
+            }else{
+                $(".selectLang").find("option[lang='en']").attr("selected",true);
+            };
             $(".selectLang").change(function(){
                 var language = $(this).find("option:selected").attr("lang");
                 sessionStorage.setItem('language',language);
