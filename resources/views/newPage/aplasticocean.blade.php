@@ -167,7 +167,8 @@
                 success:function(data) {
                     console.log(JSON.stringify(data));
                     if(data){
-                        window.location.reload();
+                        // window.location.reload();
+                        window.location.href = 'https://www.wennoanimal.com/aplasticocean';
                     }
                 },
                 error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -176,7 +177,7 @@
             });
         }
         function getQueryString(name){
-            var reg = new RegExp("(^|&)"+ language +"=([^&]*)(&|$)");
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
             var r = window.location.search.substr(1).match(reg);
             if (r!=null) return r[2]; return '';
         }
