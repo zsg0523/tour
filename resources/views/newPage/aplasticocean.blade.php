@@ -62,7 +62,7 @@
     		<a href=""><div class="logol"><img src="./images/logo2.png"></div></a>
     		<a href="https://www.wennoanimal.com"><div class="logor"><img src="./images/logo1.png"></div></a>
             <div class="Lang">
-                <select class="selectLang">
+                <select class="selectLang" onchange="setLocale()">
                     <option lang="zh-CN" value="1">中文简体</option>
                     <option lang="en" value="0">ENGLISH</option>
                     <option lang="zh-TW" value="2">中文繁體</option>
@@ -135,31 +135,50 @@
 	     //            dynamicBullets: true,
 	     //        },
 		    // });
-            var lang = sessionStorage.getItem('language');
-            if(lang == 'zh-CN'){
-                $(".selectLang").find("option[lang='zh-CN']").attr("selected",true);
-            }else if(lang == 'zh-TW'){
-                $(".selectLang").find("option[lang='zh-TW']").attr("selected",true);
-            }else{
+            var lang = GetQueryString("language");
+            var language = sessionStorage.getItem('language');
+            if(lang!=null){
+                if(lang == 'zh-CN'){
+                    $(".selectLang").find("option[lang='zh-CN']").attr("selected",true);
+                }else if(lang == 'zh-TW'){
+                    $(".selectLang").find("option[lang='zh-TW']").attr("selected",true);
+                }else{
+                    $(".selectLang").find("option[lang='en']").attr("selected",true);
+                };
+                selectLang();
+            }else if(lang==null&&language!=null){
+                if(language == 'zh-CN'){
+                    $(".selectLang").find("option[lang='zh-CN']").attr("selected",true);
+                }else if(lang == 'zh-TW'){
+                    $(".selectLang").find("option[lang='zh-TW']").attr("selected",true);
+                }else{
+                    $(".selectLang").find("option[lang='en']").attr("selected",true);
+                };
+            }else if(lang==null&&language==null){
                 $(".selectLang").find("option[lang='en']").attr("selected",true);
-            };
-            $(".selectLang").change(function(){
-                var language = $(this).find("option:selected").attr("lang");
-                sessionStorage.setItem('language',language);
-                $.ajax({
-                    url:'/api/setLocale?lang='+language,
-                    type:'GET',
-                    success:function(data) {
-                        console.log(JSON.stringify(data));
-                        if(data){
-                            window.location.reload();
-                        }
-                    },
-                    error:function(XMLHttpRequest, textStatus, errorThrown) {
-                        console.log(XMLHttpRequest.status+'  '+XMLHttpRequest.readyState+'  '+textStatus);
-                    }
-                });
-            });
+            }
     	})
+        function setLocale(){
+            var language = $('.selectLang').find("option:selected").attr("lang");
+            sessionStorage.setItem('language',language);
+            $.ajax({
+                url:'/api/setLocale?lang='+language,
+                type:'GET',
+                success:function(data) {
+                    console.log(JSON.stringify(data));
+                    if(data){
+                        window.location.reload();
+                    }
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status+'  '+XMLHttpRequest.readyState+'  '+textStatus);
+                }
+            });
+        }
+        function getQueryString(name){
+            var reg = new RegExp("(^|&)"+ language +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r!=null) return r[2]; return '';
+        }
     </script>
 </html>
