@@ -145,6 +145,7 @@
                 }else{
                     $(".selectLang").find("option[lang='en']").attr("selected",true);
                 };
+                selectLang();
             }else if(lang==null&&language!=null){
                 if(language == 'zh-CN'){
                     $(".selectLang").find("option[lang='zh-CN']").attr("selected",true);
@@ -156,7 +157,6 @@
             }else if(lang==null&&language==null){
                 $(".selectLang").find("option[lang='en']").attr("selected",true);
             }
-            setLocale();
     	})
         function setLocale(){
             var language = $('.selectLang').find("option:selected").attr("lang");
