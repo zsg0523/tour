@@ -62,7 +62,10 @@
     		<a href=""><div class="logol"><img src="./images/logo2.png"></div></a>
     		<a href="https://www.wennoanimal.com"><div class="logor"><img src="./images/logo1.png"></div></a>
             <div class="Lang">
-                <select class="selectBox" name="selectBox" id="selectBox">  
+                <select class="selectLang" onchange="setLocale()">
+                    <option lang="zh-CN" value="1">中文简体</option>
+                    <option lang="en" value="0">ENGLISH</option>
+                    <option lang="zh-TW" value="2">中文繁體</option>
                 </select>
             </div>
     	</div>
@@ -128,7 +131,6 @@
             if (r!=null) return r[2]; return '';
         }
     	$(function(){ 
-
     		// var mySwiper = new Swiper('.swiper-container', {
 		    //     autoplay: 6000,//可选选项，自动滑动
 		    //     loop : true,
@@ -138,47 +140,19 @@
 	     //            dynamicBullets: true,
 	     //        },
 		    // });
-            var langs = GetQueryString("language");
-            var lang = sessionStorage.getItem('language');
-            var language = [{
-                    'language': 'English',
-                    'title': 'en',
-                },
-                {
-                    'language': '中文简体',
-                    'title': 'zh-CN',
-                },
-                {
-                    'language': '中文繁體',
-                    'title': 'zh-TW',
-                }
-            ];
-            var option="";
-            for(var i=0;i<language.length;i++){
-                if(langs!=null){
-                    if(language[i].title==langs){
-                       option+='<option value="'+language[i].language+'" title="'+language[i].title+' " selected>'+language[i].language+'</option>';                   
-                    }else{
-                       option+='<option value="'+language[i].language+'" title="'+language[i].title+' ">'+language[i].language+'</option>';
-                    }
-                }else if(lang!=null){
-                    if(language[i].title==lang){
-                       option+='<option value="'+language[i].language+'" title="'+language[i].title+' " selected>'+language[i].language+'</option>';                   
-                    }else{
-                       option+='<option value="'+language[i].language+'" title="'+language[i].title+' ">'+language[i].language+'</option>';
-                    }
-                }else {
-                   if(language[i].title=='en'){
-                       option+='<option value="'+language[i].language+'" title="'+language[i].title+' " selected>'+language[i].language+'</option>';                   
-                    }else{
-                       option+='<option value="'+language[i].language+'" title="'+language[i].title+' ">'+language[i].language+'</option>';
-                    } 
-                }
+            var lang = getQueryString("language");
+            var language = sessionStorage.getItem('language');
+            if(lang!=null){
+                $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
+                setLocale();
+            }else if(language!=null){
+                $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
+            }else{
+                $(".selectLang").find("option[lang='en']").attr("selected",true);
             }
-            $('#selectBox').append(option);
     	})
-        $("#selectBox").change(function(){
-           var language = $('#selectBox').find("option:selected").attr("title");
+        function setLocale(){
+            var language = $('.selectLang').find("option:selected").attr("lang");
             sessionStorage.setItem('language',language);
             $.ajax({
                 url:'/api/setLocale?lang='+language,
@@ -186,15 +160,14 @@
                 success:function(data) {
                     console.log(JSON.stringify(data));
                     if(data){
+                        // window.location.reload();
                         window.location.href = 'https://www.wennoanimal.com/aplasticocean';
                     }
                 },
                 error:function(XMLHttpRequest, textStatus, errorThrown) {
-                    console.log(XMLHttpRequest.status);
-                    console.log(XMLHttpRequest.readyState);
-                    console.log(textStatus);
+                    console.log(XMLHttpRequest.status+'  '+XMLHttpRequest.readyState+'  '+textStatus);
                 }
             });
-        });
+        }
     </script>
 </html>
