@@ -76,6 +76,9 @@ Route::group(['middleware' => ['setLocale']], function() {
 	    Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return'); // 支付宝前端回调
 	    Route::get('payment/{order}/paypal', 'PaymentController@payByPayPalCheckout')->name('payment.paypal'); // paypal支付
 	    Route::get('payment/paypal/return', 'PaymentController@payPalReturn')->name('payment.paypal.return'); // paypal前端回调
+	    Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received'); // 确认收货
+	    Route::get('orders/{order}/review', 'OrdersController@review')->name('orders.review.show');	// 评论列表
+  	 	Route::post('orders/{order}/review', 'OrdersController@sendReview')->name('orders.review.store'); // 提交评论
 	    
 	});
 

@@ -34,7 +34,7 @@ class NewsController extends AdminController
         $grid->column('cover', __('Cover'))->image(env('APP_UTL') . '/uploads', 30, 30);
         $grid->column('introduction', __('Introduction'))->limit(30);
         $grid->column('content', __('Content'))->limit(30);
-        $grid->column('is_push', __('Recommend'))->switch();
+        // $grid->column('is_push', __('Recommend'))->switch();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
         $grid->actions(function ($actions) {
@@ -76,9 +76,9 @@ class NewsController extends AdminController
 
         $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->text('title', __('Title'));
-        $form->image('cover', __('Cover'));
+        $form->image('cover', __('Cover'))->help('不能超过 100M');
         $form->textarea('introduction', __('Introduction'));
-        $form->switch('is_push', __('Recommend'));
+        // $form->switch('is_push', __('Recommend'));
         $form->editor('content');
 
         return $form;

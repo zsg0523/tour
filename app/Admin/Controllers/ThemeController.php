@@ -31,15 +31,16 @@ class ThemeController extends AdminController
         $grid->column('id', __('Id'))->sortable();
         $grid->column('product_name', __('Product name'))->filter('like');
         // $grid->column('image', __('Image'));
-        $grid->column('code', __('Code'))->filter('like');
-        $grid->column('background', __('Background'));
-        $grid->column('back_button', __('Back button'));
-        $grid->column('product_type', __('Product type'));
-        $grid->column('product_series_id', __('Product series id'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        // $grid->column('code', __('Code'))->filter('like');
+        // $grid->column('background', __('Background'));
+        // $grid->column('back_button', __('Back button'));
+        // $grid->column('product_type', __('Product type'));
+        // $grid->column('product_series_id', __('Product series id'));
+        // $grid->column('created_at', __('Created at'));
+        // $grid->column('updated_at', __('Updated at'));
         $grid->actions(function ($actions) {
             $actions->add(new Replicate);
+            $actions->disableView();
         });
         return $grid;
     }
@@ -78,12 +79,12 @@ class ThemeController extends AdminController
         $form = new Form(new Theme);
 
         $form->text('product_name', __('Product name'));
-        $form->image('image', __('Image'));
-        $form->text('code', __('Code'));
-        $form->text('background', __('Background'));
-        $form->text('back_button', __('Back button'));
-        $form->text('product_type', __('Product type'))->default('wenno');
-        $form->number('product_series_id', __('Product series id'))->default(1);
+        // $form->image('image', __('Image'));
+        // $form->text('code', __('Code'));
+        // $form->text('background', __('Background'));
+        // $form->text('back_button', __('Back button'));
+        // $form->text('product_type', __('Product type'))->default('wenno');
+        // $form->number('product_series_id', __('Product series id'))->default(1);
 
         return $form;
     }
