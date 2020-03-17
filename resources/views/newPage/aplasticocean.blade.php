@@ -142,10 +142,10 @@
 		    // });
             var lang = getQueryString("language");
             var language = sessionStorage.getItem('language');
-            if(lang!=null){
+            if(lang!=''){
                 $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
                 setLocale();
-            }else if(language!=null){
+            }else if(language!=''){
                 $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
             }else{
                 $(".selectLang").find("option[lang='en']").attr("selected",true);

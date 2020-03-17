@@ -100,20 +100,21 @@
   <script>
     var filters = {!! json_encode($filters) !!};
     $(document).ready(function () {
-    var mySwiper = new Swiper('.swiper-container', {
-        autoplay: 6000,//可选选项，自动滑动
-        loop : true,
-        navigation: {
-            nextEl: '.swiper-button-next1',
-            prevEl: '.swiper-button-prev1',
-        },
-    });
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 6000,//可选选项，自动滑动
+            loop : true,
+            navigation: {
+                nextEl: '.swiper-button-next1',
+                prevEl: '.swiper-button-prev1',
+            },
+        });
+        $('.img').height($('.img').width()*5/6);
 
-      $('.search-form input[name=search]').val(filters.search);
-      $('.search-form select[name=order]').val(filters.order);
-      $('.search-form select[name=order]').on('change', function() {
-        $('.search-form').submit();
-      });
+        $('.search-form input[name=search]').val(filters.search);
+        $('.search-form select[name=order]').val(filters.order);
+        $('.search-form select[name=order]').on('change', function() {
+            $('.search-form').submit();
+        });
   });
 
   </script>

@@ -56,8 +56,9 @@
 
 @section('scriptsAfterJs')
 <script>
-  $(document).ready(function() {
-      $('.menu_list li.menu_list_favor').addClass('active');
+  	$(document).ready(function() {
+		$('.menu_list li.menu_list_favor').addClass('active');
+		$('.img').height($('.img').width()*5/6);
     });
 </script>
 @endsection
