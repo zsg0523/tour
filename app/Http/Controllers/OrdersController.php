@@ -10,6 +10,7 @@ use App\Services\OrderService;
 use App\Exceptions\InvalidRequestException;
 use Carbon\Carbon;
 use App\Http\Requests\SendReviewRequest;
+use App\Events\OrderReviewed;
 
 class OrdersController extends Controller
 {
@@ -102,6 +103,9 @@ class OrdersController extends Controller
             }
             // 将订单标记为已评价
             $order->update(['reviewed' => true]);
+            
+            // 触发更新商品评分和统计评论数量事件
+            event(new OrderReviewed($order));
         });
 
         return redirect()->back();
