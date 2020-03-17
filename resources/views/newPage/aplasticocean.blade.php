@@ -144,6 +144,7 @@
             var language = sessionStorage.getItem('language');
             if(lang!=''){
                 $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
+                setLocale();
             }else if(language!=''){
                 $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
             }else{
