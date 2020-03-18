@@ -59,7 +59,7 @@
     </style>
     <body class="HolyGrail">
     	<div class="header">
-    		<a href=""><div class="logol"><img src="./images/logo2.png"></div></a>
+    		<a href="http://www.aplasticocean.foundation/"><div class="logol"><img src="./images/logo2.png"></div></a>
     		<a href="https://www.wennoanimal.com"><div class="logor"><img src="./images/logo1.png"></div></a>
             <div class="Lang">
                 <select class="selectLang" onchange="setLocale()">
