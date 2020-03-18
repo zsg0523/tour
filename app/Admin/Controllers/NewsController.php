@@ -33,7 +33,7 @@ class NewsController extends AdminController
         $grid->column('title', __('Title'));
         $grid->column('cover', __('Cover'))->image(env('APP_UTL') . '/uploads', 30, 30);
         $grid->column('introduction', __('Introduction'))->limit(30);
-        $grid->column('content', __('Content'))->limit(30);
+        // $grid->column('content', __('Content'))->limit(30);
         // $grid->column('is_push', __('Recommend'))->switch();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
@@ -58,7 +58,7 @@ class NewsController extends AdminController
         $show->field('title', __('Title'));
         $show->field('cover', __('Cover'));
         $show->field('introduction', __('Introduction'));
-        $show->field('content', __('Content'));
+        $show->field('content', __('Content'))->link();
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
