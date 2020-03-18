@@ -44,7 +44,7 @@
 					            <input type="text" class="form-control form-control-sm amount mobileInput" onblur="amount_input(this,0);" @if(!$item->shopProductSku->shopProduct->on_sale) disabled @endif name="mobileInput" value="{{ $item->amount }}">
 				          	</td>
 				          	<td class="price_info">
-					            <span class="price">￥{{ $item->shopProductSku->price }}</span>
+					            <span class="price">HKD {{ $item->shopProductSku->price }}</span>
 					            <div class="price mobileth">x <span class="editAmount">{{ $item->amount }}</span></div>
 				          	</td>
 				          	<td class="webth">
@@ -78,7 +78,7 @@
 				        </div>
 				        <div class="form-group submitBtn">
 				          	<div class="offset-sm-3 col-sm-9 col-md-7">
-				          		<p>{{ __('shop.cart.total') }}：￥<span id="orderSum"></span></p>
+				          		<p>{{ __('shop.cart.total') }}：HKD <span id="orderSum"></span></p>
 				            	<button type="button" class="btn btn-primary btn-create-order">{{ __('shop.cart.submitorder') }}</button>
 				          	</div>
 				        </div>

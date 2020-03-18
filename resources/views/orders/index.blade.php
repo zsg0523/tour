@@ -48,10 +48,10 @@
 					                        <span class="sku-title">{{ $item->shopProductSku->title }}</span>
 					                      </div>
 					                    </td>
-					                    <td class="sku-price text-center">￥{{ $item->price }}</td>
+					                    <td class="sku-price text-center">HKD {{ $item->price }}</td>
 					                    <td class="sku-amount text-center">{{ $item->amount }}</td>
 					                    @if($index === 0)
-					                      <td rowspan="{{ count($order->items) }}" class="text-center total-amount">￥{{ $order->total_amount }}</td>
+					                      <td rowspan="{{ count($order->items) }}" class="text-center total-amount">HKD {{ $order->total_amount }}</td>
 					                      <td rowspan="{{ count($order->items) }}" class="text-center">
 					                        @if($order->paid_at)
 					                          @if($order->refund_status === \App\Models\Order::REFUND_STATUS_PENDING)
@@ -67,7 +67,16 @@
 					                          {{ __('shop.order.otherwise') }}
 					                        @endif
 					                      </td>
-					                      <td rowspan="{{ count($order->items) }}" class="text-center"><a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">{{ __('shop.order.checkorder') }}</a></td>
+					                      <td rowspan="{{ count($order->items) }}" class="text-center">
+					                      	<a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">{{ __('shop.order.checkorder') }}</a>
+					                      	<!-- 评价入口开始 -->
+											@if($order->paid_at)
+											<a class="btn btn-success btn-sm" href="{{ route('orders.review.show', ['order' => $order->id]) }}">
+											{{ $order->reviewed ? '查看评价' : '评价' }}
+											</a>
+											@endif
+											<!-- 评价入口结束 -->
+					                      </td>
 					                    @endif
 					                  </tr>
 					                @endforeach
@@ -91,13 +100,13 @@
 						                      	</div>
 						                    </div>
 						                    <div class="product-price">
-							                    <span class="sku-price text-right">￥{{ $item->price }}</span>
+							                    <span class="sku-price text-right">HKD {{ $item->price }}</span>
 							                    <span class="sku-amount text-right">x {{ $item->amount }}</span>
 						                    </div>
 					                  	</div>
 					                @endforeach
 					                <div class="product-total">
-					                    <span rowspan="{{ count($order->items) }}" class="text-center total-amount">{{ __('shop.order.total') }}: ￥{{ $order->total_amount }}</span>
+					                    <span rowspan="{{ count($order->items) }}" class="text-center total-amount">{{ __('shop.order.total') }}: HKD {{ $order->total_amount }}</span>
 					                    <span rowspan="{{ count($order->items) }}" class="text-center fr"><a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">{{ __('shop.order.checkorder') }}</a></span>
 					                    <span rowspan="{{ count($order->items) }}" class="text-center fr">
 					                        @if($order->paid_at)
