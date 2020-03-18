@@ -32,14 +32,14 @@ class WebController extends Controller
     public function getNews(Request $request)
     {
     	switch ($request->is_push) {
-            // 新闻列表
-    		case '0':
-    			$news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->paginate(5);
-    			return $this->response->paginator($news, new NewsTransformer());
             // 推荐新闻，最多五条，按时间排序    		
     		case '1':
     			$news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->limit(5)->get();
     			return $this->response->collection($news, new NewsTransformer());
+            // 新闻列表
+            default:
+                $news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->paginate(6);
+                return $this->response->paginator($news, new NewsTransformer());
     	}
     }
 
