@@ -53,7 +53,7 @@
             var language = $(this).find("option:selected").attr("lang");
             sessionStorage.setItem('language',language);
             $.ajax({
-                url:'https://www.wennoanimal.com/api/setLocale?lang='+language,
+                url:'https://wennoanimal.test/api/setLocale?lang='+language,
                 type:'GET',
                 success:function(data) {
                     console.log(JSON.stringify(data));

@@ -11,6 +11,9 @@ class ProductsController extends Controller
 {
     public function index(Request $request)
     {
+        // 获取当前语言
+        $lang = session('locale') ?? 'en';
+
     	// 创建一个查询构造器
     	$builder = ShopProduct::query()->where('on_sale', true);
 
@@ -38,7 +41,7 @@ class ProductsController extends Controller
     			// 如果字符串是以这三个字符串之一开头，说明是合法的排序
     			if (in_array($m[1], ['price', 'sold_count', 'rating'])) {
     				// 根据传入的排序值来构造排序参数
-                    $builder->orderBy($m[1], $m[2]);
+                    $builder->where('lang', $lang)->orderBy($m[1], $m[2]);
     			}
     		}
     	}
