@@ -7,6 +7,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use App\Admin\Actions\Post\Replicate;
 
 class ShopProductsController extends AdminController
 {
@@ -27,6 +28,7 @@ class ShopProductsController extends AdminController
         $grid = new Grid(new ShopProduct);
 
         $grid->column('id', __('ID'))->sortable();
+        $grid->column('lang', __('Lang'))->filter(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW']);
         $grid->column('title', __('Title'));
         $grid->column('description', __('Description'));
         $grid->column('image', __('Image'));
@@ -39,6 +41,10 @@ class ShopProductsController extends AdminController
         $grid->column('review_count', __('Review count'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
+
+        $grid->actions(function ($actions) {
+            $actions->add(new Replicate);
+        });
 
         return $grid;
     }
@@ -54,6 +60,7 @@ class ShopProductsController extends AdminController
         $show = new Show(ShopProduct::findOrFail($id));
 
         $show->field('id', __('Id'));
+        $show->field('lang', __('Lang'));
         $show->field('title', __('Title'));
         $show->field('description', __('Description'))->homepage()->link();
         $show->field('image', __('Image'))->image();
@@ -86,6 +93,7 @@ class ShopProductsController extends AdminController
                 $form->text('stock', '剩余库存')->rules('required|integer|min:0');
             });
         })->tab('BASIC INFO', function($form) {
+            $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
             //  创建一个输入框
             $form->text('title', __('商品名称'))->rules('required');
             // 创建一个选择图片框
