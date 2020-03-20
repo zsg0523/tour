@@ -12,7 +12,11 @@
           <div class="card">
           <div class="card-header">
             <h2 class="text-center">
-              {{ $address->id ? '修改': '新增' }} {{ __("shop.address.modifyaddress") }}
+              @if($address->id)
+              	{{ __("shop.address.modifyaddress") }}
+              @else
+                {{ __("shop.address.newaddress") }}
+              @endif
             </h2>
           </div>
           <div class="card-body">

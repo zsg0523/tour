@@ -20,6 +20,7 @@ return [
 		'address' => '收货地址',
 		'order' => '我的订单',
 		'collect' => '我的收藏',
+        'shop' => '购物车',
 		'loginout' => '退出登录',
 		'info' => '个人信息',
 		'editavatar' => '编辑头像',
@@ -140,7 +141,7 @@ return [
         'name' => '姓名',
         'email' => '电子邮件',
         'message' => '信息',
-        'submission' => '请完善提交内',
+        'submission' => '请完善提交内容',
 
         'about' => '关于我们',
         'aboutWenno' => '关于WENNO®',

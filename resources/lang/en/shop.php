@@ -20,6 +20,7 @@ return [
 		'address' => 'Shipping address',
 		'order' => 'My Order',
 		'collect' => 'My collection',
+        'shop' => 'Shopping cart',
 		'loginout' => 'Sign out',
 		'info' => 'Personal information',
 		'editavatar' => 'Edit avatar',
@@ -161,10 +162,10 @@ return [
         'copyright' => '© 2016-2020 Wenno® Copyright',
     ],
     'page' => [
-        'error' => '错误',
-        'gohome' => '返回首页',
-        'success' => '操作成功',
-        'login' => '请先登录',
-        'joinUs' => '加入我们',
+        'error' => 'Error',
+        'gohome' => 'Back to Home',
+        'success' => 'Successful operation',
+        'login' => 'please login',
+        'joinUs' => 'Join us',
     ]
 ];
