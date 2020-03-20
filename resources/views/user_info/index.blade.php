@@ -12,7 +12,7 @@
             <div class="col-md-12">
 		      	<div class="card panel-default">
 			        <div class="card-header">
-			          	个人信息
+			          	{{ __("shop.info.info") }}
 			        </div>
 			        <div class="card-body">
 			         	<div class="photo_info disflex">
@@ -25,12 +25,12 @@
 						            @else
 		                            	<img src="{{asset('images/writer_img.png')}}" class="avatar" />
 						            @endif
-	                            	<p>编辑头像</p>
+	                            	<p>{{ __("shop.info.editavatar") }}</p>
 								</div>
 							</form>
 	                        <div class="user-info">
-	                            <p><span>会员名</span>{{ Auth::user()->name }}</p>
-	                            <p><span>登录邮箱:</span><span class="info">{{ Auth::user()->email }}</span><a class="dpn" href="">更换邮箱</a></p>
+	                            <p><span>{{ __("shop.info.name") }}</span>{{ Auth::user()->name }}</p>
+	                            <p><span>{{ __("shop.info.email") }}:</span><span class="info">{{ Auth::user()->email }}</span><a class="dpn" href="">更换邮箱</a></p>
 	                            @if(Auth::user()->phone)
 	                            	<p class="dpn"><span>绑定手机:</span><span class="info">{{ Auth::user()->phone }}</span><a class="dpn" href="">改绑手机号</a></p>
 					            @else

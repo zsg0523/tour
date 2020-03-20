@@ -17,29 +17,29 @@ html {
 
 /* universal */
 body {
-    font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial, sans-serif;
-    font-size: 14px;
-    color: $wenno-font;
-    background-color: $body-bg;  /* $wenno-bg1 */
-    /* Margin bottom by footer height */
-    margin-bottom: 370px;
-    ul,li,ol{  list-style:none; }
-    a{outline: none;}
-    a:link,a:visited,a:hover{text-decoration:none; outline:none;}
-    .fl{  float: left;}
-    .fr{float: right;}
-    .disflex{display: -webkit-flex;display: flex;}
-    .dpn{display: none;}
-    .dpb{display: block;}
-    .user_main{width: 100%;}
+	font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial, sans-serif;
+	font-size: 14px;
+	color: $wenno-font;
+	background-color: $body-bg;  /* $wenno-bg1 */
+	/* Margin bottom by footer height */
+	margin-bottom: 370px;
+	ul,li,ol{  list-style:none; }
+	a{outline: none;}
+	a:link,a:visited,a:hover{text-decoration:none; outline:none;}
+	.fl{  float: left;}
+	.fr{float: right;}
+	.disflex{display: -webkit-flex;display: flex;}
+	.dpn{display: none;}
+	.dpb{display: block;}
+	.user_main{width: 100%;}
 	.table thead th{border-bottom: none;}
-    .icon-top{position: fixed;bottom: 50px;right: 50px;display: none;  width: 40px;height: 40px;background: transparent url('./images/top.png') 100% 100% no-repeat;background-size: 40px 40px;}
-    .nodata{line-height:50px;
-    	.cartBtn{width:100%;text-align:center;
-    		p{line-height:40px;margin-bottom:0;}
-    		p.tip{font-weight:bold;}
-    	}
-    }
+	.icon-top{position: fixed;bottom: 50px;right: 50px;display: none;  width: 40px;height: 40px;background: transparent url('./images/top.png') 100% 100% no-repeat;background-size: 40px 40px;}
+	.nodata{line-height:50px;
+		.cartBtn{width:100%;text-align:center;
+			p{line-height:40px;margin-bottom:0;}
+			p.tip{font-weight:bold;}
+		}
+	}
 }
 
 /* header */
@@ -54,7 +54,10 @@ body {
     .nav-box{display:none;}
     .navbar-brand{img{width: 65.5px;height: 44.5px;}}
     .navbar-nav{
-      	select{border-radius: .3rem;color: #7b5c55;height:35px;line-height:35px;font-size: .67rem;text-align: left;background: #fff;background-size: 8px 5px;}
+    	.nav-item{line-height: 35px;}
+      	select{border-radius: .3rem;color: #7b5c55;height:35px;border:none;line-height:35px;font-size: 0.95rem;text-align: left;background: transparent;background-size: 8px 5px;
+      		&:focus { outline: none; }
+      	}
     }
 }
 /*登录注册*/
@@ -500,6 +503,9 @@ body {
 		.form-group.mb-0{margin-top: 20px !important;
 			.loginBtn{display:block;float:right;}
 		}
+	}
+	.password-reset-page{
+		.form-group.mb-0{margin-top: 20px !important;}
 	}
 	/*个人中心*/
 	.account_info{

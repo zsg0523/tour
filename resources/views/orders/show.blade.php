@@ -36,9 +36,9 @@
 			                        <span class="sku-title">{{ $item->shopProductSku->title }}</span>
 			                      </div>
 			                    </td>
-			                    <td class="sku-price text-center vertical-middle">￥{{ $item->price }}</td>
+			                    <td class="sku-price text-center vertical-middle">HKB{{ $item->price }}</td>
 			                    <td class="sku-amount text-center vertical-middle">{{ $item->amount }}</td>
-			                    <td class="item-amount text-right vertical-middle">￥{{ number_format($item->price * $item->amount, 2, '.', '') }}</td>
+			                    <td class="item-amount text-right vertical-middle">HKB{{ number_format($item->price * $item->amount, 2, '.', '') }}</td>
 			                </tr>
 			                @endforeach
 		                	<tr><td colspan="4"></td></tr>
@@ -52,7 +52,7 @@
 					      	<div class="order-summary text-right">
 						        <div class="total-amount">
 									<span>{{ __('shop.order.totalprice') }}：</span>
-									<div class="value">￥{{ $order->total_amount }}</div>
+									<div class="value">HKB{{ $order->total_amount }}</div>
 						        </div>
 					        	<div>
 					          		<span>{{ __('shop.order.orderstatus') }}：</span>
@@ -107,7 +107,7 @@
 					        </div>
 					        <div class="total-amount">
 								<span>{{ __('shop.order.orderamount') }}：</span>
-								<div class="value">￥{{ $order->total_amount }}</div>
+								<div class="value">HKB{{ $order->total_amount }}</div>
 					        </div>
 				      	</div>
 				      	<div class="order-address">
@@ -131,7 +131,7 @@
 				                      	</div>
 				                    </div>
 				                    <div class="product-price">
-					                    <span class="sku-price text-right">￥{{ $item->price }}</span>
+					                    <span class="sku-price text-right">HKB{{ $item->price }}</span>
 					                    <span class="sku-amount text-right">x {{ $item->amount }}</span>
 				                    </div>
 			                  	</div>
@@ -143,7 +143,7 @@
 					    </div>
 					    <div class="order-amount">
 				        	<span class="line-label dpn">共1件商品</span>
-				        	<span class="line-value">{{ __('shop.order.actualpay') }}:￥{{ $order->total_amount }}</span>
+				        	<span class="line-value">{{ __('shop.order.actualpay') }}:HKB{{ $order->total_amount }}</span>
 					    </div>
 					    <div class="order-time">
 				        	<span class="line-label">{{ __('shop.order.time') }}：</span>

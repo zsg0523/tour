@@ -16,13 +16,13 @@
 		        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('shop.Login.login') }}</a></li>
 		        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('shop.Login.register') }}</a></li>
 	        @else
-	        	<li class="nav-item"><a class="nav-link" href="{{ url('/user_info') }}">个人中心</a></li>
+	        	<li class="nav-item"><a class="nav-link" href="{{ url('/user_info') }}">{{ __('shop.info.personal') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('cart.index') }}">购物车</a></li>
-		        <li class="nav-item"><a class="nav-link" href="{{ route('user_addresses.index') }}">收货地址</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ route('orders.index') }}">我的订单</a></li>
-		        <li class="nav-item"><a class="nav-link" href="{{ route('products.favorites') }}">我的收藏</a></li>
+		        <li class="nav-item"><a class="nav-link" href="{{ route('user_addresses.index') }}">{{ __('shop.info.address') }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('orders.index') }}">{{ __('shop.info.order') }}</a></li>
+		        <li class="nav-item"><a class="nav-link" href="{{ route('products.favorites') }}">{{ __('shop.info.collect') }}</a></li>
 		        <li class="nav-item">
-		        	<a class="nav-link" id="logout" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出登录</a>
+		        	<a class="nav-link" id="logout" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('shop.info.loginout') }}</a>
 		            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 		              {{ csrf_field() }}
 		            </form>
@@ -61,12 +61,12 @@
             {{ Auth::user()->name }}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a href="{{ url('/user_info') }}" class="dropdown-item">个人中心</a>
-            <a href="{{ route('user_addresses.index') }}" class="dropdown-item">收货地址</a>
-            <a href="{{ route('orders.index') }}" class="dropdown-item">我的订单</a>
-            <a href="{{ route('products.favorites') }}" class="dropdown-item">我的收藏</a>
+            <a href="{{ url('/user_info') }}" class="dropdown-item">{{ __('shop.info.personal') }}</a>
+            <a href="{{ route('user_addresses.index') }}" class="dropdown-item">{{ __('shop.info.address') }}</a>
+            <a href="{{ route('orders.index') }}" class="dropdown-item">{{ __('shop.info.order') }}</a>
+            <a href="{{ route('products.favorites') }}" class="dropdown-item">{{ __('shop.info.collect') }}</a>
             <a class="dropdown-item" id="logout" href="#"
-               onclick="event.preventDefault();document.getElementById('logout-form').submit();">退出登录</a>
+               onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('shop.info.loginout') }}</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               {{ csrf_field() }}
             </form>
