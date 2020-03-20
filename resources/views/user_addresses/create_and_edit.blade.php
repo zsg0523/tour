@@ -12,7 +12,7 @@
           <div class="card">
           <div class="card-header">
             <h2 class="text-center">
-              {{ $address->id ? '{{ __("shop.address.modifyaddress") }}': '{{ __("shop.address.newaddress") }}' }}
+              {{ $address->id ? '修改': '新增' }} {{ __("shop.address.modifyaddress") }}
             </h2>
           </div>
           <div class="card-body">
