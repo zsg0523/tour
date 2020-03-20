@@ -11,19 +11,19 @@
 	        <div class="col-md-12">
 	          	<div class="card panel-default">
 		            <div class="card-header">
-		              收货地址列表
-		              <a href="{{ route('user_addresses.create') }}" class="float-right">新增收货地址</a>
+		              {{ __("shop.address.addresslist") }}
+		              <a href="{{ route('user_addresses.create') }}" class="float-right">{{ __("shop.address.newaddress") }}</a>
 		            </div>
 		            <div class="card-body webList">
 		            	@if ($addresses->count())
                         <table class="table table-bordered table-striped">
 		                	<thead>
 				                <tr>
-									<th>收货人</th>
-									<th>地址</th>
-									<th>邮编</th>
-									<th>电话</th>
-									<th>操作</th>
+									<th>{{ __("shop.address.receiver") }}</th>
+									<th>{{ __("shop.address.address") }}</th>
+									<th>{{ __("shop.address.postcode") }}</th>
+									<th>{{ __("shop.address.phone") }}</th>
+									<th>{{ __("shop.address.operating") }}</th>
 				                </tr>
 		                	</thead>
 	                		<tbody>
@@ -34,9 +34,9 @@
 				                    <td>{{ $address->zip }}</td>
 				                    <td>{{ $address->contact_phone }}</td>
 				                    <td>
-				                      <a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="btn btn-primary" style="margin-bottom: 10px;">编辑</a>
+				                      <a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="btn btn-primary" style="margin-bottom: 10px;">{{ __("shop.address.edit") }}</a>
 				                      <!-- 把之前删除按钮的表单替换成这个按钮，data-id 属性保存了这个地址的 id，在 js 里会用到 -->
-				                      <button class="btn btn-danger btn-del-address" type="button" data-id="{{ $address->id }}" style="margin-bottom: 10px;">删除</button>
+				                      <button class="btn btn-danger btn-del-address" type="button" data-id="{{ $address->id }}" style="margin-bottom: 10px;">{{ __("shop.address.delete") }}</button>
 				                    </td>
 			                  	</tr>
 	                		@endforeach
@@ -58,9 +58,9 @@
 		                  		</p>
 			                    <p class="full_address">{{ $address->full_address }}</p>
 			                    <p class="address_btn text-right">
-			                      	<a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="" style="margin-bottom: 10px;">编辑</a>
+			                      	<a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="" style="margin-bottom: 10px;">{{ __("shop.address.edit") }}</a>
 			                      <!-- 把之前删除按钮的表单替换成这个按钮，data-id 属性保存了这个地址的 id，在 js 里会用到 -->
-			                      	<a class="btn-del-address" data-id="{{ $address->id }}" style="margin-bottom: 10px;">删除</a>
+			                      	<a class="btn-del-address" data-id="{{ $address->id }}" style="margin-bottom: 10px;">{{ __("shop.address.delete") }}</a>
 			                    </p>
 		                  	</div>
 	            		@endforeach
@@ -85,9 +85,9 @@
         var id = $(this).data('id');
         // 调用 sweetalert
         swal({
-          title: "确认要删除该地址？",
+          title: '{{ __("shop.address.deleteaddress") }}',
           icon: "warning",
-          buttons: ['取消', '确定'],
+          buttons: ['{{ __("shop.address.cancel") }}', '{{ __("shop.address.sure") }}'],
           dangerMode: true,
         })
           .then(function(willDelete) { // 用户点击按钮后会触发这个回调函数

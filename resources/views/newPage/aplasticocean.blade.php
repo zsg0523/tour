@@ -3,7 +3,7 @@
 	<head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
 		<meta charset="UTF-8">
-		<title></title>
+		<title>Wenno X A Plastic Ocean</title>
 	</head>
     <link rel="stylesheet" href="./animal/css/swiper.min.css" />
     <style type="text/css">
@@ -45,7 +45,7 @@
     	.animallist11{position: absolute;top: 66%;left: 59%;width: 13%;}
     	.animallist12{position: absolute;top: 80%;left: 32%;width: 14%;}
     	.animallist13{position: absolute;bottom: 0%;left: 10%;width: 18%;}
-
+        .tip{width: 90%;margin: 20px auto 0;position: relative;}
     	.imgBg{ width: 100%;}
     	.images{width: 100%;height: 100%;}
     	.banners{width: 90%;margin: 0 auto;padding-bottom: 20px;}
@@ -91,6 +91,7 @@
                 <p>{{ __('aplasticocean.info3') }}</p>
     			<p>{{ __('aplasticocean.info4') }}</p>
     		</div>
+            <div class="tip"><p>{{ __('aplasticocean.tip') }}</p></div>
     		<div class="animal">
     			<div class="imgBg"><img class="images" src="./images/bg.png"></div>
     			<a href="https://www.wennoanimal.com/animals/database?product_name=Great_White_Shark"><div class="list animallist1"><img src="./images/animal1.png"></div>

@@ -14,7 +14,7 @@
         <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-header">我的收藏</div>
+          <div class="card-header">{{ __('shop.info.collect') }}</div>
           <div class="card-body">
             <div class="row products-list">
                 @if ($products->count())
@@ -27,21 +27,21 @@
 	                            <img src="{{ $product->image_url }}" alt="">
 	                          </a>
 	                        </div>
-	                        <div class="price"><b>￥</b>{{ $product->price }}</div>
+	                        <div class="price"><b>HKB</b>{{ $product->price }}</div>
 	                        <div class="title">
 	                          <a href="{{ route('products.show', ['product' => $product->id]) }}">{{ $product->title }}</a>
 	                        </div>
 	                      </div>
 	                      <div class="bottom">
-	                        <div class="sold_count">销量 <span>{{ $product->sold_count }}笔</span></div>
-	                        <div class="review_count">评价 <span>{{ $product->review_count }}</span></div>
+	                        <div class="sold_count">{{ __('shop.product.sales') }} <span>{{ $product->sold_count }}</span></div>
+	                        <div class="review_count">{{ __('shop.product.evaluation') }} <span>{{ $product->review_count }}</span></div>
 	                      </div>
 	                    </div>
 	                  </div>
 	                @endforeach
                 @else
                 	<div class="nodata">
-                		<div class="cartBtn">您还没有收藏商品，<a href="{{ url('/shop') }}">去逛逛</a></div>
+                		<div class="cartBtn">{{ __('shop.cart.nocollect') }}<a href="{{ url('/shop') }}">{{ __('shop.cart.goshopp') }}</a></div>
                 	</div>
 	            @endif
             </div>
