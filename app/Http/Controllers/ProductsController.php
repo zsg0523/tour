@@ -11,8 +11,11 @@ class ProductsController extends Controller
 {
     public function index(Request $request)
     {
+        // 获取当前语言
+        $lang = session('locale') ?? 'en';
+
     	// 创建一个查询构造器
-    	$builder = ShopProduct::query()->where('on_sale', true);
+    	$builder = ShopProduct::query()->where('on_sale', true)->where('lang', $lang);
 
     	// 判断是否提交search参数
     	// search 参数用来模糊搜索商品

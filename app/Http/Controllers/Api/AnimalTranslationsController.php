@@ -19,8 +19,6 @@ class AnimalTranslationsController extends Controller
         // 獲取主題翻譯內容
         $themes = $this->getThemes($request);
 
-        // dd($themes->toArray());
-
         $theme = $request->theme ?? trim($themes[0]['title_page']);
 
         $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme)->get();
@@ -65,9 +63,9 @@ class AnimalTranslationsController extends Controller
         
         $lang = isset($request->lang) ? (session(['locale'=>$request->lang])?? $request->lang) : (session('locale') ?? 'en');
 
-        $theme_ids = Theme::all()->pluck('id');
-
-        $themes = ThemesTranslation::where('lang', $lang)->whereIn('theme_id', $theme_ids)->select('lang', 'title_page')->get();
+        $theme_ids = Theme::where('is_show', 1)->pluck('id');
+        
+        $themes = ThemesTranslation::where('lang', $lang)->whereIn('theme_id', $theme_ids)->select('theme_id', 'lang', 'title_page')->get();
 
         return $themes;
     }

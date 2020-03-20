@@ -3,8 +3,8 @@
 /**
  * @Author: Eden
  * @Date:   2019-10-10 15:55:19
- * @Last Modified by:   Eden
- * @Last Modified time: 2019-10-14 16:41:12
+ * @Last Modified by:   eden
+ * @Last Modified time: 2020-03-20 15:46:00
  */
 namespace App\Admin\Extensions;
 
@@ -32,6 +32,7 @@ class WangEditor extends Field
 var E = window.wangEditor
 var editor = new E('#{$this->id}');
 editor.customConfig.zIndex = 0
+editor.customConfig.uploadImgMaxSize = 50 * 1024 * 1024,
 editor.customConfig.uploadImgServer = '/api/admin/up_image';
 editor.customConfig.uploadFileName = "upload_file";
 editor.customConfig.uploadImgParams = {
