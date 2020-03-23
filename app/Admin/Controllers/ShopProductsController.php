@@ -30,7 +30,7 @@ class ShopProductsController extends AdminController
         $grid->column('id', __('ID'))->sortable();
         $grid->column('lang', __('Lang'))->filter(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW']);
         $grid->column('title', __('Title'));
-        $grid->column('description', __('Description'));
+        // $grid->column('description', __('Description'));
         $grid->column('image', __('Image'));
         $grid->column('on_sale', __('On sale'))->display(function ($value){
             return $value ? 'Yes' : 'No';
