@@ -11,6 +11,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Encore\Admin\Layout\Content;
 use Illuminate\Http\Request;
+use App\Admin\Extensions\OrdersExporter;
 
 
 class OrdersController extends AdminController
@@ -101,6 +102,9 @@ class OrdersController extends AdminController
             });
         });
         $grid->disableExport(false);
+
+        $grid->exporter(new OrdersExporter());
+        
         return $grid;
     }
 

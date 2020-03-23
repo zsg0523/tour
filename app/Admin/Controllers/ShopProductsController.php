@@ -41,7 +41,7 @@ class ShopProductsController extends AdminController
         $grid->column('review_count', __('Review count'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
-
+        $grid->fixColumns(3, -3);
         $grid->actions(function ($actions) {
             $actions->add(new Replicate);
         });
