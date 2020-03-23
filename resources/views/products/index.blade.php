@@ -39,19 +39,19 @@
       <div class="form-row">
         <div class="col-md-9">
           <div class="form-row">
-            <div class="col-auto"><input type="text" class="form-control form-control-sm" name="search" placeholder="搜索"></div>
-            <div class="col-auto"><button class="btn btn-primary btn-sm">搜索</button></div>
+            <div class="col-auto"><input type="text" class="form-control form-control-sm" name="search" placeholder="{{ __('shop.product.search') }}"></div>
+            <div class="col-auto"><button class="btn btn-primary btn-sm">{{ __('shop.product.search') }}</button></div>
           </div>
         </div>
         <div class="col-md-3">
           <select name="order" class="form-control form-control-sm float-right">
-            <option value="">排序方式</option>
-            <option value="price_asc">价格从低到高</option>
-            <option value="price_desc">价格从高到低</option>
-            <option value="sold_count_desc">销量从高到低</option>
-            <option value="sold_count_asc">销量从低到高</option>
-            <option value="rating_desc">评价从高到低</option>
-            <option value="rating_asc">评价从低到高</option>
+            <option value="">{{ __('shop.product.sortby') }}</option>
+            <option value="price_asc">{{ __('shop.product.pricelh') }}</option>
+            <option value="price_desc">{{ __('shop.product.pricehl') }}</option>
+            <option value="sold_count_desc">{{ __('shop.product.salehl') }}</option>
+            <option value="sold_count_asc">{{ __('shop.product.salelh') }}</option>
+            <option value="rating_desc">{{ __('shop.product.evaluationhl') }}</option>
+            <option value="rating_asc">{{ __('shop.product.evaluationlh') }}</option>
           </select>
         </div>
 
@@ -77,15 +77,15 @@
               </div>
             </div>
             <div class="bottom">
-              <div class="sold_count">销量 <span>{{ $product->sold_count }}笔</span></div>
-              <div class="review_count">评价 <span>{{ $product->review_count }}</span></div>
+              <div class="sold_count">{{ __('shop.product.sales') }} <span>{{ $product->sold_count }}</span></div>
+              <div class="review_count">{{ __('shop.product.evaluation') }} <span>{{ $product->review_count }}</span></div>
             </div>
           </div>
         </div>
       @endforeach
     @else
     	<div class="nodata">
-    		<div style="background-color: #fff;margin-bottom:20px;">没有找到相关的宝贝</div>
+    		<div style="background-color: #fff;margin-bottom:20px;">{{ __('shop.page.nodata') }}</div>
     	</div>
     @endif
     </div>

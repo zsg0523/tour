@@ -12,7 +12,11 @@
           <div class="card">
           <div class="card-header">
             <h2 class="text-center">
-              {{ $address->id ? '修改': '新增' }}收货地址
+              @if($address->id)
+              	{{ __("shop.address.modifyaddress") }}
+              @else
+                {{ __("shop.address.newaddress") }}
+              @endif
             </h2>
           </div>
           <div class="card-body">
@@ -40,7 +44,7 @@
               <!-- 注意这里多了 @change -->
                 <select-district :init-value="{{ json_encode([$address->province, $address->city, $address->district]) }}" @change="onDistrictChanged" inline-template>
                   <div class="form-group row">
-                    <label class="col-form-label col-sm-2 text-md-right">省市区</label>
+                    <label class="col-form-label col-sm-2 text-md-right">{{ __("shop.address.city") }}</label>
                     <div class="col-sm-3">
                       <select class="form-control" v-model="provinceId">
                         <option value="">选择省</option>
@@ -68,32 +72,32 @@
                 <input type="hidden" name="city" v-model="city">
                 <input type="hidden" name="district" v-model="district">
                 <div class="form-group row">
-                  <label class="col-form-label text-md-right col-sm-2">详细地址</label>
+                  <label class="col-form-label text-md-right col-sm-2">{{ __("shop.address.addressinfo") }}</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" name="address" value="{{ old('address', $address->address) }}">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-form-label text-md-right col-sm-2">邮编</label>
+                  <label class="col-form-label text-md-right col-sm-2">{{ __("shop.address.postcode") }}</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" name="zip" value="{{ old('zip', $address->zip) }}" oninput="value=value.replace(/[^\d]/g,'')"/>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-form-label text-md-right col-sm-2">姓名</label>
+                  <label class="col-form-label text-md-right col-sm-2">{{ __("shop.address.name") }}</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" name="contact_name" value="{{ old('contact_name', $address->contact_name) }}">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-form-label text-md-right col-sm-2">电话</label>
+                  <label class="col-form-label text-md-right col-sm-2">{{ __("shop.address.phone") }}</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" name="contact_phone" value="{{ old('contact_phone', $address->contact_phone) }}">
                   </div>
                 </div>
                 <div class="form-group row text-center">
                   <div class="col-12">
-                    <button type="submit" class="btn btn-primary">提交</button>
+                    <button type="submit" class="btn btn-primary">{{ __("shop.address.submit") }}</button>
                   </div>
                 </div>
               </form>

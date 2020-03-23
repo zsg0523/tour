@@ -12,14 +12,14 @@
       </div>
       <div class="col-7">
         <div class="title">{{ $product->title }}</div>
-        <div class="price"><label>价格</label><em>HKD </em><span>{{ $product->price }}</span></div>
+        <div class="price"><label>{{ __('shop.product.price') }}</label><em>HKD </em><span>{{ $product->price }}</span></div>
         <div class="sales_and_reviews">
-          <div class="sold_count">累计销量 <span class="count">{{ $product->sold_count }}</span></div>
-          <div class="review_count">累计评价 <span class="count">{{ $product->review_count }}</span></div>
-          <div class="rating" title="评分 {{ $product->rating }}">评分 <span class="count">{{ str_repeat('★', floor($product->rating)) }}{{ str_repeat('☆', 5 - floor($product->rating)) }}</span></div>
+          <div class="sold_count">{{ __('shop.product.cumulativesale') }} <span class="count">{{ $product->sold_count }}</span></div>
+          <div class="review_count">{{ __('shop.product.cumulativeevaluation') }} <span class="count">{{ $product->review_count }}</span></div>
+          <div class="rating" title="评分 {{ $product->rating }}">{{ __('shop.product.score') }} <span class="count">{{ str_repeat('★', floor($product->rating)) }}{{ str_repeat('☆', 5 - floor($product->rating)) }}</span></div>
         </div>
         <div class="skus">
-          <label>选择</label>
+          <label>{{ __('shop.product.select') }}</label>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             @foreach($product->skus as $sku)
               <label 
@@ -32,24 +32,24 @@
             @endforeach
           </div>
         </div>
-        <div class="cart_amount"><label>数量</label><input type="text" class="form-control form-control-sm" value="1"><span>件</span><span class="stock"></span></div>
+        <div class="cart_amount"><label>{{ __('shop.product.select') }}</label><input type="text" class="form-control form-control-sm" value="1"><span>{{ __('shop.product.pieces') }}</span><span class="stock"></span></div>
         <div class="buttons">
           @if($favored)
-            <button class="btn btn-danger btn-disfavor">取消收藏</button>
+            <button class="btn btn-danger btn-disfavor">{{ __('shop.product.cancelcollect') }}</button>
           @else
-            <button class="btn btn-success btn-favor">❤ 收藏</button>
+            <button class="btn btn-success btn-favor">{{ __('shop.product.favorite') }}</button>
           @endif
-          <button class="btn btn-primary btn-add-to-cart">加入购物车</button>
+          <button class="btn btn-primary btn-add-to-cart">{{ __('shop.product.addcart') }}</button>
         </div>
       </div>
     </div>
     <div class="product-detail">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" href="#product-detail-tab" aria-controls="product-detail-tab" role="tab" data-toggle="tab" aria-selected="true">商品详情</a>
+          <a class="nav-link active" href="#product-detail-tab" aria-controls="product-detail-tab" role="tab" data-toggle="tab" aria-selected="true">{{ __('shop.product.productdetail') }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#product-reviews-tab" aria-controls="product-reviews-tab" role="tab" data-toggle="tab" aria-selected="false">用户评价</a>
+          <a class="nav-link" href="#product-reviews-tab" aria-controls="product-reviews-tab" role="tab" data-toggle="tab" aria-selected="false">{{ __('shop.product.userevaluation') }}</a>
         </li>
       </ul>
       <div class="tab-content">
@@ -101,17 +101,17 @@
     $('.btn-favor').click(function () {
       axios.post('{{ route('products.favor', ['product' => $product->id]) }}')
         .then(function () {
-          swal('操作成功', '', 'success')
+          swal("{{ __('shop.product.successOperat') }}", '', 'success')
           .then(function () {  // 这里加了一个 then() 方法
               location.reload();
             });
         }, function(error) {
           if (error.response && error.response.status === 401) {
-            swal('请先登录', '', 'error');
+            swal("{{ __('shop.page.login') }}", '', 'error');
           }  else if (error.response && error.response.data.msg) {
             swal(error.response.data.msg, '', 'error');
           }  else {
-            swal('系统错误', '', 'error');
+            swal("{{ __('shop.cart.systemerror') }}", '', 'error');
           }
         });
     });
@@ -119,7 +119,7 @@
     $('.btn-disfavor').click(function () {
       axios.delete('{{ route('products.disfavor', ['product' => $product->id]) }}')
         .then(function () {
-          swal('操作成功', '', 'success')
+          swal("{{ __('shop.product.successOperat') }}", '', 'success')
             .then(function () {
               location.reload();
             });
@@ -143,7 +143,7 @@
           if (error.response.status === 401) {
 
             // http 状态码为 401 代表用户未登陆
-            swal('请先登录', '', 'error');
+            swal("{{ __('shop.page.login') }}", '', 'error');
 
           } else if (error.response.status === 422) {
 
@@ -159,7 +159,7 @@
           } else {
 
             // 其他情况应该是系统挂了
-            swal('系统错误', '', 'error');
+            swal("{{ __('shop.cart.systemerror') }}", '', 'error');
           }
         })
     });
