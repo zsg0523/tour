@@ -166,7 +166,7 @@
                     var lang = GetQueryString("lang");
                     var language = sessionStorage.getItem('language');
                     console.log('language: '+language+'  lang: '+lang);
-                    if(lang!=''){
+                    if(lang!=null){
                         console.log('lang not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
                                     $.ajax({
@@ -187,13 +187,13 @@
                         });
                     }
 
-                    if(lang==''&&language!=''){
+                    if(lang==null&&language!=null){
                         console.log('lang is null,language not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
 
                     }
 
-                    if(lang==''&&language==''){
+                    if(lang==null&&language==null){
                         console.log('lang is null,language is null');
                          var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
                     }
@@ -208,6 +208,7 @@
                     // }
                     // var lang = "{{ Session::get('lang') }}";
                     // alert(lang);
+                    console.log(url);
                     $.ajax({
                         url:url,
                         type:'GET',
