@@ -175,6 +175,7 @@
                             success:function(data) {
                                 console.log(JSON.stringify(data));
                                 if(data){
+                                    sessionStorage.setItem('language',lang);
                                     // window.location.href = '/animals';
                                     // window.location.reload();
                                 }
