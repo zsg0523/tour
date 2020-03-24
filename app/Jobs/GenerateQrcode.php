@@ -45,13 +45,13 @@ class GenerateQrcode implements ShouldQueue
         $url_qrcode_name = $this->animal_translation->animal->product_name . '_' . $this->animal_translation->lang . '.png';
 
         // url 二维码
-        $result = app(GenerateQrcodeHandler::class)->generateQrcode($url, $url_qrcode_name, $this->logo_path); 
+        $result = app(GenerateQrcodeHandler::class)->generateQrcode($url, $url_qrcode_name, 'qrcodes', $this->logo_path); 
 
         // product 二维码名称
         $product_qrcode_name = $this->animal_translation->animal->product_name . '.png';
 
         // product 二维码
-        $result = app(GenerateQrcodeHandler::class)->generateQrcode($this->animal_translation->animal->product_name, $product_qrcode_name, $this->logo_path);
+        $result = app(GenerateQrcodeHandler::class)->generateQrcode($this->animal_translation->animal->product_name, $product_qrcode_name, 'qrcodes', $this->logo_path);
 
         // url二维码链接
         $url_qrcode = url('uploads/qrcodes/'. $url_qrcode_name);
