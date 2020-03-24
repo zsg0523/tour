@@ -34,7 +34,9 @@
                         </div>  -->                 
                     </div>
                     <div class="title" v-cloak>
-                        <p class="animalName">@{{database.title}}</p>
+                        <p class="animalName">@{{database.title}} 
+                            <a style="position: absolute;right: 10px;color: rgba(98,76,63,1);text-decoration: none;" href="{{url('animals/chooseLanguage')}}">切换语言</a>
+                        </p>
                     </div>
     <!--                <div class="Question">
                         <div class="doYouKnow">
@@ -163,7 +165,9 @@
                     }
                     var lang = GetQueryString("lang");
                     var language = sessionStorage.getItem('language');
+                    console.log('language: '+language+'  lang: '+lang);
                     if(lang!=null){
+                        console.log('lang not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
                                     $.ajax({
                             url:'/api/setLocale?lang='+lang,
@@ -172,6 +176,7 @@
                                 console.log(JSON.stringify(data));
                                 if(data){
                                     // window.location.href = '/animals';
+                                    window.location.reload();
                                 }
                             },
                             error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -183,11 +188,13 @@
                     }
 
                     if(lang==null&&language!=null){
+                        console.log('lang is null,language not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
 
                     }
 
                     if(lang==null&&language==null){
+                        console.log('lang is null,language is null');
                          var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
                     }
                     // if(lang==null||lang==undefined){
