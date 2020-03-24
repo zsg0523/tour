@@ -176,7 +176,7 @@
                                 console.log(JSON.stringify(data));
                                 if(data){
                                     sessionStorage.setItem('language',lang);
-                                    window.location.href = '/animals/database?product_name=TIGER';
+                                    window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&root=0';
                                     // window.location.reload();
                                 }
                             },
