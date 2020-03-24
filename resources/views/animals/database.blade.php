@@ -169,14 +169,14 @@
                     if(lang!=null){
                         console.log('lang not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
-                                    $.ajax({
+                        $.ajax({
                             url:'/api/setLocale?lang='+lang,
                             type:'GET',
                             success:function(data) {
                                 console.log(JSON.stringify(data));
                                 if(data){
                                     sessionStorage.setItem('language',lang);
-                                    // window.location.href = '/animals';
+                                    window.location.href = '/animals/database?product_name=TIGER';
                                     // window.location.reload();
                                 }
                             },
