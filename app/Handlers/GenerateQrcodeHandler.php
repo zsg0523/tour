@@ -3,8 +3,8 @@
 /**
  * @Author: Eden
  * @Date:   2019-11-08 11:45:56
- * @Last Modified by:   Eden
- * @Last Modified time: 2019-12-16 11:29:31
+ * @Last Modified by:   eden
+ * @Last Modified time: 2020-03-24 17:12:32
  */
 namespace App\Handlers;
 
@@ -23,7 +23,7 @@ class GenerateQrcodeHandler
 
 		// Set advanced options
 		$qrCode->setWriterByName('png');
-		$qrCode->setMargin(10);
+		$qrCode->setMargin(5);
 		$qrCode->setEncoding('UTF-8');
 		$qrCode->setErrorCorrectionLevel(ErrorCorrectionLevel::HIGH());
 		$qrCode->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0]);

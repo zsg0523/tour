@@ -30,8 +30,8 @@ class ShopProductsController extends AdminController
         $grid->column('id', __('ID'))->sortable();
         $grid->column('lang', __('Lang'))->filter(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW']);
         $grid->column('title', __('Title'));
-        $grid->column('description', __('Description'));
-        $grid->column('image', __('Image'));
+        // $grid->column('description', __('Description'));
+        $grid->column('image', __('Image'))->image(env('APP_URL').'/uploads', 30, 30);
         $grid->column('on_sale', __('On sale'))->display(function ($value){
             return $value ? 'Yes' : 'No';
         });
@@ -41,7 +41,7 @@ class ShopProductsController extends AdminController
         $grid->column('review_count', __('Review count'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
-
+        $grid->fixColumns(3, -3);
         $grid->actions(function ($actions) {
             $actions->add(new Replicate);
         });

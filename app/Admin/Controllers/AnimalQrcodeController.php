@@ -26,7 +26,7 @@ class AnimalQrcodeController extends AdminController
     {
         $grid = new Grid(new AnimalQrcode);
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('Id'))->filter();
         $grid->column('product_name', __('Product name'))->filter()->label()->copyable();
         $grid->column('lang', __('Lang'))->filter()->label('info');
         $grid->column('url', __('Url'))->copyable();
