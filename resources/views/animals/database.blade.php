@@ -7,9 +7,9 @@
     </head>
     <link rel="stylesheet" href="../animal/css/animalDetails.css">
     <style type="text/css">
-        select.selectLang{position: absolute;right: 10px;border-radius: .3rem;color: rgba(98,76,63,1);height:35px;border:none;line-height:35px;font-size: 0.95rem;text-align: left;background: transparent;background-size: 8px 5px;
-            &:focus { outline: none; }
+        select.selectLang{width:30%;position: absolute;right: 10px;border-radius: .3rem;color: rgba(98,76,63,1);height:30px;border:1px solid rgba(98,76,63,1);line-height:30px;text-align: left;background: transparent;background-size: 8px 5px;
         }
+        select.selectLang:focus { outline: none; }
     </style>
     <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
     <body class="database">
@@ -130,7 +130,56 @@
                 animal:false,
                 locationReload:false,
                 Loading:false,
-                LoadCompleted:false
+                LoadCompleted:false,
+            },
+            created(){
+                var language = sessionStorage.getItem('language');
+                $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
+                // if(language == 'en'){
+                //     this.couponSelected = 'English';
+                // }else if(language == 'de'){
+                //     this.couponSelected = 'Deutsch';
+                // }else if(language == 'fr'){
+                //     this.couponSelected = 'Français';
+                // }else if(language == 'it'){
+                //     this.couponSelected = 'Italiano';
+                // }else if(language == 'tr'){
+                //     this.couponSelected = 'Türkçe';
+                // }else if(language == 'nl'){
+                //     this.couponSelected = 'Nederlands';
+                // }else if(language == 'da'){
+                //     this.couponSelected = 'Dansk';
+                // }else if(language == 'pt'){
+                //     this.couponSelected = 'Português';
+                // }else if(language == 'sv'){
+                //     this.couponSelected = 'Svenska';
+                // }else if(language == 'th'){
+                //     this.couponSelected = 'ภาษาไทย';
+                // }else if(language == 'ko'){
+                //     this.couponSelected = '한국어';
+                // }else if(language == 'no'){
+                //     this.couponSelected = 'Norsk';
+                // }else if(language == 'ms'){
+                //     this.couponSelected = 'Bahasa Melayu';
+                // }else if(language == 'zh-CN'){
+                //     this.couponSelected = '中文简体';
+                // }else if(language == 'zh-TW'){
+                //     this.couponSelected = '中文繁體';
+                // }else if(language == 'ar'){
+                //     this.couponSelected = 'لعَرَبِية';
+                // }else if(language == 'es'){
+                //     this.couponSelected = 'Español';
+                // }else if(language == 'ru'){
+                //     this.couponSelected = 'русский язык';
+                // }else if(language == 'hi'){
+                //     this.couponSelected = 'हिन्दी';
+                // }else if(language == 'fi'){
+                //     this.couponSelected = 'Finnish';
+                // }else if(language == 'jp'){
+                //     this.couponSelected = '日本語';
+                // }else if(language == 'uk'){
+                //     this.couponSelected = 'українська мова';
+                // };
             },
             watch: {
                 database: function() {
