@@ -203,7 +203,7 @@
                         console.log('lang not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
                         $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
-                        this.setLocale();
+                        self.setLocale();
                     }
 
                     if(lang==null&&language!=null){
@@ -263,6 +263,7 @@
                         if(r!=null)return unescape(r[2]); return null;
                     }
                     var language = $('.selectLang').find("option:selected").attr("lang");
+                    console.log(language);
                     $.ajax({
                         url:'/api/setLocale?lang='+language,
                         type:'GET',
