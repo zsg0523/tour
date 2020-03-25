@@ -40,10 +40,29 @@
                     </div>
                     <div class="title" v-cloak>
                         <p class="animalName">@{{database.title}} 
-                            <select class="selectLang" v-model="couponSelected"  v-on:change="setLocale($event)">
-                                <option v-for="item in language" v-bind:value="item.value" v-bind:lang="item.lang">
-                                    {{item.name}}
-                                </option>
+                            <select class="selectLang" @change="setLocale()">
+                                <option lang="en">English</option>
+                                <option lang="de">Deutsch</option>
+                                <option lang="fr">Français</option>
+                                <option lang="it">Italiano</option>
+                                <option lang="tr">Türkçe</option>
+                                <option lang="nl">Nederlands</option>
+                                <option lang="da">Dansk</option>
+                                <option lang="pt">Português</option>
+                                <option lang="sv">Svenska</option>
+                                <option lang="th">ภาษาไทย</option>
+                                <option lang="ko">한국어</option>
+                                <option lang="no">Norsk</option>
+                                <option lang="ms">Bahasa Melayu</option>
+                                <option lang="zh-CN">中文简体</option>
+                                <option lang="zh-TW">中文繁體</option>
+                                <option lang="ar">العَرَبِية'</option>
+                                <option lang="es">Español</option>
+                                <option lang="ru">русский язык</option>
+                                <option lang="hi">हिन्दी</option>
+                                <option lang="fi">Finnish</option>
+                                <option lang="jp">日本語</option>
+                                <option lang="uk">українська мова</option>
                             </select>
                         </p>
                     </div>
@@ -111,32 +130,7 @@
                 animal:false,
                 locationReload:false,
                 Loading:false,
-                LoadCompleted:false,
-                couponSelected: '',
-                language:[
-                    {name:'English',value:0,lang:'en'},
-                    {name:'Deutsch',value:1,lang:'de'},
-                    {name:'Français',value:2,lang:'fr'},
-                    {name:'Italiano',value:3,lang:'it'},
-                    {name:'Türkçe',value:4,lang:'tr'},
-                    {name:'Nederlands',value:5,lang:'nl'},
-                    {name:'Dansk',value:6,lang:'da'},
-                    {name:'Português',value:7,lang:'pt'},
-                    {name:'Svenska',value:8,lang:'sv'},
-                    {name:'ภาษาไทย',value:9,lang:'th'},
-                    {name:'한국어',value:10,lang:'ko'},
-                    {name:'Norsk',value:11,lang:'no'},
-                    {name:'Bahasa Melayu',value:12,lang:'ms'},
-                    {name:'中文简体',value:13,lang:'zh-CN'},
-                    {name:'中文繁體',value:14,lang:'zh-TW'},
-                    {name:'العَرَبِية',value:15,lang:'ar'},
-                    {name:'Español',value:16,lang:'es'},
-                    {name:'русский язык',value:17,lang:'ru'},
-                    {name:'हिन्दी',value:18,lang:'hi'},
-                    {name:'Finnish',value:19,lang:'fi'},
-                    {name:'日本語',value:20,lang:'jp'},
-                    {name:'українська мова',value:21,lang:'uk'},
-                ]
+                LoadCompleted:false
             },
             watch: {
                 database: function() {
@@ -208,7 +202,7 @@
                     if(lang!=null){
                         console.log('lang not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
-                        // $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
+                        $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
                         $.ajax({
                             url:'/api/setLocale?lang='+lang,
                             type:'GET',
@@ -276,82 +270,16 @@
                         }
                     });                     
                 },
-                setLocale (event) {
-                    if(event.target.value == 0){
-                        sessionStorage.setItem('language',"en");
-                        this.$options.methods.choonseLang('en');
-                    }else if(event.target.value == 1){
-                        sessionStorage.setItem('language',"de");
-                        this.$options.methods.choonseLang('de');
-                    }else if(event.target.value == 2){
-                        sessionStorage.setItem('language',"fr");
-                        this.$options.methods.choonseLang('fr');
-                    }else if(event.target.value == 3){
-                        sessionStorage.setItem('language',"it");
-                        this.$options.methods.choonseLang('it');
-                    }else if(event.target.value == 4){
-                        sessionStorage.setItem('language',"tr");
-                        this.$options.methods.choonseLang('tr');
-                    }else if(event.target.value == 5){
-                        sessionStorage.setItem('language',"nl");
-                        this.$options.methods.choonseLang('nl');
-                    }else if(event.target.value == 6){
-                        sessionStorage.setItem('language',"da");
-                        this.$options.methods.choonseLang('da');
-                    }else if(event.target.value == 7){
-                        sessionStorage.setItem('language',"pt");
-                        this.$options.methods.choonseLang('pt');
-                    }else if(event.target.value == 8){
-                        sessionStorage.setItem('language',"sv");
-                        this.$options.methods.choonseLang('sv');
-                    }else if(event.target.value == 9){
-                        sessionStorage.setItem('language',"th");
-                        this.$options.methods.choonseLang('th');
-                    }else if(event.target.value == 10){
-                        sessionStorage.setItem('language',"ko");
-                        this.$options.methods.choonseLang('ko');
-                    }else if(event.target.value == 11){
-                        sessionStorage.setItem('language',"no");
-                        this.$options.methods.choonseLang('no');
-                    }else if(event.target.value == 12){
-                        sessionStorage.setItem('language',"ms");
-                        this.$options.methods.choonseLang('ms');
-                    }else if(event.target.value == 13){
-                        sessionStorage.setItem('language',"zh-CN");
-                        this.$options.methods.choonseLang('zh-CN');
-                    }else if(event.target.value == 14){
-                        sessionStorage.setItem('language',"zh-TW");
-                        this.$options.methods.choonseLang('zh-TW');
-                    }else if(event.target.value == 15){
-                        sessionStorage.setItem('language',"ar");
-                        this.$options.methods.choonseLang('ar');
-                    }else if(event.target.value == 16){
-                        sessionStorage.setItem('language',"es");
-                        this.$options.methods.choonseLang('es');
-                    }else if(event.target.value == 17){
-                        sessionStorage.setItem('language',"ru");
-                        this.$options.methods.choonseLang('ru');
-                    }else if(event.target.value == 18){
-                        sessionStorage.setItem('language',"hi");
-                        this.$options.methods.choonseLang('hi');
-                    }else if(event.target.value == 19){
-                        sessionStorage.setItem('language',"fi");
-                        this.$options.methods.choonseLang('fi');
-                    }else if(event.target.value == 20){
-                        sessionStorage.setItem('language',"jp");
-                        this.$options.methods.choonseLang('jp');
-                    }else{
-                        sessionStorage.setItem('language',"uk");
-                        this.$options.methods.choonseLang('uk');
-                    };
-                },
-                choonseLang(lang){
+                setLocale(){
+                    var language = $('.selectLang').find("option:selected").attr("lang");
+                    console.log(language);
                     $.ajax({
-                        url:'/api/setLocale?lang='+lang,
+                        url:'/api/setLocale?lang='+language,
                         type:'GET',
                         success:function(data) {
                             console.log(JSON.stringify(data));
                             if(data){
+                                sessionStorage.setItem('language',language);
                                 window.location.reload();
                             }
                         },
