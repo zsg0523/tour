@@ -206,6 +206,7 @@
                     }
                     var searchRoot = GetQueryString("root");
                     if(searchRoot==null||searchRoot==undefined){
+                        console.log(document.referrer);
                         window.location.href = document.referrer;
                     }else{
                         console.log(searchRoot);
@@ -320,6 +321,11 @@
                     });                     
                 },
                 setLocale(){
+                    function GetQueryString(name){
+                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                        var r = window.location.search.substr(1).match(reg);
+                        if(r!=null)return unescape(r[2]); return null;
+                    }
                     var language = $('.selectLang').find("option:selected").attr("lang");
                     console.log(language);
                     $.ajax({
@@ -329,7 +335,8 @@
                             console.log(JSON.stringify(data));
                             if(data){
                                 sessionStorage.setItem('language',language);
-                                window.location.reload();
+                                // window.location.reload();
+                                window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&root=0';
                             }
                         },
                         error:function(XMLHttpRequest, textStatus, errorThrown) {
