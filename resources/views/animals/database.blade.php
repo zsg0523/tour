@@ -131,8 +131,13 @@
                     if(searchRoot==null||searchRoot==undefined){
                         window.location.href = document.referrer;
                     }else{
-                        var lang = GetQueryString("lang");
-                        sessionStorage.setItem('language',lang);
+                        console.log(searchRoot);
+                        if(searchRoot==0){
+
+                        }else{
+                            var lang = GetQueryString("lang");
+                            sessionStorage.setItem('language',lang);
+                        }
                         window.location.href="/animals";
                     }
                 },
