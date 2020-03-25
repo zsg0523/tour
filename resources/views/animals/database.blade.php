@@ -6,6 +6,11 @@
         <title></title>
     </head>
     <link rel="stylesheet" href="../animal/css/animalDetails.css">
+    <style type="text/css">
+        select.selectLang{position: absolute;right: 10px;border-radius: .3rem;color: rgba(98,76,63,1);height:35px;border:none;line-height:35px;font-size: 0.95rem;text-align: left;background: transparent;background-size: 8px 5px;
+            &:focus { outline: none; }
+        }
+    </style>
     <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
     <body class="database">
         <div id="database">
@@ -35,7 +40,30 @@
                     </div>
                     <div class="title" v-cloak>
                         <p class="animalName">@{{database.title}} 
-                            <a style="position: absolute;right: 10px;color: rgba(98,76,63,1);text-decoration: none;" href="{{url('animals/chooseLanguage')}}">切换语言</a>
+                            <select class="selectLang" @change="setLocale()">
+                                <option lang="en">English</option>
+                                <option lang="de">Deutsch</option>
+                                <option lang="fr">Français</option>
+                                <option lang="it">Italiano</option>
+                                <option lang="tr">Türkçe</option>
+                                <option lang="nl">Nederlands</option>
+                                <option lang="da">Dansk</option>
+                                <option lang="pt">Português</option>
+                                <option lang="sv">Svenska</option>
+                                <option lang="th">ภาษาไทย</option>
+                                <option lang="ko">한국어</option>
+                                <option lang="no">Norsk</option>
+                                <option lang="ms">Bahasa Melayu</option>
+                                <option lang="zh-CN">中文简体</option>
+                                <option lang="zh-TW">中文繁體</option>
+                                <option lang="ar">العَرَبِية'</option>
+                                <option lang="es">Español</option>
+                                <option lang="ru">русский язык</option>
+                                <option lang="hi">हिन्दी</option>
+                                <option lang="fi">Finnish</option>
+                                <option lang="jp">日本語</option>
+                                <option lang="uk">українська мова</option>
+                            </select>
                         </p>
                     </div>
     <!--                <div class="Question">
@@ -174,46 +202,23 @@
                     if(lang!=null){
                         console.log('lang not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
-                        $.ajax({
-                            url:'/api/setLocale?lang='+lang,
-                            type:'GET',
-                            success:function(data) {
-                                console.log(JSON.stringify(data));
-                                if(data){
-                                    sessionStorage.setItem('language',lang);
-                                    window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&root=0';
-                                    // window.location.reload();
-                                }
-                            },
-                            error:function(XMLHttpRequest, textStatus, errorThrown) {
-                                console.log(XMLHttpRequest.status);
-                                console.log(XMLHttpRequest.readyState);
-                                console.log(textStatus);
-                            }
-                        });
+                        $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
+                        this.setLocale();
                     }
 
                     if(lang==null&&language!=null){
                         console.log('lang is null,language not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
+                        $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
 
                     }
 
                     if(lang==null&&language==null){
                         console.log('lang is null,language is null');
                          var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
+                         $(".selectLang").find("option[lang='en']").attr("selected",true);
                     }
-                    // if(lang==null||lang==undefined){
-                    //     if(language!=null){
-                    //         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
-                    //     }else{
-                    //         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
-                    //     }
-                    // }else{
-                    //    var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
-                    // }
-                    // var lang = "{{ Session::get('lang') }}";
-                    // alert(lang);
+                   
                     console.log(url);
                     $.ajax({
                         url:url,
@@ -249,6 +254,31 @@
                             console.log(textStatus);
                         }
                     });                     
+                },
+                setLocale(){
+                    function GetQueryString(name){
+                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                        var r = window.location.search.substr(1).match(reg);
+                        // var r = search.substr(1).match(reg);
+                        if(r!=null)return unescape(r[2]); return null;
+                    }
+                    var language = $('.selectLang').find("option:selected").attr("lang");
+                    $.ajax({
+                        url:'/api/setLocale?lang='+language,
+                        type:'GET',
+                        success:function(data) {
+                            console.log(JSON.stringify(data));
+                            if(data){
+                                sessionStorage.setItem('language',language);
+                                window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&root=0';
+                            }
+                        },
+                        error:function(XMLHttpRequest, textStatus, errorThrown) {
+                            console.log(XMLHttpRequest.status);
+                            console.log(XMLHttpRequest.readyState);
+                            console.log(textStatus);
+                        }
+                    });
                 }
             },
             mounted:function(){
