@@ -33,7 +33,7 @@ class AnimalsTransController extends AdminController
         $grid->column('animal_id', __('Product Name'))->display(function ($animal_id){
             $animal = Animal::find($animal_id);
             return $animal ? $animal->product_name : '';
-        })->copyable();
+        });
         $grid->column('title', __('Title'))->filter('like');
         $grid->column('genus', __('Scientific Name'))->filter('like')->style('font-style:italic');
         $grid->column('family', __('Family'))->filter('like');
@@ -73,6 +73,16 @@ class AnimalsTransController extends AdminController
         });
 
         $grid->disableExport(false);
+        $grid->disableFilter(false);
+
+        $grid->filter(function ($filter){
+            $filter->expand();
+            $filter->where(function ($query) {
+                $query->whereHas('animal', function ($query) {
+                    $query->where('product_name', 'like', "%{$this->input}%");
+                });
+            }, 'Product Name');
+        });
 
         $grid->tools(function (Grid\Tools $tools) {
             $tools->append(new ImportPost());

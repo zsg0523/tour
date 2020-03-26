@@ -13,4 +13,9 @@ class ThemesTranslation extends Model
     {
     	return trim($value);
     }
+
+    public function theme()
+    {
+    	return $this->belongsTo(Theme::class);
+    }
 }
