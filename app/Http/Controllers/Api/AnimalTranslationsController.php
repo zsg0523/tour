@@ -45,15 +45,25 @@ class AnimalTranslationsController extends Controller
         $animal_id = Animal::where('product_name', $request->product_name)->value('id');
 
         if ($request->theme_id) {
+            // 判断 theme 是否开启
+            if(Theme::find($request->theme_id)->is_show == false) {
+                return $this->errorResponse(404, '该主题已关闭', 1001);
+            }
+
             // 获取对应语言的theme_name
             $theme_name = ThemesTranslation::where('lang', $lang)->where('theme_id', $request->theme_id)->where('lang', $lang)->value('title_page');
-            
+
             // 获取动物资料
             $animal = $animal->where('animal_id', $animal_id)->where('lang', $lang)->where('theme_name', $theme_name)->first();
+
         } else {
             $animal = $animal->where('animal_id', $animal_id)->where('lang', $lang)->first();
         }
 
+        if (!$animal) {
+            return $this->errorResponse(404, 'Coming soon!', 1002)
+        }
+        
         $animal->increment('view');
 
     	return $this->response->item($animal, new AnimalTranslationTransformer());

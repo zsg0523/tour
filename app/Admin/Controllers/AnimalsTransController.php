@@ -17,7 +17,7 @@ class AnimalsTransController extends AdminController
      *
      * @var string
      */
-    protected $title = 'AnimalTranslation';
+    protected $title = 'AnimalsTranslation';
 
     /**
      * Make a grid builder.
@@ -82,6 +82,7 @@ class AnimalsTransController extends AdminController
                     $query->where('product_name', 'like', "%{$this->input}%");
                 });
             }, 'Product Name');
+            $filter->like('theme_name', 'Theme Name');
         });
 
         $grid->tools(function (Grid\Tools $tools) {
