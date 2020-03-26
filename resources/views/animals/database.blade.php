@@ -6,6 +6,11 @@
         <title></title>
     </head>
     <link rel="stylesheet" href="../animal/css/animalDetails.css">
+    <style type="text/css">
+        select.selectLang{width:30%;position: absolute;right: 10px;border-radius: .3rem;color: rgba(98,76,63,1);height:30px;border:1px solid rgba(98,76,63,1);line-height:30px;text-align: left;background: transparent;background-size: 8px 5px;
+        }
+        select.selectLang:focus { outline: none; }
+    </style>
     <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
     <body class="database">
         <div id="database">
@@ -34,7 +39,32 @@
                         </div>  -->                 
                     </div>
                     <div class="title" v-cloak>
-                        <p class="animalName">@{{database.title}}</p>
+                        <p class="animalName">@{{database.title}} 
+                            <select class="selectLang" @change="setLocale()">
+                                <option lang="en">English</option>
+                                <option lang="de">Deutsch</option>
+                                <option lang="fr">Français</option>
+                                <option lang="it">Italiano</option>
+                                <option lang="tr">Türkçe</option>
+                                <option lang="nl">Nederlands</option>
+                                <option lang="da">Dansk</option>
+                                <option lang="pt">Português</option>
+                                <option lang="sv">Svenska</option>
+                                <option lang="th">ภาษาไทย</option>
+                                <option lang="ko">한국어</option>
+                                <option lang="no">Norsk</option>
+                                <option lang="ms">Bahasa Melayu</option>
+                                <option lang="zh-CN">中文简体</option>
+                                <option lang="zh-TW">中文繁體</option>
+                                <option lang="ar">العَرَبِية'</option>
+                                <option lang="es">Español</option>
+                                <option lang="ru">русский язык</option>
+                                <option lang="hi">हिन्दी</option>
+                                <option lang="fi">Finnish</option>
+                                <option lang="jp">日本語</option>
+                                <option lang="uk">українська мова</option>
+                            </select>
+                        </p>
                     </div>
     <!--                <div class="Question">
                         <div class="doYouKnow">
@@ -100,7 +130,56 @@
                 animal:false,
                 locationReload:false,
                 Loading:false,
-                LoadCompleted:false
+                LoadCompleted:false,
+            },
+            created(){
+                var language = sessionStorage.getItem('language');
+                $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
+                // if(language == 'en'){
+                //     this.couponSelected = 'English';
+                // }else if(language == 'de'){
+                //     this.couponSelected = 'Deutsch';
+                // }else if(language == 'fr'){
+                //     this.couponSelected = 'Français';
+                // }else if(language == 'it'){
+                //     this.couponSelected = 'Italiano';
+                // }else if(language == 'tr'){
+                //     this.couponSelected = 'Türkçe';
+                // }else if(language == 'nl'){
+                //     this.couponSelected = 'Nederlands';
+                // }else if(language == 'da'){
+                //     this.couponSelected = 'Dansk';
+                // }else if(language == 'pt'){
+                //     this.couponSelected = 'Português';
+                // }else if(language == 'sv'){
+                //     this.couponSelected = 'Svenska';
+                // }else if(language == 'th'){
+                //     this.couponSelected = 'ภาษาไทย';
+                // }else if(language == 'ko'){
+                //     this.couponSelected = '한국어';
+                // }else if(language == 'no'){
+                //     this.couponSelected = 'Norsk';
+                // }else if(language == 'ms'){
+                //     this.couponSelected = 'Bahasa Melayu';
+                // }else if(language == 'zh-CN'){
+                //     this.couponSelected = '中文简体';
+                // }else if(language == 'zh-TW'){
+                //     this.couponSelected = '中文繁體';
+                // }else if(language == 'ar'){
+                //     this.couponSelected = 'لعَرَبِية';
+                // }else if(language == 'es'){
+                //     this.couponSelected = 'Español';
+                // }else if(language == 'ru'){
+                //     this.couponSelected = 'русский язык';
+                // }else if(language == 'hi'){
+                //     this.couponSelected = 'हिन्दी';
+                // }else if(language == 'fi'){
+                //     this.couponSelected = 'Finnish';
+                // }else if(language == 'jp'){
+                //     this.couponSelected = '日本語';
+                // }else if(language == 'uk'){
+                //     this.couponSelected = 'українська мова';
+                // };
             },
             watch: {
                 database: function() {
@@ -127,10 +206,16 @@
                     }
                     var searchRoot = GetQueryString("root");
                     if(searchRoot==null||searchRoot==undefined){
+                        console.log(document.referrer);
                         window.location.href = document.referrer;
                     }else{
-                        var lang = GetQueryString("lang");
-                        sessionStorage.setItem('language',lang);
+                        console.log(searchRoot);
+                        if(searchRoot==0){
+
+                        }else{
+                            var lang = GetQueryString("lang");
+                            sessionStorage.setItem('language',lang);
+                        }
                         window.location.href="/animals";
                     }
                 },
@@ -163,15 +248,19 @@
                     }
                     var lang = GetQueryString("lang");
                     var language = sessionStorage.getItem('language');
+                    console.log('language: '+language+'  lang: '+lang);
                     if(lang!=null){
+                        console.log('lang not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
-                                    $.ajax({
+                        $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
+                        $.ajax({
                             url:'/api/setLocale?lang='+lang,
                             type:'GET',
                             success:function(data) {
                                 console.log(JSON.stringify(data));
                                 if(data){
-                                    // window.location.href = '/animals';
+                                    sessionStorage.setItem('language',lang);
+                                    window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&root=0';
                                 }
                             },
                             error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -183,24 +272,19 @@
                     }
 
                     if(lang==null&&language!=null){
+                        console.log('lang is null,language not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
+                        $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
 
                     }
 
                     if(lang==null&&language==null){
+                        console.log('lang is null,language is null');
                          var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
+                         $(".selectLang").find("option[lang='en']").attr("selected",true);
                     }
-                    // if(lang==null||lang==undefined){
-                    //     if(language!=null){
-                    //         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
-                    //     }else{
-                    //         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
-                    //     }
-                    // }else{
-                    //    var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
-                    // }
-                    // var lang = "{{ Session::get('lang') }}";
-                    // alert(lang);
+                   
+                    console.log(url);
                     $.ajax({
                         url:url,
                         type:'GET',
@@ -235,6 +319,32 @@
                             console.log(textStatus);
                         }
                     });                     
+                },
+                setLocale(){
+                    function GetQueryString(name){
+                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                        var r = window.location.search.substr(1).match(reg);
+                        if(r!=null)return unescape(r[2]); return null;
+                    }
+                    var language = $('.selectLang').find("option:selected").attr("lang");
+                    console.log(language);
+                    $.ajax({
+                        url:'/api/setLocale?lang='+language,
+                        type:'GET',
+                        success:function(data) {
+                            console.log(JSON.stringify(data));
+                            if(data){
+                                sessionStorage.setItem('language',language);
+                                // window.location.reload();
+                                window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&root=0';
+                            }
+                        },
+                        error:function(XMLHttpRequest, textStatus, errorThrown) {
+                            console.log(XMLHttpRequest.status);
+                            console.log(XMLHttpRequest.readyState);
+                            console.log(textStatus);
+                        }
+                    });
                 }
             },
             mounted:function(){
