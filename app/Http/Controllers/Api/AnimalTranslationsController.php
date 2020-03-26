@@ -61,7 +61,7 @@ class AnimalTranslationsController extends Controller
         }
 
         if (!$animal) {
-            return $this->errorResponse(404, 'Coming soon!', 1002)
+            return $this->errorResponse(404, 'Coming soon!', 1002);
         }
         
         $animal->increment('view');
