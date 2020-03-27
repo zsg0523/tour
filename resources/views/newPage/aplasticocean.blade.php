@@ -11,27 +11,27 @@
 		a:hover {text-decoration: none;}
 		a:not([href]) {color: inherit;text-decoration: none;}
 		a:not([href]):hover {color: inherit;text-decoration: none;}
-    	.HolyGrail{width: 100%;height: 100%;margin: 0;padding: 0;}
-    	.header{max-width:1700px;width: 90%;height: 80px;line-height: 80px;margin: 0 auto;}
+    	.HolyGrail{width: 100%;height: 100%;margin: 0;padding: 0;font-family:"Arial";} /*Arial, Helvetica, sans-serif*/
+    	.header{max-width:1700px;width: 90%;max-width:1000px;height: 80px;line-height: 80px;margin: 0 auto;}
     	.header .logol{float: left;width: 100px;height: 67px;}
     	.header .logor{float: left;width: 100px;height: 67px;margin-left: 10px;}
     	.header img{width: 100%;height: 100%;vertical-align: middle;}
         .Lang{float: right;}
         select{border-radius: .3rem;color: #7b5c55;height:35px;line-height:35px;font-size: .67rem;text-align: left;background: #fff;background-size: 8px 5px;}
     	.main{width: 100%;height:100%;background-color: #d3edfb;padding-top: 20px;}
-    	.main .video{width: 90%;margin: 0 auto;text-align: center;border-radius:5px;overflow: hidden;}
+    	.main .video{width: 90%;max-width:1000px;margin: 0 auto;text-align: center;border-radius:5px;overflow: hidden;}
     	.more{margin: 0;text-align: right;height: 35px;line-height: 35px;background: #fff;padding-right: 15px;color: #333;}
     	.more img{width: 21px;height: 21px;vertical-align: middle;}
 	    .videoBox{width:100%;height:100%;margin:0px auto;position:relative;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center; justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;font-size:3rem;color:#fff;}
 	   	.videoBox video{width: 100%;}
 	   	.play{width:60px;height: 60px;position: absolute;top: 45%;left: 45%;}
 
-    	.main .textinfo{width: 90%;margin: 20px auto;background-color: #697ac3;color: #fff;border-radius: 5px;padding: 10px 0;}
+    	.main .textinfo{width: 90%;max-width:1000px;margin: 20px auto;background-color: #697ac3;color: #fff;border-radius: 5px;padding: 10px 0;}
     	.textinfo p{margin: 0;font-size: 0.9rem;line-height: 30px;padding: 0 10px;}
     	.textinfo p:first-child{font-size: 1rem;line-height: 45px;}
-    	.animal{width: 90%;margin: 20px auto;position: relative;}
+    	.animal{width: 90%;max-width:1000px;margin: 20px auto;position: relative;}
     	.list img{width: 100%;-webkit-transition:.5s ease;-moz-transition:.5s ease;transition:.5s ease;}
-    	.list:hover img{-webkit-transform:scale(1.05);-moz-transform:scale(1.05);transform:scale(1.05);}
+    	.list:hover img{-webkit-transform:scale(1.2);-moz-transform:scale(1.2);transform:scale(1.2);}
     	.animallist1{position: absolute;top: 38%;left: 47%;width: 25%;z-index: 10;}
     	.animallist2{position: absolute;top: 23%;left: 3%;width: 14%;}
     	.animallist3{position: absolute;top: 23%;left: 26%;width: 47%;z-index: 8;}
@@ -45,10 +45,10 @@
     	.animallist11{position: absolute;top: 66%;left: 59%;width: 13%;}
     	.animallist12{position: absolute;top: 80%;left: 32%;width: 14%;}
     	.animallist13{position: absolute;bottom: 0%;left: 10%;width: 18%;}
-        .tip{width: 90%;margin: 20px auto 0;position: relative;}
+        .tip{width: 90%;max-width:1000px;margin: 20px auto 0;position: relative;}
     	.imgBg{ width: 100%;}
     	.images{width: 100%;height: 100%;}
-    	.banners{width: 90%;margin: 0 auto;padding-bottom: 20px;}
+    	.banners{width: 90%;max-width:1000px;margin: 0 auto;padding-bottom: 20px;}
     	.swiper-slide img{width: 100%;border-radius: 5px;}
     	.swiper-pagination-bullet {width: 8px;height: 8px;display: inline-block;border-radius: 100%;background: #ead3b0;opacity: 1;color: #7b5c55;font-size: 0.9rem;}
     	@media screen and (max-width: 768px) {
@@ -73,18 +73,15 @@
 	        <div class="video">
 	        	<a href="http://www.aplasticocean.movie/"><div class="more moreimg">{{ __('aplasticocean.learn') }} <img src="./images/link.png"></div></a>
 	            <div class="videoBox">
-	            	<video poster="./images/bg2.png" id="myvideo" muted controls="controls" autoplay="autoplay">
+	            	<video id="myvideo" muted controls="controls" autoplay="autoplay">
 	                  	<source  src="https://www.wennoanimal.com/uploads/files/APO_Kids_Version_Cantonese.mp4" type="video/mp4" />
 	                        {{ __('aplasticocean.tag') }}
-	                </video> 
-	                <!-- <img class="play" src="./images/playv.png"> -->
-	            	<!-- <video id="myvideo" src="https://outin-1fda0e34335d11e98d8200163e1a625e.oss-cn-shanghai.aliyuncs.com/fc2fa607b2a94a8494637e66ec9aa6bb/f09e4f84f496476d84a14c1c8dda0378-486e6ec1e6947cf9597e4a2d269f9c1f-ld.mp4?Expires=1583738871&OSSAccessKeyId=LTAI8bKSZ6dKjf44&Signature=Wo9x2fHl1zYU290dOu3y8K1FHHg%3D" controls="controls" >
-		                your browser does not support the video tag
-		            </video> -->
+	                </video>
 	            </div>
 	            <div class="more">{{ __('aplasticocean.notice') }}</div>
 	        </div>
     		<div class="textinfo">
+                <p>1234567890</p>
     			<p>{{ __('aplasticocean.title') }}</p>
     			<p>{{ __('aplasticocean.info1') }}</p>
     			<p>{{ __('aplasticocean.info2') }}</p>
@@ -132,15 +129,15 @@
             if (r!=null) return r[2]; return '';
         }
     	$(function(){ 
-    		// var mySwiper = new Swiper('.swiper-container', {
-		    //     autoplay: 6000,//可选选项，自动滑动
-		    //     loop : true,
-		    //     pagination: {
-	     //            el: '.swiper-pagination',
-	     //            clickable: true,
-	     //            dynamicBullets: true,
-	     //        },
-		    // });
+    		var mySwiper = new Swiper('.swiper-container', {
+                autoplay: 6000,//可选选项，自动滑动
+                loop : true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+            });
             var lang = getQueryString("language");
             var language = sessionStorage.getItem('language');
             if(lang!=''){

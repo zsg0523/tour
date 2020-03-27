@@ -248,10 +248,22 @@
                     }
                     var lang = GetQueryString("lang");
                     var language = sessionStorage.getItem('language');
-                    console.log('language: '+language+'  lang: '+lang);
+                    var theme1 = GetQueryString("theme_id");
+                    var theme2 = sessionStorage.getItem('theme_id');
+                    var theme_id;
+                    if(theme1==null){
+                        if(theme2==null){
+                            theme_id = '';                            
+                        }else{
+                            theme_id = theme2;
+                        }
+                    }else{
+                        theme_id = theme1;
+                    }
+                    console.log('language: '+language+'  lang: '+lang+' theme_id: '+theme_id);
                     if(lang!=null){
                         console.log('lang not null');
-                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
+                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang+'&theme_id='+theme_id;
                         $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
                         $.ajax({
                             url:'/api/setLocale?lang='+lang,
@@ -273,14 +285,14 @@
 
                     if(lang==null&&language!=null){
                         console.log('lang is null,language not null');
-                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
+                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language+'&theme_id='+theme_id;
                         $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
 
                     }
 
                     if(lang==null&&language==null){
                         console.log('lang is null,language is null');
-                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
+                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang=en&theme_id='+theme_id;;
                          $(".selectLang").find("option[lang='en']").attr("selected",true);
                     }
                    
