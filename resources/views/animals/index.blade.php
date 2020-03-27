@@ -287,6 +287,7 @@
 				        type:'GET',
 				        success:function(data) {
 				            self.swiper = data.meta;
+				            sessionStorage.setItem('theme_id',data.meta[0],theme_id);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
