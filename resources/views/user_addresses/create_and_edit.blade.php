@@ -42,7 +42,7 @@
               @endif
               {{ csrf_field() }}
               <!-- 注意这里多了 @change -->
-                <select-district :init-value="{{ json_encode([$address->province, $address->city, $address->district]) }}" @change="onDistrictChanged" inline-template>
+                <!-- <select-district :init-value="{{ json_encode([$address->province, $address->city, $address->district]) }}" @change="onDistrictChanged" inline-template>
                   <div class="form-group row">
                     <label class="col-form-label col-sm-2 text-md-right">{{ __("shop.address.city") }}</label>
                     <div class="col-sm-3">
@@ -64,7 +64,7 @@
                       </select>
                     </div>
                   </div>
-                </select-district>
+                </select-district> -->
                 <!-- 插入了 3 个隐藏的字段 -->
                 <!-- 通过 v-model 与 user-addresses-create-and-edit 组件里的值关联起来 -->
                 <!-- 当组件中的值变化时，这里的值也会跟着变 -->
@@ -77,12 +77,12 @@
                     <input type="text" class="form-control" name="address" value="{{ old('address', $address->address) }}">
                   </div>
                 </div>
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                   <label class="col-form-label text-md-right col-sm-2">{{ __("shop.address.postcode") }}</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" name="zip" value="{{ old('zip', $address->zip) }}" oninput="value=value.replace(/[^\d]/g,'')"/>
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group row">
                   <label class="col-form-label text-md-right col-sm-2">{{ __("shop.address.name") }}</label>
                   <div class="col-sm-9">

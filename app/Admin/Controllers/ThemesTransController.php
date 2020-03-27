@@ -28,17 +28,35 @@ class ThemesTransController extends AdminController
         $grid = new Grid(new ThemesTranslation);
 
         $grid->column('id', __('Id'))->sortable();
-        $grid->column('theme_id', __('Theme'))->display(function($theme_id) {
-             $theme = Theme::find($theme_id);
-             return $theme ? $theme->product_name : '';
-        });
+
         $grid->column('lang', __('Lang'))->filter();
-        $grid->column('title_page', __('Theme name'))->filter('like')->copyable();
+
+        $grid->column('theme_id', __('Theme_id : Theme'))->display(function($theme_id) {
+             $theme = Theme::find($theme_id);
+             return $theme ? $theme_id . ' : ' . $theme->product_name : '';
+        });
+        
+        $grid->column('title_page', __('Theme name'))->filter('like')->copyable()->help('对应animals translation里的 theme name');
+
         $grid->fixColumns(3, -3);
+
         $grid->actions(function ($actions) {
             $actions->add(new Replicate);
             $actions->disableView();
         });
+
+        $grid->disableFilter(false);
+
+        $grid->filter(function ($filter){
+            $filter->expand();
+            $filter->where(function ($query) {
+                $query->whereHas('theme', function ($query) {
+                    $query->where('product_name', 'like', "%{$this->input}%");
+                });
+            }, 'Theme');
+            $filter->like('title_page', 'Theme Name');
+        });
+        
         return $grid;
     }
 

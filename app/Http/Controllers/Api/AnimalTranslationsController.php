@@ -19,22 +19,51 @@ class AnimalTranslationsController extends Controller
         // 獲取主題翻譯內容
         $themes = $this->getThemes($request);
 
-        $theme = $request->theme ?? trim($themes[0]['title_page']);
+        // 如果传入主题为空，则默认主题列表第一个主题
+        $theme = empty($request->theme) ? trim($themes[0]['title_page']) : $request->theme;
 
+        // 如果传入的主题非系统设定开启的主题则抛出404
+        if(!in_array($theme, $themes->pluck('title_page')->toArray())) {
+            abort(404);
+        }
+        // 获取对应主题的动物列表
         $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme)->get();
 
     	return $this->response->collection($animals, new AnimalTranslationTransformer())->setMeta($themes->toArray());
     }
 
-    /** [show 动物详情] */
+    /** 
+     * [show 动物详情]
+     * @param  Request           $request [theme_id、product_name、lang]
+     * @param  AnimalTranslation $animal  [description]
+     * @return [type]                     [description]
+     */
     public function show(Request $request, AnimalTranslation $animal)
     {
     	$lang = $this->getLang($request);
         
         $animal_id = Animal::where('product_name', $request->product_name)->value('id');
 
-        $animal = $animal->where('animal_id', $animal_id)->where('lang', $lang)->first();
+        if ($request->theme_id) {
+            // 判断 theme 是否开启
+            if(Theme::find($request->theme_id)->is_show == false) {
+                return $this->errorResponse(404, '该主题已关闭', 1001);
+            }
 
+            // 获取对应语言的theme_name
+            $theme_name = ThemesTranslation::where('lang', $lang)->where('theme_id', $request->theme_id)->where('lang', $lang)->value('title_page');
+
+            // 获取动物资料
+            $animal = $animal->where('animal_id', $animal_id)->where('lang', $lang)->where('theme_name', $theme_name)->first();
+
+        } else {
+            $animal = $animal->where('animal_id', $animal_id)->where('lang', $lang)->first();
+        }
+
+        if (!$animal) {
+            return $this->errorResponse(404, 'Coming soon!', 1002);
+        }
+        
         $animal->increment('view');
 
     	return $this->response->item($animal, new AnimalTranslationTransformer());

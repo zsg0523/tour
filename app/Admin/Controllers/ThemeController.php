@@ -29,7 +29,7 @@ class ThemeController extends AdminController
         $grid = new Grid(new Theme);
 
         $grid->column('id', __('Id'))->sortable();
-        $grid->column('product_name', __('Product name'))->filter('like');
+        $grid->column('product_name', __('Theme'))->filter('like')->copyable();
         // 设置text、color、和存储值
         $states = [
             'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],

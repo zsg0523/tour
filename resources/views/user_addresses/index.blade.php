@@ -21,7 +21,7 @@
 				                <tr>
 									<th>{{ __("shop.address.receiver") }}</th>
 									<th>{{ __("shop.address.address") }}</th>
-									<th>{{ __("shop.address.postcode") }}</th>
+									<!-- <th>{{ __("shop.address.postcode") }}</th> -->
 									<th>{{ __("shop.address.phone") }}</th>
 									<th>{{ __("shop.address.operating") }}</th>
 				                </tr>
@@ -31,7 +31,7 @@
 			                  	<tr>
 				                    <td>{{ $address->contact_name }}</td>
 				                    <td>{{ $address->full_address }}</td>
-				                    <td>{{ $address->zip }}</td>
+				                    <!-- <td>{{ $address->zip }}</td> -->
 				                    <td>{{ $address->contact_phone }}</td>
 				                    <td>
 				                      <a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="btn btn-primary" style="margin-bottom: 10px;">{{ __("shop.address.edit") }}</a>
