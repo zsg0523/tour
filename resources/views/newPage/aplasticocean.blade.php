@@ -28,13 +28,22 @@
 
     	.main .textinfo{width: 90%;max-width:1000px;margin: 20px auto;background-color: #697ac3;color: #fff;border-radius: 5px;padding: 10px 0;}
     	.textinfo p{margin: 0;font-size: 0.9rem;line-height: 30px;padding: 0 10px;}
-    	.textinfo p:first-child{font-size: 1rem;line-height: 45px;}
-    	.animal{width: 90%;max-width:1000px;margin: 20px auto;position: relative;}
+    	.textinfo p.title{font-size: 1rem;line-height: 45px;text-decoration: underline;}
+
+        .animal_info{width: 90%;max-width:1000px;margin: 20px auto;}
+        .tip{width: 100%;}
+        .textTitle{text-align: center;}
+        .textTitle p{font-size: 1.4rem;line-height: 40px}
+        .textTitle p:last-child{font-size: 1.2rem;line-height: 35px;}
+
+        .tip p{line-height: 35px;margin: 0;padding: 0 10px;background-color: #fff;}
+        .tip p:first-child{font-size: 1rem;background-color: #3596F8;line-height: 50px;color: #fff;border-radius: 5px 5px 0 0;}
+    	.animal{width: 100%;position: relative;}
     	.list img{width: 100%;-webkit-transition:.5s ease;-moz-transition:.5s ease;transition:.5s ease;}
     	.list:hover img{-webkit-transform:scale(1.2);-moz-transform:scale(1.2);transform:scale(1.2);}
     	.animallist1{position: absolute;top: 38%;left: 47%;width: 25%;z-index: 10;}
     	.animallist2{position: absolute;top: 23%;left: 3%;width: 14%;}
-    	.animallist3{position: absolute;top: 23%;left: 26%;width: 47%;z-index: 8;}
+    	.animallist3{position: absolute;top: 33%;left: 26%;width: 20%;z-index: 8;}
     	.animallist4{position: absolute;top: 3%;left: 15%;width: 15%;z-index: 10;}
     	.animallist5{position: absolute;top: 16%;left: 41%;width: 7%;z-index: 10;}
     	.animallist6{position: absolute;top: 5%;left: 67%;width: 11%;z-index: 10;}
@@ -45,7 +54,6 @@
     	.animallist11{position: absolute;top: 66%;left: 59%;width: 13%;}
     	.animallist12{position: absolute;top: 80%;left: 32%;width: 14%;}
     	.animallist13{position: absolute;bottom: 0%;left: 10%;width: 18%;}
-        .tip{width: 90%;max-width:1000px;margin: 20px auto 0;position: relative;}
     	.imgBg{ width: 100%;}
     	.images{width: 100%;height: 100%;}
     	.banners{width: 90%;max-width:1000px;margin: 0 auto;padding-bottom: 20px;}
@@ -81,30 +89,54 @@
 	            <div class="more">{{ __('aplasticocean.notice') }}</div>
 	        </div>
     		<div class="textinfo">
-                <p>1234567890</p>
-    			<p>{{ __('aplasticocean.title') }}</p>
-    			<p>{{ __('aplasticocean.info1') }}</p>
-    			<p>{{ __('aplasticocean.info2') }}</p>
-                <p>{{ __('aplasticocean.info3') }}</p>
-    			<p>{{ __('aplasticocean.info4') }}</p>
+                <div class="textTitle">
+                    <p>{{ __('aplasticocean.toptitle1') }}</p>
+                    <p>{{ __('aplasticocean.toptitle2') }}</p>
+                </div>
+                <br>
+                <div>
+        			<p>{{ __('aplasticocean.top1') }}</p>
+                </div>
+                <br>
+                <div>
+                    <p class="title">{{ __('aplasticocean.title1') }}</p>
+                    <p>{{ __('aplasticocean.titleinfo1') }}</p>
+                </div>
+                <br>
+                <div>
+                    <p class="title">{{ __('aplasticocean.title2') }}</p>
+                    <p>{{ __('aplasticocean.titleinfo1') }}</p>
+                </div>
+                <br>
+                <div>
+                    <p class="title">{{ __('aplasticocean.title') }}</p>
+                    <p>{{ __('aplasticocean.info1') }}</p>
+                    <p>{{ __('aplasticocean.info2') }}</p>
+                    <p>{{ __('aplasticocean.info3') }}</p>
+                </div>
     		</div>
-            <div class="tip"><p>{{ __('aplasticocean.tip') }}</p></div>
-    		<div class="animal">
-    			<div class="imgBg"><img class="images" src="./images/bg.png"></div>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Great_White_Shark"><div class="list animallist1"><img src="./images/animal1.png"></div>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Great_White_Shark"><div class="list animallist2"><img src="./images/animal2.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Common_Bottlenose_Dolphin"><div class="list animallist3"><img src="./images/animal3.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=KILLER_WHALE_EM"><div class="list animallist4"><img src="./images/animal4.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Copperband_Butterflyfish"><div class="list animallist5"><img src="./images/animal5.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Reef_Manta_Ray"><div class="list animallist6"><img src="./images/animal6.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=POWDER-BLUE_SURGEONFISH"><div class="list animallist7"><img src="./images/animal7.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Whale_Shark"><div class="list animallist8"><img src="./images/animal8.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Humpback_Whale"><div class="list animallist9"><img src="./images/animal9.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Hawksbill_Turtle"><div class="list animallist10"><img src="./images/animal10.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Giant_Pacific_Octopus"><div class="list animallist11"><img src="./images/animal11.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Green_Sea_Turtle"><div class="list animallist12"><img src="./images/animal12.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=HARBOR_SEAL"><div class="list animallist13"><img src="./images/animal13.png"></div></a>
-    		</div>
+            <div class="animal_info">
+                <div class="tip">
+                    <p>{{ __('aplasticocean.tip') }}</p>
+                    <p>{{ __('aplasticocean.tip1') }}</p>
+                </div>
+        		<div class="animal">
+        			<div class="imgBg"><img class="images" src="./images/bg.png"></div>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Great_White_Shark"><div class="list animallist1"><img src="./images/animal1.png"></div>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Great_White_Shark"><div class="list animallist2"><img src="./images/animal2.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Common_Bottlenose_Dolphin"><div class="list animallist3"><img src="./images/animal3.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=KILLER_WHALE_EM"><div class="list animallist4"><img src="./images/animal4.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Copperband_Butterflyfish"><div class="list animallist5"><img src="./images/animal5.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Reef_Manta_Ray"><div class="list animallist6"><img src="./images/animal6.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=POWDER-BLUE_SURGEONFISH"><div class="list animallist7"><img src="./images/animal7.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Whale_Shark"><div class="list animallist8"><img src="./images/animal8.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Humpback_Whale"><div class="list animallist9"><img src="./images/animal9.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Hawksbill_Turtle"><div class="list animallist10"><img src="./images/animal10.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Giant_Pacific_Octopus"><div class="list animallist11"><img src="./images/animal11.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=Green_Sea_Turtle"><div class="list animallist12"><img src="./images/animal12.png"></div></a>
+        			<a href="https://www.wennoanimal.com/animals/database?product_name=HARBOR_SEAL"><div class="list animallist13"><img src="./images/animal13.png"></div></a>
+        		</div>
+            </div>
 			<div class="banners">
                 <div class="swiper-slide">
                     <img src="./images/bg2.png">
