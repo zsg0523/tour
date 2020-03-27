@@ -34,7 +34,7 @@
         .tip{width: 100%;}
         .textTitle{text-align: center;}
         .textTitle p{font-size: 1.4rem;line-height: 40px}
-        .textTitle p:last-child{font-size: 1.2rem;line-height: 35px;}
+        .textTitle p:last-child{font-size: 1.15rem;line-height: 35px;}
 
         .tip p{line-height: 35px;margin: 0;padding: 0 10px;background-color: #fff;}
         .tip p:first-child{font-size: 1rem;background-color: #3596F8;line-height: 50px;color: #fff;border-radius: 5px 5px 0 0;}
@@ -57,7 +57,9 @@
     	.imgBg{ width: 100%;}
     	.images{width: 100%;height: 100%;}
     	.banners{width: 90%;max-width:1000px;margin: 0 auto;padding-bottom: 20px;}
+        .swiper-slide{position: relative;}
     	.swiper-slide img{width: 100%;border-radius: 5px;}
+        .goBuy{position: absolute;right: 5.7%;bottom: 5.3%;width: 16%;height: 9%;}
     	.swiper-pagination-bullet {width: 8px;height: 8px;display: inline-block;border-radius: 100%;background: #ead3b0;opacity: 1;color: #7b5c55;font-size: 0.9rem;}
     	@media screen and (max-width: 768px) {
        		.header{width: 90%;height: 55px;line-height: 55px;margin: 0 auto;}
@@ -139,7 +141,8 @@
             </div>
 			<div class="banners">
                 <div class="swiper-slide">
-                    <img src="./images/bg2.png">
+                    <img src="" id="banner">
+                    <a href="https://www.wennoanimal.com/products/75" class="goBuy"></a>
                 </div>
 			    <!-- <div class="swiper-container">
 			        <div class="swiper-wrapper">
@@ -172,18 +175,34 @@
             });
             var lang = getQueryString("language");
             var language = sessionStorage.getItem('language');
+            console.log('lang: '+lang+ ' language: '+language);
             if(lang!=''){
                 $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
                 setLocale();
-            }else if(language!=''){
+            }else if(language!=null){
                 $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
+                if(language=='zh-CN'){
+                    $("#banner").attr('src','./images/bannerC.png');
+                }else if(language=='zh-TW'){
+                    $("#banner").attr('src','./images/bannerW.png');
+                }else if(language=='en'){
+                    $("#banner").attr('src','./images/bannerE.png');
+                }
             }else{
                 $(".selectLang").find("option[lang='en']").attr("selected",true);
+                $("#banner").attr('src','./images/bannerE.png');
             }
     	})
         function setLocale(){
             var language = $('.selectLang').find("option:selected").attr("lang");
             sessionStorage.setItem('language',language);
+            if(language=='zh-CN'){
+                $("#banner").attr('src','./images/bannerC.png');
+            }else if(language=='zh-TW'){
+                $("#banner").attr('src','./images/bannerW.png');
+            }else if(language=='en'){
+                $("#banner").attr('src','./images/bannerE.png');
+            }
             $.ajax({
                 url:'/api/setLocale?lang='+language,
                 type:'GET',
