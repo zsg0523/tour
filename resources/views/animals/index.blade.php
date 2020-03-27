@@ -115,19 +115,7 @@
   
 			        });
 			        this.Loading = false;	
-			        this.LoadCompleted = true;  
-
-
-			        //读Cookie
-			        var hhh;
-				    var arrStr = document.cookie.split("; ");
-				    for (var i = 0; i < arrStr.length; i++) {
-				        var temp = arrStr[i].split("=");
-				        if (temp[0] == 'lang') 
-				        	var hhh=unescape(temp[1]);  //解码
-				    }
-				    console.log(hhh);
-
+			        this.LoadCompleted = true; 
 			    }
 			}, 
 			methods:{
@@ -287,7 +275,7 @@
 				        type:'GET',
 				        success:function(data) {
 				            self.swiper = data.meta;
-				            sessionStorage.setItem('theme_id',data.meta[0],theme_id);
+				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
