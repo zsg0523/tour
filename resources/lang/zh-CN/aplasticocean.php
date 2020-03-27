@@ -3,7 +3,7 @@
 return [
     'learn'                => '了解有关影片的更多信息',
     'tag'                 => '您的浏览器不支持H5播放器',
-    'notice'                => '版权声明',
+    'notice'                => '版权声明: A Plastic Ocean版权是由Plastic Oceans Limited所拥有.',
     'setting'               => '设置',
     'title'                => '愿景与哲学',
     'info1'                => 'A Plastic Ocean Foundation是在香港注册的一个慈善团体, 致力于创造变革浪潮, 以阻止塑料污染, 并通过科学、教育和政策宣传, 成为解决方案的一部分。',

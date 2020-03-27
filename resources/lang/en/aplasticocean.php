@@ -3,7 +3,7 @@
 return [
     'learn'                => 'Learn more about the movie',
     'tag'                => 'your browser does not support the video tag',
-    'notice'                => 'copyright notice',
+    'notice'                => 'copyright notice: The copyright of A Plastic Ocean is owned by Plastic Oceans Limited in Hong Kong.',
     'title'                => 'Vision and Philosophy',
     'info1'                => 'A Plastic Ocean Foundation is a charitable organization registered in Hong Kong, dedicated to creating a wave of change to stop plastic pollution and to be part of the solution through science, education and policy advocacy.',
     'info2'                => 'They are not an anti-plastic organization. They agree plastic is a fantastic product; versatile, cheap, light, and it saves a lot of lives too – think of plastics used in medicine!',
