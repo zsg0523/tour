@@ -17,9 +17,9 @@
 			        <div class="card-body">
 			         	<div class="photo_info disflex">
 	                        <!--头像 -->
-	                        <form method="POST" action="#" enctype="multipart/form-data">
+	                        <!-- <form method="POST" action="#" enctype="multipart/form-data">
 								<div class="user-infoPic">
-									<input type="file" class="inputPic" name="file" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" onchange=""><!-- this.form.submit() -->
+									<input type="file" class="inputPic" name="file" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" onchange="">
 									@if(Auth::user()->avatar)
 		                            	<img src="{{asset('images/writer_img.png')}}" class="avatar" />
 						            @else
@@ -27,7 +27,7 @@
 						            @endif
 	                            	<p>{{ __("shop.info.editavatar") }}</p>
 								</div>
-							</form>
+							</form> -->
 	                        <div class="user-info">
 	                            <p><span>{{ __("shop.info.name") }}</span>{{ Auth::user()->name }}</p>
 	                            <p><span>{{ __("shop.info.email") }}:</span><span class="info">{{ Auth::user()->email }}</span><a class="dpn" href="">更换邮箱</a></p>
