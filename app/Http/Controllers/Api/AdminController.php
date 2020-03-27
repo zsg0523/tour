@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\{Category, Location, Animal, AnimalTranslation};
+use App\Models\{Category, Location, Animal, AnimalTranslation, Theme};
 use App\Handlers\ImageUploadHandler;
 use App\Http\Controllers\Controller;
 use App\Handlers\GenerateQrcodeHandler;
@@ -20,7 +20,7 @@ class AdminController extends Controller
     }
 
 
-    /** [getCategories 分类列表] */
+    /** [getLocations] */
     public function getLocations(Request $request)
     {
         $q = $request->get('q');
@@ -28,12 +28,20 @@ class AdminController extends Controller
         return Location::where('location', 'like', "%$q%")->get(['id', 'location as text']);
     }
 
-    /** [getCategories 分类列表] */
+    /** [getAnimals] */
     public function getAnimals(Request $request)
     {
         $q = $request->get('q');
 
         return Animal::where('product_name', 'like', "%$q%")->paginate(null, ['id', 'product_name as text']);
+    }
+
+    /** [getThemes 获取主题内容] */
+    public function getThemes(Request $request)
+    {
+        $q = $request->get('q');
+
+        return Theme::where('product_name', 'like', "%$q%")->paginate(null, ['id', 'product_name as text']);
     }
 
     /** [generateQrcode 生成二维码] */

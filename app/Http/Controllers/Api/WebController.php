@@ -24,16 +24,22 @@ class WebController extends Controller
         in_array(session('locale'), ['en', 'zh-CN', 'zh-TW']) ? $this->lang = session('locale') : $this->lang = 'en';
     }
 
-	/** [getNews 新闻列表] */
+	/**
+     * [getNews description]
+     * @param  Request $request [description]
+     * @return [type]           [1推荐新闻， 0普通新闻，出现在列表里]
+     */
     public function getNews(Request $request)
     {
     	switch ($request->is_push) {
-    		case '0':
-    			$news = News::where('is_push', 0)->where('lang', $this->lang)->paginate(6);
-    			return $this->response->paginator($news, new NewsTransformer());    		
+            // 推荐新闻，最多五条，按时间排序    		
     		case '1':
-    			$news = News::where('is_push', 1)->where('lang', $this->lang)->get();
+    			$news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->limit(5)->get();
     			return $this->response->collection($news, new NewsTransformer());
+            // 新闻列表
+            default:
+                $news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->paginate(6);
+                return $this->response->paginator($news, new NewsTransformer());
     	}
     }
 

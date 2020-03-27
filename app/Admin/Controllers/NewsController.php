@@ -28,15 +28,13 @@ class NewsController extends AdminController
     {
         $grid = new Grid(new News);
 
-        $grid->column('id', __('Id'));
-        $grid->column('lang', __('Lang'));
-        $grid->column('title', __('Title'));
+        $grid->column('id', __('Id'))->sortable();
+        $grid->column('lang', __('Lang'))->filter(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW']);
+        $grid->column('title', __('Title'))->filter('like');
         $grid->column('cover', __('Cover'))->image(env('APP_UTL') . '/uploads', 30, 30);
         $grid->column('introduction', __('Introduction'))->limit(30);
-        $grid->column('content', __('Content'))->limit(30);
-        $grid->column('is_push', __('Recommend'))->switch();
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('created_at', __('Created at'))->sortable();
+        $grid->column('updated_at', __('Updated at'))->sortable();
         $grid->actions(function ($actions) {
             $actions->add(new Replicate);
         });
@@ -56,7 +54,7 @@ class NewsController extends AdminController
         $show->field('id', __('Id'));
         $show->field('lang', __('Lang'));
         $show->field('title', __('Title'));
-        $show->field('cover', __('Cover'));
+        $show->field('cover', __('Cover'))->image();
         $show->field('introduction', __('Introduction'));
         $show->field('content', __('Content'));
         $show->field('created_at', __('Created at'));
@@ -76,9 +74,8 @@ class NewsController extends AdminController
 
         $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->text('title', __('Title'));
-        $form->image('cover', __('Cover'));
+        $form->image('cover', __('Cover'))->help('不能超过 100M')->removable();
         $form->textarea('introduction', __('Introduction'));
-        $form->switch('is_push', __('Recommend'));
         $form->editor('content');
 
         return $form;

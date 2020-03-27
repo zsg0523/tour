@@ -71,7 +71,7 @@
                   <img src="{{ $product->image_url }}" alt="">
                 </a>
               </div>
-              <div class="price"><b>HKB</b>{{ $product->price }}</div>
+              <div class="price"><b>HKD </b>{{ $product->price }}</div>
               <div class="title">
                 <a href="{{ route('products.show', ['product' => $product->id]) }}">{{ $product->title }}</a>
               </div>
