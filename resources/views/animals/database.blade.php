@@ -6,11 +6,6 @@
         <title></title>
     </head>
     <link rel="stylesheet" href="../animal/css/animalDetails.css">
-    <style type="text/css">
-        select.selectLang{width:30%;position: absolute;right: 10px;border-radius: .3rem;color: rgba(98,76,63,1);height:30px;border:1px solid rgba(98,76,63,1);line-height:30px;text-align: left;background: transparent;background-size: 8px 5px;
-        }
-        select.selectLang:focus { outline: none; }
-    </style>
     <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
     <body class="database">
         <div id="database">

@@ -71,10 +71,10 @@
         .list .bg13{top: -10%;}
         .list:hover .bg{display: inline-block;}
         .list .bg img{width: 100%;}
-        .list .bg span{position: absolute;bottom: 5%;width: 95%;color:#fff;font-size: 0.75rem;text-align: center;z-index: 20;}
-        .list .bg10 span{top: 5%;}
-        .list .bg12 span{top: 5%;}
-        .list .bg13 span{top: 5%;}
+        .list .bg span{position: absolute;bottom: 5%;width: 95%;color:#fff;font-size: 0.8rem;text-align: center;z-index: 20;}
+        .list .bg10 span{top: 5%;height: 0.8rem;}
+        .list .bg12 span{top: 5%;height: 0.8rem;}
+        .list .bg13 span{top: 5%;height: 0.8rem;}
 
     	.imgBg{ width: 100%;}
     	.images{width: 100%;height: 100%;}
@@ -87,6 +87,14 @@
        		.header{width: 90%;height: 55px;line-height: 55px;margin: 0 auto;}
     		.header .logol{width: 66.66px;height: 44.66px;}
     		.header .logor{width: 66.66px;height: 44.66px;}
+
+            .list .bg11{top: -20%;}
+            .list .bg span{height: 0.6rem;width: 200%;left: -50%;}
+            .list .bg3 span{width: 226%;left: -63%;}
+            .list .bg10 span{width: 230%;left: -65%;top: -10%;}
+            .list .bg11 span{top: -30%;}
+            .list .bg12 span{top: -30%;}
+            .list .bg13 span{top: -20%;}
    		}
     </style>
     <body class="HolyGrail">
