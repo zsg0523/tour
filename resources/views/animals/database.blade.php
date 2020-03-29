@@ -34,32 +34,31 @@
                         </div>  -->                 
                     </div>
                     <div class="title" v-cloak>
-                        <p class="animalName">@{{database.title}} 
-                            <select class="selectLang" @change="setLocale()">
-                                <option lang="en">English</option>
-                                <option lang="de">Deutsch</option>
-                                <option lang="fr">Français</option>
-                                <option lang="it">Italiano</option>
-                                <option lang="tr">Türkçe</option>
-                                <option lang="nl">Nederlands</option>
-                                <option lang="da">Dansk</option>
-                                <option lang="pt">Português</option>
-                                <option lang="sv">Svenska</option>
-                                <option lang="th">ภาษาไทย</option>
-                                <option lang="ko">한국어</option>
-                                <option lang="no">Norsk</option>
-                                <option lang="ms">Bahasa Melayu</option>
-                                <option lang="zh-CN">中文简体</option>
-                                <option lang="zh-TW">中文繁體</option>
-                                <option lang="ar">العَرَبِية'</option>
-                                <option lang="es">Español</option>
-                                <option lang="ru">русский язык</option>
-                                <option lang="hi">हिन्दी</option>
-                                <option lang="fi">Finnish</option>
-                                <option lang="jp">日本語</option>
-                                <option lang="uk">українська мова</option>
-                            </select>
-                        </p>
+                        <p class="animalName">@{{database.title}}</p>
+                        <select class="selectLang" @change="setLocale()">
+                            <option lang="en">English</option>
+                            <option lang="de">Deutsch</option>
+                            <option lang="fr">Français</option>
+                            <option lang="it">Italiano</option>
+                            <option lang="tr">Türkçe</option>
+                            <option lang="nl">Nederlands</option>
+                            <option lang="da">Dansk</option>
+                            <option lang="pt">Português</option>
+                            <option lang="sv">Svenska</option>
+                            <option lang="th">ภาษาไทย</option>
+                            <option lang="ko">한국어</option>
+                            <option lang="no">Norsk</option>
+                            <option lang="ms">Bahasa Melayu</option>
+                            <option lang="zh-CN">中文简体</option>
+                            <option lang="zh-TW">中文繁體</option>
+                            <option lang="ar">العَرَبِية'</option>
+                            <option lang="es">Español</option>
+                            <option lang="ru">русский язык</option>
+                            <option lang="hi">हिन्दी</option>
+                            <option lang="fi">Finnish</option>
+                            <option lang="jp">日本語</option>
+                            <option lang="uk">українська мова</option>
+                        </select>
                     </div>
     <!--                <div class="Question">
                         <div class="doYouKnow">
