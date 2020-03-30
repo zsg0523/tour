@@ -80,6 +80,7 @@
 				          	<div class="offset-sm-3 col-sm-9 col-md-7">
 				          		<p>{{ __('shop.cart.total') }}：HKD <span id="orderSum"></span></p>
 				            	<button type="button" class="btn btn-primary btn-create-order">{{ __('shop.cart.submitorder') }}</button>
+				            	<a class="btn btn-primary" href="{{ url('/shop') }}">{{ __('shop.cart.goshopp') }}</a>
 				          	</div>
 				        </div>
 			     	</form>
@@ -189,7 +190,9 @@
             		var html = '<div>';
             		_.each(error.response.data.errors, function (errors) {
 	              		_.each(errors, function (error) {
-	                		html += error+'<br>';
+	              			// 收货地址不能为空
+	                		html += '{{ __("shop.cart.noaddress") }}<br>';
+	                		// html += error+'<br>';
 	              		})
 	            	});
 		            html += '</div>';

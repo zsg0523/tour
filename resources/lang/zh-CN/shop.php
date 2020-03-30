@@ -120,6 +120,7 @@ return [
         'determine' => '确定',
         'submitsuccess' => '订单提交成功',
         'systemerror' => '系统错误',
+        'noaddress' => '收货地址不能为空',
     ],
     'review' => [
         'title' => '商品评价',
