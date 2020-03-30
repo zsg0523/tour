@@ -3,7 +3,7 @@
 	<head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
 		<meta charset="UTF-8">
-		<title></title>
+		<title>{{ __('animals.page-title') }}</title>
 	</head>
     <link rel="stylesheet" href="./animal/css/swiper.min.css" />
     <link rel="stylesheet" href="./animal/css/animalIndex.css">
@@ -31,7 +31,7 @@
 		            <nav>
 					    <div class="swiper-container">
 					    	<div class="swiper-wrapper">
-					    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :title="arr.title_page"  @click="selectTimer(index,arr.title_page)">
+					    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :title="arr.title_page"  @click="selectTimer(index,arr.title_page,arr.theme_id)">
 					    	        <a>@{{arr.title_page}}</a>
 					    	    </div>
 					    	</div>
@@ -115,17 +115,18 @@
   
 			        });
 			        this.Loading = false;	
-			        this.LoadCompleted = true;  
+			        this.LoadCompleted = true; 
 			    }
 			}, 
 			methods:{
 				database(title){
                     window.location.href = './animals/database?product_name='+title;
 				},
-                selectTimer(index,title) {
+                selectTimer(index,title,theme_id) {
 				    this.imageIndex = index;
 				    $(".swiper-slide").removeClass("active");
 				    $(".swiper-slide").eq(index).addClass("active");
+				    sessionStorage.setItem('theme_id',theme_id);
 				    const self=this;
                     $.ajax({
 				        url:'/api/animals?theme='+title+'&include=sound,animal',
@@ -168,11 +169,11 @@
                     console.log(language);
                     console.log(lang);
                     console.log(theme);
-                    var url = '/api/animals?include=animal';
+                    var url = '/api/animals?lang=en&include=animal';
                     if(!theme||theme=='null'){
                           if(lang==null){
                           	   if(language==null){
-			                        url = '/api/animals?include=animal';
+			                        url = '/api/animals?lang=en&include=animal';
 			                        langTitle();  
 			                    }else{
 			                        url = '/api/animals?lang='+language+'&include=sound,animal';
@@ -186,7 +187,7 @@
                     	//theme!=null
                     	if(lang==null){
                              if(language==null){
-		                        url = '/api/animals?include=animal';
+		                        url = '/api/animals?lang=en&include=animal';
 		                        langTitle();                                
                              }else{
 		                        url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
@@ -274,6 +275,7 @@
 				        type:'GET',
 				        success:function(data) {
 				            self.swiper = data.meta;
+				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;

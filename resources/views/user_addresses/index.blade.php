@@ -43,7 +43,7 @@
 	                		</tbody>
 		              	</table>
 			            @else
-                        	<div class="nodata">暂无添加收货地址</div>
+                        	<div class="nodata">{{ __("shop.address.none") }}</div>
 			            @endif
 	            	</div>
 	          	</div>
@@ -65,7 +65,7 @@
 		                  	</div>
 	            		@endforeach
 		            @else
-                    	<div class="nodata">暂无添加收货地址</div>
+                    	<div class="nodata">{{ __("shop.address.none") }}</div>
 		            @endif
 	          	</div>
 

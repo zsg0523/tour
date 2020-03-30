@@ -100,7 +100,7 @@ header{
 }
 .title{
     width:100%;
-    height:46px;
+    height:96px;
     line-height:46px;
     position:absolute;
     margin-top:20px;
@@ -115,6 +115,8 @@ header{
     font-size:0.9rem;
     font-weight:550;
 }
+.title select.selectLang{display: block;width:92%;margin:0 auto;border-radius: .3rem;color: rgba(98,76,63,1);height:30px;border:1px solid rgba(98,76,63,1);line-height:30px;text-align: center;background: transparent;background-size: 8px 5px;}
+.title select.selectLang:focus { outline: none; }
 .Question{
     width:92%;
     height:66px;
@@ -177,7 +179,7 @@ header{
     width:100%;
     height:auto;
     position:absolute;
-    top:70px;
+    top:120px;
 }
 .detailsList ul{
    list-style-type:none;
@@ -373,4 +375,4 @@ header{
 .ball-beat>div:nth-child(2n-1) {
     -webkit-animation-delay: 0.35s !important;
     animation-delay: 0.35s !important;
-} 
+}

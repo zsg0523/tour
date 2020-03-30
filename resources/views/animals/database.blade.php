@@ -6,11 +6,6 @@
         <title></title>
     </head>
     <link rel="stylesheet" href="../animal/css/animalDetails.css">
-    <style type="text/css">
-        select.selectLang{width:30%;position: absolute;right: 10px;border-radius: .3rem;color: rgba(98,76,63,1);height:30px;border:1px solid rgba(98,76,63,1);line-height:30px;text-align: left;background: transparent;background-size: 8px 5px;
-        }
-        select.selectLang:focus { outline: none; }
-    </style>
     <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
     <body class="database">
         <div id="database">
@@ -39,32 +34,31 @@
                         </div>  -->                 
                     </div>
                     <div class="title" v-cloak>
-                        <p class="animalName">@{{database.title}} 
-                            <select class="selectLang" @change="setLocale()">
-                                <option lang="en">English</option>
-                                <option lang="de">Deutsch</option>
-                                <option lang="fr">Français</option>
-                                <option lang="it">Italiano</option>
-                                <option lang="tr">Türkçe</option>
-                                <option lang="nl">Nederlands</option>
-                                <option lang="da">Dansk</option>
-                                <option lang="pt">Português</option>
-                                <option lang="sv">Svenska</option>
-                                <option lang="th">ภาษาไทย</option>
-                                <option lang="ko">한국어</option>
-                                <option lang="no">Norsk</option>
-                                <option lang="ms">Bahasa Melayu</option>
-                                <option lang="zh-CN">中文简体</option>
-                                <option lang="zh-TW">中文繁體</option>
-                                <option lang="ar">العَرَبِية'</option>
-                                <option lang="es">Español</option>
-                                <option lang="ru">русский язык</option>
-                                <option lang="hi">हिन्दी</option>
-                                <option lang="fi">Finnish</option>
-                                <option lang="jp">日本語</option>
-                                <option lang="uk">українська мова</option>
-                            </select>
-                        </p>
+                        <p class="animalName">@{{database.title}}</p>
+                        <select class="selectLang" @change="setLocale()">
+                            <option lang="en">English</option>
+                            <option lang="de">Deutsch</option>
+                            <option lang="fr">Français</option>
+                            <option lang="it">Italiano</option>
+                            <option lang="tr">Türkçe</option>
+                            <option lang="nl">Nederlands</option>
+                            <option lang="da">Dansk</option>
+                            <option lang="pt">Português</option>
+                            <option lang="sv">Svenska</option>
+                            <option lang="th">ภาษาไทย</option>
+                            <option lang="ko">한국어</option>
+                            <option lang="no">Norsk</option>
+                            <option lang="ms">Bahasa Melayu</option>
+                            <option lang="zh-CN">中文简体</option>
+                            <option lang="zh-TW">中文繁體</option>
+                            <option lang="ar">العَرَبِية'</option>
+                            <option lang="es">Español</option>
+                            <option lang="ru">русский язык</option>
+                            <option lang="hi">हिन्दी</option>
+                            <option lang="fi">Finnish</option>
+                            <option lang="jp">日本語</option>
+                            <option lang="uk">українська мова</option>
+                        </select>
                     </div>
     <!--                <div class="Question">
                         <div class="doYouKnow">
@@ -248,10 +242,22 @@
                     }
                     var lang = GetQueryString("lang");
                     var language = sessionStorage.getItem('language');
-                    console.log('language: '+language+'  lang: '+lang);
+                    var theme1 = GetQueryString("theme_id");
+                    var theme2 = sessionStorage.getItem('theme_id');
+                    var theme_id;
+                    if(theme1==null){
+                        if(theme2==null){
+                            theme_id = '';                            
+                        }else{
+                            theme_id = theme2;
+                        }
+                    }else{
+                        theme_id = theme1;
+                    }
+                    console.log('language: '+language+'  lang: '+lang+' theme_id: '+theme_id);
                     if(lang!=null){
                         console.log('lang not null');
-                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang;
+                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang+'&theme_id='+theme_id;
                         $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
                         $.ajax({
                             url:'/api/setLocale?lang='+lang,
@@ -273,14 +279,14 @@
 
                     if(lang==null&&language!=null){
                         console.log('lang is null,language not null');
-                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language;
+                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language+'&theme_id='+theme_id;
                         $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
 
                     }
 
                     if(lang==null&&language==null){
                         console.log('lang is null,language is null');
-                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name");
+                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang=en&theme_id='+theme_id;;
                          $(".selectLang").find("option[lang='en']").attr("selected",true);
                     }
                    

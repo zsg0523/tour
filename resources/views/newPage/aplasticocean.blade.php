@@ -11,30 +11,39 @@
 		a:hover {text-decoration: none;}
 		a:not([href]) {color: inherit;text-decoration: none;}
 		a:not([href]):hover {color: inherit;text-decoration: none;}
-    	.HolyGrail{width: 100%;height: 100%;margin: 0;padding: 0;}
-    	.header{max-width:1700px;width: 90%;height: 80px;line-height: 80px;margin: 0 auto;}
+    	.HolyGrail{width: 100%;height: 100%;margin: 0;padding: 0;font-family:"Arial";} /*Arial, Helvetica, sans-serif*/
+    	.header{max-width:1700px;width: 90%;max-width:1000px;height: 80px;line-height: 80px;margin: 0 auto;}
     	.header .logol{float: left;width: 100px;height: 67px;}
     	.header .logor{float: left;width: 100px;height: 67px;margin-left: 10px;}
     	.header img{width: 100%;height: 100%;vertical-align: middle;}
         .Lang{float: right;}
         select{border-radius: .3rem;color: #7b5c55;height:35px;line-height:35px;font-size: .67rem;text-align: left;background: #fff;background-size: 8px 5px;}
     	.main{width: 100%;height:100%;background-color: #d3edfb;padding-top: 20px;}
-    	.main .video{width: 90%;margin: 0 auto;text-align: center;border-radius:5px;overflow: hidden;}
+    	.main .video{width: 90%;max-width:1000px;margin: 0 auto;text-align: center;border-radius:5px;overflow: hidden;}
     	.more{margin: 0;text-align: right;height: 35px;line-height: 35px;background: #fff;padding-right: 15px;color: #333;}
     	.more img{width: 21px;height: 21px;vertical-align: middle;}
 	    .videoBox{width:100%;height:100%;margin:0px auto;position:relative;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center; justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;font-size:3rem;color:#fff;}
 	   	.videoBox video{width: 100%;}
 	   	.play{width:60px;height: 60px;position: absolute;top: 45%;left: 45%;}
 
-    	.main .textinfo{width: 90%;margin: 20px auto;background-color: #697ac3;color: #fff;border-radius: 5px;padding: 10px 0;}
+    	.main .textinfo{width: 90%;max-width:1000px;margin: 20px auto;background-color: #697ac3;color: #fff;border-radius: 5px;padding: 10px 0;}
     	.textinfo p{margin: 0;font-size: 0.9rem;line-height: 30px;padding: 0 10px;}
-    	.textinfo p:first-child{font-size: 1rem;line-height: 45px;}
-    	.animal{width: 90%;margin: 20px auto;position: relative;}
+    	.textinfo p.title{font-size: 1rem;line-height: 45px;text-decoration: underline;}
+
+        .animal_info{width: 90%;max-width:1000px;margin: 20px auto;}
+        .tip{width: 100%;}
+        .textTitle{text-align: center;}
+        .textTitle p{font-size: 1.4rem;line-height: 40px}
+        .textTitle p:last-child{font-size: 1.15rem;line-height: 35px;}
+
+        .tip p{line-height: 35px;margin: 0;padding: 0 10px;background-color: #fff;}
+        .tip p:first-child{font-size: 1rem;background-color: #3596F8;line-height: 50px;color: #fff;border-radius: 5px 5px 0 0;}
+    	.animal{width: 100%;position: relative;}
     	.list img{width: 100%;-webkit-transition:.5s ease;-moz-transition:.5s ease;transition:.5s ease;}
-    	.list:hover img{-webkit-transform:scale(1.05);-moz-transform:scale(1.05);transform:scale(1.05);}
+    	.list:hover img{-webkit-transform:scale(1.2);-moz-transform:scale(1.2);transform:scale(1.2);}
     	.animallist1{position: absolute;top: 38%;left: 47%;width: 25%;z-index: 10;}
     	.animallist2{position: absolute;top: 23%;left: 3%;width: 14%;}
-    	.animallist3{position: absolute;top: 23%;left: 26%;width: 47%;z-index: 8;}
+    	.animallist3{position: absolute;top: 33%;left: 26%;width: 20%;z-index: 8;}
     	.animallist4{position: absolute;top: 3%;left: 15%;width: 15%;z-index: 10;}
     	.animallist5{position: absolute;top: 16%;left: 41%;width: 7%;z-index: 10;}
     	.animallist6{position: absolute;top: 5%;left: 67%;width: 11%;z-index: 10;}
@@ -45,16 +54,47 @@
     	.animallist11{position: absolute;top: 66%;left: 59%;width: 13%;}
     	.animallist12{position: absolute;top: 80%;left: 32%;width: 14%;}
     	.animallist13{position: absolute;bottom: 0%;left: 10%;width: 18%;}
-        .tip{width: 90%;margin: 20px auto 0;position: relative;}
+
+        .list .bg{position: absolute;top:0;left:5%;width: 90%;display: none;}
+        .list .bg1{top: -22%;}
+        .list .bg2{top: -30%;}
+        .list .bg3{top: -26%;}
+        .list .bg4{width: 120%;}
+        .list .bg5{width: 200%;left: -50%;top: -35%;}
+        .list .bg6{width: 150%;left: -25%;top: -10%;}
+        .list .bg7{width: 130%;left: -15%;top: -50%;}
+        .list .bg8{width: 80%;left: 10%;top: -30%;}
+        .list .bg9{top: -20%;}
+        .list .bg10{width: 110%;left: -5%;top: -60%;}
+        .list .bg11{width: 120%;left: -10%;}
+        .list .bg12{width: 100%;left: 0%;top: -40%;}
+        .list .bg13{top: -10%;}
+        .list:hover .bg{display: inline-block;}
+        .list .bg img{width: 100%;}
+        .list .bg span{position: absolute;bottom: 5%;width: 95%;color:#fff;font-size: 0.8rem;text-align: center;z-index: 20;}
+        .list .bg10 span{top: 5%;height: 0.8rem;}
+        .list .bg12 span{top: 5%;height: 0.8rem;}
+        .list .bg13 span{top: 5%;height: 0.8rem;}
+
     	.imgBg{ width: 100%;}
     	.images{width: 100%;height: 100%;}
-    	.banners{width: 90%;margin: 0 auto;padding-bottom: 20px;}
+    	.banners{width: 90%;max-width:1000px;margin: 0 auto;padding-bottom: 20px;}
+        .swiper-slide{position: relative;}
     	.swiper-slide img{width: 100%;border-radius: 5px;}
+        .goBuy{position: absolute;right: 5.7%;bottom: 5.3%;width: 16%;height: 9%;}
     	.swiper-pagination-bullet {width: 8px;height: 8px;display: inline-block;border-radius: 100%;background: #ead3b0;opacity: 1;color: #7b5c55;font-size: 0.9rem;}
     	@media screen and (max-width: 768px) {
        		.header{width: 90%;height: 55px;line-height: 55px;margin: 0 auto;}
     		.header .logol{width: 66.66px;height: 44.66px;}
     		.header .logor{width: 66.66px;height: 44.66px;}
+
+            .list .bg11{top: -20%;}
+            .list .bg span{height: 0.6rem;width: 200%;left: -50%;}
+            .list .bg3 span{width: 226%;left: -63%;}
+            .list .bg10 span{width: 230%;left: -65%;top: -10%;}
+            .list .bg11 span{top: -30%;}
+            .list .bg12 span{top: -30%;}
+            .list .bg13 span{top: -20%;}
    		}
     </style>
     <body class="HolyGrail">
@@ -73,44 +113,170 @@
 	        <div class="video">
 	        	<a href="http://www.aplasticocean.movie/"><div class="more moreimg">{{ __('aplasticocean.learn') }} <img src="./images/link.png"></div></a>
 	            <div class="videoBox">
-	            	<video poster="./images/bg2.png" id="myvideo" muted controls="controls" autoplay="autoplay">
+	            	<video id="myvideo" muted controls="controls" autoplay="autoplay">
 	                  	<source  src="https://www.wennoanimal.com/uploads/files/APO_Kids_Version_Cantonese.mp4" type="video/mp4" />
 	                        {{ __('aplasticocean.tag') }}
-	                </video> 
-	                <!-- <img class="play" src="./images/playv.png"> -->
-	            	<!-- <video id="myvideo" src="https://outin-1fda0e34335d11e98d8200163e1a625e.oss-cn-shanghai.aliyuncs.com/fc2fa607b2a94a8494637e66ec9aa6bb/f09e4f84f496476d84a14c1c8dda0378-486e6ec1e6947cf9597e4a2d269f9c1f-ld.mp4?Expires=1583738871&OSSAccessKeyId=LTAI8bKSZ6dKjf44&Signature=Wo9x2fHl1zYU290dOu3y8K1FHHg%3D" controls="controls" >
-		                your browser does not support the video tag
-		            </video> -->
+	                </video>
 	            </div>
 	            <div class="more">{{ __('aplasticocean.notice') }}</div>
 	        </div>
     		<div class="textinfo">
-    			<p>{{ __('aplasticocean.title') }}</p>
-    			<p>{{ __('aplasticocean.info1') }}</p>
-    			<p>{{ __('aplasticocean.info2') }}</p>
-                <p>{{ __('aplasticocean.info3') }}</p>
-    			<p>{{ __('aplasticocean.info4') }}</p>
+                <div class="textTitle">
+                    <p>{{ __('aplasticocean.toptitle1') }}</p>
+                    <p>{{ __('aplasticocean.toptitle2') }}</p>
+                </div>
+                <br>
+                <div>
+        			<p>{{ __('aplasticocean.top1') }}</p>
+                </div>
+                <br>
+                <div>
+                    <p class="title">{{ __('aplasticocean.title1') }}</p>
+                    <p>{{ __('aplasticocean.titleinfo1') }}</p>
+                </div>
+                <br>
+                <div>
+                    <p class="title">{{ __('aplasticocean.title2') }}</p>
+                    <p>{{ __('aplasticocean.titleinfo1') }}</p>
+                </div>
+                <br>
+                <div>
+                    <p class="title">{{ __('aplasticocean.title') }}</p>
+                    <p>{{ __('aplasticocean.info1') }}</p>
+                    <p>{{ __('aplasticocean.info2') }}</p>
+                    <p>{{ __('aplasticocean.info3') }}</p>
+                </div>
     		</div>
-            <div class="tip"><p>{{ __('aplasticocean.tip') }}</p></div>
-    		<div class="animal">
-    			<div class="imgBg"><img class="images" src="./images/bg.png"></div>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Great_White_Shark"><div class="list animallist1"><img src="./images/animal1.png"></div>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Great_White_Shark"><div class="list animallist2"><img src="./images/animal2.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Common_Bottlenose_Dolphin"><div class="list animallist3"><img src="./images/animal3.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=KILLER_WHALE_EM"><div class="list animallist4"><img src="./images/animal4.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Copperband_Butterflyfish"><div class="list animallist5"><img src="./images/animal5.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Reef_Manta_Ray"><div class="list animallist6"><img src="./images/animal6.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=POWDER-BLUE_SURGEONFISH"><div class="list animallist7"><img src="./images/animal7.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Whale_Shark"><div class="list animallist8"><img src="./images/animal8.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Humpback_Whale"><div class="list animallist9"><img src="./images/animal9.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Hawksbill_Turtle"><div class="list animallist10"><img src="./images/animal10.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Giant_Pacific_Octopus"><div class="list animallist11"><img src="./images/animal11.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=Green_Sea_Turtle"><div class="list animallist12"><img src="./images/animal12.png"></div></a>
-    			<a href="https://www.wennoanimal.com/animals/database?product_name=HARBOR_SEAL"><div class="list animallist13"><img src="./images/animal13.png"></div></a>
-    		</div>
+            <div class="animal_info">
+                <div class="tip">
+                    <p>{{ __('aplasticocean.tip') }}</p>
+                    <p>{{ __('aplasticocean.tip1') }}</p>
+                </div>
+        		<div class="animal">
+        			<div class="imgBg"><img class="images" src="./images/bg.png"></div>
+                    <div class="list animallist1">
+                        <div class="bg bg1">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Great_White_Shark">
+                                <span>{{__('aplasticocean.animal1')}}</span>
+                            </a>
+                                <img src="./images/circle.png">
+                            </div>
+                        <img src="./images/animal1.png">
+                    </div>
+                    <div class="list animallist2">
+                        <div class="bg bg2">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Great_White_Shark">
+                                <span>{{__('aplasticocean.animal2')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal2.png">
+                    </div>
+                    <div class="list animallist3">
+                        <div class="bg bg3">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Common_Bottlenose_Dolphin">
+                                <span>{{__('aplasticocean.animal3')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal3.png">
+                    </div>
+                    <div class="list animallist4">
+                        <div class="bg bg4">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=KILLER_WHALE_EM">
+                                <span>{{__('aplasticocean.animal4')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal4.png">
+                    </div>
+                    <div class="list animallist5">
+                        <div class="bg bg5">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Copperband_Butterflyfish">
+                                <span>{{__('aplasticocean.animal5')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal5.png">
+                    </div>
+                    <div class="list animallist6">
+                        <div class="bg bg6">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Reef_Manta_Ray">
+                                <span>{{__('aplasticocean.animal6')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal6.png">
+                    </div>
+                    <div class="list animallist7">
+                        <div class="bg bg7">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=POWDER-BLUE_SURGEONFISH">
+                                <span>{{__('aplasticocean.animal7')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal7.png">
+                    </div>
+                    <div class="list animallist8">
+                        <div class="bg bg8">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Whale_Shark">
+                                <span>{{__('aplasticocean.animal8')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal8.png">
+                    </div>
+                    <div class="list animallist9">
+                        <div class="bg bg9">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Humpback_Whale">
+                                <span>{{__('aplasticocean.animal9')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal9.png">
+                    </div>
+                    <div class="list animallist10">
+                        <div class="bg bg10">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Hawksbill_Turtle">
+                                <span>{{__('aplasticocean.animal10')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal10.png">
+                    </div>
+                    <div class="list animallist11">
+                        <div class="bg bg11">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Giant_Pacific_Octopus">
+                                <span>{{__('aplasticocean.animal11')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal11.png">
+                    </div>
+                    <div class="list animallist12">
+                        <div class="bg bg12">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=Green_Sea_Turtle">
+                                <span>{{__('aplasticocean.animal12')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal12.png">
+                    </div>
+                    <div class="list animallist13">
+                        <div class="bg bg13">
+                            <a href="https://www.wennoanimal.com/animals/database?product_name=HARBOR_SEAL">
+                                <span>{{__('aplasticocean.animal13')}}</span>
+                            </a>
+                            <img src="./images/circle.png">
+                        </div>
+                        <img src="./images/animal13.png">
+                    </div>
+        		</div>
+            </div>
 			<div class="banners">
                 <div class="swiper-slide">
-                    <img src="./images/bg2.png">
+                    <img src="" id="banner">
+                    <a href="https://www.wennoanimal.com/products/75" class="goBuy"></a>
                 </div>
 			    <!-- <div class="swiper-container">
 			        <div class="swiper-wrapper">
@@ -132,29 +298,46 @@
             if (r!=null) return r[2]; return '';
         }
     	$(function(){ 
-    		// var mySwiper = new Swiper('.swiper-container', {
-		    //     autoplay: 6000,//可选选项，自动滑动
-		    //     loop : true,
-		    //     pagination: {
-	     //            el: '.swiper-pagination',
-	     //            clickable: true,
-	     //            dynamicBullets: true,
-	     //        },
-		    // });
+    		var mySwiper = new Swiper('.swiper-container', {
+                autoplay: 6000,//可选选项，自动滑动
+                loop : true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+            });
             var lang = getQueryString("language");
             var language = sessionStorage.getItem('language');
+            console.log('lang: '+lang+ ' language: '+language);
             if(lang!=''){
                 $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
                 setLocale();
-            }else if(language!=''){
+            }else if(language!=null){
                 $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
+                if(language=='zh-CN'){
+                    $("#banner").attr('src','./images/bannerC.png');
+                }else if(language=='zh-TW'){
+                    $("#banner").attr('src','./images/bannerW.png');
+                }else if(language=='en'){
+                    $("#banner").attr('src','./images/bannerE.png');
+                }
             }else{
                 $(".selectLang").find("option[lang='en']").attr("selected",true);
+                // $("#banner").attr('src','./images/bannerE.png');
+                setLocale();
             }
     	})
         function setLocale(){
             var language = $('.selectLang').find("option:selected").attr("lang");
             sessionStorage.setItem('language',language);
+            if(language=='zh-CN'){
+                $("#banner").attr('src','./images/bannerC.png');
+            }else if(language=='zh-TW'){
+                $("#banner").attr('src','./images/bannerW.png');
+            }else if(language=='en'){
+                $("#banner").attr('src','./images/bannerE.png');
+            }
             $.ajax({
                 url:'/api/setLocale?lang='+language,
                 type:'GET',

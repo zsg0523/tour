@@ -61,11 +61,11 @@
           <table class="table table-bordered table-striped">
             <thead>
             <tr>
-              <td>用户</td>
-              <td>商品</td>
-              <td>评分</td>
-              <td>评价</td>
-              <td>时间</td>
+              <td>{{ __('shop.product.user') }}</td>
+              <td>{{ __('shop.product.product') }}</td>
+              <td>{{ __('shop.product.score') }}</td>
+              <td>{{ __('shop.product.evaluation') }}</td>
+              <td>{{ __('shop.product.time') }}</td>
             </tr>
             </thead>
             <tbody>
@@ -117,7 +117,7 @@
     });
 
     $('.btn-disfavor').click(function () {
-      axios.delete('{{ route('products.disfavor', ['product' => $product->id]) }}')
+      axios.delete("{{ route('products.disfavor', ['product' => $product->id]) }}")
         .then(function () {
           swal("{{ __('shop.product.successOperat') }}", '', 'success')
             .then(function () {
@@ -130,12 +130,12 @@
     $('.btn-add-to-cart').click(function () {
 
       // 请求加入购物车接口
-      axios.post('{{ route('cart.add') }}', {
+      axios.post("{{ route('cart.add') }}", {
         sku_id: $('label.active input[name=skus]').val(),
         amount: $('.cart_amount input').val(),
       })
         .then(function () { // 请求成功执行此回调
-          swal('加入购物车成功', '', 'success')
+          swal('{{ __("shop.product.addsuccess") }}', '', 'success')
             .then(function() {
             location.href = '{{ route('cart.index') }}';
           });
@@ -147,11 +147,12 @@
 
           } else if (error.response.status === 422) {
 
-            // http 状态码为 422 代表用户输入校验失败
+            // http 状态码为 422 代表用户输入校验失败 请选择商品
             var html = '<div>';
             _.each(error.response.data.errors, function (errors) {
               _.each(errors, function (error) {
-                html += error+'<br>';
+                // html += error+'<br>';
+                html += '{{ __("shop.product.selectproduct") }}<br>';
               })
             });
             html += '</div>';

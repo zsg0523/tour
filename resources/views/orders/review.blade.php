@@ -6,8 +6,8 @@
 <div class="col-lg-10 offset-lg-1">
 <div class="card">
   <div class="card-header">
-    商品评价
-    <a class="float-right" href="{{ route('orders.index') }}">返回订单列表</a>
+    {{ __('shop.review.title') }}
+    <a class="float-right" href="{{ route('orders.index') }}">{{ __('shop.review.return') }}</a>
   </div>
   <div class="card-body">
     <form action="{{ route('orders.review.store', [$order->id]) }}" method="post">
@@ -15,9 +15,9 @@
       <table class="table">
         <tbody>
         <tr>
-          <td>商品名称</td>
-          <td>打分</td>
-          <td>评价</td>
+          <td>{{ __('shop.review.name') }}</td>
+          <td>{{ __('shop.review.score') }}</td>
+          <td>{{ __('shop.review.evaluation') }}</td>
         </tr>
         @foreach($order->items as $index => $item)
           <tr>
@@ -68,9 +68,9 @@
         <tr>
           <td colspan="3" class="text-center">
             @if(!$order->reviewed)
-              <button type="submit" class="btn btn-primary center-block">提交</button>
+              <button type="submit" class="btn btn-primary center-block">{{ __('shop.review.submit') }}</button>
             @else
-              <a href="{{ route('orders.show', [$order->id]) }}" class="btn btn-primary">查看订单</a>
+              <a href="{{ route('orders.show', [$order->id]) }}" class="btn btn-primary">{{ __('shop.review.view') }}</a>
             @endif
           </td>
         </tr>

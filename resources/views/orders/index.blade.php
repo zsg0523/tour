@@ -72,7 +72,12 @@
 					                      	<!-- 评价入口开始 -->
 											@if($order->paid_at)
 											<a class="btn btn-success btn-sm" href="{{ route('orders.review.show', ['order' => $order->id]) }}">
-											{{ $order->reviewed ? '查看评价' : '评价' }}
+											@if($order->reviewed)
+								              	{{ __("shop.order.viewevaluation") }}
+								            @else
+								                {{ __("shop.order.evaluation") }}
+								            @endif
+
 											</a>
 											@endif
 											<!-- 评价入口结束 -->
