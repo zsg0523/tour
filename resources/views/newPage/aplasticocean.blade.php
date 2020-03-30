@@ -37,7 +37,7 @@
         .textTitle p:last-child{font-size: 1.15rem;line-height: 35px;}
 
         .tip p{line-height: 35px;margin: 0;padding: 0 10px;background-color: #fff;}
-        .tip p:first-child{font-size: 1rem;background-color: #3596F8;line-height: 50px;color: #fff;border-radius: 5px 5px 0 0;}
+        .tip p:first-child{font-size: 1rem;background-color: #3596F8;line-height: 50px;color: #fff;border-radius: 5px 5px 0 0;font-weight: bold;}
     	.animal{width: 100%;position: relative;}
     	.list img{width: 100%;-webkit-transition:.5s ease;-moz-transition:.5s ease;transition:.5s ease;}
     	.list:hover img{-webkit-transform:scale(1.2);-moz-transform:scale(1.2);transform:scale(1.2);}
@@ -72,6 +72,7 @@
         .list:hover .bg{display: inline-block;}
         .list .bg img{width: 100%;}
         .list .bg span{position: absolute;bottom: 5%;width: 95%;color:#fff;font-size: 0.8rem;text-align: center;z-index: 20;}
+        .list .bg8 span,.list .bg12 span,.list .bg13 span{color: #000;}
         .list .bg10 span{top: 5%;height: 0.8rem;}
         .list .bg12 span{top: 5%;height: 0.8rem;}
         .list .bg13 span{top: 5%;height: 0.8rem;}
@@ -103,9 +104,9 @@
     		<a href="https://www.wennoanimal.com"><div class="logor"><img src="./images/logo1.png"></div></a>
             <div class="Lang">
                 <select class="selectLang" onchange="setLocale()">
-                    <option lang="zh-CN" value="1">中文简体</option>
                     <option lang="en" value="0">ENGLISH</option>
                     <option lang="zh-TW" value="2">中文繁體</option>
+                    <option lang="zh-CN" value="1">中文简体</option>
                 </select>
             </div>
     	</div>
@@ -276,7 +277,7 @@
 			<div class="banners">
                 <div class="swiper-slide">
                     <img src="" id="banner">
-                    <a href="https://www.wennoanimal.com/products/75" class="goBuy"></a>
+                    <a href="javascript:;" onclick="goBuy()" class="goBuy"></a>
                 </div>
 			    <!-- <div class="swiper-container">
 			        <div class="swiper-wrapper">
@@ -352,6 +353,16 @@
                     console.log(XMLHttpRequest.status+'  '+XMLHttpRequest.readyState+'  '+textStatus);
                 }
             });
+        }
+        function goBuy(){
+            var language = sessionStorage.getItem('language');
+            if(language=='zh-CN'){
+                window.location.href = 'https://www.wennoanimal.com/products/76';
+            }else if(language=='zh-TW'){
+                window.location.href = 'https://www.wennoanimal.com/products/75';
+            }else if(language=='en'){
+                window.location.href = 'https://www.wennoanimal.com/products/77';
+            }
         }
     </script>
 </html>
