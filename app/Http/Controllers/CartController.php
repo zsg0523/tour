@@ -26,6 +26,7 @@ class CartController extends Controller
         return [];
     }
 
+
     /** [remove 商品移除购物车] */
     public function remove(ShopProductSku $productSku, Request $request)
     {
