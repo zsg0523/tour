@@ -26,7 +26,7 @@ return [
     'animal4'              => '虎鯨',
     'animal5'              => '鑽嘴魚',
     'animal6'              => '雙吻前口蝠鱝',
-    'animal7'              => 'POWDER BLUE SURGEONFISH',
+    'animal7'              => '白胸刺尾魚',
     'animal8'              => '鯨鯊',
     'animal9'              => '座頭鯨',
     'animal10'             => '玳瑁',

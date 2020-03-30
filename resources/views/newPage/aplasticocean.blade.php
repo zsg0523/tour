@@ -324,7 +324,8 @@
                 }
             }else{
                 $(".selectLang").find("option[lang='en']").attr("selected",true);
-                $("#banner").attr('src','./images/bannerE.png');
+                // $("#banner").attr('src','./images/bannerE.png');
+                setLocale();
             }
     	})
         function setLocale(){
