@@ -31,14 +31,17 @@ class WebController extends Controller
      */
     public function getNews(Request $request)
     {
+        // 兼容APP多语言，检查是否传入lang参数
+        isset($request->lang) ? $lang = $request->lang : $lang = $this->lang;
+
     	switch ($request->is_push) {
             // 推荐新闻，最多五条，按时间排序    		
     		case '1':
-    			$news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->limit(5)->get();
+    			$news = News::where('is_push', 0)->where('lang', $lang)->orderBy('created_at', 'desc')->limit(5)->get();
     			return $this->response->collection($news, new NewsTransformer());
             // 新闻列表
             default:
-                $news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->paginate(6);
+                $news = News::where('is_push', 0)->where('lang', $lang)->orderBy('created_at', 'desc')->paginate(6);
                 return $this->response->paginator($news, new NewsTransformer());
     	}
     }
