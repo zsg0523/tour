@@ -37,6 +37,14 @@
             $('.icon-top').click(function(){
                 $('html,body').animate({'scrollTop':0});
             })
+            console.log("{{ route_class() }}");
+            if("{{ route_class() }}"==='products-index'||"{{ route_class() }}"==='login'||"{{ route_class() }}"==='register'||"{{ route_class() }}"==='password-request'||"{{ route_class() }}"==='password-reset'){
+            	$(".selectLang").prop("disabled",false);
+                $(".moblieselect").prop("disabled",false);
+            }else{
+            	$(".selectLang").prop("disabled",true);
+                $(".moblieselect").prop("disabled",true);
+            }
             var lang = sessionStorage.getItem('language');
             if(lang == 'zh-CN'){
                 $(".selectLang").find("option[lang='zh-CN']").prop("selected",true);

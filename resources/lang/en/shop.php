@@ -15,6 +15,7 @@ return [
         'returnlogin' => 'Back to login',
     ],
     'info' => [
+        'home' => 'Home',
 		'personal' => 'Personal center',
 		'account' => 'Account management',
 		'address' => 'Shipping address',

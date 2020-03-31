@@ -15,6 +15,7 @@ return [
         'returnlogin' => '返回登錄',
     ],
     'info' => [
+        'home' => '首頁',
 		'personal' => '個人中心',
 		'account' => '賬號管理',
 		'address' => '收貨地址',

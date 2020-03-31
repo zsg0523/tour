@@ -15,6 +15,7 @@ return [
         'returnlogin' => '返回登录',
     ],
     'info' => [
+        'home' => '首页',
 		'personal' => '个人中心',
 		'account' => '账号管理',
 		'address' => '收货地址',

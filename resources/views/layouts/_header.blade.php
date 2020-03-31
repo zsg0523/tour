@@ -17,6 +17,7 @@
 		        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('shop.Login.login') }}</a></li>
 		        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('shop.Login.register') }}</a></li>
 	        @else
+            <li class="nav-item"><a class="nav-link" href="{{ url('/shop') }}">{{ __('shop.info.home') }}</a></li>
 	        	<li class="nav-item"><a class="nav-link" href="{{ url('/user_info') }}">{{ __('shop.info.personal') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('cart.index') }}">{{ __('shop.info.shop') }}</a></li>
 		        <li class="nav-item"><a class="nav-link" href="{{ route('user_addresses.index') }}">{{ __('shop.info.address') }}</a></li>
@@ -54,7 +55,10 @@
         <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('shop.Login.register') }}</a></li>
         @else
         <li class="nav-item">
-          <a class="nav-link mt-2" href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart"></i></a>
+          <a class="nav-link mt-2" href="{{ url('/shop') }}"><i class="fa fa-home" style="font-size: 1.2rem;"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mt-2" href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart" style="font-size: 1.2rem;"></i></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
