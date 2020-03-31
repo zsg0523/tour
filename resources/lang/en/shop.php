@@ -99,7 +99,7 @@ return [
         'logstatus' => 'Logistics status',
         'information' => 'Logistics information',
         'details' => 'Logistics details',
-        'name' => 'Consignee name',
+        'name' => 'Consignee',
         'phone' => 'Phone',
     ],
     'cart' => [

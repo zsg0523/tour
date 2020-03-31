@@ -137,12 +137,15 @@
 					        </div>
 				      	</div>
 				      	<div class="order-address">
-				      		<span class="line-label">{{ __('shop.order.receiver') }}：</span>
+				      		<div class="line"><span class="line-label">{{ __('shop.order.name') }}：</span><span class="line-value">{{ $address_info['contact_name'] }}</span></div>
+					        <div class="line"><span class="line-label">{{ __('shop.order.phone') }}：</span><span class="line-value">{{ $address_info['contact_phone'] }}</span></div>
+					        <div class="line"><span class="line-label">{{ __('shop.order.shippaddress') }}：</span><span class="line-value">{{ $address_info['address'] }}</span></div>
+
+				      		<!-- <span class="line-label">{{ __('shop.order.receiver') }}：</span>
 				      		<span class="line-value">
-				        		<p>{{ $address_info['contact_name'] }}</p>
-				        		<p>{{ $address_info['contact_phone'] }}</p>
-				        		<p>{{ $address_info['address'] }}</p>
-				      		</span>			      		
+				        		<span>{{ $address_info['contact_name'] }}  {{ $address_info['contact_phone'] }}</span>
+				        		<span>{{ $address_info['address'] }}</span>
+				      		</span>		 -->	      		
 				      	</div>
 				      	<div class="order-list">
 			                @foreach($order->items as $index => $item)
