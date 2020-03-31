@@ -48,4 +48,12 @@ class OrderRequest extends Request
             'items.*.amount' => ['required', 'integer', 'min:1'],
         ];
     }
+
+
+    public function messages()
+    {
+        return [
+            'address_id.required' => '请填写收货信息！'
+        ];
+    }
 }

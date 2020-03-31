@@ -40,8 +40,10 @@ class OrdersController extends Controller
     public function show(Order $order, Request $request)
     {
         $this->authorize('own', $order);
+        $order_array = $order->toArray();
+        $address_info = $order_array['address'];
         
-        return view('orders.show', ['order' => $order->load(['items.shopProductSku', 'items.shopProduct'])]);
+        return view('orders.show', ['order' => $order->load(['items.shopProductSku', 'items.shopProduct']), 'address_info' => $address_info]);
     }
 
     public function received(Order $order, Request $request)

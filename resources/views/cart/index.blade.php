@@ -197,6 +197,9 @@
 	            	});
 		            html += '</div>';
 		            swal({content: $(html)[0], icon: 'error'})
+		            .then(() => {
+	            		location.href = '/user_addresses/';
+	          		});
           		} else {
             		// 其他情况应该是系统挂了
             		swal('{{ __("shop.cart.systemerror") }}', '', 'error');
