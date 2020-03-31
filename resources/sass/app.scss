@@ -31,7 +31,10 @@ body {
 	.disflex{display: -webkit-flex;display: flex;}
 	.dpn{display: none;}
 	.dpb{display: block;}
-	.user_main{width: 100%;}
+	.user_main{width: 100%;
+    .col-xs-3.col-sm-3.col-md-2.col-lg-2{padding:0;}
+    .col-xs-9.col-sm-9.col-md-10.col-lg-10{padding:0;}
+  }
 	.table thead th{border-bottom: none;}
 	.icon-top{position: fixed;bottom: 50px;right: 50px;display: none;  width: 40px;height: 40px;background: transparent url('./images/top.png') 100% 100% no-repeat;background-size: 40px 40px;}
 	.nodata{line-height:50px;

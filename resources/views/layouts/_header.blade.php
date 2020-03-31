@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
   <div class="container">
     <!-- Branding Image -->
-    <a class="navbar-brand" href="{{ route_class() =='products-index' ? url('/web'): url('/shop') }}">
+    <!-- <a class="navbar-brand" href="{{ route_class() =='products-index' ? url('/web'): url('/shop') }}"></a> -->
+    <a class="navbar-brand" href="{{ url('/web') }}">
       	<img src="{{asset('images/logo.png')}}">
     </a>
     <!-- <button class="navbar-toggler nav-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="mobileEnd()"> -->
@@ -16,6 +17,7 @@
 		        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('shop.Login.login') }}</a></li>
 		        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('shop.Login.register') }}</a></li>
 	        @else
+            <li class="nav-item"><a class="nav-link" href="{{ url('/shop') }}">{{ __('shop.info.home') }}</a></li>
 	        	<li class="nav-item"><a class="nav-link" href="{{ url('/user_info') }}">{{ __('shop.info.personal') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('cart.index') }}">{{ __('shop.info.shop') }}</a></li>
 		        <li class="nav-item"><a class="nav-link" href="{{ route('user_addresses.index') }}">{{ __('shop.info.address') }}</a></li>
@@ -53,7 +55,10 @@
         <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('shop.Login.register') }}</a></li>
         @else
         <li class="nav-item">
-          <a class="nav-link mt-2" href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart"></i></a>
+          <a class="nav-link mt-2" href="{{ url('/shop') }}"><i class="fa fa-home" style="font-size: 1.2rem;"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mt-2" href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart" style="font-size: 1.2rem;"></i></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

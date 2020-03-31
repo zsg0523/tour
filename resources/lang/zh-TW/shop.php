@@ -15,6 +15,7 @@ return [
         'returnlogin' => '返回登錄',
     ],
     'info' => [
+        'home' => '首頁',
 		'personal' => '個人中心',
 		'account' => '賬號管理',
 		'address' => '收貨地址',
@@ -119,6 +120,7 @@ return [
         'determine' => '確定',
         'submitsuccess' => '訂單提交成功',
         'systemerror' => '系統錯誤',
+        'noaddress' => '收貨地址不能為空',
     ],
     'review' => [
         'title' => '商品評價',

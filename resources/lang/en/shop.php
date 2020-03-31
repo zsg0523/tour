@@ -15,6 +15,7 @@ return [
         'returnlogin' => 'Back to login',
     ],
     'info' => [
+        'home' => 'Home',
 		'personal' => 'Personal center',
 		'account' => 'Account management',
 		'address' => 'Shipping address',
@@ -119,6 +120,7 @@ return [
         'determine' => 'Confirm',
         'submitsuccess' => 'Orders placed successfully',
         'systemerror' => 'System error',
+        'noaddress' => 'Shipping address cannot be empty.',
     ],
     'review' => [
         'title' => 'product review',

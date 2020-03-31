@@ -15,6 +15,7 @@ return [
         'returnlogin' => '返回登录',
     ],
     'info' => [
+        'home' => '首页',
 		'personal' => '个人中心',
 		'account' => '账号管理',
 		'address' => '收货地址',
@@ -120,6 +121,7 @@ return [
         'determine' => '确定',
         'submitsuccess' => '订单提交成功',
         'systemerror' => '系统错误',
+        'noaddress' => '收货地址不能为空',
     ],
     'review' => [
         'title' => '商品评价',

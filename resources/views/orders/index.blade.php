@@ -68,10 +68,10 @@
 					                        @endif
 					                      </td>
 					                      <td rowspan="{{ count($order->items) }}" class="text-center">
-					                      	<a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">{{ __('shop.order.checkorder') }}</a>
+					                      	<a class="btn btn-primary btn-sm" style="margin-bottom: 8px;" href="{{ route('orders.show', ['order' => $order->id]) }}">{{ __('shop.order.checkorder') }}</a>
 					                      	<!-- 评价入口开始 -->
 											@if($order->paid_at)
-											<a class="btn btn-success btn-sm" href="{{ route('orders.review.show', ['order' => $order->id]) }}">
+											<a class="btn btn-success btn-sm" style="margin-bottom: 8px;" href="{{ route('orders.review.show', ['order' => $order->id]) }}">
 											@if($order->reviewed)
 								              	{{ __("shop.order.viewevaluation") }}
 								            @else

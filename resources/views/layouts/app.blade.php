@@ -37,16 +37,24 @@
             $('.icon-top').click(function(){
                 $('html,body').animate({'scrollTop':0});
             })
+            console.log("{{ route_class() }}");
+            if("{{ route_class() }}"==='products-index'||"{{ route_class() }}"==='login'||"{{ route_class() }}"==='register'||"{{ route_class() }}"==='password-request'||"{{ route_class() }}"==='password-reset'){
+            	$(".selectLang").prop("disabled",false);
+                $(".moblieselect").prop("disabled",false);
+            }else{
+            	$(".selectLang").prop("disabled",true);
+                $(".moblieselect").prop("disabled",true);
+            }
             var lang = sessionStorage.getItem('language');
             if(lang == 'zh-CN'){
-                $(".selectLang").find("option[lang='zh-CN']").attr("selected",true);
-                $(".moblieselect").find("option[lang='zh-CN']").attr("selected",true);
+                $(".selectLang").find("option[lang='zh-CN']").prop("selected",true);
+                $(".moblieselect").find("option[lang='zh-CN']").prop("selected",true);
             }else if(lang == 'zh-TW'){
-                $(".selectLang").find("option[lang='zh-TW']").attr("selected",true);
-                $(".moblieselect").find("option[lang='zh-TW']").attr("selected",true);
+                $(".selectLang").find("option[lang='zh-TW']").prop("selected",true);
+                $(".moblieselect").find("option[lang='zh-TW']").prop("selected",true);
             }else{
-                $(".selectLang").find("option[lang='en']").attr("selected",true);
-                $(".moblieselect").find("option[lang='en']").attr("selected",true);
+                $(".selectLang").find("option[lang='en']").prop("selected",true);
+                $(".moblieselect").find("option[lang='en']").prop("selected",true);
             };
         })
         $(".selectLang").change(function(){
