@@ -99,6 +99,8 @@ return [
         'logstatus' => '物流狀態',
         'information' => '物流信息',
         'details' => '物流詳情',
+        'name' => '收貨人姓名',
+        'phone' => '聯絡電話',
     ],
     'cart' => [
     	'shoppingcart' => '我的購物車',
