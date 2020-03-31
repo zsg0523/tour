@@ -93,9 +93,11 @@
 <script>
   $(document).ready(function () {
     // 默认选中第一个规格
-    $('.btn-group .sku-btn:first').addClass('active');
-    $('.product-info .price span').text($('.sku-btn').data('price'));
-    $('.product-info .stock').text('库存：' + $('.sku-btn').data('stock') + '件');
+    setTimeout(function(){
+	    $('.btn-group .sku-btn:first').addClass('active');
+	    $('.product-info .price span').text($('.sku-btn').data('price'));
+	    $('.product-info .stock').text('库存：' + $('.sku-btn').data('stock') + '件');
+    },600);
 
     $('[data-toggle="tooltip"]').tooltip({trigger: 'hover'});
     $('.sku-btn').click(function () {
