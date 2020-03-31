@@ -45,7 +45,14 @@
 		              	</table>
 		              	<div class="order-bottom">
 					      	<div class="order-info">
-						        <div class="line"><div class="line-label">{{ __('shop.order.shippaddress') }}：</div><div class="line-value">{{ join(' ', $order->address) }}</div></div>
+						        <div class="line">
+						        	<div class="line-label">{{ __('shop.order.shippaddress') }}：</div>
+						        	<div class="line-value">
+						        		<p>{{ $address_info['address'] }}</p>
+						        		<p>{{ $address_info['contact_phone'] }}</p>
+						        		<p>{{ $address_info['contact_name'] }}</p>
+						        	</div>
+						        </div>
 						        <div class="line"><div class="line-label">{{ __('shop.order.ordernote') }}：</div><div class="line-value">{{ $order->remark ?: '-' }}</div></div>
 						        <div class="line"><div class="line-label">{{ __('shop.order.orderno') }}：</div><div class="line-value">{{ $order->no }}</div></div>
 						         <!-- 输出物流状态 -->
@@ -135,7 +142,11 @@
 				      	</div>
 				      	<div class="order-address">
 				      		<span class="line-label">{{ __('shop.order.receiver') }}：</span>
-				      		<span class="line-value">{{ join(' ', $order->address) }}</span>				      		
+				      		<span class="line-value">
+				        		<p>{{ $address_info['address'] }}</p>
+				        		<p>{{ $address_info['contact_phone'] }}</p>
+				        		<p>{{ $address_info['contact_name'] }}</p>
+				      		</span>				      		
 				      	</div>
 				      	<div class="order-list">
 			                @foreach($order->items as $index => $item)
