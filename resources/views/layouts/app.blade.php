@@ -39,14 +39,14 @@
             })
             var lang = sessionStorage.getItem('language');
             if(lang == 'zh-CN'){
-                $(".selectLang").find("option[lang='zh-CN']").attr("selected",true);
-                $(".moblieselect").find("option[lang='zh-CN']").attr("selected",true);
+                $(".selectLang").find("option[lang='zh-CN']").prop("selected",true);
+                $(".moblieselect").find("option[lang='zh-CN']").prop("selected",true);
             }else if(lang == 'zh-TW'){
-                $(".selectLang").find("option[lang='zh-TW']").attr("selected",true);
-                $(".moblieselect").find("option[lang='zh-TW']").attr("selected",true);
+                $(".selectLang").find("option[lang='zh-TW']").prop("selected",true);
+                $(".moblieselect").find("option[lang='zh-TW']").prop("selected",true);
             }else{
-                $(".selectLang").find("option[lang='en']").attr("selected",true);
-                $(".moblieselect").find("option[lang='en']").attr("selected",true);
+                $(".selectLang").find("option[lang='en']").prop("selected",true);
+                $(".moblieselect").find("option[lang='en']").prop("selected",true);
             };
         })
         $(".selectLang").change(function(){
