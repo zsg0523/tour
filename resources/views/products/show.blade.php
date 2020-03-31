@@ -93,11 +93,7 @@
 <script>
   $(document).ready(function () {
     // 默认选中第一个规格
-    // $('.sku-btn[]').click(function () {
-    //   $('.product-info .price span').text($(this).data('price'));
-    //   $('.product-info .stock').text('库存：' + $(this).data('stock') + '件');
-    // });
-    $('.sku-btn:eq(0)').addClass('active');
+    $('.btn-group .sku-btn:eq(0)').addClass('active');
 
     $('[data-toggle="tooltip"]').tooltip({trigger: 'hover'});
     $('.sku-btn').click(function () {
