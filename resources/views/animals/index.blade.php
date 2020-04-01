@@ -31,7 +31,7 @@
 		            <nav>
 					    <div class="swiper-container">
 					    	<div class="swiper-wrapper">
-					    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :title="arr.title_page"  @click="selectTimer(index,arr.title_page,arr.theme_id)">
+					    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :theme="arr.theme_id" :title="arr.title_page"  @click="selectTimer(index,arr.title_page,arr.theme_id)">
 					    	        <a>@{{arr.title_page}}</a>
 					    	    </div>
 					    	</div>
@@ -80,6 +80,7 @@
 			        this.$nextTick(function(){
 			          /*现在数据已经渲染完毕*/
 			            var initialSlide;
+			            var theme_id;
 	                    function GetQueryString(name){
 	                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 	                        var r = window.location.search.substr(1).match(reg);
@@ -98,6 +99,7 @@
 	                        	console.log(decodeURI(theme));
 	                        	if(html==decodeURI(theme)){
 	                        	    initialSlide=i;
+	                        	    theme_id = $(".swiper-slide").eq(i).attr('theme');
 	                        	}
 	                        }
 	                    }
@@ -112,7 +114,7 @@
 					    });
 					    var goodslength = $(".swiper-slide").length;
 					    $(".swiper-slide").eq(initialSlide).addClass("active");
-  
+  						sessionStorage.setItem('theme_id',theme_id);
 			        });
 			        this.Loading = false;	
 			        this.LoadCompleted = true; 
