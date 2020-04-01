@@ -335,7 +335,8 @@
                         if(r!=null)return unescape(r[2]); return null;
                     }
                     var language = $('.selectLang').find("option:selected").attr("lang");
-                    console.log(language);
+                    var theme_id = sessionStorage.getItem('theme_id');
+                    console.log(language+ '  '+theme_id);
                     $.ajax({
                         url:'/api/setLocale?lang='+language,
                         type:'GET',
@@ -344,7 +345,7 @@
                             if(data){
                                 sessionStorage.setItem('language',language);
                                 // window.location.reload();
-                                window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&root=0';
+                                window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&theme_id='+theme_id+'&root=0';
                             }
                         },
                         error:function(XMLHttpRequest, textStatus, errorThrown) {
