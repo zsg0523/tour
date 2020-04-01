@@ -80,7 +80,6 @@
 			        this.$nextTick(function(){
 			          /*现在数据已经渲染完毕*/
 			            var initialSlide;
-			            var theme_id;
 	                    function GetQueryString(name){
 	                        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 	                        var r = window.location.search.substr(1).match(reg);
@@ -99,7 +98,8 @@
 	                        	console.log(decodeURI(theme));
 	                        	if(html==decodeURI(theme)){
 	                        	    initialSlide=i;
-	                        	    theme_id = $(".swiper-slide").eq(i).attr('theme');
+	                        	    var theme_id = $(".swiper-slide").eq(i).attr('theme');
+	                        	    sessionStorage.setItem('theme_id',theme_id);
 	                        	}
 	                        }
 	                    }
@@ -115,7 +115,6 @@
 					    });
 					    var goodslength = $(".swiper-slide").length;
 					    $(".swiper-slide").eq(initialSlide).addClass("active");
-  						sessionStorage.setItem('theme_id',theme_id);
 			        });
 			        this.Loading = false;	
 			        this.LoadCompleted = true; 
@@ -278,7 +277,6 @@
 				        type:'GET',
 				        success:function(data) {
 				            self.swiper = data.meta;
-				            console.log(data.meta[0].theme_id);
 				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
 							if(data.data.length==0){
                                 self.noData = true;
