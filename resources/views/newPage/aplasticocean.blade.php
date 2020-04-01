@@ -138,7 +138,7 @@
                 <br>
                 <div>
                     <p class="title">{{ __('aplasticocean.title2') }}</p>
-                    <p>{{ __('aplasticocean.titleinfo1') }}</p>
+                    <p>{{ __('aplasticocean.titleinfo2') }}</p>
                 </div>
                 <br>
                 <div>
