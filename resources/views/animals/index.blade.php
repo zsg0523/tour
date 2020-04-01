@@ -104,6 +104,7 @@
 	                        }
 	                    }
 	                    console.log(initialSlide);
+	                    console.log(theme_id);
 					    var swiper = new Swiper('.swiper-container', {
 					       slidesPerView: 2.5,
 					       spaceBetween:0,
@@ -277,6 +278,7 @@
 				        type:'GET',
 				        success:function(data) {
 				            self.swiper = data.meta;
+				            console.log(data.meta[0].theme_id);
 				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
 							if(data.data.length==0){
                                 self.noData = true;
