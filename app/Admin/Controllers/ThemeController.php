@@ -37,7 +37,7 @@ class ThemeController extends AdminController
         ];
         // 主题是否打开，默认true（on），false(off)
         $grid->column('is_show')->switch($states);
-
+        $grid->column('order')->editable()->sortable();
         $grid->actions(function ($actions) {
             $actions->add(new Replicate);
             $actions->disableView();
@@ -79,6 +79,7 @@ class ThemeController extends AdminController
         $form = new Form(new Theme);
 
         $form->text('product_name', __('Product name'));
+        $form->text('order', __('Order'))->default(1);
         $states = [
             'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
             'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\{AnimalTranslation, ThemesTranslation, Theme, Animal};
 use App\Transformers\AnimalTranslationTransformer;
+use DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class AnimalTranslationsController extends Controller
 {
@@ -22,14 +24,10 @@ class AnimalTranslationsController extends Controller
         // 如果传入主题为空，则默认主题列表第一个主题
         $theme = empty($request->theme) ? trim($themes[0]['title_page']) : $request->theme;
 
-        // 如果传入的主题非系统设定开启的主题则抛出404
-        if(!in_array($theme, $themes->pluck('title_page')->toArray())) {
-            abort(404);
-        }
         // 获取对应主题的动物列表
         $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme)->get();
 
-    	return $this->response->collection($animals, new AnimalTranslationTransformer())->setMeta($themes->toArray());
+    	return $this->response->collection($animals, new AnimalTranslationTransformer())->setMeta($themes);
     }
 
     /** 
@@ -92,10 +90,12 @@ class AnimalTranslationsController extends Controller
         
         $lang = isset($request->lang) ? (session(['locale'=>$request->lang])?? $request->lang) : (session('locale') ?? 'en');
 
-        $theme_ids = Theme::where('is_show', 1)->pluck('id');
+        $theme_ids = Theme::where('is_show', 1)->orderBy('order', 'asc')->pluck('id');
         
-        $themes = ThemesTranslation::where('lang', $lang)->whereIn('theme_id', $theme_ids)->select('theme_id', 'lang', 'title_page')->get();
-
+        foreach ($theme_ids as $theme_id) {
+            $themes[] = ThemesTranslation::where('lang', $lang)->where('theme_id', $theme_id)->select('theme_id', 'lang', 'title_page')->first()->toArray();
+        }
+        
         return $themes;
     }
 
