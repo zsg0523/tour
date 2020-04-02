@@ -31,7 +31,7 @@
 		            <nav>
 					    <div class="swiper-container">
 					    	<div class="swiper-wrapper">
-					    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :title="arr.title_page"  @click="selectTimer(index,arr.title_page,arr.theme_id)">
+					    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :theme="arr.theme_id" :title="arr.title_page"  @click="selectTimer(index,arr.title_page,arr.theme_id)">
 					    	        <a>@{{arr.title_page}}</a>
 					    	    </div>
 					    	</div>
@@ -98,6 +98,8 @@
 	                        	console.log(decodeURI(theme));
 	                        	if(html==decodeURI(theme)){
 	                        	    initialSlide=i;
+	                        	    var theme_id = $(".swiper-slide").eq(i).attr('theme');
+	                        	    sessionStorage.setItem('theme_id',theme_id);
 	                        	}
 	                        }
 	                    }
@@ -112,7 +114,6 @@
 					    });
 					    var goodslength = $(".swiper-slide").length;
 					    $(".swiper-slide").eq(initialSlide).addClass("active");
-  
 			        });
 			        this.Loading = false;	
 			        this.LoadCompleted = true; 

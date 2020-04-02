@@ -52,9 +52,25 @@
             }else if(lang == 'zh-TW'){
                 $(".selectLang").find("option[lang='zh-TW']").prop("selected",true);
                 $(".moblieselect").find("option[lang='zh-TW']").prop("selected",true);
+            }else if(lang == 'en'){
+                $(".selectLang").find("option[lang='en']").prop("selected",true);
+                $(".moblieselect").find("option[lang='en']").prop("selected",true);
             }else{
                 $(".selectLang").find("option[lang='en']").prop("selected",true);
                 $(".moblieselect").find("option[lang='en']").prop("selected",true);
+                $.ajax({
+                    url:'https://www.wennoanimal.com/api/setLocale?lang=en',
+                    type:'GET',
+                    success:function(data) {
+                        if(data){
+                            sessionStorage.setItem('language','en');
+                            window.location.reload();
+                        }
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status+'  '+XMLHttpRequest.readyState+'  '+textStatus);
+                    }
+                });
             };
         })
         $(".selectLang").change(function(){
@@ -64,7 +80,6 @@
                 url:'https://www.wennoanimal.com/api/setLocale?lang='+language,
                 type:'GET',
                 success:function(data) {
-                    console.log(JSON.stringify(data));
                     if(data){
                         window.location.reload();
                     }
