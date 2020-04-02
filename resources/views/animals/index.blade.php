@@ -104,7 +104,6 @@
 	                        }
 	                    }
 	                    console.log(initialSlide);
-	                    console.log(theme_id);
 					    var swiper = new Swiper('.swiper-container', {
 					       slidesPerView: 2.5,
 					       spaceBetween:0,
