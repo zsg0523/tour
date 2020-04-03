@@ -60,14 +60,14 @@
                             <option lang="uk">українська мова</option>
                         </select>
                     </div>
-    <!--                <div class="Question">
+                   <div class="Question" v-cloak>
                         <div class="doYouKnow">
-                            <a><i>{{ __('animals.do-you-know') }}</i></a>
+                            <a><i>@{{database.title_fun_tips}}</i></a>
                         </div>
                         <div class="problemTopic">
-                           <span>The black bear actually comes in six colors:black,blone,red,blue,chocolate and cinnamon</span>
+                           <span>@{{database.fun_tips}}</span>
                         </div>
-                    </div> --> 
+                    </div> 
                     <div class="detailsList" v-cloak>
                         <ul>
                             <li><a class="list_icon Scientific_Name"></a><span>{{ __('animals.scientific-name') }}: @{{database.genus}}</span></li>
@@ -94,17 +94,12 @@
                             <li v-show="animal"><a class="list_icon Endangered "></a><span>{{ __('animals.endangered-level') }}:@{{database.endangered_level}}</span></li>
                             <li v-show="dinosaur"><a class="list_icon Endangered "></a><span>{{ __('animals.fossils_discovered') }}:@{{database.endangered_level}}</span></li>
                         </ul>
-    <!--                    <div class="bottom">
+                        <div class="bottom">
                             <div class="bottom_box">
-                                <div class="bottom_title">
-                                    ABOUT THE AFRICAN ELEOHANT
-                                </div>
-                                <span class="bottom_content">
-                                    Elephant, English Elephant, long nose, elephant, common name.
-    The elephant is now the largest terrestrial mammal in the world. Elephants are social animals. They are family-based and heads of females. The time of daily activities, course of action, foraging sites, and habitats are all directed by females. Sometimes several elephant groups gather to form hundreds of elephants. Ivory is an important weapon against the enemy.
-                                </span>
+                                <div class="bottom_title">@{{database.about}}</div>
+                                <span class="bottom_content">@{{database.more_details}}</span>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>                
             </div>
@@ -128,52 +123,7 @@
             },
             created(){
                 var language = sessionStorage.getItem('language');
-                $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
-                // if(language == 'en'){
-                //     this.couponSelected = 'English';
-                // }else if(language == 'de'){
-                //     this.couponSelected = 'Deutsch';
-                // }else if(language == 'fr'){
-                //     this.couponSelected = 'Français';
-                // }else if(language == 'it'){
-                //     this.couponSelected = 'Italiano';
-                // }else if(language == 'tr'){
-                //     this.couponSelected = 'Türkçe';
-                // }else if(language == 'nl'){
-                //     this.couponSelected = 'Nederlands';
-                // }else if(language == 'da'){
-                //     this.couponSelected = 'Dansk';
-                // }else if(language == 'pt'){
-                //     this.couponSelected = 'Português';
-                // }else if(language == 'sv'){
-                //     this.couponSelected = 'Svenska';
-                // }else if(language == 'th'){
-                //     this.couponSelected = 'ภาษาไทย';
-                // }else if(language == 'ko'){
-                //     this.couponSelected = '한국어';
-                // }else if(language == 'no'){
-                //     this.couponSelected = 'Norsk';
-                // }else if(language == 'ms'){
-                //     this.couponSelected = 'Bahasa Melayu';
-                // }else if(language == 'zh-CN'){
-                //     this.couponSelected = '中文简体';
-                // }else if(language == 'zh-TW'){
-                //     this.couponSelected = '中文繁體';
-                // }else if(language == 'ar'){
-                //     this.couponSelected = 'لعَرَبِية';
-                // }else if(language == 'es'){
-                //     this.couponSelected = 'Español';
-                // }else if(language == 'ru'){
-                //     this.couponSelected = 'русский язык';
-                // }else if(language == 'hi'){
-                //     this.couponSelected = 'हिन्दी';
-                // }else if(language == 'fi'){
-                //     this.couponSelected = 'Finnish';
-                // }else if(language == 'jp'){
-                //     this.couponSelected = '日本語';
-                // }else if(language == 'uk'){
-                //     this.couponSelected = 'українська мова';
-                // };
+                $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
             },
             watch: {
                 database: function() {
@@ -260,7 +210,7 @@
                     if(lang!=null){
                         console.log('lang not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang+'&theme_id='+theme_id;
-                        $(".selectLang").find("option[lang='"+lang+"']").attr("selected",true);
+                        $(".selectLang").find("option[lang='"+lang+"']").prop("selected",true);
                         $.ajax({
                             url:'/api/setLocale?lang='+lang,
                             type:'GET',
@@ -282,14 +232,14 @@
                     if(lang==null&&language!=null){
                         console.log('lang is null,language not null');
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language+'&theme_id='+theme_id;
-                        $(".selectLang").find("option[lang='"+language+"']").attr("selected",true);
+                        $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
 
                     }
 
                     if(lang==null&&language==null){
                         console.log('lang is null,language is null');
                          var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang=en&theme_id='+theme_id;;
-                         $(".selectLang").find("option[lang='en']").attr("selected",true);
+                         $(".selectLang").find("option[lang='en']").prop("selected",true);
                     }
                    
                     console.log(url);
@@ -298,7 +248,6 @@
                         type:'GET',
                         success:function(data){
                             // console.log(JSON.stringify(data));
-                            // console.log(data.animal.image_original);
                             self.database = data;
                             var sound = data.sound;
                             self.Loading = true;
