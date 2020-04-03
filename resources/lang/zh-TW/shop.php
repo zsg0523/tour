@@ -15,6 +15,7 @@ return [
         'returnlogin' => '返回登錄',
     ],
     'info' => [
+        'title' => 'Wenno商城',
         'home' => '首頁',
 		'personal' => '個人中心',
 		'account' => '賬號管理',
@@ -58,6 +59,7 @@ return [
         'product' => '商品',
         'time' => '時間',
         'addsuccess' => '加入購物車成功',
+        'nocomment' => '暫無評價',
     ],
     'order' => [
     	'orderList' => '訂單列表',

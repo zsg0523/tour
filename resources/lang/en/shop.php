@@ -15,6 +15,7 @@ return [
         'returnlogin' => 'Back to login',
     ],
     'info' => [
+        'title' => 'Wenno Shop',
         'home' => 'Home',
 		'personal' => 'Personal center',
 		'account' => 'Account management',
@@ -58,6 +59,7 @@ return [
         'product' => 'Product',
         'time' => 'Time',
         'addsuccess' => 'Add to Cart successful',
+        'nocomment' => 'No reviews.',
     ],
     'order' => [
     	'orderList' => 'Order List',

@@ -15,6 +15,7 @@ return [
         'returnlogin' => '返回登录',
     ],
     'info' => [
+        'title' => 'Wenno商城',
         'home' => '首页',
 		'personal' => '个人中心',
 		'account' => '账号管理',
@@ -58,7 +59,7 @@ return [
         'product' => '商品',
         'time' => '时间',
         'addsuccess' => '加入购物车成功',
-
+        'nocomment' => '暂无评价',
     ],
     'order' => [
     	'orderList' => '订单列表',
