@@ -53,7 +53,7 @@ class AnimalTranslationsController extends Controller
 
             // 获取动物资料
             $animal = $animal->where('animal_id', $animal_id)->where('lang', $lang)->where('theme_name', $theme_name)->first();
-
+            
         } else {
             $animal = $animal->where('animal_id', $animal_id)->where('lang', $lang)->first();
         }
