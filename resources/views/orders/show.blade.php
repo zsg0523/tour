@@ -92,7 +92,7 @@
 					        	<!-- 支付按钮开始 -->
 						        @if(!$order->paid_at && !$order->closed)
 						          <div class="payment-buttons">
-						            <a class="btn btn-primary btn-sm" href="{{ route('payment.alipay', ['order' => $order->id]) }}">{{ __('shop.order.aliPay') }}</a>
+						            <!-- <a class="btn btn-primary btn-sm" href="{{ route('payment.alipay', ['order' => $order->id]) }}">{{ __('shop.order.aliPay') }}</a> -->
 						            <!-- 把之前的微信支付按钮换成这个 -->
 						            <a class="btn btn-sm btn-success" href="{{ route('payment.paypal', ['order' => $order->id]) }}">{{ __('shop.order.payPal') }}</a>
 						          </div>
