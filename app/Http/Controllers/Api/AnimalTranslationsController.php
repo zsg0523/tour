@@ -63,7 +63,7 @@ class AnimalTranslationsController extends Controller
         }
         
         $animal->increment('view');
-
+        
     	return $this->response->item($animal, new AnimalTranslationTransformer());
     }
 

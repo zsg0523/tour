@@ -3,8 +3,8 @@
 /**
  * @Author: Eden
  * @Date:   2019-06-10 16:56:50
- * @Last Modified by:   Eden
- * @Last Modified time: 2019-07-24 10:15:14
+ * @Last Modified by:   eden
+ * @Last Modified time: 2020-04-03 11:43:15
  */
 namespace App\Transformers;
 
@@ -44,6 +44,8 @@ class AnimalTranslationTransformer extends TransformerAbstract
 			'endangered_level' => $animaltranslation->endangered_level,
 			'theme_name' => $animaltranslation->theme_name,
 			'group_name' => $animaltranslation->group_name,
+			'about' => $animaltranslation->about,
+			'more_details' => $animaltranslation->more_details,
 			'created_at' => $animaltranslation->created_at ? $animaltranslation->created_at->toDateTimeString() : '',
 			'updated_at' => $animaltranslation->updated_at ? $animaltranslation->updated_at->toDateTimeString(): '',
 		];
