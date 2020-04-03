@@ -63,7 +63,7 @@ class AnimalTranslationsController extends Controller
         }
         
         $animal->increment('view');
-        
+
     	return $this->response->item($animal, new AnimalTranslationTransformer());
     }
 
@@ -93,7 +93,9 @@ class AnimalTranslationsController extends Controller
         $theme_ids = Theme::where('is_show', 1)->orderBy('order', 'asc')->pluck('id');
         
         foreach ($theme_ids as $theme_id) {
-            $themes[] = ThemesTranslation::where('lang', $lang)->where('theme_id', $theme_id)->select('theme_id', 'lang', 'title_page')->first()->toArray();
+            if (ThemesTranslation::where('lang', $lang)->where('theme_id', $theme_id)->select('theme_id', 'lang', 'title_page')->first()){
+                $themes[] = ThemesTranslation::where('lang', $lang)->where('theme_id', $theme_id)->select('theme_id', 'lang', 'title_page')->first()->toArray();
+            }
         }
         
         return $themes;
