@@ -83,6 +83,9 @@ Route::group(['middleware' => ['setLocale']], function() {
 	});
 
 	Route::get('/user_info', function () { return view('user_info/index'); });
+	Route::get('/user_info/edit', function () { return view('user_info/edit'); });
+	Route::get('/user_info/change_email', function () { return view('user_info/email'); });
+	Route::get('/user_info/pass', function () { return view('user_info/pass'); });
 	Route::get('/contact', function () { return view('user_info/contact'); });
 	Route::get('/aboutUs', function () { return view('user_info/aboutUs'); });
 	Route::get('/retail', function () { return view('user_info/retail'); });

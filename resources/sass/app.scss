@@ -38,7 +38,7 @@ body {
 	.table thead th{border-bottom: none;}
 	.icon-top{position: fixed;bottom: 50px;right: 50px;display: none;  width: 40px;height: 40px;background: transparent url('./images/top.png') 100% 100% no-repeat;background-size: 40px 40px;}
 	.nodata{line-height:50px;
-		.cartBtn{width:100%;text-align:center;
+		.cartBtn{max-width:100%;text-align:center;
 			p{line-height:40px;margin-bottom:0;}
 			p.tip{font-weight:bold;}
 		}
@@ -58,7 +58,7 @@ body {
     .navbar-brand{img{width: 65.5px;height: 44.5px;}}
     .navbar-nav{
     	.nav-item{line-height: 35px;}
-      	select{border-radius: .3rem;color: #7b5c55;height:35px;border:none;line-height:35px;font-size: 0.95rem;text-align: left;background: transparent;background-size: 8px 5px;
+      	select{border-radius: .3rem;color: $wenno-font;height:35px;border:none;line-height:35px;font-size: 0.95rem;text-align: left;background: transparent;background-size: 8px 5px;
       		&:focus { outline: none; }
       	}
     }
@@ -114,8 +114,8 @@ body {
   	.bottomAdress{width:100%;height:60px;background:#fff;
     	.copyright{width:97%;height:100%;margin:0px auto;
       		.copyrightContent{width:auto;height:100%;float:left;
-        		span{a{color:#7b5c55;display:block;height:30px;line-height:36px;text-align:left;font-size:0.96rem;font-weight:bold;}}
-        		a{color:#7b5c55;font-size:normal;font-size:0.9rem;display:block;height:20px;line-height:20px;}
+        		span{a{color:$wenno-font;display:block;height:30px;line-height:36px;text-align:left;font-size:0.96rem;font-weight:bold;}}
+        		a{color:$wenno-font;font-size:normal;font-size:0.9rem;display:block;height:20px;line-height:20px;}
       		}
       		.newsletter{width:100px;height:100%;line-height:60px;float:right;margin-right:0px;
         		a{display:block;width:46%;display:inline-block;margin:0px;padding:0px;text-align:center;
@@ -139,7 +139,7 @@ body {
 }
 /*个人中心*/
 .account_info{
-	.photo_info{height: 64px;
+	.photo_info{
 		.user-infoPic{position: relative;width: 64px;height: 64px;overflow: hidden;
 			.inputPic {opacity: 0;ilter: alpha(opacity=0);width: 100%;height: 100%;position: absolute;bottom: 0;left: 0;z-index: 9;}
 			img{width: 64px;height: 64px;}
@@ -148,9 +148,9 @@ body {
 		}
 		.user-info{margin-left: 15px;line-height: 21px;font-size: 14px;
 			p{margin: 0;
-				span{width: 100px;display: inline-block;}
+				span{width: 120px;display: inline-block;}
 				span.info{width: 220px;}
-				a{color: #3490dc;}
+				a{/* color: #3490dc; */text-decoration: underline;}
 			}
 		}
 	}
@@ -378,7 +378,7 @@ body {
   					.first{text-indent:1rem;}
   				}
   				tbody tr{width:100%;background:#000;text-align:left;
-  					td{line-height:22px;padding: 1rem 0rem;font-size:1rem;color:#7b5c55;}
+  					td{line-height:22px;padding: 1rem 0rem;font-size:1rem;color:$wenno-font;}
   					.first{text-indent:1rem;}
   					&:nth-child(odd){background:#fff;}
   					&:nth-child(even){background:#ead3b0;}
@@ -411,15 +411,17 @@ body {
 	body{margin-bottom: 488px;
 		.icon-top{position: fixed;bottom: 30px;right: 30px;}
 		.mobileMenu{display:none;}/*菜单*/
-
 		.col-lg-10{padding: 0px;.card{border:none;}}
 	  	.row {display: flex;flex-wrap: wrap;margin: 0;padding:0;}
 	  	.container{padding-left:0px;padding-right:0px;}
-	  	.user_main{margin-bottom: 20px;}
 	  	.nodata{width: 100%;text-align:center;
 	  		.cartBtn{width:100%;text-align:center;
 	    		p{line-height:30px;margin-bottom:0;}
 	    	}
+	  	}
+	  	.swal-modal{
+	  		.swal-title{font-size: 20px;}
+	  		.swal-footer{text-align: center;}
 	  	}
 	}
 
@@ -432,10 +434,10 @@ body {
 	    .nav-button{display:block;}
 	    .nav-box {display: none;position: fixed;z-index: 100;top: 0;left: 0;width: 100%;height: 100%;
 	      	.close{position: absolute;top: 27px;right: 20px;z-index: 111;width: 25px;height: 25px;opacity:1;img{width:100%;}}
-	      	ul{padding: 80px 0 50px 0;background-color: rgba(123,92, 85,1);height: 100%;width: 40%;float: right;
+	      	ul{padding: 80px 0 50px 0;background-color: $wenno-font;height: 100%;width: 42%;float: right;
 	        	li{display: block;line-height: 44px;color: #fff;text-align: left;font-size: 0.95rem;
 					a{line-height: 40px;color: inherit;font-size: 0.8rem;}
-					select{padding: .3rem 1.4rem .3rem .3rem;border-radius: .3rem;color: #fff;font-size: .67rem;text-align: left;background: #7b5c55;background-size: 8px 5px;}
+					select{padding: .3rem 1.4rem .3rem .3rem;border-radius: .3rem;color: #fff;font-size: .67rem;text-align: left;background: $wenno-font;background-size: 8px 5px;}
 	        	}
 	       		li.active {color: #BDCAFF;}
 	      	}
@@ -461,7 +463,7 @@ body {
 	      	.col-sm-12{padding:0 !important;}
 	      	.lister{width:100%;height:100%;;margin:0px auto;background:#ead3b0;
 		        ul{float:left;}
-		        ul.list{width:100%;height:auto;position:relative;color:#7b5c55;background:#ead3b0;
+		        ul.list{width:100%;height:auto;position:relative;color:$wenno-font;background:#ead3b0;
 					&:last-child{padding-bottom:30px;}
 					span{text-align:center;font-size: 0.9rem;height: 28px;line-height: 28px;}
 					a.titleIcon{width:100%;height:50px;display:block;}
@@ -478,7 +480,7 @@ body {
 	    .bottomAdress{height:60px;
 	      	.copyright{
 		        .copyrightContent{width:100%;height:100%;float:left;text-align:center;
-		          	span a{color:#7b5c55;display:block;height:30px;line-height:36px;text-align:center;font-size:0.96rem;font-weight:bold;}
+		          	span a{color:$wenno-font;display:block;height:30px;line-height:36px;text-align:center;font-size:0.96rem;font-weight:bold;}
 		        }
 		        .newsletter{width:30%;height:100%;margin-right:35%;}
 	      	}
@@ -515,15 +517,17 @@ body {
 	}
 	/*个人中心*/
 	.account_info{
-		.photo_info{height: 64px;
-			.user-info{margin-left: 15px;line-height: 21px;font-size: 14px;
-				p{margin: 0;
-					span{width: 100px;display: inline-block;}
-					span.info{width: 150px;}
-					a{color: #3490dc;}
-				}
-			}
-		}
+    .card-body{padding:0;
+      .photo_info{        
+        .user-info{margin: 10px 15px;line-height: 21px;font-size: 14px;width: 100%;
+          p{margin: 0;
+            span{width: 120px;display: inline-block;}
+            span.info{width: 140px;}
+            a{/* color: #3490dc; */text-decoration: underline;width: 100%;display: block;text-align: right;}
+          }
+        }
+      }
+    }
 	}
   	/*商品列表页*/
   	.products-index-page{
@@ -532,13 +536,16 @@ body {
 		        .card{border:none;background-color:transparent;margin-top:20px;
 		          	.card-body{padding: 0px;
 			            .form-row{flex-wrap:inherit;justify-content: space-around;
-			              .col-md-9{width:65%;}
-			              .col-md-3{width:32%;}
+			              	/*.col-md-9{width:65%;}
+			              	.col-md-3{width:32%;}*/
+			              	.col-md-9{width:75%;}
+			            	.col-md-3{width:22%;}
 			            }
-		            	.products-list{
+		            	.products-list{padding: 0 5px;
 		              		.product-item{width:50%;max-width: 50%;flex: 0 0 50%;
 		                		.product-content{background-color:#fff;
-		                  			.top{padding:0;.price,.title{padding:0 5px;}}
+		                  			.top{padding:0;.price,.title{padding:0 5px;margin-top:0px;}}
+		                  			.bottom {&>div {padding: 5px;}}
 		                		}
 		              		}
 		            	}
@@ -554,7 +561,9 @@ body {
 	    .product-info{padding: 0;
 	    	.row{display:block;margin-right:0;margin-left:0;
 		        .col-5{width:100%;max-width:100%;padding:0;}
-		        .col-7{width:100%;max-width:100%;padding:0;}
+		        .col-7{width:100%;max-width:100%;padding:0;
+		        	.buttons{button{margin-bottom:8px;}}
+		        }
 	      	}
 	    }
   	}
@@ -568,12 +577,11 @@ body {
 			            .col-md-9{width:65%;}
 			            .col-md-3{width:32%;}
 		          	}
-		          	.products-list{
+		          	.products-list{padding: 0 5px;
 		            	.product-item{width:50%;max-width: 50%;flex: 0 0 50%;
 		              		.product-content{background-color:#fff;
-		                		.top{padding:0;
-		                  			.price,.title{padding:0 5px;}
-		                		}
+		                		.top{padding:0;.price,.title{padding:0 5px;margin-top:0px;}}
+		                		.bottom {&>div {padding: 5px;}}
 		              		}
 		            	}
 		          	}
@@ -616,8 +624,8 @@ body {
 	    .webList{display:none;}
 	    .mobileList{display:block;
 	      	.address_info{background-color: #fff;
-		        p{height: 35px;line-height: 35px;margin: 0;padding: 0 15px;}
-		        p.full_address{border-bottom: 1px solid #dee2e6;}
+		        p{line-height: 35px;margin: 0;padding: 0 15px;}
+		        p.full_address{border-bottom: 1px solid #dee2e6;word-break:break-all;overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp:3;-webkit-box-orient: vertical;}
 		        p.address_btn{margin-bottom: 5px;border-bottom: 1px solid #dee2e6;
 		          	a{width: 50px;display:inline-block;}
 		        }
