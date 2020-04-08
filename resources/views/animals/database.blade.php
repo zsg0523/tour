@@ -122,9 +122,9 @@
                 LoadCompleted:false,
             },
             created(){
-                var language = sessionStorage.getItem('language');
-                console.log(language);
-                $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
+                // var language = sessionStorage.getItem('language');
+                // console.log(language);
+                // $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
             },
             watch: {
                 database: function() {
