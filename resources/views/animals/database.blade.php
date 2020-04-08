@@ -36,28 +36,28 @@
                     <div class="title" v-cloak>
                         <p class="animalName">@{{database.title}}</p>
                         <select class="selectLang" @change="setLocale()">
-                            <option lang='en'>English</option>
-                            <option lang='de'>Deutsch</option>
-                            <option lang='fr'>Français</option>
-                            <option lang='it'>Italiano</option>
-                            <option lang='tr'>Türkçe</option>
-                            <option lang='nl'>Nederlands</option>
-                            <option lang='da'>Dansk</option>
-                            <option lang='pt'>Português</option>
-                            <option lang='sv'>Svenska</option>
-                            <option lang='th'>ภาษาไทย</option>
-                            <option lang='ko'>한국어</option>
-                            <option lang='no'>Norsk</option>
-                            <option lang='ms'>Bahasa Melayu</option>
-                            <option lang='zh-CN'>中文简体</option>
-                            <option lang='zh-TW'>中文繁體</option>
-                            <option lang='ar'>العَرَبِية'</option>
-                            <option lang='es'>Español</option>
-                            <option lang='ru'>русский язык</option>
-                            <option lang='hi'>हिन्दी</option>
-                            <option lang='fi'>Finnish</option>
-                            <option lang='jp'>日本語</option>
-                            <option lang='uk'>українська мова</option>
+                            <option value='0' lang='en'>English</option>
+                            <option value='1' lang='de'>Deutsch</option>
+                            <option value='2' lang='fr'>Français</option>
+                            <option value='3' lang='it'>Italiano</option>
+                            <option value='4' lang='tr'>Türkçe</option>
+                            <option value='5' lang='nl'>Nederlands</option>
+                            <option value='6' lang='da'>Dansk</option>
+                            <option value='7' lang='pt'>Português</option>
+                            <option value='8' lang='sv'>Svenska</option>
+                            <option value='9' lang='th'>ภาษาไทย</option>
+                            <option value='10' lang='ko'>한국어</option>
+                            <option value='11' lang='no'>Norsk</option>
+                            <option value='12' lang='ms'>Bahasa Melayu</option>
+                            <option value='13' lang='zh-CN'>中文简体</option>
+                            <option value='14' lang='zh-TW'>中文繁體</option>
+                            <option value='15' lang='ar'>العَرَبِية'</option>
+                            <option value='16' lang='es'>Español</option>
+                            <option value='17' lang='ru'>русский язык</option>
+                            <option value='18' lang='hi'>हिन्दी</option>
+                            <option value='19' lang='fi'>Finnish</option>
+                            <option value='20' lang='jp'>日本語</option>
+                            <option value='21' lang='uk'>українська мова</option>
                         </select>
                     </div>
                    <div class="Question" v-cloak>
@@ -122,9 +122,9 @@
                 LoadCompleted:false,
             },
             created(){
-                // var language = sessionStorage.getItem('language');
-                // console.log(language);
-                // $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
+                var language = sessionStorage.getItem('language');
+                console.log(language);
+                $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
             },
             watch: {
                 database: function() {
