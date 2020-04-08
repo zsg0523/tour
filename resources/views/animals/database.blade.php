@@ -33,7 +33,7 @@
                             <audio id="transcription" hidden="true" controls autoplay></audio>
                         </div>  -->                 
                     </div>
-                    <div class="title" v-cloak>
+                    <div class="title">
                         <p class="animalName">@{{database.title}}</p>
                         <select class="selectLang" @change="setLocale()">
                             <option value='0' lang='en'>English</option>
@@ -123,7 +123,6 @@
             },
             created(){
                 var language = sessionStorage.getItem('language');
-                console.log(language);
                 $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
             },
             watch: {
