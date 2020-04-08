@@ -3,7 +3,7 @@
 	<head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
 		<meta charset="UTF-8">
-		<title></title>
+		<title>{{ __('animals.choose-your-language') }}</title>
 	</head>
     <link rel="stylesheet" href="../animal/css/chooseLanguage.css">
     <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
