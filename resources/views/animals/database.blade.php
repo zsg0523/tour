@@ -36,28 +36,28 @@
                     <div class="title" v-cloak>
                         <p class="animalName">@{{database.title}}</p>
                         <select class="selectLang" @change="setLocale()">
-                            <option lang="en">English</option>
-                            <option lang="de">Deutsch</option>
-                            <option lang="fr">Français</option>
-                            <option lang="it">Italiano</option>
-                            <option lang="tr">Türkçe</option>
-                            <option lang="nl">Nederlands</option>
-                            <option lang="da">Dansk</option>
-                            <option lang="pt">Português</option>
-                            <option lang="sv">Svenska</option>
-                            <option lang="th">ภาษาไทย</option>
-                            <option lang="ko">한국어</option>
-                            <option lang="no">Norsk</option>
-                            <option lang="ms">Bahasa Melayu</option>
-                            <option lang="zh-CN">中文简体</option>
-                            <option lang="zh-TW">中文繁體</option>
-                            <option lang="ar">العَرَبِية'</option>
-                            <option lang="es">Español</option>
-                            <option lang="ru">русский язык</option>
-                            <option lang="hi">हिन्दी</option>
-                            <option lang="fi">Finnish</option>
-                            <option lang="jp">日本語</option>
-                            <option lang="uk">українська мова</option>
+                            <option lang='en'>English</option>
+                            <option lang='de'>Deutsch</option>
+                            <option lang='fr'>Français</option>
+                            <option lang='it'>Italiano</option>
+                            <option lang='tr'>Türkçe</option>
+                            <option lang='nl'>Nederlands</option>
+                            <option lang='da'>Dansk</option>
+                            <option lang='pt'>Português</option>
+                            <option lang='sv'>Svenska</option>
+                            <option lang='th'>ภาษาไทย</option>
+                            <option lang='ko'>한국어</option>
+                            <option lang='no'>Norsk</option>
+                            <option lang='ms'>Bahasa Melayu</option>
+                            <option lang='zh-CN'>中文简体</option>
+                            <option lang='zh-TW'>中文繁體</option>
+                            <option lang='ar'>العَرَبِية'</option>
+                            <option lang='es'>Español</option>
+                            <option lang='ru'>русский язык</option>
+                            <option lang='hi'>हिन्दी</option>
+                            <option lang='fi'>Finnish</option>
+                            <option lang='jp'>日本語</option>
+                            <option lang='uk'>українська мова</option>
                         </select>
                     </div>
                    <div class="Question" v-cloak>
@@ -123,6 +123,7 @@
             },
             created(){
                 var language = sessionStorage.getItem('language');
+                console.log(language);
                 $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
             },
             watch: {
@@ -209,8 +210,8 @@
                     sessionStorage.setItem('theme_id',theme_id);
                     if(lang!=null){
                         console.log('lang not null');
-                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang+'&theme_id='+theme_id;
                         $(".selectLang").find("option[lang='"+lang+"']").prop("selected",true);
+                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang+'&theme_id='+theme_id;
                         $.ajax({
                             url:'/api/setLocale?lang='+lang,
                             type:'GET',
@@ -231,15 +232,15 @@
 
                     if(lang==null&&language!=null){
                         console.log('lang is null,language not null');
-                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language+'&theme_id='+theme_id;
                         $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
+                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language+'&theme_id='+theme_id;
 
                     }
 
                     if(lang==null&&language==null){
                         console.log('lang is null,language is null');
-                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang=en&theme_id='+theme_id;;
                          $(".selectLang").find("option[lang='en']").prop("selected",true);
+                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang=en&theme_id='+theme_id;;
                     }
                    
                     console.log(url);
