@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=no" />
         <meta charset="UTF-8">
-        <title>@{{database.title}}</title>
+        <title></title>
     </head>
     <link rel="stylesheet" href="../animal/css/animalDetails.css">
     <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
@@ -249,6 +249,7 @@
                         success:function(data){
                             // console.log(JSON.stringify(data));
                             self.database = data;
+                            document.title = data.title;
                             var sound = data.sound;
                             self.Loading = true;
                             self.LoadCompleted = true;  
