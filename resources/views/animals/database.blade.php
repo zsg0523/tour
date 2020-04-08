@@ -122,15 +122,17 @@
                 LoadCompleted:false,
             },
             created(){
-                var language = sessionStorage.getItem('language');
-                $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
+                // var language = sessionStorage.getItem('language');
+                // $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
             },
             watch: {
                 database: function() {
                     this.$nextTick(function(){
                         var locationReload = this.locationReload;
                         this.Loading = false;   
-                        this.LoadCompleted = true;  
+                        this.LoadCompleted = true;
+                        var language = sessionStorage.getItem('language');
+                        $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
                         if(locationReload==false){
                            var self = this;
                            self.locationReload = true;
