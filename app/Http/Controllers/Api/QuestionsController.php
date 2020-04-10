@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\{Question, GameUser};
 use App\Handlers\GenerateQrcodeHandler;
 use App\Services\QuestionService;
+use App\Transformers\QuestionTransformer;
 
 class QuestionsController extends Controller
 {
@@ -16,16 +17,22 @@ class QuestionsController extends Controller
         $this->questionService = $questionService;
     }
 
-    public function show()
+    /** [index 题目列表] */
+    public function index(Request $request)
     {
+        $lang = $request->lang ?? 'en';
 
+        $questions = Question::where('lang', $lang)->where('is_show', 1)->get();
+
+        return $this->response->collection($questions, new QuestionTransformer());
     }
 
-    
-    public function index()
+    /** [show 题目详情] */
+    public function show(Question $question)
     {
-        
+        return $this->response->item($question, new QuestionTransformer());
     }
+
 
     public function store(Request $request)
     {
