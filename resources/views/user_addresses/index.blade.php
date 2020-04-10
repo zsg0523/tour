@@ -34,9 +34,9 @@
 				                    <!-- <td>{{ $address->zip }}</td> -->
 				                    <td>{{ $address->contact_phone }}</td>
 				                    <td>
-				                      <a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="btn btn-primary" style="margin-bottom: 10px;">{{ __("shop.address.edit") }}</a>
+				                      <a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="btn btn-primary mb-1">{{ __("shop.address.edit") }}</a>
 				                      <!-- 把之前删除按钮的表单替换成这个按钮，data-id 属性保存了这个地址的 id，在 js 里会用到 -->
-				                      <button class="btn btn-danger btn-del-address" type="button" data-id="{{ $address->id }}" style="margin-bottom: 10px;">{{ __("shop.address.delete") }}</button>
+				                      <button class="btn btn-danger btn-del-address mb-1" type="button" data-id="{{ $address->id }}">{{ __("shop.address.delete") }}</button>
 				                    </td>
 			                  	</tr>
 	                		@endforeach

@@ -16,7 +16,7 @@
         <div class="sales_and_reviews">
           <div class="sold_count">{{ __('shop.product.cumulativesale') }} <span class="count">{{ $product->sold_count }}</span></div>
           <div class="review_count">{{ __('shop.product.cumulativeevaluation') }} <span class="count">{{ $product->review_count }}</span></div>
-          <div class="rating" title="评分 {{ $product->rating }}">{{ __('shop.product.score') }} <span class="count">{{ str_repeat('★', floor($product->rating)) }}{{ str_repeat('☆', 5 - floor($product->rating)) }}</span></div>
+          <div class="rating" title="{{ __('shop.product.score') }} {{ $product->rating }}">{{ __('shop.product.score') }} <span class="count">{{ str_repeat('★', floor($product->rating)) }}{{ str_repeat('☆', 5 - floor($product->rating)) }}</span></div>
         </div>
         <div class="skus">
           <label>{{ __('shop.product.select') }}</label>
@@ -49,7 +49,7 @@
           <a class="nav-link active" href="#product-detail-tab" aria-controls="product-detail-tab" role="tab" data-toggle="tab" aria-selected="true">{{ __('shop.product.productdetail') }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#product-reviews-tab" aria-controls="product-reviews-tab" role="tab" data-toggle="tab" aria-selected="false">{{ __('shop.product.userevaluation') }}</a>
+          <a class="nav-link" href="#product-reviews-tab" aria-controls="product-reviews-tab" role="tab" data-toggle="tab" aria-selected="false">{{ __('shop.product.userevaluation') }} ({{$reviews->count()}})</a>
         </li>
       </ul>
       <div class="tab-content">
@@ -57,30 +57,34 @@
           {!! $product->description !!}
         </div>
         <div role="tabpanel" class="tab-pane" id="product-reviews-tab">
-          <!-- 评论列表开始 -->
-          <table class="table table-bordered table-striped">
-            <thead>
-            <tr>
-              <td>{{ __('shop.product.user') }}</td>
-              <td>{{ __('shop.product.product') }}</td>
-              <td>{{ __('shop.product.score') }}</td>
-              <td>{{ __('shop.product.evaluation') }}</td>
-              <td>{{ __('shop.product.time') }}</td>
-            </tr>
-            </thead>
-            <tbody>
-              @foreach($reviews as $review)
-              <tr>
-                <td>{{ $review->order->user->name }}</td>
-                <td>{{ $review->shopProductSku->title }}</td>
-                <td>{{ str_repeat('★', $review->rating) }}{{ str_repeat('☆', 5 - $review->rating) }}</td>
-                <td>{{ $review->review }}</td>
-                <td>{{ $review->reviewed_at->format('Y-m-d H:i') }}</td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-          <!-- 评论列表结束 -->
+        	@if($reviews->count()==0)
+	           {{ __('shop.product.nocomment') }}
+	        @else
+	        	<!-- 评论列表开始 -->
+	          <table class="table table-bordered table-striped">
+	            <thead>
+	            <tr>
+	              <td>{{ __('shop.product.user') }}</td>
+	              <td>{{ __('shop.product.product') }}</td>
+	              <td>{{ __('shop.product.score') }}</td>
+	              <td>{{ __('shop.product.evaluation') }}</td>
+	              <td>{{ __('shop.product.time') }}</td>
+	            </tr>
+	            </thead>
+	            <tbody>
+	              @foreach($reviews as $review)
+	              <tr>
+	                <td>{{ $review->order->user->name }}</td>
+	                <td>{{ $review->shopProductSku->title }}</td>
+	                <td>{{ str_repeat('★', $review->rating) }}{{ str_repeat('☆', 5 - $review->rating) }}</td>
+	                <td>{{ $review->review }}</td>
+	                <td>{{ $review->reviewed_at->format('Y-m-d H:i') }}</td>
+	              </tr>
+	              @endforeach
+	            </tbody>
+	          </table>
+	          <!-- 评论列表结束 -->
+	        @endif
         </div>
       </div>
     </div>

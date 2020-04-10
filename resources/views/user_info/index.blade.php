@@ -29,8 +29,9 @@
 								</div>
 							</form> -->
 	                        <div class="user-info">
-	                            <p><span>{{ __("shop.info.name") }}</span>{{ Auth::user()->name }}</p>
-	                            <p><span>{{ __("shop.info.email") }}:</span><span class="info">{{ Auth::user()->email }}</span><a class="dpn" href="">更换邮箱</a></p>
+	                            <p><span>{{ __("shop.info.name") }}:</span><span class="info">{{ Auth::user()->name }}</span><a class="dpn" href="{{ url('/user_info/edit') }}">{{ __("shop.info.editinfo") }}</a></p>
+	                            <p><span>{{ __("shop.info.email") }}:</span><span class="info">{{ Auth::user()->email }}</span><a class="dpn" href="{{ url('/user_info/change_email') }}">{{ __("shop.info.editemail") }}</a></p>
+	                            <p class="dpn"><span>{{ __("shop.info.pass") }}:</span><span class="info">********</span><a href="{{ url('/user_info/pass') }}">{{ __("shop.info.editpass") }}</a></p>
 	                            @if(Auth::user()->phone)
 	                            	<p class="dpn"><span>绑定手机:</span><span class="info">{{ Auth::user()->phone }}</span><a class="dpn" href="">改绑手机号</a></p>
 					            @else

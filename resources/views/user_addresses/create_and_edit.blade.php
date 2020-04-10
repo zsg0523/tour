@@ -10,14 +10,12 @@
         <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
         <div class="col-md-12">
           <div class="card">
-          <div class="card-header">
-            <h2 class="text-center">
+          <div class="card-header text-center">
               @if($address->id)
               	{{ __("shop.address.modifyaddress") }}
               @else
                 {{ __("shop.address.newaddress") }}
               @endif
-            </h2>
           </div>
           <div class="card-body">
             <!-- 输出后端报错开始 -->

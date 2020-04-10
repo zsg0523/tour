@@ -15,6 +15,7 @@ return [
         'returnlogin' => '返回登录',
     ],
     'info' => [
+        'title' => 'Wenno商城',
         'home' => '首页',
 		'personal' => '个人中心',
 		'account' => '账号管理',
@@ -27,6 +28,17 @@ return [
 		'editavatar' => '编辑头像',
 		'name' => '会员名',
 		'email' => '登录邮箱',
+        'pass' => '登录密码',
+        'editinfo' => '编辑信息',
+        'editemail' => '更换邮箱',
+        'editpass' => '修改密码',
+        'nname' => '姓名',
+        'save' => '保存',
+        'originalpass' => '原密码',
+        'newpass' => '新密码',
+        'confirmpass' => '重复新密码',
+        'newemail' => '新邮箱',
+        'send' => '发送验证',
     ],
 	'product' => [
 		'search' => '搜索',
@@ -58,7 +70,7 @@ return [
         'product' => '商品',
         'time' => '时间',
         'addsuccess' => '加入购物车成功',
-
+        'nocomment' => '暂无评价',
     ],
     'order' => [
     	'orderList' => '订单列表',
