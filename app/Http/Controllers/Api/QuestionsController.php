@@ -16,6 +16,17 @@ class QuestionsController extends Controller
         $this->questionService = $questionService;
     }
 
+    public function show()
+    {
+
+    }
+
+    
+    public function index()
+    {
+        
+    }
+
     public function store(Request $request)
     {
     	$data = json_decode($request->data, true);
