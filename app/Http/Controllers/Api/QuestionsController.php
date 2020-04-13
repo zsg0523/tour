@@ -33,7 +33,7 @@ class QuestionsController extends Controller
         return $this->response->item($question, new QuestionTransformer());
     }
 
-
+    /** [store 计算答题结果] */
     public function store(Request $request)
     {
     	$data = json_decode($request->data, true);
