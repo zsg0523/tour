@@ -28,6 +28,12 @@ class QuestionController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('code', __('Code'))->filter();
+        // 设置text、color、和存储值
+        $states = [
+            'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
+        ];
+        $grid->column('is_show', __('Is_show'))->switch($states);
         $grid->column('lang', __('Lang'))->filter()->label();
         $grid->column('question', __('Question'))->display(function($question){
             return "<span style='color:green'>$question</span>";
@@ -74,6 +80,11 @@ class QuestionController extends AdminController
         $form = new Form(new Question);
 
         $form->number('code', __('Code'));
+        $states = [
+            'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
+        ];
+        $form->switch('is_show')->states($states)->default(1);
         $form->text('lang', __('Lang'));
         $form->textarea('question', __('Question'));
         $form->number('true', __('True'));
