@@ -170,7 +170,7 @@ header{
     font-size:0.8rem;
     color:#624c3f;
     display:block;
-    word-break:break-all;
+    /*word-break:break-all;*/
     overflow: hidden;
     text-overflow: ellipsis;
     /*display: box;
@@ -302,12 +302,12 @@ header{
 }
 .bottom_box{
     width:92%;
-    padding:1rem 0rem;
+    /*padding:1rem 0rem;*/padding:1rem 0rem 3rem;
     margin:0px auto;
 }
 .bottom_title{
     width:100%;
-    line-height:22px;
+    line-height:24px;
     font-size:0.9rem;
     font-weight:550;
     text-align:center;
@@ -317,9 +317,9 @@ header{
 .bottom_box span{
     width:100%;
     display:block;
-    line-height:20px;
-    word-break:break-all;
-    font-size:0.75rem;
+    line-height:22px;
+    /*word-break:break-all;*/
+    /*font-size:0.75rem;*/font-size:0.85rem;
     color:#624c3f;
 } 
 [v-cloak] {
