@@ -33,12 +33,25 @@ class QuestionsController extends Controller
         return $this->response->item($question, new QuestionTransformer());
     }
 
+    /** [answer] */
+    public function answer(Question $question, Request $request)
+    {
+        $answer = $request->answer;
+
+        if ($question->answer !== $answer) {
+            abort(422, '回答错误');
+        }
+
+        return response()->json([
+            'message' => '回答正确',
+            'status_code' => 201,
+        ]);
+    }
+
     /** [store 计算答题结果] */
     public function store(Request $request)
     {
     	$data = json_decode($request->data, true);
-
-        Question::find(1)->dd();
         
     	// 更新题库数据
     	$true_count = 0;

@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-04-10 11:51:55
  * @Last Modified by:   eden
- * @Last Modified time: 2020-04-10 11:57:03
+ * @Last Modified time: 2020-04-13 16:14:18
  */
 namespace App\Transformers;
 
@@ -20,6 +20,7 @@ class QuestionTransformer extends TransformerAbstract
 			'code' => $question->code,
 			'lang' => $question->lang,
 			'question' => $question->question,
+			'answer' => $question->answer,
 			'true' => $question->true,
 			'false' => $question->false,
 			'total' => $question->total,

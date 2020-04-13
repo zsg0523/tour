@@ -64,6 +64,7 @@ $api->version('v1', [
             $api->get('total', 'QuestionsController@total'); // 答题计数
             $api->get('questions', 'QuestionsController@index'); // 题目列表
             $api->get('questions/{question}', 'QuestionsController@show'); // 题目详情
+            $api->post('questions/{question}', 'QuestionsController@answer'); // 回答
 
 
 
