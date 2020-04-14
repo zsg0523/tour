@@ -21,8 +21,8 @@ class QuestionsController extends Controller
     public function index(Request $request)
     {
         $lang = $request->lang ?? 'en';
-
-        $questions = Question::where('lang', $lang)->where('is_show', 1)->get();
+        // 随机获取十条题目
+        $questions = Question::where('lang', $lang)->where('is_show', 1)->inRandomOrder()->take(10)->get();
 
         return $this->response->collection($questions, new QuestionTransformer());
     }
