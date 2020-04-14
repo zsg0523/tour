@@ -38,12 +38,13 @@ class QuestionController extends AdminController
         $grid->column('question', __('Question'))->display(function($question){
             return "<span style='color:green'>$question</span>";
         })->filter();
+        $grid->column('answer')->label('default');
         $grid->column('true', __('True'))->sortable()->label();
         $grid->column('false', __('False'))->sortable()->label('info');
         $grid->column('total', __('Tatal'))->sortable()->label('success');
         
         $grid->disableActions();
-
+        $grid->disableExport(false);
         $grid->disableCreateButton();
         return $grid;
     }
@@ -87,6 +88,7 @@ class QuestionController extends AdminController
         $form->switch('is_show')->states($states)->default(1);
         $form->text('lang', __('Lang'));
         $form->textarea('question', __('Question'));
+        $form->text('answer');
         $form->number('true', __('True'));
         $form->number('false', __('False'));
 

@@ -15,6 +15,7 @@ class AddIsShowToQuestionsTable extends Migration
     {
         Schema::table('questions', function (Blueprint $table) {
             $table->string('is_show')->after('total')->default(1)->comment('是否显示');
+            $table->string('answer')->after('question')->nullable()->comment('答案');
         });
     }
 
@@ -27,6 +28,7 @@ class AddIsShowToQuestionsTable extends Migration
     {
         Schema::table('questions', function (Blueprint $table) {
             $table->dropColumn('is_show');
+            $table->dropColumn('answer');
         });
     }
 }
