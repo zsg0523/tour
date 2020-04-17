@@ -82,7 +82,7 @@ class QuestionController extends AdminController
 
         $code = Question::select('code')->orderBy('code', 'desc')->first()->code;
         
-        $form->number('code', __('Code'))->default($code+1)->rules('required|unique:questions')->help('同一个题目不同语言，code需要设置成一样');
+        $form->number('code', __('Code'))->default($code+1)->rules('required')->help('同一个题目不同语言，code需要设置成一样');
 
         $states = [
             'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
