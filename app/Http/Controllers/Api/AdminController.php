@@ -28,7 +28,7 @@ class AdminController extends Controller
         $data =  DB::table('questions')->where('lang', $q)->select('answer')->distinct()->get();
        
         foreach ($data->toArray() as $key => $value) {
-            $mata[$key]['id'] = $key;
+            $mata[$key]['id'] = $value->answer;
             $mata[$key]['text'] = $value->answer;
         }
 
