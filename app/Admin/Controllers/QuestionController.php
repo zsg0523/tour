@@ -26,8 +26,8 @@ class QuestionController extends AdminController
     {
         $grid = new Grid(new Question);
         // dd(Question::select('answer')->get()->groupBy('answer'));
-        $grid->column('id', __('Id'));
-        $grid->column('code', __('Code'))->filter();
+        $grid->column('id', __('Id'))->sortable();
+        $grid->column('code', __('Code'))->filter()->sortable();
         // 设置text、color、和存储值
         $states = [
             'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
