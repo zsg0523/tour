@@ -91,7 +91,7 @@ class QuestionsController extends Controller
     	// 生成二维码
     	$qrcode = app(GenerateQrcodeHandler::class)->generateQrcode($url, $user->id . '.png', 'rank');
 
-    	return $this->response->array(['qrcode' => url('uploads/rank/' . $user->id . '.png'), 'url' => $url, 'rank' => $rank]);
+    	return $this->response->array(['qrcode' => url('uploads/rank/' . $user->id . '.png'), 'url' => $url, 'rank' => $rank . '/' . $users]);
     }
 
     /** [total 更新题目答案总数] */

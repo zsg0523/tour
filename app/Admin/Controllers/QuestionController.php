@@ -25,7 +25,7 @@ class QuestionController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Question);
-
+        // dd(Question::select('answer')->get()->groupBy('answer'));
         $grid->column('id', __('Id'));
         $grid->column('code', __('Code'))->filter();
         // 设置text、color、和存储值
@@ -45,7 +45,7 @@ class QuestionController extends AdminController
         
         $grid->disableActions();
         $grid->disableExport(false);
-        $grid->disableCreateButton();
+        $grid->disableCreateButton(false);
         return $grid;
     }
 
@@ -80,18 +80,34 @@ class QuestionController extends AdminController
     {
         $form = new Form(new Question);
 
-        $form->number('code', __('Code'));
+        $code = Question::select('code')->orderBy('code', 'desc')->first()->code;
+        
+        $form->number('code', __('Code'))->default($code+1)->rules('required|unique:questions')->help('同一个题目不同语言，code需要设置成一样');
+
         $states = [
             'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
             'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
         ];
         $form->switch('is_show')->states($states)->default(1);
-        $form->text('lang', __('Lang'));
+
+        $form->select('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->load('answer', '/api/admin/answers');
+
         $form->textarea('question', __('Question'));
-        $form->text('answer');
-        $form->number('true', __('True'));
-        $form->number('false', __('False'));
+
+        $form->select('answer');
 
         return $form;
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -50,10 +50,11 @@ $api->version('v1', [
             $api->get('locals', 'WebController@local'); // 零售地域
 
             /*********************** wennoanimal backend ********************************/
-            $api->get('/admin/categories', 'AdminController@getCategories'); // 后台分类选项
-            $api->get('/admin/locations', 'AdminController@getLocations'); // 后台分类选项
-            $api->get('/admin/animals', 'AdminController@getAnimals'); // 后台分类选项
-            $api->get('/admin/themes', 'AdminController@getThemes'); // 后台分类选项
+            $api->get('/admin/categories', 'AdminController@getCategories'); // 分类选项
+            $api->get('/admin/answers', 'AdminController@getAnswers'); // 答案选项
+            $api->get('/admin/locations', 'AdminController@getLocations'); // 地点选项
+            $api->get('/admin/animals', 'AdminController@getAnimals'); // 动物选项
+            $api->get('/admin/themes', 'AdminController@getThemes'); // 主题选项
             $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
             $api->post('/qrcode', 'AdminController@generateQrcode'); // 生成二维码
 
