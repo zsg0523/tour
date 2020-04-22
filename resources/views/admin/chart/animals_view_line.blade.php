@@ -1,4 +1,4 @@
-<canvas id="doughnut" width="200" height="200"></canvas>
+<canvas id="animal_view_line" width="200" height="200"></canvas>
 <script>
 $(function () {
 
@@ -6,10 +6,10 @@ $(function () {
         type: 'line',
         data: {
             datasets: [{
-                label: '动物浏览率',
+                label: '动物点击率（前10）',
                 data: [
                     @foreach ($sums as $sum)
-                        '{{ $sum['sum'] }}',
+                        '{{ $sum->sum }}',
                     @endforeach
                 ],
                 backgroundColor: [
@@ -18,7 +18,7 @@ $(function () {
             }],
             labels: [
                 @foreach ($sums as $sum)
-                   '{{ $sum['product_name'] }}',
+                   '{{ $sum->product_name }}',
                 @endforeach
             ]
         },
@@ -28,7 +28,7 @@ $(function () {
         }
     };
 
-    var ctx = document.getElementById('doughnut').getContext('2d');
+    var ctx = document.getElementById('animal_view_line').getContext('2d');
     new Chart(ctx, config);
 });
 </script>
