@@ -187,25 +187,25 @@
                         animalName='ZEBRA';
                     break;
                     case 2:
-                        animalName='WHITE_RHINOCEROS';
+                        animalName='BLACK_RHINOCEROS';
                     break;
                     case 3:
                         animalName='GIRAFFE';
                     break;
                     case 4:
-                        animalName='OSTRICH';
+                        animalName='COMMON_OSTRICH';
                     break;
                     case 5:
-                        animalName='LION';
+                        animalName='AFRICAN_LION';
                     break;
                     case 6:
-                        animalName='AFRICAN_GAZELLE';
+                        animalName='DORCAS_GAZELLE';
                     break;
                     case 7:
-                        animalName='AFRICAN_CHEETAH';
+                        animalName='CHEETAH';
                     break;
                     case 8:
-                        animalName='GORILLA';
+                        animalName='MOUNTAIN_GORILLA';
                     break;
                     case 9:
                         animalName='HIPPOPOTAMUS';
@@ -214,7 +214,7 @@
                         animalName='OLIVE_BABOON';
                     break;
                     case 11:
-                        animalName='AFRICAN_CROCODILE';
+                        animalName='NILE_CROCODILE';
                     break;
                     case 12:
                         animalName='AFRICAN_ELEPHANT';
