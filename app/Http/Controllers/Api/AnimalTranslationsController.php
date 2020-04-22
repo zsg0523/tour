@@ -25,7 +25,7 @@ class AnimalTranslationsController extends Controller
         $theme = empty($request->theme) ? trim($themes[0]['title_page']) : $request->theme;
 
         // 获取对应主题的动物列表
-        $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme)->get();
+        $animals = AnimalTranslation::where('lang', $lang)->where('theme_name', $theme)->where('is_show', 1)->get();
 
     	return $this->response->collection($animals, new AnimalTranslationTransformer())->setMeta($themes);
     }

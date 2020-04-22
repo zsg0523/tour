@@ -29,25 +29,25 @@ class AnimalsTransController extends AdminController
                 ->header('Animals Translations')
                 ->description('描述')
                 ->row(function (Row $row){
-                    $row->column(12, function ($column){
-                        $sums = DB::table('animals_translations')
-                            ->leftJoin('animals', 'animals.id', '=', 'animals_translations.animal_id')
-                            ->select(DB::raw('sum(view) as sum'), 'animals.product_name')
-                            ->orderBy('sum', 'desc')
-                            ->groupBy('animal_id')
-                            ->take(10)
-                            ->get()
-                            ->toArray();
+                    // $row->column(12, function ($column){
+                    //     $sums = DB::table('animals_translations')
+                    //         ->leftJoin('animals', 'animals.id', '=', 'animals_translations.animal_id')
+                    //         ->select(DB::raw('sum(view) as sum'), 'animals.product_name')
+                    //         ->orderBy('sum', 'desc')
+                    //         ->groupBy('animal_id')
+                    //         ->take(10)
+                    //         ->get()
+                    //         ->toArray();
 
-                        $doughnut_bar = view('admin.chart.animals_view_bar', compact('sums'));
+                    //     $doughnut_bar = view('admin.chart.animals_view_bar', compact('sums'));
 
-                        $doughnut_line = view('admin.chart.animals_view_line', compact('sums'));
+                    //     $doughnut_line = view('admin.chart.animals_view_line', compact('sums'));
 
-                        $column->row(function ($row) use ($doughnut_bar, $doughnut_line) {
-                            $row->column(6, new Box('动物点击率(树状图)', $doughnut_bar));
-                            $row->column(6, new Box('动物点击率(折线图)', $doughnut_line));
-                        });
-                    });
+                    //     $column->row(function ($row) use ($doughnut_bar, $doughnut_line) {
+                    //         $row->column(6, new Box('动物点击率(树状图)', $doughnut_bar));
+                    //         $row->column(6, new Box('动物点击率(折线图)', $doughnut_line));
+                    //     });
+                    // });
 
                     $row->column(12, function ($column){
                         $grid = new Grid(new AnimalTranslation);
@@ -85,6 +85,13 @@ class AnimalsTransController extends AdminController
                         $grid->column('more_details', __('More Details'))->display(function($more_details){
                             return str_limit($more_details, 10, '...');
                         });
+                        // 设置text、color、和存储值
+                        $states = [
+                            'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
+                            'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
+                        ];
+                        // 主题是否打开，默认true（on），false(off)
+                        $grid->column('is_show')->switch($states);
                         $grid->column('view', __('View'))->sortable();
                         $grid->column('updated_at', __('Updated at'))->sortable();
                         $grid->column('created_at', __('Created at'))->sortable();
@@ -288,6 +295,11 @@ class AnimalsTransController extends AdminController
         $form->text('group_name', __('Group name'));
         $form->textarea('about', __('About'));
         $form->textarea('more_details', __('More Details'));
+        $states = [
+            'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
+        ];
+        $form->switch('is_show')->states($states)->default(1);
 
         return $form;
     }
