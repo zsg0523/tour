@@ -21,8 +21,8 @@ class QuestionsController extends Controller
     public function index(Request $request)
     {
         $lang = $request->lang ?? 'en';
-
-        $questions = Question::where('lang', $lang)->where('is_show', 1)->get();
+        // 随机获取十条题目
+        $questions = Question::where('lang', $lang)->where('is_show', 1)->inRandomOrder()->take(10)->get();
 
         return $this->response->collection($questions, new QuestionTransformer());
     }
@@ -91,7 +91,7 @@ class QuestionsController extends Controller
     	// 生成二维码
     	$qrcode = app(GenerateQrcodeHandler::class)->generateQrcode($url, $user->id . '.png', 'rank');
 
-    	return $this->response->array(['qrcode' => url('uploads/rank/' . $user->id . '.png'), 'url' => $url]);
+    	return $this->response->array(['qrcode' => url('uploads/rank/' . $user->id . '.png'), 'url' => $url, 'rank' => $rank . '/' . $users]);
     }
 
     /** [total 更新题目答案总数] */

@@ -9,6 +9,8 @@ use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use App\Admin\Actions\Post\Replicate;
 use App\Admin\Actions\Post\ImportPost;
+use Encore\Admin\Widgets\Box;
+use DB;
 
 class AnimalsTransController extends AdminController
 {
@@ -27,6 +29,20 @@ class AnimalsTransController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new AnimalTranslation);
+        //X动物，Y动物点击率
+        $grid->header(function ($query){
+            $sums = $query
+                        ->leftJoin('animals', 'animals.id', '=', 'animals_translations.animal_id')
+                        ->select(DB::raw('sum(view) as sum'), 'animals.product_name')
+                        ->orderBy('animal_id', 'asc')
+                        ->groupBy('animal_id')
+                        ->get()
+                        ->toArray();
+            
+            $doughnut = view('admin.chart.animalsView', compact('sums'));
+            
+            return new Box('动物点击率', $doughnut);
+        });
 
         $grid->column('id', __('Id'))->filter()->sortable();
         $grid->column('lang', __('Lang'))->filter();

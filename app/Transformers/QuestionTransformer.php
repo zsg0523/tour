@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-04-10 11:51:55
  * @Last Modified by:   eden
- * @Last Modified time: 2020-04-13 16:14:18
+ * @Last Modified time: 2020-04-15 14:31:32
  */
 namespace App\Transformers;
 
@@ -26,7 +26,7 @@ class QuestionTransformer extends TransformerAbstract
 			'total' => $question->total,
 			'is_show' => $question->is_show,
 			// 'created_at' => $question->created_at->toDateTimeString(),
-			'updated_at' => $question->updated_at->toDateTimeString()
+			// 'updated_at' => $question->updated_at->toDateTimeString()
 		];
 	}
 }

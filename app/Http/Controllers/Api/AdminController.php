@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\{Category, Location, Animal, AnimalTranslation, Theme};
+use App\Models\{Category, Location, Animal, AnimalTranslation, Theme, Question};
 use App\Handlers\ImageUploadHandler;
 use App\Http\Controllers\Controller;
 use App\Handlers\GenerateQrcodeHandler;
 use App\Jobs\GenerateQrcode;
+use DB;
 
 class AdminController extends Controller
 {
@@ -17,6 +18,21 @@ class AdminController extends Controller
         $q = $request->get('q');
 
         return Category::where('title', 'like', "%$q%")->get(['id', 'title as text']);
+    }
+
+    /** [getAnswers 获取答案列表] */
+    public function getAnswers(Request $request)
+    {
+        $q = $request->get('q');
+        // 去重处理
+        $data =  DB::table('questions')->where('lang', $q)->select('answer')->distinct()->get();
+       
+        foreach ($data->toArray() as $key => $value) {
+            $mata[$key]['id'] = $value->answer;
+            $mata[$key]['text'] = $value->answer;
+        }
+
+        return $mata;
     }
 
 
