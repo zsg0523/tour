@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-04-22 16:33:12
  * @Last Modified by:   eden
- * @Last Modified time: 2020-04-27 10:40:35
+ * @Last Modified time: 2020-04-27 18:58:30
  */
 namespace App\Admin\Controllers;
 
@@ -46,17 +46,41 @@ class StatisticsController extends AdminController
                             ->get()
                             ->toArray();
 
+                        // 所有语言的总浏览量(按月)
+                        $langs = DB::table('animals_translations')
+                            ->select(DB::raw('sum(view) as sum'), 'lang')
+                            ->groupBy('lang')
+                            ->get()
+                            ->toArray();
+                        // 问答游戏的命中率
+                        $questions = DB::table('questions')
+                                ->select(DB::raw('sum(true) as true_total'), DB::raw('sum(false) as false_total'), DB::raw('sum(total) as total'), 'lang')
+                                ->groupBy('lang')
+                                ->get()
+                                ->toArray();
+
+                        
+                        // 动物资料库所有动物的浏览量
                         $doughnut_bar = view('admin.chart.animals_view_bar', compact('sums'));
 
-                        $doughnut_line = view('admin.chart.animals_view_line', compact('sums'));
+                        // $doughnut_line = view('admin.chart.animals_view_line', compact('sums'));
 
-						$doughnut_pie = view('admin.chart.animals_view_pie', compact('sums'));
+						// $doughnut_pie = view('admin.chart.animals_view_pie', compact('sums'));
 
-                        $column->row(function ($row) use ($doughnut_bar, $doughnut_line, $doughnut_pie) {
-                            $row->column(4, new Box('动物点击率(树状图)', $doughnut_bar));
-                            $row->column(4, new Box('动物点击率(折线图)', $doughnut_line));
-                            $row->column(4, new Box('动物点击率(饼状图)', $doughnut_pie));
+                        // 动物资料库所有语言的浏览量
+                        $doughnut_lang_bar = view('admin.chart.animals_lang_bar', compact('langs'));
 
+                        // 问答游戏
+                        $doughnut_questions_bar = view('admin.chart.questions_lang_bar', compact('questions'));
+
+
+
+                        $column->row(function ($row) use ($doughnut_bar, $doughnut_lang_bar, $doughnut_questions_bar) {
+                            $row->column(12, new Box('动物资料库-动物浏览量', $doughnut_bar));
+                            // $row->column(12, new Box('动物浏览量', $doughnut_line));
+                            // $row->column(12, new Box('动物浏览量', $doughnut_pie));
+                            $row->column(12, new Box('动物资料库-语言浏览量', $doughnut_lang_bar));
+                            $row->column(12, new Box('问答游戏-命中数量', $doughnut_questions_bar));
                             // 盒子插件
                             // $box = new Box();
                             // $box->solid();
