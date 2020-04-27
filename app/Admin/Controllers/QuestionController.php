@@ -43,7 +43,7 @@ class QuestionController extends AdminController
         $grid->column('false', __('False'))->sortable()->label('info');
         $grid->column('total', __('Tatal'))->sortable()->label('success');
         
-        $grid->disableActions();
+        // $grid->disableActions();
         $grid->disableExport(false);
         $grid->disableCreateButton(false);
         return $grid;

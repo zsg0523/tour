@@ -9,10 +9,6 @@ use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use App\Admin\Actions\Post\Replicate;
 use App\Admin\Actions\Post\ImportPost;
-use Encore\Admin\Widgets\Box;
-use DB;
-use Encore\Admin\Layout\Content;
-use Encore\Admin\Layout\Row;
 
 class AnimalsTransController extends AdminController
 {
@@ -23,108 +19,6 @@ class AnimalsTransController extends AdminController
      */
     protected $title = 'AnimalsTranslation';
 
-    public function index(Content $content)
-    {
-        return $content
-                ->header('Animals Translations')
-                ->description('描述')
-                ->row(function (Row $row){
-                    // $row->column(12, function ($column){
-                    //     $sums = DB::table('animals_translations')
-                    //         ->leftJoin('animals', 'animals.id', '=', 'animals_translations.animal_id')
-                    //         ->select(DB::raw('sum(view) as sum'), 'animals.product_name')
-                    //         ->orderBy('sum', 'desc')
-                    //         ->groupBy('animal_id')
-                    //         ->take(10)
-                    //         ->get()
-                    //         ->toArray();
-
-                    //     $doughnut_bar = view('admin.chart.animals_view_bar', compact('sums'));
-
-                    //     $doughnut_line = view('admin.chart.animals_view_line', compact('sums'));
-
-                    //     $column->row(function ($row) use ($doughnut_bar, $doughnut_line) {
-                    //         $row->column(6, new Box('动物点击率(树状图)', $doughnut_bar));
-                    //         $row->column(6, new Box('动物点击率(折线图)', $doughnut_line));
-                    //     });
-                    // });
-
-                    $row->column(12, function ($column){
-                        $grid = new Grid(new AnimalTranslation);
-
-                        $grid->column('id', __('Id'))->filter()->sortable();
-                        $grid->column('lang', __('Lang'))->filter();
-                        $grid->column('animal_id', __('Product Name'))->display(function ($animal_id){
-                            $animal = Animal::find($animal_id);
-                            return $animal ? $animal->product_name : '';
-                        });
-                        $grid->column('title', __('Title'))->filter('like');
-                        $grid->column('genus', __('Scientific Name'))->filter('like')->style('font-style:italic');
-                        $grid->column('family', __('Family'))->filter('like');
-                        $grid->column('habitat', __('Habitat'))->filter('like');
-                        $grid->column('location', __('Location'))->filter('like');
-                        $grid->column('title_classification', __('Title classification'))->filter('like');
-                        $grid->column('classification', __('Classification'))->filter('like');
-                        $grid->column('title_lifespan', __('Title lifespan'))->filter('like');
-                        $grid->column('lifespan', __('Lifespan'))->filter('like');
-                        $grid->column('title_diet', __('Title diet'));
-                        $grid->column('diet', __('Diet'));
-                        $grid->column('weight', __('Weight'));
-                        $grid->column('speed', __('Top Speed'));
-                        $grid->column('animal_height', __('Size'));
-                        $grid->column('title_fun_tips', __('Title fun tips'));
-                        $grid->column('fun_tips', __('Fun Facts'))->display(function($fun_tips){
-                            return str_limit($fun_tips, 10, '...');
-                        });
-                        $grid->column('endangered_level', __('Endangered level'));
-                        $grid->column('theme_name', __('Theme name'))->editable()->filter('like');
-                        $grid->column('group_name', __('Group name'))->filter('like');
-                        $grid->column('about', __('About'))->display(function($about){
-                            return str_limit($about, 10, '...');
-                        });
-                        $grid->column('more_details', __('More Details'))->display(function($more_details){
-                            return str_limit($more_details, 10, '...');
-                        });
-                        // 设置text、color、和存储值
-                        $states = [
-                            'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
-                            'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
-                        ];
-                        // 主题是否打开，默认true（on），false(off)
-                        $grid->column('is_show')->switch($states);
-                        $grid->column('view', __('View'))->sortable();
-                        $grid->column('updated_at', __('Updated at'))->sortable();
-                        $grid->column('created_at', __('Created at'))->sortable();
-
-                        // 默认为每页20条
-                        $grid->paginate(20);
-                        $grid->fixColumns(3, -3);
-                        $grid->actions(function ($actions) {
-                            $actions->add(new Replicate);
-                        });
-
-                        $grid->disableExport(false);
-                        $grid->disableFilter(false);
-
-                        $grid->filter(function ($filter){
-                            $filter->expand();
-                            $filter->where(function ($query) {
-                                $query->whereHas('animal', function ($query) {
-                                    $query->where('product_name', 'like', "%{$this->input}%");
-                                });
-                            }, 'Product Name');
-                            $filter->like('theme_name', 'Theme Name');
-                        });
-
-                        $grid->tools(function (Grid\Tools $tools) {
-                            $tools->append(new ImportPost());
-                        });
-                        $column->row($grid);
-                    });
-                });
-    }
-
-
     /**
      * Make a grid builder.
      *
@@ -133,23 +27,7 @@ class AnimalsTransController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new AnimalTranslation);
-        //X动物，Y动物点击率
-        $grid->header(function ($query){
-            $sums = $query
-                        ->leftJoin('animals', 'animals.id', '=', 'animals_translations.animal_id')
-                        ->select(DB::raw('sum(view) as sum'), 'animals.product_name')
-                        ->orderBy('sum', 'desc')
-                        ->groupBy('animal_id')
-                        ->take(10)
-                        ->get()
-                        ->toArray();
-
-            $doughnut_line = view('admin.chart.animals_view_line', compact('sums'));
-            $doughnut_bar = view('admin.chart.animals_view_bar', compact('sums'));
-
-            return new Box('动物点击率', $doughnut_bar);
-        });
-
+        
         $grid->column('id', __('Id'))->filter()->sortable();
         $grid->column('lang', __('Lang'))->filter();
         $grid->column('animal_id', __('Product Name'))->display(function ($animal_id){
@@ -183,12 +61,19 @@ class AnimalsTransController extends AdminController
         $grid->column('more_details', __('More Details'))->display(function($more_details){
             return str_limit($more_details, 10, '...');
         });
+        // 设置text、color、和存储值
+        $states = [
+            'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
+        ];
+        // 主题是否打开，默认true（on），false(off)
+        $grid->column('is_show')->switch($states);
         $grid->column('view', __('View'))->sortable();
         $grid->column('updated_at', __('Updated at'))->sortable();
         $grid->column('created_at', __('Created at'))->sortable();
 
         // 默认为每页20条
-        $grid->paginate(20);
+        $grid->paginate(15);
         $grid->fixColumns(3, -3);
         $grid->actions(function ($actions) {
             $actions->add(new Replicate);
