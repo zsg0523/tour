@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-04-22 16:33:12
  * @Last Modified by:   eden
- * @Last Modified time: 2020-04-27 19:23:41
+ * @Last Modified time: 2020-04-27 19:27:21
  */
 namespace App\Admin\Controllers;
 
@@ -76,11 +76,11 @@ class StatisticsController extends AdminController
 
 
                         $column->row(function ($row) use ($doughnut_bar, $doughnut_lang_bar, $doughnut_questions_bar) {
-                            $row->column(12, new Box('动物资料库-动物浏览量', $doughnut_bar));
+                            $row->column(12, new Box('动物资料库-动物浏览量-排名前十动物', $doughnut_bar));
                             // $row->column(12, new Box('动物浏览量', $doughnut_line));
                             // $row->column(12, new Box('动物浏览量', $doughnut_pie));
-                            $row->column(12, new Box('动物资料库-语言浏览量', $doughnut_lang_bar));
-                            $row->column(12, new Box('问答游戏-命中数量', $doughnut_questions_bar));
+                            $row->column(12, new Box('动物资料库-动物浏览量-按语言筛选', $doughnut_lang_bar));
+                            $row->column(12, new Box('问答游戏-命中数量-按语言筛选', $doughnut_questions_bar));
                             // 盒子插件
                             // $box = new Box();
                             // $box->solid();
