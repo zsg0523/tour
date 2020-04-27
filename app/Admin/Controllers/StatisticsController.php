@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-04-22 16:33:12
  * @Last Modified by:   eden
- * @Last Modified time: 2020-04-27 19:08:27
+ * @Last Modified time: 2020-04-27 19:23:41
  */
 namespace App\Admin\Controllers;
 
@@ -54,7 +54,7 @@ class StatisticsController extends AdminController
                             ->toArray();
                         // 问答游戏的命中率
                         $questions = DB::table('questions')
-                                ->select(DB::raw('sum(true) as true_total'), DB::raw('sum(falses) as false_total'), DB::raw('sum(total) as total'), 'lang')
+                                ->select(DB::raw('sum(trues) as true_total'), DB::raw('sum(falses) as false_total'), DB::raw('sum(total) as total'), 'lang')
                                 ->groupBy('lang')
                                 ->get()
                                 ->toArray();
