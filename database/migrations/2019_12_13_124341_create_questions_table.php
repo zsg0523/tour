@@ -19,7 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->string('lang')->nullable();
             $table->text('question')->nullable();
             $table->integer('true')->default(0)->comment('答对次数');
-            $table->integer('false')->default(0)->comment('答错次数');
+            $table->integer('falses')->default(0)->comment('答错次数');
             $table->timestamps();
         });
     }

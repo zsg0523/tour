@@ -69,7 +69,7 @@ class QuestionsController extends Controller
     			case '0':
     				$question = $this->questionService->getQuestionByCode($question['code'], $data['lang']);
                     $map = [
-                        'false' => $question->false + 1,
+                        'falses' => $question->false + 1,
                         'total' => $question->true + $question->false + 1,
                     ];
                     $updateQuestion = $this->questionService->updateById($question->id, $map);
