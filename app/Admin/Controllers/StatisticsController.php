@@ -4,11 +4,11 @@
  * @Author: eden
  * @Date:   2020-04-22 16:33:12
  * @Last Modified by:   eden
- * @Last Modified time: 2020-04-27 19:27:21
+ * @Last Modified time: 2020-04-29 15:14:50
  */
 namespace App\Admin\Controllers;
 
-use App\Models\{AnimalTranslation, Animal};
+use App\Models\{AnimalTranslation, Animal, User, Order};
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Widgets\Box;
 use Encore\Admin\Widgets\Collapse;
@@ -32,7 +32,7 @@ class StatisticsController extends AdminController
     public function index(Content $content)
     {
         return $content
-                ->header('Animals Views')
+                ->header('')
                 ->description()
                 ->row(function (Row $row){
                     $row->column(12, function ($column){
@@ -76,6 +76,18 @@ class StatisticsController extends AdminController
 
 
                         $column->row(function ($row) use ($doughnut_bar, $doughnut_lang_bar, $doughnut_questions_bar) {
+                            // 信息展示块插件
+                            $userBox = new InfoBox('Users', 'users', 'aqua', '/admin/users', User::all()->count());
+                            $orderBox = new InfoBox('Orders', 'tint', 'blue', '/admin/orders', Order::all()->count());
+                            $animalBox = new InfoBox('Animals', 'cloud', 'yellow', '/admin/animals', Animal::all()->count());
+                            $row->column(12, function ($column) use ($userBox, $orderBox, $animalBox) {
+                                $column->row(function($row) use ($userBox, $orderBox, $animalBox) {
+                                    $row->column(4, new Box('商城-用户总数', $userBox));
+                                    $row->column(4, new Box('商城-订单总数', $orderBox));
+                                    $row->column(4, new Box('动物资料库-动物总数', $animalBox));
+                                });
+                            });
+
                             $row->column(12, new Box('动物资料库-动物浏览量-排名前十动物', $doughnut_bar));
                             // $row->column(12, new Box('动物浏览量', $doughnut_line));
                             // $row->column(12, new Box('动物浏览量', $doughnut_pie));
@@ -111,14 +123,7 @@ class StatisticsController extends AdminController
 
                             // $row->column(12, new Box('表单', $form));
 
-                            // 信息展示块插件
-                            // $infoBox = new InfoBox('New Users', 'users', 'aqua', '/admin/users', '1024');
-                            // $row->column(12, function ($column) use ($infoBox) {
-                            //     $column->row(function($row) use ($infoBox) {
-                            //         $row->column(4, new Box('信息', $infoBox));
-                            //         $row->column(8, new Box('信息', $infoBox));
-                            //     });
-                            // });
+                            
 
                             // 表格插件
                             // $headers = ['Id', 'Email', 'Name', 'Company'];
