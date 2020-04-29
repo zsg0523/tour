@@ -4,11 +4,11 @@
  * @Author: eden
  * @Date:   2020-04-22 16:33:12
  * @Last Modified by:   eden
- * @Last Modified time: 2020-04-29 15:14:50
+ * @Last Modified time: 2020-04-29 17:30:24
  */
 namespace App\Admin\Controllers;
 
-use App\Models\{AnimalTranslation, Animal, User, Order};
+use App\Models\{AnimalTranslation, Animal, User, Order, Question};
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Widgets\Box;
 use Encore\Admin\Widgets\Collapse;
@@ -59,7 +59,17 @@ class StatisticsController extends AdminController
                                 ->get()
                                 ->toArray();
 
-                        
+                        // 问题的命中率
+                        $trues = DB::table('questions')
+                                ->select(DB::raw(DB::raw('CAST(round(sum(trues)/sum(total) * 100, 1) AS CHAR) as true_total')), 'code')
+                                ->groupBy('code')
+                                ->get();
+
+                        foreach ($trues->toArray() as $key => $value) {
+                                $maps[$key]['percent'] = $value->true_total;
+                                $maps[$key]['question'] = Question::where('code', $value->code)->first()->question;
+                            }    
+                        // dd($maps);
                         // 动物资料库所有动物的浏览量
                         $doughnut_bar = view('admin.chart.animals_view_bar', compact('sums'));
 
@@ -73,9 +83,9 @@ class StatisticsController extends AdminController
                         // 问答游戏
                         $doughnut_questions_bar = view('admin.chart.questions_lang_bar', compact('questions'));
 
+                        $doughnut_percent_bar = view('admin.chart.questions_percent_bar', compact('maps'));
 
-
-                        $column->row(function ($row) use ($doughnut_bar, $doughnut_lang_bar, $doughnut_questions_bar) {
+                        $column->row(function ($row) use ($doughnut_bar, $doughnut_lang_bar, $doughnut_questions_bar, $doughnut_percent_bar) {
                             // 信息展示块插件
                             $userBox = new InfoBox('Users', 'users', 'aqua', '/admin/users', User::all()->count());
                             $orderBox = new InfoBox('Orders', 'tint', 'blue', '/admin/orders', Order::all()->count());
@@ -93,6 +103,7 @@ class StatisticsController extends AdminController
                             // $row->column(12, new Box('动物浏览量', $doughnut_pie));
                             $row->column(12, new Box('动物资料库-动物浏览量-按语言筛选', $doughnut_lang_bar));
                             $row->column(12, new Box('问答游戏-命中数量-按语言筛选', $doughnut_questions_bar));
+                            $row->column(12, new Box('问答游戏-命中率-按题目', $doughnut_percent_bar));
                             // 盒子插件
                             // $box = new Box();
                             // $box->solid();
