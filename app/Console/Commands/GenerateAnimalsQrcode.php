@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\{Animal, AnimalTranslation};
+use App\Models\{Animal, AnimalTranslation, ThemesTranslation};
 use App\Jobs\GenerateQrcode;
 
 class GenerateAnimalsQrcode extends Command
@@ -54,7 +54,9 @@ class GenerateAnimalsQrcode extends Command
 
             $this->info($animal_translation->animal->product_name . '_' . $animal_translation->lang . '.png');
 
-            dispatch(new GenerateQrcode($animal_translation, $logo_path));
+            $theme_translation = ThemesTranslation::where('title_page', $animal_translation->theme_name)->first();
+
+            dispatch(new GenerateQrcode($animal_translation, $theme_translation->theme_id, $logo_path));
         }
 
         $this->info('推送完毕，总共生成' . count($animal_translations) . '张二维码！');
