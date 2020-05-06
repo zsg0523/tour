@@ -39,8 +39,18 @@ class AnimalTranslationsController extends Controller
     public function show(Request $request, AnimalTranslation $animal)
     {
     	$lang = $this->getLang($request);
+
+        switch ($request->product_name) {
+            case 'TIGER':
+                $product_name = 'SIBERIAN_TIGER';
+                break;
+            
+            default:
+                $product_name = $request->product_name;
+                break;
+        }
         
-        $animal_id = Animal::where('product_name', $request->product_name)->value('id');
+        $animal_id = Animal::where('product_name', $product_name)->value('id');
 
         if ($request->theme_id) {
             // 判断 theme 是否开启
