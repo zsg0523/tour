@@ -4,11 +4,11 @@
  * @Author: eden
  * @Date:   2020-04-22 16:33:12
  * @Last Modified by:   eden
- * @Last Modified time: 2020-04-27 10:40:35
+ * @Last Modified time: 2020-04-29 17:40:44
  */
 namespace App\Admin\Controllers;
 
-use App\Models\{AnimalTranslation, Animal};
+use App\Models\{AnimalTranslation, Animal, User, Order, Question};
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Widgets\Box;
 use Encore\Admin\Widgets\Collapse;
@@ -32,7 +32,7 @@ class StatisticsController extends AdminController
     public function index(Content $content)
     {
         return $content
-                ->header('Animals Views')
+                ->header('')
                 ->description()
                 ->row(function (Row $row){
                     $row->column(12, function ($column){
@@ -46,17 +46,60 @@ class StatisticsController extends AdminController
                             ->get()
                             ->toArray();
 
+                        // 所有语言的总浏览量(按月)
+                        $langs = DB::table('animals_translations')
+                            ->select(DB::raw('sum(view) as sum'), 'lang')
+                            ->groupBy('lang')
+                            ->get()
+                            ->toArray();
+                        // 问答游戏的命中率
+                        $questions = DB::table('questions')
+                                ->select(DB::raw('sum(trues) as true_total'), DB::raw('sum(falses) as false_total'), DB::raw('sum(total) as total'), 'lang')
+                                ->groupBy('lang')
+                                ->get()
+                                ->toArray();
+
+                        // 问题的命中率,从低到高排序,抽取前10道
+                        $trues = DB::table('questions')
+                                ->select(DB::raw(DB::raw('CAST(round(sum(trues)/sum(total) * 100, 1) AS CHAR) as true_total')), 'code')
+                                ->orderBy('true_total', 'asc')
+                                ->take(10)
+                                ->groupBy('code')
+                                ->get();
+
+                        foreach ($trues->toArray() as $key => $value) {
+                                $maps[$key]['percent'] = $value->true_total;
+                                $maps[$key]['question'] = Question::where('code', $value->code)->first()->question;
+                            }    
+                        
+                        // 动物资料库-所有动物的浏览量
                         $doughnut_bar = view('admin.chart.animals_view_bar', compact('sums'));
+                        // 动物资料库-所有语言的浏览量
+                        $doughnut_lang_bar = view('admin.chart.animals_lang_bar', compact('langs'));
+                        // 问答游戏-正确与否数量
+                        $doughnut_questions_bar = view('admin.chart.questions_lang_bar', compact('questions'));
+                        // 问答游戏-命中率
+                        $doughnut_percent_bar = view('admin.chart.questions_percent_bar', compact('maps'));
 
-                        $doughnut_line = view('admin.chart.animals_view_line', compact('sums'));
+                        $column->row(function ($row) use ($doughnut_bar, $doughnut_lang_bar, $doughnut_questions_bar, $doughnut_percent_bar) {
+                            // 信息展示块插件
+                            $userBox = new InfoBox('Users', 'users', 'aqua', '/admin/users', User::all()->count());
+                            $orderBox = new InfoBox('Orders', 'tint', 'blue', '/admin/orders', Order::all()->count());
+                            $animalBox = new InfoBox('Animals', 'cloud', 'yellow', '/admin/animals', Animal::all()->count());
+                            $row->column(12, function ($column) use ($userBox, $orderBox, $animalBox) {
+                                $column->row(function($row) use ($userBox, $orderBox, $animalBox) {
+                                    $row->column(4, new Box('商城-用户总数', $userBox));
+                                    $row->column(4, new Box('商城-订单总数', $orderBox));
+                                    $row->column(4, new Box('动物资料库-动物总数', $animalBox));
+                                });
+                            });
 
-						$doughnut_pie = view('admin.chart.animals_view_pie', compact('sums'));
-
-                        $column->row(function ($row) use ($doughnut_bar, $doughnut_line, $doughnut_pie) {
-                            $row->column(4, new Box('动物点击率(树状图)', $doughnut_bar));
-                            $row->column(4, new Box('动物点击率(折线图)', $doughnut_line));
-                            $row->column(4, new Box('动物点击率(饼状图)', $doughnut_pie));
-
+                            $row->column(12, new Box('动物资料库-动物浏览量-排名前十动物', $doughnut_bar));
+                            // $row->column(12, new Box('动物浏览量', $doughnut_line));
+                            // $row->column(12, new Box('动物浏览量', $doughnut_pie));
+                            $row->column(12, new Box('动物资料库-动物浏览量-按语言筛选', $doughnut_lang_bar));
+                            $row->column(12, new Box('问答游戏-命中数量-按语言筛选', $doughnut_questions_bar));
+                            $row->column(12, new Box('问答游戏-命中率-按题目', $doughnut_percent_bar));
                             // 盒子插件
                             // $box = new Box();
                             // $box->solid();
@@ -87,14 +130,7 @@ class StatisticsController extends AdminController
 
                             // $row->column(12, new Box('表单', $form));
 
-                            // 信息展示块插件
-                            // $infoBox = new InfoBox('New Users', 'users', 'aqua', '/admin/users', '1024');
-                            // $row->column(12, function ($column) use ($infoBox) {
-                            //     $column->row(function($row) use ($infoBox) {
-                            //         $row->column(4, new Box('信息', $infoBox));
-                            //         $row->column(8, new Box('信息', $infoBox));
-                            //     });
-                            // });
+                            
 
                             // 表格插件
                             // $headers = ['Id', 'Email', 'Name', 'Company'];

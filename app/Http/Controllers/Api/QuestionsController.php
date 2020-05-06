@@ -61,7 +61,7 @@ class QuestionsController extends Controller
     				$true_count++;
     				$question = $this->questionService->getQuestionByCode($question['code'], $data['lang']);
                     $map = [
-                        'true' => $question->true + 1,
+                        'trues' => $question->true + 1,
                         'total' => $question->true + 1 + $question->false,
                     ];
                     $updateQuestion = $this->questionService->updateById($question->id, $map);
@@ -69,7 +69,7 @@ class QuestionsController extends Controller
     			case '0':
     				$question = $this->questionService->getQuestionByCode($question['code'], $data['lang']);
                     $map = [
-                        'false' => $question->false + 1,
+                        'falses' => $question->false + 1,
                         'total' => $question->true + $question->false + 1,
                     ];
                     $updateQuestion = $this->questionService->updateById($question->id, $map);
