@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\{Category, Location, Animal, AnimalTranslation, Theme, Question};
+use App\Models\{Category, Location, Animal, AnimalTranslation, Theme, ThemesTranslation, Question};
 use App\Handlers\ImageUploadHandler;
 use App\Http\Controllers\Controller;
 use App\Handlers\GenerateQrcodeHandler;
@@ -65,12 +65,14 @@ class AdminController extends Controller
     {
         // 动物资料（翻译后的）
         $animal_translation = AnimalTranslation::where('lang', $request->lang)->where('animal_id', $request->animal_id)->first();
-        
+       
+        $theme_translation = ThemesTranslation::where('title_page', $animal_translation->theme_name)->first();
+
         // 二维码 icon 图片链接
         $logo_path = public_path().'/white.png';
         
         // 推送任务队列
-        dispatch(new GenerateQrcode($animal_translation, $logo_path));
+        dispatch(new GenerateQrcode($animal_translation, $theme_translation->theme_id,  $logo_path));
     }
 
     /**

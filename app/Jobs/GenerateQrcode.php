@@ -16,6 +16,7 @@ class GenerateQrcode implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $animal_translation;
+    protected $theme_translation;
     protected $logo_path;
 
     /**
@@ -23,9 +24,10 @@ class GenerateQrcode implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($animal_translation, $logo_path = null)
+    public function __construct($animal_translation, $theme_translation, $logo_path = null)
     {
         $this->animal_translation = $animal_translation;
+        $this->theme_translation = $theme_translation;
         $this->logo_path = $logo_path;
     }
 
@@ -39,7 +41,7 @@ class GenerateQrcode implements ShouldQueue
     public function handle()
     {
         // 单只动物链接
-        $url = 'https://www.wennoanimal.com/animals/database?product_name=' . $this->animal_translation->animal->product_name . '&lang=' . $this->animal_translation->lang . '&root=0';
+        $url = 'https://www.wennoanimal.com/animals/database?product_name=' . $this->animal_translation->animal->product_name . '&theme_id=' . $this->theme_translation . '&lang=' . $this->animal_translation->lang . '&root=0';
 
         // url 二维码名称
         $url_qrcode_name = $this->animal_translation->animal->product_name . '_' . $this->animal_translation->lang . '.png';
