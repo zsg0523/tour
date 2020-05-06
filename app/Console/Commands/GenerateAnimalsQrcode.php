@@ -51,7 +51,7 @@ class GenerateAnimalsQrcode extends Command
 
         // 推送任务队列
         foreach ($animal_translations as $animal_translation) {
-            $product_name = $animal_translation ? $animal_translation->animal->product_name : null;
+            $product_name = $animal_translation->animal ? $animal_translation->animal->product_name : null;
 
             $this->info($product_name . '_' . $animal_translation->lang . '.png');
 
