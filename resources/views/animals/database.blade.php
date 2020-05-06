@@ -199,11 +199,12 @@
                     var theme_id;
                     console.log(theme1+'   '+theme2);
                     if(theme1==null||theme1==''){
-                        if(theme2==null){
-                            theme_id = '';                            
-                        }else{
-                            theme_id = theme2;
-                        }
+                        // if(theme2==null){
+                        //     theme_id = '';                            
+                        // }else{
+                        //     theme_id = theme2;
+                        // }
+                        theme_id = '';
                     }else{
                         theme_id = theme1;
                     }
