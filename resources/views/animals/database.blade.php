@@ -202,7 +202,7 @@
                         if(theme2==null){
                             theme_id = '';                            
                         }else{
-                            theme_id = theme2;
+                            // theme_id = theme2;
                         }
                     }else{
                         theme_id = theme1;
