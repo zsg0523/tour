@@ -51,13 +51,14 @@ class GenerateAnimalsQrcode extends Command
 
         // 推送任务队列
         foreach ($animal_translations as $animal_translation) {
+            $product_name = $animal_translation ? $animal_translation->animal->product_name : null;
 
-            $this->info($animal_translation->animal->product_name . '_' . $animal_translation->lang . '.png');
+            $this->info($product_name . '_' . $animal_translation->lang . '.png');
 
             $theme_translation = ThemesTranslation::where('title_page', $animal_translation->theme_name)->first();
 
             $theme_id = $theme_translation ? $theme_translation->theme_id : null;
-            
+
             dispatch(new GenerateQrcode($animal_translation, $theme_id, $logo_path));
         }
 
