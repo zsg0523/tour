@@ -57,7 +57,8 @@ class GenerateAnimalsQrcode extends Command
             $theme_translation = ThemesTranslation::where('title_page', $animal_translation->theme_name)->first();
 
             $theme_id = $theme_translation ? $theme_translation->theme_id : null;
-            dispatch(new GenerateQrcode($animal_translation, $theme_translation->theme_id, $logo_path));
+            
+            dispatch(new GenerateQrcode($animal_translation, $theme_id, $logo_path));
         }
 
         $this->info('推送完毕，总共生成' . count($animal_translations) . '张二维码！');
