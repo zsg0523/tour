@@ -66,12 +66,45 @@ $api->version('v1', [
             $api->get('questions', 'QuestionsController@index'); // 题目列表
             $api->get('questions/{question}', 'QuestionsController@show'); // 题目详情
             $api->post('questions/{question}', 'QuestionsController@answer'); // 回答
-
-
-
-
-
-
             
         });
+
+
+
+});
+
+
+$api->version('v2', [
+    'namespace' => 'App\Http\Controllers\Website',
+    // 手动注册模型中间件bindings
+    'middleware' => ['serializer:array','bindings', 'web']
+], function($api) {
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => config('api.rate_limits.sign.limit'),
+        'expires' => config('api.rate_limits.sign.expires'),
+    ], function($api) {
+
+
+            /*********************** wennoanimal Web ***********************************/
+            $api->get('news', 'WebController@getNews'); // 新闻列表
+            $api->get('news/{news}', 'WebController@getNewsData'); // 新闻详情
+            $api->get('medias', 'WebController@getMediaData'); // 多媒体资料
+            $api->get('brands', 'WebController@getBrand'); // 品牌推广
+            $api->get('brands/{brand}', 'WebController@getBrandData'); // 品牌推广
+            $api->get('products', 'WebController@getProducts'); // 产品列表
+            $api->get('products/{product}', 'WebController@getProduct'); // 产品详情
+            $api->get('about-us', 'WebController@getAboutUs'); // 关于我们
+            $api->post('contact', 'WebController@contact'); //联系我们
+            $api->get('locals', 'WebController@local'); // 零售地域
+
+            /*********************** 接口版本测试 ****************************************/
+            $api->get('version', function () {
+                return response('this is version2');
+            });
+            
+        });
+
+
+    
 });
