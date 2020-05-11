@@ -85,18 +85,10 @@ $api->version('v2', [
         'expires' => config('api.rate_limits.sign.expires'),
     ], function($api) {
 
-
             /*********************** wennoanimal Web ***********************************/
-            $api->get('news', 'WebController@getNews'); // 新闻列表
-            $api->get('news/{news}', 'WebController@getNewsData'); // 新闻详情
-            $api->get('medias', 'WebController@getMediaData'); // 多媒体资料
-            $api->get('brands', 'WebController@getBrand'); // 品牌推广
-            $api->get('brands/{brand}', 'WebController@getBrandData'); // 品牌推广
-            $api->get('products', 'WebController@getProducts'); // 产品列表
-            $api->get('products/{product}', 'WebController@getProduct'); // 产品详情
-            $api->get('about-us', 'WebController@getAboutUs'); // 关于我们
-            $api->post('contact', 'WebController@contact'); //联系我们
-            $api->get('locals', 'WebController@local'); // 零售地域
+            $api->get('blogs', 'BlogsController@getNews'); // 博客列表
+            $api->get('blogs/{blogs}', 'BlogsController@getNewsData'); // 博客详情
+            
 
             /*********************** 接口版本测试 ****************************************/
             $api->get('version', function () {
