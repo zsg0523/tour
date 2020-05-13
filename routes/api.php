@@ -66,11 +66,30 @@ $api->version('v1', [
             $api->get('questions', 'QuestionsController@index'); // 题目列表
             $api->get('questions/{question}', 'QuestionsController@show'); // 题目详情
             $api->post('questions/{question}', 'QuestionsController@answer'); // 回答
-            
+
         });
 
 
 
+});
+
+$api->version('v1', [
+    'namespace' => 'App\Http\Controllers\Website',
+    // 手动注册模型中间件bindings
+    'middleware' => ['serializer:array','bindings', 'web']
+], function($api) {
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => config('api.rate_limits.sign.limit'),
+        'expires' => config('api.rate_limits.sign.expires'),
+    ], function($api) {
+            /*********************** wennoanimal Web ***********************************/
+            $api->get('email/verify/{id}', 'UsersController@markEmailAsVerified')->name('api.verify')->middleware('signed');; // 邮箱激活
+            
+        });
+
+
+    
 });
 
 
@@ -88,7 +107,10 @@ $api->version('v2', [
             /*********************** wennoanimal Web ***********************************/
             $api->get('blogs', 'BlogsController@getNews'); // 博客列表
             $api->get('blogs/{blogs}', 'BlogsController@getNewsData'); // 博客详情
-            
+            $api->post('users', 'UsersController@store'); // 用户邮箱注册
+            $api->post('authorizations', 'AuthorizationsController@store')->middleware('verified'); // 邮箱登录
+            $api->get('email/verify/{id}', 'UsersController@markEmailAsVerified')->name('api.verify')->middleware('signed');; // 邮箱激活
+            $api->get('urls/test', 'UsersController@testUrl'); // 签名URL测试
 
             /*********************** 接口版本测试 ****************************************/
             $api->get('version', function () {

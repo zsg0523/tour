@@ -11,6 +11,8 @@ use App\Listeners\UpdateProductSoldCount;
 use App\Listeners\SendOrderPaidMail;
 use App\Events\OrderReviewed;
 use App\Listeners\UpdateProductRating;
+use App\Events\RegisteredByApi;
+use App\Listeners\SendEmailVerificationNotificationByApi;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        RegisteredByApi::class => [
+            SendEmailVerificationNotificationByApi::class,
         ],
         OrderPaid::class => [
             UpdateProductSoldCount::class,
