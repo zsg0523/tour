@@ -67,10 +67,22 @@ class UsersController extends Controller
         dd($url);
     }
 
-
+    /** [me 当前登录用户信息] */
     public function me()
     {
         return $this->response->item($this->user(), new USerTransformer());
+    }
+
+    /** [update 编辑个人信息] */
+    public function update(UserRequest $request)
+    {
+        $user = $this->user();
+        
+        $attributes = $request->only(['name']);
+
+        $user->update($attributes);
+
+        return $this->response->item($user, new UserTransformer());
     }
 
 

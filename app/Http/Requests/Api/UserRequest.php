@@ -20,7 +20,12 @@ class UserRequest extends FormRequest
                 ];
                 break;
             case 'PATCH':
-                # code...
+                $userId = \Auth::guard('api')->id();
+
+                return [
+                    'name' => 'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' .$userId,
+                ];
+
                 break;
             default:
                 # code...
@@ -28,4 +33,7 @@ class UserRequest extends FormRequest
         }
         
     }
+
+
+    
 }
