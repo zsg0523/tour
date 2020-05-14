@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Config;
+use App\Transformers\UserTransformer;
 
 
 class UsersController extends Controller
@@ -19,7 +20,7 @@ class UsersController extends Controller
     {
     	// 创建用户
     	$user  = User::create([
-    		'name' => str_random(random_int(5,10)),
+    		'name' => $request->username,
     		'email' => $request->email,
             'password' => bcrypt($request->password),
     	]);
@@ -64,6 +65,12 @@ class UsersController extends Controller
                     ['id' => 44]
                 );
         dd($url);
+    }
+
+
+    public function me()
+    {
+        return $this->response->item($this->user(), new USerTransformer());
     }
 
 

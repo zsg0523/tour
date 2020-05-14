@@ -108,10 +108,10 @@ $api->version('v2', [
             $api->get('blogs', 'BlogsController@getNews'); // 博客列表
             $api->get('blogs/{blogs}', 'BlogsController@getNewsData'); // 博客详情
             $api->post('users', 'UsersController@store'); // 用户邮箱注册
-            $api->post('authorizations', 'AuthorizationsController@store')->middleware('verified'); // 邮箱登录
+            $api->post('authorizations', 'AuthorizationsController@store'); // 邮箱登录
             $api->get('email/verify/{id}', 'UsersController@markEmailAsVerified')->name('api.verify')->middleware('signed');; // 邮箱激活
             $api->get('urls/test', 'UsersController@testUrl'); // 签名URL测试
-
+            $api->get('user', 'UsersController@me'); // 当前登录用户信息
             /*********************** 接口版本测试 ****************************************/
             $api->get('version', function () {
                 return response('this is version2');

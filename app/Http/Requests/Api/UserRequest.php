@@ -14,6 +14,7 @@ class UserRequest extends FormRequest
         switch ($this->method()) {
             case 'POST':
                 return [
+                    'username' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
                     'email' => 'required|email|unique:users',
                     'password' => 'required|string|min:6',
                 ];
