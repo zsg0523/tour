@@ -112,6 +112,7 @@ $api->version('v2', [
             $api->get('email/verify/{id}', 'UsersController@markEmailAsVerified')->name('api.verify')->middleware('signed');; // 邮箱激活
             $api->get('urls/test', 'UsersController@testUrl'); // 签名URL测试
             $api->get('user', 'UsersController@me'); // 当前登录用户信息
+            
             /*********************** 接口版本测试 ****************************************/
             $api->get('version', function () {
                 return response('this is version2');

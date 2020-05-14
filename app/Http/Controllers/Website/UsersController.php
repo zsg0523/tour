@@ -29,7 +29,7 @@ class UsersController extends Controller
     	event(new RegisteredByApi($user));
 
     	// 返回用户信息
-    	return $this->response->created();
+    	return $this->response->item($user, new UserTransformer())->setStatusCode(201);
     }
 
 
