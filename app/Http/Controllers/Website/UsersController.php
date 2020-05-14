@@ -25,7 +25,7 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
     	]);
 
-    	// 触发注册事件，发送激活邮件
+    	// 触发事件发送激活邮件
     	event(new RegisteredByApi($user));
 
     	// 返回用户信息
@@ -58,10 +58,10 @@ class UsersController extends Controller
 
     public function testUrl(Request $request)
     {
-        // 临时签名路由
+        // 临时签名路由,3天后过期
         $url  = URL::temporarySignedRoute(
                     'api.verify',
-                    Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
+                    Carbon::now()->addMinutes(Config::get('auth.verification.expire', 4320)),
                     ['id' => 44]
                 );
         dd($url);

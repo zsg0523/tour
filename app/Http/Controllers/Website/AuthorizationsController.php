@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\AuthorizationRequest;
 use App\Models\User;
+use App\Events\RegisteredByApi;
 
 class AuthorizationsController extends Controller
 {
@@ -27,7 +28,8 @@ class AuthorizationsController extends Controller
         // 检查邮箱是否激活
         $user = User::where('email', $username)->first();
         if(!$user->hasVerifiedEmail()) {
-        	abort(401, '邮箱未激活');
+            event(new RegisteredByApi($user));
+        	abort(401, '邮箱未激活,已发送激活邮件');
         }
 
         // 生成Token返回前端
