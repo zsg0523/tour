@@ -58,7 +58,11 @@ class UsersController extends Controller
     }
 
 
-
+    /**
+     * [testUrl https://wennoanimal.com/animalGame/website/#/VerifyEmail/57/1589519456/25742403efd1108cf23bda65eb7e7f7074c1f5d0ba7bc572949faf3162c429ca]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function testUrl(Request $request)
     {
         // 临时签名路由,3天后过期
@@ -67,7 +71,16 @@ class UsersController extends Controller
                     Carbon::now()->addMinutes(Config::get('auth.verification.expire', 4320)),
                     ['id' => 44]
                 );
-        dd($url);
+
+        $url_array = convertUrlQuery($url);
+        $id = 44;
+        $expire = strtotime(Carbon::now()->addMinutes(Config::get('auth.verification.expire', 4320)));
+        $signature = $url_array['signature'];
+
+        $web_url = url("animalGame/website/#/VerifyEmail/" . $id . '/' . $expire . '/' . $signature);
+
+        // 激活邮箱接口，激活邮箱界面
+        dd($url, $web_url);
     }
 
     /** [me 当前登录用户信息] */

@@ -58,11 +58,19 @@ class VerifyEmailByApi extends Notification
      */
     protected function verificationUrl($notifiable)
     {
-        return URL::temporarySignedRoute(
+        $url = URL::temporarySignedRoute(
             'api.verify',
-            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
+            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 4320)),
             ['id' => $notifiable->getKey()]
         );
+
+        $url_array = convertUrlQuery($url);
+        $id = $notifiable->getKey();
+        $expire = strtotime(Carbon::now()->addMinutes(Config::get('auth.verification.expire', 4320)));
+        $signature = $url_array['signature'];
+        $web_url = url("animalGame/website/#/VerifyEmail/" . $id . '/' . $expire . '/' . $signature);
+
+        return $web_url;
     }
 
     /**

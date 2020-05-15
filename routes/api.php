@@ -73,24 +73,6 @@ $api->version('v1', [
 
 });
 
-$api->version('v1', [
-    'namespace' => 'App\Http\Controllers\Website',
-    // 手动注册模型中间件bindings
-    'middleware' => ['serializer:array','bindings', 'web']
-], function($api) {
-    $api->group([
-        'middleware' => 'api.throttle',
-        'limit' => config('api.rate_limits.sign.limit'),
-        'expires' => config('api.rate_limits.sign.expires'),
-    ], function($api) {
-            /*********************** wennoanimal Web ***********************************/
-            $api->get('email/verify/{id}', 'UsersController@markEmailAsVerified')->name('api.verify')->middleware('signed');; // 邮箱激活
-            
-        });
-
-
-    
-});
 
 
 $api->version('v2', [
