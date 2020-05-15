@@ -87,14 +87,26 @@ $api->version('v2', [
     ], function($api) {
 
             /*********************** wennoanimal Web ***********************************/
-            $api->get('blogs', 'BlogsController@getNews'); // 博客列表
-            $api->get('blogs/{blogs}', 'BlogsController@getNewsData'); // 博客详情
-            $api->post('users', 'UsersController@store'); // 用户邮箱注册
-            $api->post('authorizations', 'AuthorizationsController@store'); // 邮箱登录
-            $api->get('email/verify/{id}', 'UsersController@markEmailAsVerified')->name('api.verify')->middleware('signed');; // 邮箱激活
-            $api->get('urls/test', 'UsersController@testUrl'); // 签名URL测试
-            $api->get('user', 'UsersController@me'); // 当前登录用户信息
-            $api->patch('user', 'UsersController@update'); // 编辑用户信息
+            // 博客列表
+            $api->get('blogs', 'BlogsController@getNews'); 
+            // 博客详情
+            $api->get('blogs/{blogs}', 'BlogsController@getNewsData'); 
+            // 用户邮箱注册
+            $api->post('users', 'UsersController@store'); 
+            // 邮箱登录
+            $api->post('authorizations', 'AuthorizationsController@store'); 
+            // 刷新token
+            $api->put('authorizations/current', 'AuthorizationsController@update')->name('api.authorizations.update');
+            // 删除token
+            $api->delete('authorizations/current', 'AuthorizationsController@destroy')->name('api.authorizations.destroy');
+            // 邮箱激活
+            $api->get('email/verify/{id}', 'UsersController@markEmailAsVerified')->name('api.verify')->middleware('signed');
+            // 签名URL测试
+            $api->get('urls/test', 'UsersController@testUrl'); 
+            // 当前登录用户信息
+            $api->get('user', 'UsersController@me'); 
+            // 编辑用户信息
+            $api->patch('user', 'UsersController@update'); 
             
             /*********************** 接口版本测试 ****************************************/
             $api->get('version', function () {
