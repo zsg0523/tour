@@ -29,7 +29,10 @@ class UsersController extends Controller
     	event(new RegisteredByApi($user));
 
     	// 返回用户信息
-    	return $this->response->item($user, new UserTransformer())->setStatusCode(201);
+    	return $this->response->item($user, new UserTransformer())->setMeta([
+            'message' => '注册成功,激活邮件已经发至您的邮箱,请注意查收',
+            'status_code' => 201,
+        ])->setStatusCode(201);
     }
 
 
