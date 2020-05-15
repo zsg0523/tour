@@ -16,14 +16,6 @@ use App\Mail\ContactUs;
 
 class BlogsController extends Controller
 {	
-    /**
-     * [__construct 官网数据抓取，仅限简繁英]
-     */
-    public function __construct()
-    {
-        in_array(session('locale'), ['en', 'zh-CN', 'zh-TW']) ? $this->lang = session('locale') : $this->lang = 'en';
-    }
-
 	/**
      * [getNews description]
      * @param  Request $request [description]
@@ -31,8 +23,8 @@ class BlogsController extends Controller
      */
     public function getNews(Request $request)
     {
-        // 兼容APP多语言，检查是否传入lang参数
-        isset($request->lang) ? $lang = $request->lang : $lang = $this->lang;
+        // 获取接口请求语言
+        $lang = $request->header('accept-language');
 
     	switch ($request->is_push) {
             // 推荐博客，最多2条，按时间排序    		
