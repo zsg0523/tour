@@ -34,14 +34,6 @@ class UserRequest extends FormRequest
         
     }
 
-    // public function messages()
-    // {
-    //     return [
-    //         'username.unique' => 'The fullname has already been token.',
-    //         'email.unique' => 'The email has already been token.'
-    //     ];
-    // }
-
 
     
 }

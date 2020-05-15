@@ -64,6 +64,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // 网站多语言设置
         'setLocale' => \App\Http\Middleware\SetLocale::class,
+        // 接口语言设置
+        'change-locale' => \App\Http\Middleware\ChangeLocale::class,
     ];
 
     /**

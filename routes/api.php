@@ -78,7 +78,7 @@ $api->version('v1', [
 $api->version('v2', [
     'namespace' => 'App\Http\Controllers\Website',
     // 手动注册模型中间件bindings
-    'middleware' => ['serializer:array','bindings', 'web']
+    'middleware' => ['serializer:array','bindings', 'web', 'change-locale']
 ], function($api) {
     $api->group([
         'middleware' => 'api.throttle',
