@@ -22,6 +22,9 @@ $factory->define(ShopProduct::class, function (Faker $faker) {
         "https://www.wennoanimal.com/uploads/images/s4_piece_WPZ0107.jpg"
     ]);
 
+    // 从数据库中随机取一个类目
+    $shop_category = \App\Models\ShopCategory::query()->where('is_directory', false)->inRandomOrder()->first();
+
     return [
         // 'title'        => $faker->word,
         'title' => '商品名称',
@@ -32,6 +35,7 @@ $factory->define(ShopProduct::class, function (Faker $faker) {
         'sold_count'   => $faker->numberBetween(0, 999),
         'review_count' => $faker->numberBetween(0, 999),
         'price'        => 0,
+        'shop_category_id'  => $shop_category ? $shop_category->id : null,
     ];
 
 });

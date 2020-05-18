@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\ShopProduct;
+use App\Models\ShopCategory;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -26,8 +27,11 @@ class ShopProductsController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new ShopProduct);
+        $grid = new     Grid(new ShopProduct);
 
         $grid->column('id', __('ID'))->sortable();
+        // Laravel-Admin 支持用符号 . 来展示关联关系的字段
+        $grid->column('shopCategory.name', '类目');
         $grid->column('lang', __('Lang'))->filter(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW']);
         $grid->column('title', __('Title'));
         // $grid->column('description', __('Description'));
@@ -96,6 +100,13 @@ class ShopProductsController extends AdminController
             $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
             //  创建一个输入框
             $form->text('title', __('商品名称'))->rules('required');
+
+            $form->select('shop_category_id', '类目')->options(function ($id) {
+                $category = ShopCategory::find($id);
+                    if ($category) {
+                        return [$category->id => $category->full_name];
+                    }
+            })->ajax('/api/admin/shop-categories?is_directory=0');
             // 创建一个选择图片框
             $form->image('image', __('商品图片'))->rules('required|image');
            

@@ -32,4 +32,10 @@ class ShopProduct extends Model
 
         return env('APP_URL').'/uploads/' . $this->attributes['image'];
     }
+
+    public function shopCategory()
+    {
+        return $this->belongsTo(ShopCategory::class);
+    }
+
 }
