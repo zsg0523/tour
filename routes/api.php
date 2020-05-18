@@ -51,6 +51,7 @@ $api->version('v1', [
 
             /*********************** wennoanimal backend ********************************/
             $api->get('/admin/categories', 'AdminController@getCategories'); // 分类选项
+            $api->get('/admin/shop-categories', 'AdminController@getShopCategories'); // 新官网分类选项
             $api->get('/admin/answers', 'AdminController@getAnswers'); // 答案选项
             $api->get('/admin/locations', 'AdminController@getLocations'); // 地点选项
             $api->get('/admin/animals', 'AdminController@getAnimals'); // 动物选项

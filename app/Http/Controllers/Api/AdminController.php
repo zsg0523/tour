@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Models\{Category, Location, Animal, AnimalTranslation, Theme, ThemesTranslation, Question};
+use App\Models\{Category, Location, Animal, AnimalTranslation, Theme, ThemesTranslation, Question, ShopCategory};
 use App\Handlers\ImageUploadHandler;
 use App\Http\Controllers\Controller;
 use App\Handlers\GenerateQrcodeHandler;
@@ -18,6 +18,24 @@ class AdminController extends Controller
         $q = $request->get('q');
 
         return Category::where('title', 'like', "%$q%")->get(['id', 'title as text']);
+    }
+
+    public function getShopCategories(Request $request)
+    {
+        // 用户输入的值通过 q 参数获取
+        $search = $request->input('q');
+        
+        $result = ShopCategory::query()
+            ->where('is_directory', true)  // 由于这里选择的是父类目，因此需要限定 is_directory 为 true
+            ->where('name', 'like', '%'.$search.'%')
+            ->paginate();
+
+        // 把查询出来的结果重新组装成 Laravel-Admin 需要的格式
+        $result->setCollection($result->getCollection()->map(function (ShopCategory $category) {
+            return ['id' => $category->id, 'text' => $category->full_name];
+        }));
+        
+        return $result;
     }
 
     /** [getAnswers 获取答案列表] */
