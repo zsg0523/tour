@@ -88,6 +88,7 @@ $api->version('v2', [
     ], function($api) {
 
             /*********************** wennoanimal Web ***********************************/
+            // 游客可访问
             // 博客列表
             $api->get('blogs', 'BlogsController@getNews'); 
             // 博客详情
@@ -104,10 +105,19 @@ $api->version('v2', [
             $api->get('email/verify/{id}', 'UsersController@markEmailAsVerified')->name('api.verify')->middleware('signed');
             // 签名URL测试
             $api->get('urls/test', 'UsersController@testUrl'); 
-            // 当前登录用户信息
-            $api->get('user', 'UsersController@me'); 
-            // 编辑用户信息
-            $api->patch('user', 'UsersController@update'); 
+            // 产品列表
+            $api->get('products', 'ProductsController@index');
+            // 产品详情
+            $api->get('products/{product}', 'ProductsController@show');
+
+            // 登录后可访问
+            $api->group(['middleware' => 'api.auth'], function($api) {
+                // 当前登录用户信息
+                $api->get('user', 'UsersController@me'); 
+                // 编辑用户信息
+                $api->patch('user', 'UsersController@update');
+
+            });
             
             /*********************** 接口版本测试 ****************************************/
             $api->get('version', function () {
