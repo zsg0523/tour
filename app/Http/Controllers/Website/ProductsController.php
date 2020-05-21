@@ -7,11 +7,12 @@ use App\Transformers\ShopProductTransformer;
 use App\Models\ShopProduct;
 use App\Models\OrderItem;
 use App\Models\ShopCategory;
+use App\Services\CategoryService;
 
 class ProductsController extends Controller
 {
 	/** [index 商品列表] */
-    public function index(Request $request)
+    public function index(Request $request, CategoryService $categoryService)
     {
     	$lang = $request->header('accept-language') ?? 'en';
 
@@ -67,8 +68,9 @@ class ProductsController extends Controller
     	$products = $builder->paginate(16);
     	
     	return $this->response->paginator($products, new ShopProductTransformer())->setMeta([
-    		'category_parent' => $category_parent,
-    		'category_child' => $category_child,
+    		'categoryTree' => $categoryService->getCategoryTree(),
+    		'category_parent' => $category_parent ?? [],
+    		'category_child' => $category_child ?? [],
     	]);
     }
 
