@@ -11,6 +11,15 @@ use App\Services\CategoryService;
 
 class ProductsController extends Controller
 {
+
+    /** 分类列表 */
+    public function categoriesIndex(CategoryService $categoryService)
+    {
+        $categories = $categoryService->getCategoryTree();
+
+        return $this->response->array($categories->toArray());
+    }
+
 	/** [index 商品列表] */
     public function index(Request $request, CategoryService $categoryService)
     {

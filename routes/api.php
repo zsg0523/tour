@@ -104,7 +104,9 @@ $api->version('v2', [
             // 邮箱激活
             $api->get('email/verify/{id}', 'UsersController@markEmailAsVerified')->name('api.verify')->middleware('signed');
             // 签名URL测试
-            $api->get('urls/test', 'UsersController@testUrl'); 
+            $api->get('urls/test', 'UsersController@testUrl');
+            // 分类树
+            $api->get('categories', 'ProductsController@categoriesIndex');
             // 产品列表
             $api->get('products', 'ProductsController@index');
             // 产品详情
