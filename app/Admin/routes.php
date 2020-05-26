@@ -44,4 +44,8 @@ Route::group([
     $router->post('shop-categories', 'ShopCategoriesController@store');
     $router->put('shop-categories/{id}', 'ShopCategoriesController@update');
     $router->delete('shop-categories/{id}', 'ShopCategoriesController@destroy');
+    $router->resource('banners', BannerController::class); // 轮播图
+    $router->get('banner/{id}/buttons', 'BannerController@buttons');
+    $router->resource('buttons', ButtonController::class); // 轮播图按钮
+
 });

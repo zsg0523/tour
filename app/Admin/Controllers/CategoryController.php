@@ -33,7 +33,7 @@ class CategoryController extends Controller
             ->header($this->title)
             ->description('')
             ->row(function (Row $row) {
-                $row->column(6, $this->treeView()->render());
+                $row->column(6, $row->column(12,new CreateButtons($id)););
                 $row->column(6, function (Column $column) {
 
                     $form = new \Encore\Admin\Widgets\Form();

@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 16:57:34
  * @Last Modified by:   eden
- * @Last Modified time: 2020-03-27 11:50:14
+ * @Last Modified time: 2020-05-22 14:48:13
  */
 namespace App\Services;
 
@@ -19,6 +19,7 @@ class CartService
 		return Auth::user()->cartItems()->with(['shopProductSku.shopProduct'])->get();
 	}
 
+    /** [add 添加购物车] */
 	public function add($skuId, $amount)
     {
         $user = Auth::user();
@@ -39,6 +40,7 @@ class CartService
         return $item;
     }
 
+    /** [remove 移除购物车] */
     public function remove($skuIds)
     {
         // 可以传单个 ID，也可以传 ID 数组

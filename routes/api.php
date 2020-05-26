@@ -109,6 +109,8 @@ $api->version('v2', [
             $api->get('products', 'ProductsController@index');
             // 产品详情
             $api->get('products/{product}', 'ProductsController@show');
+            // 轮播图
+            $api->resource('banners', 'BannersController');
 
             // 登录后可访问
             $api->group(['middleware' => 'api.auth'], function($api) {
