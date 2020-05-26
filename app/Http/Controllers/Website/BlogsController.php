@@ -16,6 +16,12 @@ use App\Mail\ContactUs;
 
 class BlogsController extends Controller
 {	
+
+
+    public function __construct(Request $request)
+    {
+        $this->lang = $request->header('accept-language') ?? 'en';
+    }
 	/**
      * [getNews description]
      * @param  Request $request [description]
@@ -23,17 +29,14 @@ class BlogsController extends Controller
      */
     public function getNews(Request $request)
     {
-        // 获取接口请求语言
-        $lang = $request->header('accept-language');
-
     	switch ($request->is_push) {
             // 推荐博客，最多2条，按时间排序    		
     		case '1':
-    			$news = News::where('is_push', 0)->where('lang', $lang)->orderBy('created_at', 'desc')->limit(2)->get();
+    			$news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->limit(2)->get();
     			return $this->response->collection($news, new NewsTransformer());
             // 博客列表
             default:
-                $news = News::where('is_push', 0)->where('lang', $lang)->orderBy('created_at', 'desc')->skip(2)->take(4)->get();
+                $news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->skip(2)->take(4)->get();
                 return $this->response->collection($news, new NewsTransformer());
     	}
     }

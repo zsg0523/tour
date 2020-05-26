@@ -111,6 +111,8 @@ $api->version('v2', [
             $api->get('products/{product}', 'ProductsController@show');
             // 轮播图
             $api->resource('banners', 'BannersController');
+            // 多媒体资料
+            $api->get('medias', 'BlogsController@getMediaData'); 
 
             // 登录后可访问
             $api->group(['middleware' => 'api.auth'], function($api) {
