@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-05-25 11:19:30
  * @Last Modified by:   eden
- * @Last Modified time: 2020-05-25 14:58:43
+ * @Last Modified time: 2020-05-26 10:47:42
  */
 namespace App\Transformers;
 
@@ -36,7 +36,7 @@ class BannerTransformer extends TransformerAbstract
     public function includeButtons(Banner $banner)
     {
     	if($banner->buttons){
-			return $this->collection($banner->buttons()->get(), new ButtonTransformer());
+			return $this->collection($banner->buttons()->where('is_show', 1)->get(), new ButtonTransformer());
 		}
     }
 }
