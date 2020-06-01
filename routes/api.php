@@ -114,7 +114,9 @@ $api->version('v2', [
             // 轮播图
             $api->resource('banners', 'BannersController');
             // 多媒体资料
-            $api->get('medias', 'BlogsController@getMediaData'); 
+            $api->get('medias', 'BlogsController@getMediaData');
+            
+            
 
             // 登录后可访问
             $api->group(['middleware' => 'api.auth'], function($api) {
@@ -122,6 +124,14 @@ $api->version('v2', [
                 $api->get('user', 'UsersController@me'); 
                 // 编辑用户信息
                 $api->patch('user', 'UsersController@update');
+                // 购物车列表
+                $api->get('carts', 'CartsController@index');
+                // 添加购物车
+                $api->post('carts', 'CartsController@add');
+                // 减少购物车
+                $api->patch('carts', 'CartsController@deduct');
+                // 移除购物车
+                $api->delete('carts', 'CartsController@destroy');
 
             });
             

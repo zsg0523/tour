@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AddCartRequest;
 use App\Models\ShopProductSku;
 use App\Services\CartService;
+use Illuminate\Support\Facades\Cookie;
 
 class CartsController extends Controller
 {
@@ -17,30 +18,51 @@ class CartsController extends Controller
         $this->cartService = $cartService;
     }
 
+
+    /** [index 查看购物车] */
+    public function index(Request $request)
+    {   
+        $cartItems = $this->cartService->get($this->user);
+        
+        return $this->response->array($cartItems);
+    }
+
+
+
     /** [add 添加购物车] */
     public function add(AddCartRequest $request)
     {
-    	dd($request->all());
-        $this->cartService->add($request->input('sku_id'), $request->input('amount'));
+        
+        $this->cartService->add($this->user, $request->input('sku_id'), $request->input('amount'));
+    
+        return $this->response->array(
+            [
+                'message' => '加入购物车成功!',
+                'status_code' => 201
+            ]);
+    }
 
-        return [];
+    /** [remove 减少商品数量] */
+    public function deduct(Request $request)
+    {
+        $this->cartService->deduct($this->user, $request->input('sku_id'), $request->input('amount'));
+
+        return $this->response->array(
+            [
+                'message' => '减少购物车成功!',
+                'status_code' => 201
+            ]);
     }
 
 
     /** [remove 商品移除购物车] */
-    public function remove(ShopProductSku $productSku, Request $request)
+    public function destroy(Request $request)
     {
-        $this->cartService->remove($productSku->id);
 
-        return [];
+        $this->cartService->remove($this->user, $request->sku_id);
+
+        return $this->response->noContent();
     }
 
-    /** [index 查看购物车] */
-    public function index(Request $request)
-    {
-        $cartItems = $this->cartService->get();
-        $addresses = $request->user()->addresses()->orderBy('last_used_at', 'desc')->get();
 
-        return view('cart.index', ['cartItems' => $cartItems, 'addresses' => $addresses]);
-    }
 }
