@@ -124,6 +124,8 @@ $api->version('v2', [
                 $api->get('user', 'UsersController@me'); 
                 // 编辑用户信息
                 $api->patch('user', 'UsersController@update');
+                // 用户收获地址
+                $api->resource('address', 'UserAddressesController');
                 // 购物车列表
                 $api->get('carts', 'CartsController@index');
                 // 添加购物车
@@ -132,7 +134,8 @@ $api->version('v2', [
                 $api->patch('carts', 'CartsController@deduct');
                 // 移除购物车
                 $api->delete('carts', 'CartsController@destroy');
-
+                // 订单
+                $api->post('orders', 'OrdersController@store');
             });
             
             /*********************** 接口版本测试 ****************************************/
