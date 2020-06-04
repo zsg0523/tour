@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 17:24:51
  * @Last Modified by:   eden
- * @Last Modified time: 2020-02-28 17:31:12
+ * @Last Modified time: 2020-06-03 11:03:52
  */
 namespace App\Services;
 
@@ -24,13 +24,15 @@ class OrderService
         $order = \DB::transaction(function () use ($user, $address, $remark, $items) {
             // 更新此地址的最后使用时间
             $address->update(['last_used_at' => Carbon::now()]);
+            
             // 创建一个订单
             $order   = new Order([
                 'address'      => [ // 将地址信息放入订单中
-                    'address'       => $address->full_address,
-                    'zip'           => $address->zip,
-                    'contact_name'  => $address->contact_name,
-                    'contact_phone' => $address->contact_phone,
+                    'address_line1' => $address->address_line1,
+                    'address_line2' => $address->address_line2,
+                    'region' => $address->region,
+                    'receiver' => $address->receiver,
+                    'phone' => $address->phone,
                 ],
                 'remark'       => $remark,
                 'total_amount' => 0,
@@ -61,8 +63,8 @@ class OrderService
             $order->update(['total_amount' => $totalAmount]);
 
             // 将下单的商品从购物车中移除
-            $skuIds = collect($items)->pluck('sku_id')->all();
-            app(CartService::class)->remove($skuIds);
+            // $skuIds = collect($items)->pluck('sku_id')->all();
+            // app(CartService::class)->remove($skuIds);
 
             return $order;
         });
@@ -72,4 +74,6 @@ class OrderService
 
         return $order;
     }
+
+
 }
