@@ -57,7 +57,6 @@ class UsersController extends Controller
         ])->setStatusCode(201);
     }
 
-
     /**
      * [testUrl https://wennoanimal.com/animalGame/website/#/VerifyEmail/57/1589519456/25742403efd1108cf23bda65eb7e7f7074c1f5d0ba7bc572949faf3162c429ca]
      * @param  Request $request [description]

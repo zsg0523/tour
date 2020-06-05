@@ -115,6 +115,9 @@ $api->version('v2', [
             $api->resource('banners', 'BannersController');
             // 多媒体资料
             $api->get('medias', 'BlogsController@getMediaData');
+            // cookie提交购物车
+            $api->post('carts/cookie', 'CartsController@cookie');
+
             
             
 

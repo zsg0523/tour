@@ -42,6 +42,20 @@ class CartsController extends Controller
             ]);
     }
 
+    /** [cookie 购物车缓存录入数据库] */
+    public function cookie(Request $request)
+    {
+        foreach (json_decode($request->items, true) as $item) {
+            $this->cartService->add($this->user, $item['sku_id'], $item['amount']);
+        }
+
+        return $this->response->array(
+            [
+                'message' => '加入购物车成功!',
+                'status_code' => 201
+            ]);
+    }
+
     /** [remove 减少商品数量] */
     public function deduct(Request $request)
     {
