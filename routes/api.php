@@ -117,6 +117,8 @@ $api->version('v2', [
             $api->get('medias', 'BlogsController@getMediaData');
             // cookie提交购物车
             $api->post('carts/cookie', 'CartsController@cookie');
+            // 游客下单
+            $api->post('orders/guest', 'OrdersController@storeAsGuest');
 
             
             
