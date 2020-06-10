@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
         // 生成数据集合
         $users = factory(User::class)
-                        ->times(10)
+                        ->times(100)
                         ->make();
                       
 
@@ -23,8 +23,8 @@ class UsersTableSeeder extends Seeder
 
         // 单独处理第一个用户的数据
         $user = User::find(1);
-        $user->name = 'cody';
-        $user->email = 'cody@shtoys.com.hk';
+        $user->name = 'guest';
+        $user->email = 'guest@hotmail.com';
         $user->save();
 
 

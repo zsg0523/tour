@@ -31,7 +31,7 @@ class OrdersController extends Controller
     public function storeAsGuest(Request $request, OrderService $orderService)
     {
     	// 游客账号
-    	$user = User::find(58);
+    	$user = User::find(1);
     	// 收货地址信息
     	$address = json_decode($request->input('address'), true);
     	// 商品信息
