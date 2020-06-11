@@ -30,6 +30,10 @@ class OrdersController extends Controller
         
         $address = UserAddress::find($request->input('address_id'));
 
+        if (! $address) {
+            abort(403, '收货地址不存在');
+        }
+
         return $orderService->store($user, $address, $request->input('remark'), json_decode($request->input('items'), true));
     }
 

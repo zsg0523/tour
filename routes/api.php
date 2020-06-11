@@ -121,8 +121,7 @@ $api->version('v2', [
             // 游客下单
             $api->post('orders/guest', 'OrdersController@storeAsGuest');
             // paypal 支付
-            $api->get('payments/orders/{order}/paypal', 'PaymentsController@payByPayPalCheckout')->name('api.payments.paypal');
-            // paypal 支付回调
+            $api->get('payments/orders/{order}/paypal', 'PaymentsController@payByPayPal')->name('api.payments.paypal');
             $api->post('payments/notify', 'PaymentsController@payPalNotify')->name('api.paypal.notify');
             $api->get('payments/return', 'PaymentsController@payPalReturn')->name('api.paypal.return');
             

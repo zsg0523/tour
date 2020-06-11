@@ -10,13 +10,20 @@ use App\Events\OrderPaid;
 
 class PaymentsController extends Controller
 {
+
+    /** [afterPaid 设置事件触发器] */
+    protected function afterPaid(Order $order)
+    {
+        event(new OrderPaid($order));
+    }
+
     /**
      * [payByPayPalCheckout paypal支付]
      * @param  Order   $order   [description]
      * @param  Request $request [description]
      * @return [type]           [description]
      */ 
-    public function payByPayPalCheckout(Order $order, Request $request)
+    public function payByPayPal(Order $order, Request $request)
     {
         // 判断订单状态
         if ($order->paid_at || $order->closed) {
@@ -57,6 +64,7 @@ class PaymentsController extends Controller
     }
 
     // Paypal后端回调
+    // mc_gross=13.00&invoice=20200611172210056683&protection_eligibility=Ineligible&payer_id=3BGBC8NXLU3SE&payment_date=03%3A11%3A45+Jun+11%2C+2020+PDT&payment_status=Pending&charset=windows-1252&first_name=John&notify_version=3.9&custom=&payer_status=verified&quantity=1&verify_sign=A7bVkXNneIKOuae9kjm7b3Fry1IvAOKuXBTuZSU8sn8oKqGyEZsv1bvV&payer_email=sb-r5exh1138848%40business.example.com&txn_id=5RT543922R8916204&payment_type=instant&payer_business_name=John+Doe%27s+Test+Store&last_name=Doe&receiver_email=paypal%40ifn-asia.org&shipping_discount=0.00&pending_reason=unilateral&insurance_amount=0.00&txn_type=web_accept&item_name=test&discount=0.00&mc_currency=HKD&item_number=20200611172210056683&residence_country=CN&test_ipn=1&shipping_method=Default&transaction_subject=&payment_gross=&ipn_track_id=5503e73fbb57a
     public function payPalNotify()
     {
     	
