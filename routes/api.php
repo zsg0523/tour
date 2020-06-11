@@ -68,6 +68,7 @@ $api->version('v1', [
             $api->get('questions/{question}', 'QuestionsController@show'); // 题目详情
             $api->post('questions/{question}', 'QuestionsController@answer'); // 回答
 
+
         });
 
 
@@ -119,7 +120,11 @@ $api->version('v2', [
             $api->post('carts/cookie', 'CartsController@cookie');
             // 游客下单
             $api->post('orders/guest', 'OrdersController@storeAsGuest');
-
+            // paypal 支付
+            $api->get('payments/orders/{order}/paypal', 'PaymentsController@payByPayPalCheckout')->name('api.payments.paypal');
+            // paypal 支付回调
+            $api->post('payments/notify', 'PaymentsController@payPalNotify')->name('api.paypal.notify');
+            $api->get('payments/return', 'PaymentsController@payPalReturn')->name('api.paypal.return');
             
             
 
@@ -139,8 +144,13 @@ $api->version('v2', [
                 $api->patch('carts', 'CartsController@deduct');
                 // 移除购物车
                 $api->delete('carts', 'CartsController@destroy');
-                // 订单
+                // 创建订单
                 $api->post('orders', 'OrdersController@store');
+                // 订单列表
+                $api->get('orders', 'OrdersController@index');
+                // 订单详情
+                $api->get('orders/{id}', 'OrdersController@show');
+                
             });
             
             /*********************** 接口版本测试 ****************************************/

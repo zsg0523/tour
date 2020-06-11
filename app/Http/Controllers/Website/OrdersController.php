@@ -8,15 +8,21 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Services\OrderService;
-use App\Exceptions\InvalidRequestException;
-use Carbon\Carbon;
-use App\Http\Requests\SendReviewRequest;
-use App\Events\OrderReviewed;
-use App\Models\ShopProductSku;
-use App\Jobs\CloseOrder;
+use App\Transformers\OrderTransformer;
 
 class OrdersController extends Controller
 {
+	/** [index 当前会员订单列表] */
+	public function index(Request $request, Order $order)
+	{
+		return $this->response->collection($this->user()->orders, new OrderTransformer());
+	}
+
+	public function show(Order $order)
+	{
+		return $this->response->item($order, new OrderTransformer());
+	}
+
     /** [store 创建订单] */
     public function store(Request $request, OrderService $orderService)
     {
