@@ -125,6 +125,17 @@ $api->version('v2', [
             $api->post('payments/notify', 'PaymentsController@payPalNotify')->name('api.paypal.notify');
             $api->get('payments/return', 'PaymentsController@payPalReturn')->name('api.paypal.return');
             
+
+            /*********************** wennoanimal backend ********************************/
+            $api->get('/admin/categories', 'AdminController@getCategories'); // 分类选项
+            $api->get('/admin/shop-categories', 'AdminController@getShopCategories'); // 新官网分类选项
+            $api->get('/admin/answers', 'AdminController@getAnswers'); // 答案选项
+            $api->get('/admin/locations', 'AdminController@getLocations'); // 地点选项
+            $api->get('/admin/animals', 'AdminController@getAnimals'); // 动物选项
+            $api->get('/admin/themes', 'AdminController@getThemes'); // 主题选项
+            $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
+            $api->post('/qrcode', 'AdminController@generateQrcode'); // 生成二维码
+            $api->get('/url', 'AnimalsController@images');
             
 
             // 登录后可访问
