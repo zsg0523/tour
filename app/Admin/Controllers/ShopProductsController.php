@@ -32,10 +32,11 @@ class ShopProductsController extends AdminController
         $grid->column('id', __('ID'))->sortable();
         // Laravel-Admin 支持用符号 . 来展示关联关系的字段
         $grid->column('shopCategory.name', '类目');
+        $grid->column('line', '产品线')->using([10=>'Land', 20=> 'Ocean',30=>'Prehistoric'])->filter([10=>'Land', 20=> 'Ocean',30=>'Prehistoric']);
         $grid->column('lang', __('Lang'))->filter(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW']);
         $grid->column('title', __('Title'));
         // $grid->column('description', __('Description'));
-        $grid->column('image', __('Image'))->image(env('APP_URL').'/uploads', 30, 30);
+        // $grid->column('image', __('Image'))->image(env('APP_URL').'/uploads', 30, 30);
         $grid->column('on_sale', __('On sale'))->display(function ($value){
             return $value ? 'Yes' : 'No';
         });
@@ -97,9 +98,12 @@ class ShopProductsController extends AdminController
                 $form->text('stock', '剩余库存')->rules('required|integer|min:0');
             });
         })->tab('BASIC INFO', function($form) {
+            // 
             $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
             //  创建一个输入框
             $form->text('title', __('商品名称'))->rules('required');
+            // 产品线
+            $form->radio('line',__('产品线'))->options(['10'=>'Land', '20'=>'Ocean', '30'=>'Prehistoric'])->default('10');
 
             $form->select('shop_category_id', '类目')->options(function ($id) {
                 $category = ShopCategory::find($id);

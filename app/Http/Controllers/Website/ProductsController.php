@@ -74,6 +74,11 @@ class ProductsController extends Controller
     		}
     	}
 
+        // 产品线 10/20/30 对应 Land/ Ocean/ Prehistoric
+        if ($request->input('line')) {
+            $builder->where('line', $request->input('line'));
+        }
+
     	$products = $builder->paginate(16);
     	
     	return $this->response->paginator($products, new ShopProductTransformer())->setMeta([
