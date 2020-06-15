@@ -17,7 +17,7 @@ class NewsController extends AdminController
      *
      * @var string
      */
-    protected $title = 'News';
+    protected $title = 'Blogs';
 
     /**
      * Make a grid builder.
@@ -30,9 +30,17 @@ class NewsController extends AdminController
 
         $grid->column('id', __('Id'))->sortable();
         $grid->column('lang', __('Lang'))->filter(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW']);
+
         $grid->column('title', __('Title'))->filter('like');
         $grid->column('cover', __('Cover'))->image(env('APP_UTL') . '/uploads', 30, 30);
         $grid->column('introduction', __('Introduction'))->limit(30);
+        // 设置text、color、和存储值
+        $states = [
+            'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
+        ];
+        // 主题是否打开，默认true（on），false(off)
+        $grid->column('is_push')->switch($states);
         $grid->column('created_at', __('Created at'))->sortable();
         $grid->column('updated_at', __('Updated at'))->sortable();
         $grid->actions(function ($actions) {
@@ -77,6 +85,11 @@ class NewsController extends AdminController
         $form->image('cover', __('Cover'))->help('不能超过 100M')->removable();
         $form->textarea('introduction', __('Introduction'));
         $form->editor('content');
+        $states = [
+            'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
+            'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
+        ];
+        $form->switch('is_push')->states($states)->default(0);
 
         return $form;
     }

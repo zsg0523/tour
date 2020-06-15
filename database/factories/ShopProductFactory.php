@@ -7,19 +7,19 @@ use Faker\Generator as Faker;
 
 $factory->define(ShopProduct::class, function (Faker $faker) {
     $image = $faker->randomElement([
-        "https://www.wennoanimal.com/uploads/images/s12_piece_WPZ0201.jpg",
-        "https://www.wennoanimal.com/uploads/images/s12_piece_WPZ0202.jpg",
-        "https://www.wennoanimal.com/uploads/images/s12_piece_WPZ0203.jpg",
-        "https://www.wennoanimal.com/uploads/images/s12_piece_WPZ0204.jpg",
-        "https://www.wennoanimal.com/uploads/images/s12_piece_WPZ0205.jpg",
-        "https://www.wennoanimal.com/uploads/images/s12_piece_WPZ0206.jpg",
-        "https://www.wennoanimal.com/uploads/images/s4_piece_WPZ0101.jpg",
-        "https://www.wennoanimal.com/uploads/images/s4_piece_WPZ0102.jpg",
-        "https://www.wennoanimal.com/uploads/images/s4_piece_WPZ0103.jpg",
-        "https://www.wennoanimal.com/uploads/images/s4_piece_WPZ0104.jpg",
-        "https://www.wennoanimal.com/uploads/images/s4_piece_WPZ0105.jpg",
-        "https://www.wennoanimal.com/uploads/images/s4_piece_WPZ0106.jpg",
-        "https://www.wennoanimal.com/uploads/images/s4_piece_WPZ0107.jpg"
+        "images/s12_piece_WPZ0201.jpg",
+        "images/s12_piece_WPZ0202.jpg",
+        "images/s12_piece_WPZ0203.jpg",
+        "images/s12_piece_WPZ0204.jpg",
+        "images/s12_piece_WPZ0205.jpg",
+        "images/s12_piece_WPZ0206.jpg",
+        "images/s4_piece_WPZ0101.jpg",
+        "images/s4_piece_WPZ0102.jpg",
+        "images/s4_piece_WPZ0103.jpg",
+        "images/s4_piece_WPZ0104.jpg",
+        "images/s4_piece_WPZ0105.jpg",
+        "images/s4_piece_WPZ0106.jpg",
+        "images/s4_piece_WPZ0107.jpg"
     ]);
 
     // 从数据库中随机取一个类目

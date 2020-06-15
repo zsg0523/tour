@@ -46,12 +46,12 @@ class BannerController extends AdminController
                     $grid->column('id', __('Id'));
                     $grid->column('name', __('Title'));
                     $grid->column('link', __('Link'));
-                    $grid->column('icon', __('Icon'))->image(url('uploads'), 50, 50);
+                    // $grid->column('icon', __('Icon'))->image(url('uploads'), 50, 50);
                     $states = [
                         'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
                         'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
                     ];
-                    $grid->column('is_show', __('Is_show'))->switch($states);
+                    // $grid->column('is_show', __('Is_show'))->switch($states);
                     $grid->column('created_at', __('Created at'));
                     $grid->column('updated_at', __('Updated at'));
                     // 设置数据查询条件
@@ -117,7 +117,8 @@ class BannerController extends AdminController
         $form->switch('is_show')->states($states)->default(1);
         // 直接添加一对多的关联模型
         $form->hasMany('buttons', 'Button 列表', function (Form\NestedForm $form) {
-            $form->text('link', '关联链接')->rules('required');
+            $form->text('link', 'Link')->rules('required');
+            $form->text('name', 'Title')->rules('required');
         });
 
         return $form;

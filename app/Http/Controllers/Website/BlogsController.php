@@ -32,11 +32,11 @@ class BlogsController extends Controller
     	switch ($request->is_push) {
             // 推荐博客，最多2条，按时间排序    		
     		case '1':
-    			$news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->limit(2)->get();
+    			$news = News::where('is_push', 1)->where('lang', $this->lang)->orderBy('created_at', 'desc')->limit(2)->get();
     			return $this->response->collection($news, new NewsTransformer());
             // 博客列表
             default:
-                $news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->skip(2)->take(4)->get();
+                $news = News::where('is_push', 0)->where('lang', $this->lang)->orderBy('created_at', 'desc')->get();
                 return $this->response->collection($news, new NewsTransformer());
     	}
     }
