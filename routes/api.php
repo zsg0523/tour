@@ -93,7 +93,9 @@ $api->version('v2', [
             // 博客列表
             $api->get('blogs', 'BlogsController@getNews'); 
             // 博客详情
-            $api->get('blogs/{blogs}', 'BlogsController@getNewsData'); 
+            $api->get('blogs/{blogs}', 'BlogsController@getNewsData');
+            // Newsletter
+            $api->post('news_letter', 'UsersController@newsLetter');
             // 用户邮箱注册
             $api->post('users', 'UsersController@store'); 
             // 邮箱登录

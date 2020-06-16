@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Models\User;
+use App\Models\{User, NewsLetter};
 use Illuminate\Http\Request;
 use App\Events\RegisteredByApi;
 use App\Http\Requests\Api\UserRequest;
@@ -98,6 +98,23 @@ class UsersController extends Controller
         $user->update($attributes);
 
         return $this->response->item($user, new UserTransformer());
+    }
+
+    /** [newsLetter newsletter登记] */
+    public function newsLetter(Request $request)
+    {
+        // 验证是否有效邮箱
+        $validatedData = $request->validate([
+            'email' => ['required', 'email', 'unique:news_letters'],
+        ]);
+
+        // 验证通过
+        $newsLetter = NewsLetter::create(['email' => $request->email]);
+
+        return $this->response->array([
+            'message' => 'Sign up success.',
+            'status_code' => 201,
+        ]);
     }
 
 
