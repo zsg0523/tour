@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-06-10 10:58:02
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-10 14:50:16
+ * @Last Modified time: 2020-06-16 15:32:10
  */
 namespace App\Transformers;
 
@@ -13,8 +13,14 @@ use League\Fractal\TransformerAbstract;
 
 class OrderItemTransformer extends TransformerAbstract
 {
+
+
+	protected $availableIncludes = ['product', 'sku'];
+
+
 	public function transform(OrderItem $item)
 	{
+
 		return [
 			'id' => $item->id,
 			'order_id' => $item->order_id,
@@ -27,4 +33,16 @@ class OrderItemTransformer extends TransformerAbstract
 			'reviewed_at' => $item->reviewed_at,
 		];
 	}
+
+	public function includeProduct(OrderItem $item)
+	{
+		return $this->item($item->shopProduct, new ShopProductTransformer());
+	}
+
+	public function includeSku(OrderItem $item)
+	{
+		return $this->item($item->shopProductSku, new ShopProductSkuTransformer());
+	}
+
+
 }

@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-05-19 15:55:05
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-16 14:51:04
+ * @Last Modified time: 2020-06-16 15:30:05
  */
 namespace App\Transformers;
 
@@ -24,7 +24,6 @@ class ShopProductTransformer extends TransformerAbstract
 			'title' => $product->title,
 			'description' => $product->description,
 			'price' => $product->price,
-			'image' => url('uploads/' . $product->image),
 			'image_url' => $product->image_url,
 		];
 	}
@@ -33,6 +32,7 @@ class ShopProductTransformer extends TransformerAbstract
 	{
 		return $this->collection($product->skus, new ShopProductSkuTransformer());
 	}
+
 
 
 

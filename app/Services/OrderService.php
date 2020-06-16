@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 17:24:51
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-16 14:09:14
+ * @Last Modified time: 2020-06-16 16:08:14
  */
 namespace App\Services;
 
@@ -91,6 +91,7 @@ class OrderService
                     'phone' => $address['phone'],
                 ],
                 'remark'       => $remark,
+                'email' => $address['email'],
                 'total_amount' => 0,
             ]);
             // 订单关联到当前用户
