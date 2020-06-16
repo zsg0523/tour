@@ -58,9 +58,7 @@ class PaymentsController extends Controller
     // Paypal前端回调
     public function payPalReturn()
     {
-        return $this->response->array([
-        	'message' => '支付成功'
-        ]);
+        return redirect('https://www.wennoanimal.com/animalGame/website/#/payResult');
     }
 
     // Paypal后端回调
