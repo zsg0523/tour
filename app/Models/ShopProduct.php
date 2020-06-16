@@ -13,6 +13,8 @@ class ShopProduct extends Model
                     'rating', 'sold_count', 'review_count', 'price'
     ];
 
+    protected $appends = ['image_url'];
+
     protected $casts = [
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
     ];
@@ -30,7 +32,7 @@ class ShopProduct extends Model
             return $this->attributes['image'];
         }
 
-        return env('APP_URL').'/uploads/' . $this->attributes['image'];
+        return config('app.url').'/uploads/' . $this->attributes['image'];
     }
 
     public function shopCategory()

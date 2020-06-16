@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 17:24:51
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-09 14:49:27
+ * @Last Modified time: 2020-06-16 14:09:14
  */
 namespace App\Services;
 
@@ -64,6 +64,7 @@ class OrderService
 
             // 将下单的商品从购物车中移除
             $skuIds = collect($items)->pluck('sku_id')->all();
+            
             app(CartService::class)->remove($user, $skuIds);
 
             return $order;

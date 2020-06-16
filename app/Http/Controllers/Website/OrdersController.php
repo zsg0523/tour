@@ -17,7 +17,7 @@ class OrdersController extends Controller
 	{
 		return $this->response->collection($this->user()->orders, new OrderTransformer());
 	}
-
+    /** [show 订单详情] */
 	public function show(Order $order)
 	{
 		return $this->response->item($order, new OrderTransformer());

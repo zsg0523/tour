@@ -31,6 +31,6 @@ class SendOrderPaidMail implements ShouldQueue
         $order = $event->getOrder();
 
         // 调用 notify 方法来发邮件通知用户
-        $order->user->notify(new OrderPaidNotification($order));
+        // $order->user->notify(new OrderPaidNotification($order));
     }
 }

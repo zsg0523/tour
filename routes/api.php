@@ -161,7 +161,7 @@ $api->version('v2', [
                 // 订单列表
                 $api->get('orders', 'OrdersController@index');
                 // 订单详情
-                $api->get('orders/{id}', 'OrdersController@show');
+                $api->get('orders/{order}', 'OrdersController@show');
                 
             });
             
