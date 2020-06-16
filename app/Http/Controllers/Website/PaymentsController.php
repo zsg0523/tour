@@ -7,6 +7,8 @@ use App\Models\Order;
 use App\Exceptions\InvalidRequestException;
 use Carbon\Carbon;
 use App\Events\OrderPaid;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\GuestOrderPaid;
 
 class PaymentsController extends Controller
 {
@@ -25,6 +27,7 @@ class PaymentsController extends Controller
      */ 
     public function payByPayPal(Order $order, Request $request)
     {
+        
         // 判断订单状态
         if ($order->paid_at || $order->closed) {
             throw new InvalidRequestException('订单状态不正确');
@@ -100,8 +103,13 @@ class PaymentsController extends Controller
         ]);
 
         // 订单支付成功后触发事件
-        $this->afterPaid($order);
-        
+        if ($order->email) {
+            // 给游客发送邮件
+            Mail::to($order->email)->send(new GuestOrderPaid($order));
+        } else {
+            // 给会员发送邮件
+            $this->afterPaid($order);
+        }
 
         // 通知订单关闭
         // $ch = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');//测试

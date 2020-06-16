@@ -19,9 +19,10 @@ class OrderPaidNotification extends Notification
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order， $email)
     {
         $this->order = $order;
+        $this->email = $email;
     }
 
     /**
@@ -34,6 +35,7 @@ class OrderPaidNotification extends Notification
     {
         return ['mail'];
     }
+
 
     /**
      * Get the mail representation of the notification.
