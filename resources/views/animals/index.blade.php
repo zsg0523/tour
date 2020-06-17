@@ -132,7 +132,11 @@
                     $.ajax({
 				        url:'/api/animals?theme='+title+'&include=sound,animal',
 				        type:'GET',
+				        headers: {
+		                    "Accept": 'application/prs.wenno.v1+json',
+		                },
 				        success:function(data) {
+				        	console.log(data);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
@@ -170,11 +174,11 @@
                     console.log(language);
                     console.log(lang);
                     console.log(theme);
-                    var url = '/api/animals?lang=en&include=animal';
+                    var url = '/api/animals?lang=en&include=sound,animal';
                     if(!theme||theme=='null'){
                           if(lang==null){
                           	   if(language==null){
-			                        url = '/api/animals?lang=en&include=animal';
+			                        url = '/api/animals?lang=en&include=sound,animal';
 			                        langTitle();  
 			                    }else{
 			                        url = '/api/animals?lang='+language+'&include=sound,animal';
@@ -188,7 +192,7 @@
                     	//theme!=null
                     	if(lang==null){
                              if(language==null){
-		                        url = '/api/animals?lang=en&include=animal';
+		                        url = '/api/animals?lang=en&include=sound,animal';
 		                        langTitle();                                
                              }else{
 		                        url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
@@ -199,6 +203,7 @@
 	                        langTitle(lang);
                     	}
                     }
+                    console.log(url);
                     function langTitle(langTitles){
 	                   	switch (langTitles) {
 						    case 'ar':
@@ -270,11 +275,15 @@
 						    default:
 						        self.pageTitle = "Animal Database";
 						} 
-                   }
+                   	}
                     $.ajax({
 				        url:url,
 				        type:'GET',
+				        headers: {
+		                    "Accept": 'application/prs.wenno.v1+json',
+		                },
 				        success:function(data) {
+				        	console.log(data);
 				            self.swiper = data.meta;
 				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
 							if(data.data.length==0){
@@ -288,7 +297,7 @@
                                 self.haveData = true;
 				            	self.imageArray = data.data;
 				            	self.Loading = true;
-				            	self.LoadCompleted = false; 							        	
+				            	self.LoadCompleted = false;	
 				            }
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
