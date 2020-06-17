@@ -102,7 +102,7 @@ class OrdersController extends AdminController
             });
         });
         $grid->disableExport(false);
-        $grid->model()->orderBy('desc', 'created_at');
+        $grid->model()->orderBy('created_at', 'desc');
         $grid->exporter(new OrdersExporter());
         
         return $grid;
