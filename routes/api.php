@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 
 $api = app('Dingo\Api\Routing\Router');
 
-$api->version('v1', [
+$api->version('v2', [
     'namespace' => 'App\Http\Controllers\Api',
     // 手动注册模型中间件bindings
     'middleware' => ['serializer:array','bindings', 'web']
