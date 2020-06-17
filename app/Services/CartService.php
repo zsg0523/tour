@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 16:57:34
  * @Last Modified by:   eden
- * @Last Modified time: 2020-05-28 18:26:26
+ * @Last Modified time: 2020-06-17 10:42:44
  */
 namespace App\Services;
 
@@ -16,7 +16,9 @@ class CartService
 	/** [get 获取购物车列表] */
 	public function get($user)
 	{
-		return $user->cartItems()->with(['shopProductSku.shopProduct'])->get();
+        $cart['cart_items'] = $user->cartItems()->with(['shopProductSku.shopProduct'])->get();
+        $cart['total_amount'] = $user->cartItems()->sum('amount');
+		return $cart;
 	}
 
     /** [add 添加购物车至数据库] */
