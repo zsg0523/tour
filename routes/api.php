@@ -40,7 +40,7 @@ $api->version('v2', [
             /*********************** wennoanimal Web ***********************************/
             $api->get('news', 'WebController@getNews'); // 新闻列表
             $api->get('news/{news}', 'WebController@getNewsData'); // 新闻详情
-            $api->get('medias', 'WebController@getMediaData'); // 多媒体资料
+            // $api->get('medias', 'WebController@getMediaData'); // 多媒体资料
             $api->get('brands', 'WebController@getBrand'); // 品牌推广
             $api->get('brands/{brand}', 'WebController@getBrandData'); // 品牌推广
             $api->get('products', 'WebController@getProducts'); // 产品列表
