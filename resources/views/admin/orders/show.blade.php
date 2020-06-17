@@ -23,8 +23,22 @@
         <td>{{ $order->payment_no }}</td>
       </tr>
       <tr>
-        <td>收货地址</td>
-        <td colspan="3">{{ $order->address['address'] }} {{ $order->address['zip'] }} {{ $order->address['contact_name'] }} {{ $order->address['contact_phone'] }}</td>
+        <td>地区</td>
+        <td>{{ $order->address['region'] }}</td>
+        <td>公司：</td>
+        <td>{{ $order->address['company'] ?? ''  }}</td>
+      </tr>
+      <tr>
+        <td>邮箱：</td>
+        <td>{{ $order->email ?? ''  }}</td>
+      </tr>
+      <tr>
+        <td>收货地址1</td>
+        <td colspan="3">{{ $order->address['address_line1'] }}  {{ $order->address['receiver'] }} {{ $order->address['phone'] }}</td>
+      </tr>
+      <tr>
+        <td>收货地址2</td>
+        <td colspan="3">{{ $order->address['address_line2'] }}  {{ $order->address['receiver'] }} {{ $order->address['phone'] }}</td>
       </tr>
       <tr>
         <td rowspan="{{ $order->items->count() + 1 }}">商品列表</td>

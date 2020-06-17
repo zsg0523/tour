@@ -112,10 +112,11 @@ class ShopProductsController extends AdminController
                     }
             })->ajax('/api/admin/shop-categories?is_directory=0');
             // 创建一个选择图片框
-            $form->image('image', __('商品图片'))->rules('required|image');
+            $form->image('image', __('商品图片'))->rules('required|image')->removable();
            
             // 创建一个富文本编辑器
-            $form->editor('description', __('描述'));
+            // $form->editor('description', __('描述'));
+            $form->text('description', __('描述'));
             // 创建一组单选按钮
             $form->radio('on_sale', __('是否上架'))->options(['1' => '是', '0'=> '否'])->default('0');
         });
