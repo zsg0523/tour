@@ -14,7 +14,7 @@ class AddTotalToQuestionsTable extends Migration
     public function up()
     {
         Schema::table('questions', function (Blueprint $table) {
-            $table->integer('total')->after('false');
+            $table->integer('total')->after('falses');
         });
     }
 
