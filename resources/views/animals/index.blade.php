@@ -45,7 +45,7 @@
 				    	 </div>
 				        <div class="container" v-show="haveData">
 				             <ul>
-				             	<li v-for ="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
+				             	<li v-for="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
 				             	    <div>
 					             		<img class="data-image"  v-bind:src="item.animal.image_original"  v-on:error.once="moveErrorImg($event)"/>
 					             		<p>@{{item.title}}</p>	
@@ -89,6 +89,7 @@
 	                        return null;
 	                    }
 	                    var theme = GetQueryString("theme");
+	                    console.log('theme:  '+theme);
 	                    if(theme==null||theme==undefined){
 	                    	initialSlide=0;
 	                    }else{
@@ -289,24 +290,20 @@
 				            self.swiper = data.meta;
 				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
 				            console.log(data.data.length);
-							// if(data.data.length==0){
-       //                          self.noData = true;
-       //                          self.haveData = false;
-       //                          self.imageArray = [];
-       //                          self.Loading = true;
-				   //          	self.LoadCompleted = false; 
-				   //          }else{
-       //                          self.noData = false;
-       //                          self.haveData = true;
-				   //          	self.imageArray = data.data;
-				   //          	self.Loading = true;
-				   //          	self.LoadCompleted = false;	
-				   //          }
-				            self.noData = false;
+							if(data.data.length==0){
+                                self.noData = true;
+                                self.haveData = false;
+                                self.imageArray = [];
+                                self.Loading = true;
+				            	self.LoadCompleted = false; 
+				            }else{
+                                self.noData = false;
                                 self.haveData = true;
 				            	self.imageArray = data.data;
 				            	self.Loading = true;
-				            	self.LoadCompleted = false;
+				            	self.LoadCompleted = false;	
+				            }
+				            console.log(self.imageArray);
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
 				            console.log(XMLHttpRequest.status);
