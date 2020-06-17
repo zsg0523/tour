@@ -289,19 +289,24 @@
 				            self.swiper = data.meta;
 				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
 				            console.log(data.data.length);
-							if(data.data.length==0){
-                                self.noData = true;
-                                self.haveData = false;
-                                self.imageArray = [];
-                                self.Loading = true;
-				            	self.LoadCompleted = false; 
-				            }else{
-                                self.noData = false;
+							// if(data.data.length==0){
+       //                          self.noData = true;
+       //                          self.haveData = false;
+       //                          self.imageArray = [];
+       //                          self.Loading = true;
+				   //          	self.LoadCompleted = false; 
+				   //          }else{
+       //                          self.noData = false;
+       //                          self.haveData = true;
+				   //          	self.imageArray = data.data;
+				   //          	self.Loading = true;
+				   //          	self.LoadCompleted = false;	
+				   //          }
+				            self.noData = false;
                                 self.haveData = true;
 				            	self.imageArray = data.data;
 				            	self.Loading = true;
-				            	self.LoadCompleted = false;	
-				            }
+				            	self.LoadCompleted = false;
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
 				            console.log(XMLHttpRequest.status);
