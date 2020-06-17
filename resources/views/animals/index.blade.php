@@ -113,6 +113,7 @@
 					       freeMode: true
 					    });
 					    var goodslength = $(".swiper-slide").length;
+					    console.log(goodslength);
 					    $(".swiper-slide").eq(initialSlide).addClass("active");
 			        });
 			        this.Loading = false;	
@@ -137,6 +138,7 @@
 		                },
 				        success:function(data) {
 				        	console.log(data);
+				        	console.log(data.data.length);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
@@ -286,6 +288,7 @@
 				        	console.log(data);
 				            self.swiper = data.meta;
 				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
+				            console.log(data.data.length);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
