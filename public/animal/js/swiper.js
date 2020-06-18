@@ -2359,4 +2359,3 @@
 		}];
 	return void 0 === T.use && (T.use = T.Class.use, T.installModule = T.Class.installModule), T.use(Q), T
 });
-//# sourceMappingURL=swiper.min.js.map

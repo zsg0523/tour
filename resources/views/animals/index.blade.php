@@ -31,7 +31,7 @@
 		            <nav>
 					    <div class="swiper-container">
 					    	<div class="swiper-wrapper">
-					    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :theme="arr.theme_id" :title="arr.title_page"  @click="selectTimer(index,arr.title_page,arr.theme_id)">
+					    	    <div class="swiper-slide" v-for="(arr,index) in swiper" :key="'time' + index" :theme="arr.theme_id" :title="arr.title_page"  @click="selectTimer(index,arr.title_page,arr.theme_id)">
 					    	        <a>@{{arr.title_page}}</a>
 					    	    </div>
 					    	</div>
@@ -45,7 +45,7 @@
 				    	 </div>
 				        <div class="container" v-show="haveData">
 				             <ul>
-				             	<li v-for ="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
+				             	<li v-for="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
 				             	    <div>
 					             		<img class="data-image"  v-bind:src="item.animal.image_original"  v-on:error.once="moveErrorImg($event)"/>
 					             		<p>@{{item.title}}</p>	
@@ -66,7 +66,14 @@
 			el: "#HolyGrailBody",
 			data:{
 				swiper:[],
-				imageArray:[],
+				imageArray:[{
+					id:'',
+					title:'',
+					animal:{
+						product_name:'',
+						image_original:'',
+					},
+				}],
 				swiperIndex:0,
 				imageIndex:0,
 				noData:false,
@@ -89,6 +96,7 @@
 	                        return null;
 	                    }
 	                    var theme = GetQueryString("theme");
+	                    console.log('theme:  '+theme);
 	                    if(theme==null||theme==undefined){
 	                    	initialSlide=0;
 	                    }else{
@@ -113,6 +121,7 @@
 					       freeMode: true
 					    });
 					    var goodslength = $(".swiper-slide").length;
+					    console.log(goodslength);
 					    $(".swiper-slide").eq(initialSlide).addClass("active");
 			        });
 			        this.Loading = false;	
@@ -137,6 +146,7 @@
 		                },
 				        success:function(data) {
 				        	console.log(data);
+				        	console.log(data.data.length);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
@@ -286,19 +296,22 @@
 				        	console.log(data);
 				            self.swiper = data.meta;
 				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
+				            console.log(data.data.length);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
-                                self.imageArray = [];
                                 self.Loading = true;
 				            	self.LoadCompleted = false; 
+                                self.imageArray = [];
 				            }else{
                                 self.noData = false;
                                 self.haveData = true;
+				            	self.Loading = false;
+				            	self.LoadCompleted = true;	
 				            	self.imageArray = data.data;
-				            	self.Loading = true;
-				            	self.LoadCompleted = false;	
 				            }
+				            console.log(self.swiper);
+				            console.log(self.imageArray);
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
 				            console.log(XMLHttpRequest.status);
