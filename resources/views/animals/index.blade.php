@@ -96,14 +96,12 @@
 	                        return null;
 	                    }
 	                    var theme = GetQueryString("theme");
-	                    console.log('theme:  '+theme);
 	                    if(theme==null||theme==undefined){
 	                    	initialSlide=0;
 	                    }else{
 	                        var goodslength = $(".swiper-slide").length;
 	                        for(var i=0;i<goodslength;i++){
 	                        	var html = $(".swiper-slide").eq(i).text();
-	                        	console.log(decodeURI(theme));
 	                        	if(html==decodeURI(theme)){
 	                        	    initialSlide=i;
 	                        	    var theme_id = $(".swiper-slide").eq(i).attr('theme');
@@ -111,7 +109,6 @@
 	                        	}
 	                        }
 	                    }
-	                    console.log(initialSlide);
 					    var swiper = new Swiper('.swiper-container', {
 					       slidesPerView: 2.5,
 					       spaceBetween:0,
@@ -121,7 +118,6 @@
 					       freeMode: true
 					    });
 					    var goodslength = $(".swiper-slide").length;
-					    console.log(goodslength);
 					    $(".swiper-slide").eq(initialSlide).addClass("active");
 			        });
 			        this.Loading = false;	
@@ -145,8 +141,6 @@
 		                    "Accept": 'application/prs.wenno.v1+json',
 		                },
 				        success:function(data) {
-				        	console.log(data);
-				        	console.log(data.data.length);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
@@ -213,7 +207,6 @@
 	                        langTitle(lang);
                     	}
                     }
-                    console.log(url);
                     function langTitle(langTitles){
 	                   	switch (langTitles) {
 						    case 'ar':
@@ -293,10 +286,8 @@
 		                    "Accept": 'application/prs.wenno.v1+json',
 		                },
 				        success:function(data) {
-				        	console.log(data);
 				            self.swiper = data.meta;
 				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
-				            console.log(data.data.length);
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
@@ -310,8 +301,6 @@
 				            	self.LoadCompleted = true;	
 				            	self.imageArray = data.data;
 				            }
-				            console.log(self.swiper);
-				            console.log(self.imageArray);
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
 				            console.log(XMLHttpRequest.status);
