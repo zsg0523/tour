@@ -17,7 +17,7 @@
 					<div></div>
 				</div>
 			</div>
-			<div v-show="LoadCompleted"  v-cloak>
+			<div v-show="LoadCompleted" v-cloak>
 				<header>
 					<div class="title">
 					   <a href="https://www.wennoanimal.com/" style="position: absolute;left: 2%;width: 75px;"><img src="./images/logo3.png" style="width: 100%;"/></a>
@@ -45,7 +45,7 @@
 				    	 </div>
 				        <div class="container" v-show="haveData">
 				             <ul>
-				             	<li v-for="(item,index) in imageArray" :key="item" :databaseId="item.id"  @click="database(item.animal.product_name)">
+				             	<li v-for="(item,index) in imageArray" :key="item" v-if="item.animal" :databaseId="item.id" @click="database(item.animal.product_name)">
 				             	    <div>
 					             		<img class="data-image"  v-bind:src="item.animal.image_original"  v-on:error.once="moveErrorImg($event)"/>
 					             		<p>@{{item.title}}</p>	
@@ -58,9 +58,9 @@
 			</div>
         </div>
     </body>
-    <script src="../animal/js/jquery-3.4.1.min.js"></script>
+    <script src="./animal/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="./animal/js/swiper.js" ></script>
-    <script src="../animal/js/vue.min.js"></script>
+    <script src="./animal/js/vue.min.js"></script>
     <script>
 		var vm = new Vue({
 			el: "#HolyGrailBody",
