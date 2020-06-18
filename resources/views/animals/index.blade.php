@@ -31,7 +31,7 @@
 		            <nav>
 					    <div class="swiper-container">
 					    	<div class="swiper-wrapper">
-					    	    <div class="swiper-slide"  v-for="(arr,index) in swiper" :key="'time' + index" :theme="arr.theme_id" :title="arr.title_page"  @click="selectTimer(index,arr.title_page,arr.theme_id)">
+					    	    <div class="swiper-slide" v-for="(arr,index) in swiper" :key="'time' + index" :theme="arr.theme_id" :title="arr.title_page"  @click="selectTimer(index,arr.title_page,arr.theme_id)">
 					    	        <a>@{{arr.title_page}}</a>
 					    	    </div>
 					    	</div>
@@ -66,7 +66,14 @@
 			el: "#HolyGrailBody",
 			data:{
 				swiper:[],
-				imageArray:[],
+				imageArray:[{
+					id:'',
+					title:'',
+					animal:{
+						product_name:'',
+						image_original:'',
+					},
+				}],
 				swiperIndex:0,
 				imageIndex:0,
 				noData:false,
@@ -293,16 +300,17 @@
 							if(data.data.length==0){
                                 self.noData = true;
                                 self.haveData = false;
-                                self.imageArray = [];
                                 self.Loading = true;
 				            	self.LoadCompleted = false; 
+                                self.imageArray = [];
 				            }else{
                                 self.noData = false;
                                 self.haveData = true;
+				            	self.Loading = false;
+				            	self.LoadCompleted = true;	
 				            	self.imageArray = data.data;
-				            	self.Loading = true;
-				            	self.LoadCompleted = false;	
 				            }
+				            console.log(self.swiper);
 				            console.log(self.imageArray);
 				        },
 				        error:function(XMLHttpRequest, textStatus, errorThrown) {
