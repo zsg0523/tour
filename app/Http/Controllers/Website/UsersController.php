@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Config;
 use App\Transformers\UserTransformer;
+use Illuminate\Support\Facades\Hash;
 
 
 class UsersController extends Controller
@@ -114,6 +115,64 @@ class UsersController extends Controller
         return $this->response->array([
             'message' => 'Sign up success.',
             'status_code' => 201,
+        ]);
+    }
+
+
+    /** [forgetPassword 忘记密码] */
+    public function forgotPassword(Request $request)
+    {
+        $verifyData = \Cache::get($request->verification_key);
+                
+        if (!$verifyData) {
+           abort(403, '验证码已失效');
+        }
+
+        if (!hash_equals($verifyData['code'], $request->verification_code)) {
+            // 返回401
+            throw new AuthenticationException('验证码错误');
+        }
+
+        // 参数验证
+        $request->validate([
+            'password' => 'required|alpha_dash|min:6',
+            'verification_key' => 'required|string',
+            'verification_code' => 'required|string',
+        ]);
+
+        // 更新密码
+        User::where(['email' => $verifyData['email']])->update(['password' => bcrypt($request->password)]);
+
+        // 清除验证码缓存
+        \Cache::forget($request->verification_key);
+
+        return $this->response->array([
+            'status_code' => 201,
+            'message' => 'password set success!'
+        ]);
+    }
+
+    /** [changePassword 更换密码] */
+    public function changePassword(Request $request)
+    {
+        // 参数验证
+        $request->validate([
+            'password' => 'required|alpha_dash|min:6',
+            'new_password' =>'required|alpha_dash|min:6｜confirmed',
+            'new_password_confirmation'=>'required|same:new_password',
+        ]);
+
+        // 验证密码是否正确
+        if (!Hash::check($request->password, $this->user()->password)) {
+            abort(404, 'password wrong!');
+        }
+        
+        // 更新密码
+        $this->user()->fill(['password' => Hash::make($request->new_password)])->save();
+
+        return $this->response->array([
+            'status_code' => 201,
+            'message' => 'password set success!'
         ]);
     }
 

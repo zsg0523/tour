@@ -67,7 +67,7 @@ class ProductsController extends Controller
     		// 是否是以 _asc 或者 _desc 结尾
     		if (preg_match('/^(.+)_(asc|desc)$/', $order, $m)) {
     			// 如果字符串是以这三个字符串之一开头，说明是合法的排序
-    			if (in_array($m[1], ['price', 'sold_count', 'rating'])) {
+    			if (in_array($m[1], ['price', 'sold_count', 'rating', 'created_at'])) {
     				// 根据传入的排序值来构造排序参数
                     $builder->orderBy($m[1], $m[2]);
     			}
