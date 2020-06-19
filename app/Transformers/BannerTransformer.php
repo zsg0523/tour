@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-05-25 11:19:30
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-16 11:06:40
+ * @Last Modified time: 2020-06-19 18:38:14
  */
 namespace App\Transformers;
 
@@ -13,7 +13,7 @@ use League\Fractal\TransformerAbstract;
 
 class BannerTransformer extends TransformerAbstract
 {
-	protected $availableIncludes = ['buttons'];
+	protected $availableIncludes = ['button'];
 
     public function transform(Banner $banner)
     {
@@ -33,10 +33,10 @@ class BannerTransformer extends TransformerAbstract
      * @param  Book   $book [description]
      * @return [type]       [description]
      */
-    public function includeButtons(Banner $banner)
+    public function includeButton(Banner $banner)
     {
-    	if($banner->buttons){
-			return $this->collection($banner->buttons()->where('is_show', 1)->get(), new ButtonTransformer());
+    	if($banner->button){
+			return $this->collection($banner->button()->where('is_show', 1)->get(), new ButtonTransformer());
 		}
     }
 }
