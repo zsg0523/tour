@@ -28,11 +28,6 @@
         <td>公司：</td>
         <td>{{ $order->address['company'] ?? ''  }}</td>
       </tr>
-      <tr>
-        <td>邮箱：</td>
-        <td>{{ $order->email ?? ''  }}</td>
-      </tr>
-      <tr>
         <td>收货地址1</td>
         <td colspan="3">{{ $order->address['address_line1'] }}  {{ $order->address['receiver'] }} {{ $order->address['phone'] }}</td>
       </tr>
