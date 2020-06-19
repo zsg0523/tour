@@ -109,17 +109,16 @@ class BannerController extends AdminController
 
         // $form->number('type', __('Type'))->default(1);
         $form->text('tag_line', __('Tag line'));
-        $form->image('image', __('Image'));
+        $form->image('image', __('Image'))->removable();
         $states = [
             'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
             'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],
         ];
         $form->switch('is_show')->states($states)->default(1);
-        // 直接添加一对多的关联模型
-        $form->hasMany('buttons', 'Button 列表', function (Form\NestedForm $form) {
-            $form->text('link', 'Link')->rules('required');
-            $form->text('name', 'Title')->rules('required');
-        });
+        // 关联模型Profile的字段
+        $form->text('button.link');
+        $form->text('button.name')->rules('required|max:10');
+        
 
         return $form;
     }

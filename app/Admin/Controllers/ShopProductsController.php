@@ -27,7 +27,7 @@ class ShopProductsController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new ShopProduct);
-        $grid = new     Grid(new ShopProduct);
+        $grid = new Grid(new ShopProduct);
 
         $grid->column('id', __('ID'))->sortable();
         // Laravel-Admin 支持用符号 . 来展示关联关系的字段
@@ -110,7 +110,7 @@ class ShopProductsController extends AdminController
                     if ($category) {
                         return [$category->id => $category->full_name];
                     }
-            })->ajax('/api/admin/shop-categories?is_directory=0');
+            })->ajax('/api/admin/shop-categories?is_directory=0')->rules('required');
             // 创建一个选择图片框
             $form->image('image', __('商品图片'))->rules('required|image')->removable();
            
