@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 17:24:51
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-16 16:08:14
+ * @Last Modified time: 2020-06-19 17:58:47
  */
 namespace App\Services;
 
@@ -76,10 +76,10 @@ class OrderService
         return $order;
     }
 
-    public function storeByGuest(User $user, $address, $remark, $items)
+    public function storeByGuest(User $user, $address, $remark, $items, $email)
     {
         // 开启一个数据库事务
-        $order = \DB::transaction(function () use ($user, $address, $remark, $items) {
+        $order = \DB::transaction(function () use ($user, $address, $remark, $items, $email) {
             
             // 创建一个订单
             $order   = new Order([
@@ -91,7 +91,7 @@ class OrderService
                     'phone' => $address['phone'],
                 ],
                 'remark'       => $remark,
-                'email' => $address['email'],
+                'email' => $email,
                 'total_amount' => 0,
             ]);
             // 订单关联到当前用户

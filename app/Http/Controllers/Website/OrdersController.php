@@ -40,6 +40,10 @@ class OrdersController extends Controller
     /** [storeAsGuest 游客创建订单] */
     public function storeAsGuest(Request $request, OrderService $orderService)
     {
+        // 验证是否有效邮箱
+        $validatedData = $request->validate([
+            'email' => ['required', 'email'],
+        ]);
     	// 游客账号
     	$user = User::find(1);
     	// 收货地址信息
@@ -47,6 +51,6 @@ class OrdersController extends Controller
     	// 商品信息
     	$items = json_decode($request->input('items'), true);
 
-    	return $orderService->storeByGuest($user, $address, $request->input('remark'), $items);
+    	return $orderService->storeByGuest($user, $address, $request->input('remark'), $items, $request->input('email'));
     }
 }
