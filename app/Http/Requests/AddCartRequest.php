@@ -2,27 +2,21 @@
 
 namespace App\Http\Requests;
 
-use App\Models\ShopProductSku;
+use App\Models\ShopProduct;
 
 class AddCartRequest extends Request
 {
     public function rules()
     {
         return [
-            'sku_id' => [
+            'shop_product_id' => [
                 'required',
                 function ($attribute, $value, $fail) {
-                    if (!$sku = ShopProductSku::find($value)) {
+                    if (!$product = ShopProduct::find($value)) {
                         return $fail('该商品不存在');
                     }
-                    if (!$sku->shopProduct->on_sale) {
+                    if (!$product->on_sale) {
                         return $fail('该商品未上架');
-                    }
-                    if ($sku->stock === 0) {
-                        return $fail('该商品已售完');
-                    }
-                    if ($this->input('amount') > 0 && $sku->stock < $this->input('amount')) {
-                        return $fail('该商品库存不足');
                     }
                 },
             ],

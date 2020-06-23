@@ -33,7 +33,7 @@ class CartsController extends Controller
     public function add(AddCartRequest $request)
     {
         
-        $this->cartService->add($this->user, $request->input('sku_id'), $request->input('amount'));
+        $this->cartService->add($this->user, $request->input('shop_product_id'), $request->input('amount'));
     
         return $this->response->array(
             [
@@ -46,7 +46,7 @@ class CartsController extends Controller
     public function cookie(Request $request)
     {
         foreach (json_decode($request->items, true) as $item) {
-            $this->cartService->add($this->user, $item['sku_id'], $item['amount']);
+            $this->cartService->add($this->user, $item['shop_product_id'], $item['amount']);
         }
 
         return $this->response->array(
@@ -59,7 +59,7 @@ class CartsController extends Controller
     /** [remove 减少商品数量] */
     public function deduct(Request $request)
     {
-        $this->cartService->deduct($this->user, $request->input('sku_id'), $request->input('amount'));
+        $this->cartService->deduct($this->user, $request->input('shop_product_id'), $request->input('amount'));
 
         return $this->response->array(
             [
@@ -73,7 +73,7 @@ class CartsController extends Controller
     public function destroy(Request $request)
     {
 
-        $this->cartService->remove($this->user, $request->sku_id);
+        $this->cartService->remove($this->user, $request->shop_product_id);
 
         return $this->response->noContent();
     }

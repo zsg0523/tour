@@ -2,7 +2,6 @@
 
 namespace App\Models;
 use Illuminate\Support\Str;
-
 use Illuminate\Database\Eloquent\Model;
 
 class ShopProduct extends Model
@@ -20,10 +19,10 @@ class ShopProduct extends Model
     ];
 
     // 与商品SKU关联
-    public function skus()
-    {
-        return $this->hasMany(ShopProductSku::class);
-    }
+    // public function skus()
+    // {
+    //     return $this->hasMany(ShopProductSku::class);
+    // }
     
     public function getImageUrlAttribute()
     {

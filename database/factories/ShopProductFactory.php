@@ -31,10 +31,10 @@ $factory->define(ShopProduct::class, function (Faker $faker) {
         'description'  => '商品描述',
         'image'        => $image,
         'on_sale'      => true,
+        'price'        => $faker->randomNumber(4),
         'rating'       => $faker->numberBetween(0, 5),
         'sold_count'   => $faker->numberBetween(0, 999),
         'review_count' => $faker->numberBetween(0, 999),
-        'price'        => 0,
         'shop_category_id'  => $shop_category ? $shop_category->id : null,
     ];
 

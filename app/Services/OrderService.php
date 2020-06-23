@@ -4,14 +4,14 @@
  * @Author: eden
  * @Date:   2020-02-28 17:24:51
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-19 17:58:47
+ * @Last Modified time: 2020-06-23 10:55:47
  */
 namespace App\Services;
 
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\Order;
-use App\Models\ShopProductSku;
+use App\Models\ShopProduct;
 use App\Exceptions\InvalidRequestException;
 use App\Jobs\CloseOrder;
 use Carbon\Carbon;
@@ -43,29 +43,25 @@ class OrderService
             $order->save();
 
             $totalAmount = 0;
-            // 遍历用户提交的 SKU
+            // 遍历用户提交的商品
             foreach ($items as $data) {
-                $sku  = ShopProductSku::find($data['sku_id']);
+                $product  = ShopProduct::find($data['shop_product_id']);
                 // 创建一个 OrderItem 并直接与当前订单关联
                 $item = $order->items()->make([
                     'amount' => $data['amount'],
-                    'price'  => $sku->price,
+                    'price'  => $product->price,
                 ]);
-                $item->shopProduct()->associate($sku->shop_product_id);
-                $item->shopProductSku()->associate($sku);
+                $item->shopProduct()->associate($product->id);
                 $item->save();
-                $totalAmount += $sku->price * $data['amount'];
-                if ($sku->decreaseStock($data['amount']) <= 0) {
-                    throw new InvalidRequestException('该商品库存不足');
-                }
+                $totalAmount += $product->price * $data['amount'];
             }
             // 更新订单总金额
             $order->update(['total_amount' => $totalAmount]);
 
             // 将下单的商品从购物车中移除
-            $skuIds = collect($items)->pluck('sku_id')->all();
+            $productIds = collect($items)->pluck('shop_product_id')->all();
             
-            app(CartService::class)->remove($user, $skuIds);
+            app(CartService::class)->remove($user, $productIds);
 
             return $order;
         });
@@ -102,19 +98,15 @@ class OrderService
             $totalAmount = 0;
             // 遍历用户提交的 SKU
             foreach ($items as $data) {
-                $sku  = ShopProductSku::find($data['sku_id']);
+                $product  = ShopProductSku::find($data['shop_product_id']);
                 // 创建一个 OrderItem 并直接与当前订单关联
                 $item = $order->items()->make([
                     'amount' => $data['amount'],
-                    'price'  => $sku->price,
+                    'price'  => $product->price,
                 ]);
-                $item->shopProduct()->associate($sku->shop_product_id);
-                $item->shopProductSku()->associate($sku);
+                $item->shopProduct()->associate($product->id);
                 $item->save();
-                $totalAmount += $sku->price * $data['amount'];
-                if ($sku->decreaseStock($data['amount']) <= 0) {
-                    throw new InvalidRequestException('该商品库存不足');
-                }
+                $totalAmount += $product->price * $data['amount'];
             }
             // 更新订单总金额
             $order->update(['total_amount' => $totalAmount]);
