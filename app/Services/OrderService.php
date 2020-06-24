@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 17:24:51
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-23 10:55:47
+ * @Last Modified time: 2020-06-24 15:56:47
  */
 namespace App\Services;
 
@@ -98,7 +98,7 @@ class OrderService
             $totalAmount = 0;
             // 遍历用户提交的 SKU
             foreach ($items as $data) {
-                $product  = ShopProductSku::find($data['shop_product_id']);
+                $product  = ShopProduct::find($data['shop_product_id']);
                 // 创建一个 OrderItem 并直接与当前订单关联
                 $item = $order->items()->make([
                     'amount' => $data['amount'],
