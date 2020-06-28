@@ -47,6 +47,7 @@ Route::group([
     $router->resource('banners', BannerController::class); // 轮播图
     $router->get('banner/{id}/buttons', 'BannerController@buttons');
     $router->resource('buttons', ButtonController::class); // 轮播图按钮
-    $router->resource('news-letters', NewsLetterController::class); 
+    $router->resource('news-letters', NewsLetterController::class); // 新闻订阅
+    $router->resource('coupon-codes', CouponCodesController::class); // 优惠券模块
 
 });
