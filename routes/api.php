@@ -141,7 +141,11 @@ $api->version('v2', [
             $api->post('verificationCodes/emails', 'VerificationCodesController@emailCode')->name('verificationCodes.emails');
             // 忘记密码
             $api->post('users/password/forgot', 'UsersController@forgotPassword');
+            // 优惠券查询
+            $api->get('coupon_codes/{code}', 'CouponCodesController@show');
 
+
+            
             // 登录后可访问
             $api->group(['middleware' => 'api.auth'], function($api) {
                 // 当前登录用户信息
