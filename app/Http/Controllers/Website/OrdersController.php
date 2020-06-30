@@ -65,6 +65,16 @@ class OrdersController extends Controller
     	// 商品信息
     	$items = json_decode($request->input('items'), true);
 
-    	return $orderService->storeByGuest($user, $address, $request->input('remark'), $items, $request->input('email'));
+        $coupon = null;
+        // 如果用户提交了优惠码
+        if ($code = $request->coupon_code) {
+            $coupon = CouponCode::where('code', $code)->first();
+            if (! $coupon) {
+                throw new CouponCodeUnavailableException("优惠券不存在");
+                
+            }
+        }
+
+    	return $orderService->storeByGuest($user, $address, $request->input('remark'), $items, $request->input('email'), $coupon);
     }
 }

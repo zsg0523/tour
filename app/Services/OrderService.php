@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 17:24:51
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-29 18:09:43
+ * @Last Modified time: 2020-06-30 09:51:38
  */
 namespace App\Services;
 
@@ -70,7 +70,7 @@ class OrderService
                     throw new CouponCodeUnavailableException('该优惠券已被兑完');
                 }
             }
-            
+
             // 更新订单总金额
             $order->update(['total_amount' => $totalAmount]);
 
@@ -88,10 +88,10 @@ class OrderService
         return $order;
     }
 
-    public function storeByGuest(User $user, $address, $remark, $items, $email)
+    public function storeByGuest(User $user, $address, $remark, $items, $email, CouponCode $coupon = null)
     {
         // 开启一个数据库事务
-        $order = \DB::transaction(function () use ($user, $address, $remark, $items, $email) {
+        $order = \DB::transaction(function () use ($user, $address, $remark, $items, $email, $coupon) {
             
             // 创建一个订单
             $order   = new Order([
@@ -124,6 +124,19 @@ class OrderService
                 $item->save();
                 $totalAmount += $product->price * $data['amount'];
             }
+            if ($coupon) {
+                // 总金额已经计算出来了，检查是否符合优惠券规则
+                $coupon->checkAvailable($totalAmount);
+                // 把订单金额修改为优惠后的金额
+                $totalAmount = $coupon->getAdjustedPrice($totalAmount);
+                // 将订单与优惠券关联
+                $order->couponCode()->associate($coupon);
+                // 增加优惠券的用量，需判断返回值
+                if ($coupon->changeUsed() <= 0) {
+                    throw new CouponCodeUnavailableException('该优惠券已被兑完');
+                }
+            }
+            
             // 更新订单总金额
             $order->update(['total_amount' => $totalAmount]);
 
