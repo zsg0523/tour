@@ -25,10 +25,7 @@ class AnimalController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Animal);
-        $animals = Animal::all();
-        foreach ($animals as $animal) {
-            $animal->update(['cover' => '']);
-        }
+        
         $grid->column('id', __('Id'))->sortable()->filter();
         $grid->column('product_name', __('Product name'))->copyable()->filter();
         $grid->column('code', __('Code'))->filter('like')->copyable();
