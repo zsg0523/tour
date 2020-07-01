@@ -25,10 +25,14 @@ class AnimalController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Animal);
-
+        $animals = Animal::all();
+        foreach ($animals as $animal) {
+            $animal->update(['cover' => '']);
+        }
         $grid->column('id', __('Id'))->sortable()->filter();
         $grid->column('product_name', __('Product name'))->copyable()->filter();
         $grid->column('code', __('Code'))->filter('like')->copyable();
+        $grid->column('cover', __('Cover'))->image(env('APP_URL') . '/uploads/', 150, 75);
         $grid->column('created_at', __('Created at'))->sortable();
         $grid->column('updated_at', __('Updated at'))->sortable();
         $grid->actions(function (Grid\Displayers\Actions $actions){
@@ -49,8 +53,8 @@ class AnimalController extends AdminController
         $show = new Show(Animal::findOrFail($id));
 
         $show->field('id', __('Id'));
-        
         $show->field('product_name', __('Product name'));
+        $show->field('cover', __('Cover'))->image(env('APP_URL') . '/uploads/', 150, 75);
         $show->field('image', __('Image'))->image(env('APP_URL') . '/uploads/', 150, 75);
         $show->field('code', __('Code'));
         $show->field('created_at', __('Created at'));
@@ -70,6 +74,7 @@ class AnimalController extends AdminController
 
         $form->hidden('product_series_id')->default(1);
         $form->text('product_name', __('Product name'));
+        $form->image('cover', __('Cover'))->removable();
         $form->image('image', __('Image'))
              ->removable()
              ->thumbnail('thumbnail', $width = 300, $height = 150)->move('animals/original');
