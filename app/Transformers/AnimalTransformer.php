@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-06-10 16:02:49
  * @Last Modified by:   eden
- * @Last Modified time: 2020-07-01 10:31:36
+ * @Last Modified time: 2020-07-01 10:58:04
  */
 namespace App\Transformers;
 
@@ -20,7 +20,7 @@ class AnimalTransformer extends TransformerAbstract
 			'id' => $animal->id,
 			'product_name' => $animal->product_name,
 			'image_family' => $animal->image_family,
-			'cover' => $animal->cover,
+			'cover' => url( 'uploads/' . $animal->cover),
 			'image' => $animal->image,
 			'image_original' => $animal->image_original,
 			'image_resize' => $animal->image_resize,
