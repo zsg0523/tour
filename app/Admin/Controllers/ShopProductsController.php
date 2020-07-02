@@ -36,6 +36,8 @@ class ShopProductsController extends AdminController
         $grid->column('line', 'Line')->using([10=>'Land', 20=> 'Ocean',30=>'Prehistoric'])->filter([10=>'Land', 20=> 'Ocean',30=>'Prehistoric'])->label();
         $grid->column('title', __('Title'));
         $grid->column('price', __('Price'));
+        $grid->column('rebate', __('Rebate'));
+        $grid->column('sales_price', __('Sales Price'));
         // 设置text、color、和存储值
         $states = [
             'on'  => ['value' => 1, 'text' => 'Yes', 'color' => 'primary'],
@@ -43,6 +45,8 @@ class ShopProductsController extends AdminController
         ];
         // 商品是否上架，默认true（on），false(off)
         $grid->column('on_sale', __('On sale'))->switch($states)->help('商品是否上架');
+        $grid->column('not_before', __('上架时间'));
+        $grid->column('not_after', __('下架时间'));
         $grid->column('created_at', __('Created at'));
         $grid->fixColumns(3, -3);
         $grid->actions(function ($actions) {
@@ -104,6 +108,10 @@ class ShopProductsController extends AdminController
         
         // 正价
         $form->text('price', '单价')->rules('required|numeric|min:0.01');
+        // 折扣
+        $form->text('rebate', '折扣');
+        // 折扣价
+        $form->text('sales_price', '折后价');
         // 创建一个选择图片框
         $form->image('image', __('商品图片'))->rules('required|image')->removable();
        
@@ -114,6 +122,9 @@ class ShopProductsController extends AdminController
             'off' => ['value' => 0, 'text' => 'No', 'color' => 'default'],
         ];
         $form->switch('on_sale')->states($states)->default(1);
+        $form->switch('sales')->states($states)->default(1);
+        $form->datetime('not_before', '开始时间');
+        $form->datetime('not_after', '结束时间');
 
 
         return $form;
