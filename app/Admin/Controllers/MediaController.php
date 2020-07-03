@@ -27,7 +27,7 @@ class MediaController extends AdminController
     {
         $grid = new Grid(new Media);
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('Id'))->sortable();
         $grid->column('lang', __('Lang'));
         $grid->column('media', __('Media'))->display(function($media){
             switch ($this->type) {
@@ -94,12 +94,13 @@ class MediaController extends AdminController
         ];
         $form->radio('type', __('Type'))->options($file)->default(2);
 
-        $location = [
-            '10' => 'Home-Sideshow',
-            '20' => 'Home-Video',
-            '30' => 'Product-Sideshow'
-        ];
-        $form->radio('location', __('Location'))->options($location);
+        // $location = [
+        //     '10' => 'Home-Sideshow',
+        //     '20' => 'Home-Video',
+        //     '30' => 'Product-Sideshow'
+        // ];
+        // $form->radio('location', __('Location'))->options($location);
+        $form->hidden('location')->default(20);
 
         $form->footer(function ($footer) {
 

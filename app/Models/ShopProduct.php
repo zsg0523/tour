@@ -2,7 +2,6 @@
 
 namespace App\Models;
 use Illuminate\Support\Str;
-
 use Illuminate\Database\Eloquent\Model;
 
 class ShopProduct extends Model
@@ -17,13 +16,14 @@ class ShopProduct extends Model
 
     protected $casts = [
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
+        'sales' => 'boolean', // on_sale 是一个布尔类型的字段
     ];
 
     // 与商品SKU关联
-    public function skus()
-    {
-        return $this->hasMany(ShopProductSku::class);
-    }
+    // public function skus()
+    // {
+    //     return $this->hasMany(ShopProductSku::class);
+    // }
     
     public function getImageUrlAttribute()
     {

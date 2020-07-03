@@ -8,8 +8,8 @@ class Banner extends Model
 {
     protected $guarded = [];
 
-    public function buttons()
+    public function button()
     {
-    	return $this->hasMany(Button::class);
+    	return $this->hasOne(Button::class);
     }
 }

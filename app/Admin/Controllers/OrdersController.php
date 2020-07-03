@@ -75,7 +75,8 @@ class OrdersController extends AdminController
         $grid = new Grid(new Order);
 
         $grid->column('no', __('流水号'));
-        $grid->column('user.name', __('买家'));
+        $grid->column('user.name', __('买家'))->filter();
+        $grid->column('email', __('邮箱'));
         $grid->column('total_amount', __('总金额'))->sortable();
         $grid->column('paid_at', __('支付时间'));
         $grid->column('payment_method', __('支付方式'));

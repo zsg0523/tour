@@ -22,7 +22,7 @@ class CreateAnimalsTable extends Migration
             $table->string('image')->nullable();
             $table->string('code')->nullable();
             $table->string('image_endangeredLevel')->nullable();
-            $table->string('icon_diet')->nullable();
+            $table->string('cover')->nullable();
             $table->string('background')->nullable();
             $table->string('back_button')->nullable();
             $table->string('sound_animal')->nullable();

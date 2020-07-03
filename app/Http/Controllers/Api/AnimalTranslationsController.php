@@ -20,7 +20,7 @@ class AnimalTranslationsController extends Controller
     	$lang = $this->getLang($request);
         // 獲取主題翻譯內容
         $themes = $this->getThemes($request);
-
+        
         // 如果传入主题为空，则默认主题列表第一个主题
         $theme = empty($request->theme) ? trim($themes[0]['title_page']) : $request->theme;
 

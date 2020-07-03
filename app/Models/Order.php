@@ -45,6 +45,7 @@ class Order extends Model
         'ship_status',
         'ship_data',
         'extra',
+        'email'
     ];
 
     protected $casts = [
@@ -102,4 +103,12 @@ class Order extends Model
 
         return false;
     }
+
+
+    public function couponCode()
+    {
+        return $this->belongsTo(CouponCode::class);
+    }
+
+    
 }

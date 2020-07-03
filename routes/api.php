@@ -88,6 +88,17 @@ $api->version('v2', [
         'expires' => config('api.rate_limits.sign.expires'),
     ], function($api) {
 
+            /*********************** wennoanimal backend ********************************/
+            $api->get('/admin/categories', 'AdminController@getCategories'); // 分类选项
+            $api->get('/admin/shop-categories', 'AdminController@getShopCategories'); // 新官网分类选项
+            $api->get('/admin/answers', 'AdminController@getAnswers'); // 答案选项
+            $api->get('/admin/locations', 'AdminController@getLocations'); // 地点选项
+            $api->get('/admin/animals', 'AdminController@getAnimals'); // 动物选项
+            $api->get('/admin/themes', 'AdminController@getThemes'); // 主题选项
+            $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
+            $api->post('/qrcode', 'AdminController@generateQrcode'); // 生成二维码
+            $api->get('/url', 'AnimalsController@images');
+
             /*********************** wennoanimal Web ***********************************/
             // 游客可访问
             // 博客列表
@@ -126,24 +137,22 @@ $api->version('v2', [
             $api->get('payments/orders/{order}/paypal', 'PaymentsController@payByPayPal')->name('api.payments.paypal');
             $api->post('payments/notify', 'PaymentsController@payPalNotify')->name('api.paypal.notify');
             $api->get('payments/return', 'PaymentsController@payPalReturn')->name('api.paypal.return');
-            
+            // 获取邮箱验证码
+            $api->post('verificationCodes/emails', 'VerificationCodesController@emailCode')->name('verificationCodes.emails');
+            // 忘记密码
+            $api->post('users/password/forgot', 'UsersController@forgotPassword');
+            // 优惠券查询
+            $api->get('coupon_codes/{code}', 'CouponCodesController@show');
+            // sales
+            $api->get('sales', 'SalesController@show');
 
-            /*********************** wennoanimal backend ********************************/
-            $api->get('/admin/categories', 'AdminController@getCategories'); // 分类选项
-            $api->get('/admin/shop-categories', 'AdminController@getShopCategories'); // 新官网分类选项
-            $api->get('/admin/answers', 'AdminController@getAnswers'); // 答案选项
-            $api->get('/admin/locations', 'AdminController@getLocations'); // 地点选项
-            $api->get('/admin/animals', 'AdminController@getAnimals'); // 动物选项
-            $api->get('/admin/themes', 'AdminController@getThemes'); // 主题选项
-            $api->post('/admin/up_image', 'AdminController@upImage'); // 上传文件
-            $api->post('/qrcode', 'AdminController@generateQrcode'); // 生成二维码
-            $api->get('/url', 'AnimalsController@images');
             
-
             // 登录后可访问
             $api->group(['middleware' => 'api.auth'], function($api) {
                 // 当前登录用户信息
-                $api->get('user', 'UsersController@me'); 
+                $api->get('user', 'UsersController@me');
+                // 更换密码
+                $api->post('users/password/change', 'UsersController@changePassword');
                 // 编辑用户信息
                 $api->patch('user', 'UsersController@update');
                 // 用户收获地址

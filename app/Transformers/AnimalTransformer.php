@@ -3,8 +3,8 @@
 /**
  * @Author: Eden
  * @Date:   2019-06-10 16:02:49
- * @Last Modified by:   Eden
- * @Last Modified time: 2019-06-18 15:38:43
+ * @Last Modified by:   eden
+ * @Last Modified time: 2020-07-01 10:58:04
  */
 namespace App\Transformers;
 
@@ -20,13 +20,13 @@ class AnimalTransformer extends TransformerAbstract
 			'id' => $animal->id,
 			'product_name' => $animal->product_name,
 			'image_family' => $animal->image_family,
+			'cover' => url( 'uploads/' . $animal->cover),
 			'image' => $animal->image,
 			'image_original' => $animal->image_original,
 			'image_resize' => $animal->image_resize,
 			'image_thumbnail' => $animal->image_thumbnail,
 			'code' => $animal->code,
 			'image_endangeredLevel' => $animal->image_endangeredLevel,
-			'icon_diet' => $animal->icon_diet,
 			'background' => $animal->background,
 			'back_button' => $animal->back_button,
 			'sound_animal' => $animal->sound_animal,

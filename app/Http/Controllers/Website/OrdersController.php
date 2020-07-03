@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\UserAddress;
 use App\Services\OrderService;
 use App\Transformers\OrderTransformer;
+use App\Exceptions\CouponCodeUnavailableException;
+use App\Models\CouponCode;
 
 class OrdersController extends Controller
 {
@@ -26,20 +28,36 @@ class OrdersController extends Controller
     /** [store 创建订单] */
     public function store(Request $request, OrderService $orderService)
     {
+
         $user = $request->user();
         
         $address = UserAddress::find($request->input('address_id'));
+
+        $coupon = null;
 
         if (! $address) {
             abort(403, '收货地址不存在');
         }
 
-        return $orderService->store($user, $address, $request->input('remark'), json_decode($request->input('items'), true));
+        // 如果用户提交了优惠码
+        if ($code = $request->coupon_code) {
+            $coupon = CouponCode::where('code', $code)->first();
+            if (! $coupon) {
+                throw new CouponCodeUnavailableException("优惠券不存在");
+                
+            }
+        }
+        
+        return $orderService->store($user, $address, $request->input('remark'), json_decode($request->input('items'), true), $coupon);
     }
 
     /** [storeAsGuest 游客创建订单] */
     public function storeAsGuest(Request $request, OrderService $orderService)
     {
+        // 验证是否有效邮箱
+        $validatedData = $request->validate([
+            'email' => ['required', 'email'],
+        ]);
     	// 游客账号
     	$user = User::find(1);
     	// 收货地址信息
@@ -47,6 +65,16 @@ class OrdersController extends Controller
     	// 商品信息
     	$items = json_decode($request->input('items'), true);
 
-    	return $orderService->storeByGuest($user, $address, $request->input('remark'), $items);
+        $coupon = null;
+        // 如果用户提交了优惠码
+        if ($code = $request->coupon_code) {
+            $coupon = CouponCode::where('code', $code)->first();
+            if (! $coupon) {
+                throw new CouponCodeUnavailableException("优惠券不存在");
+                
+            }
+        }
+
+    	return $orderService->storeByGuest($user, $address, $request->input('remark'), $items, $request->input('email'), $coupon);
     }
 }

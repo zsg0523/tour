@@ -43,6 +43,13 @@ Route::group(['middleware' => ['setLocale']], function() {
 	Route::get('aplasticocean', function () {
 	    return view('newPage.aplasticocean');
 	});
+
+	// 在浏览器中预览邮件格式
+	Route::get('mailable', function () {
+	    $newsletter = App\Models\NewsLetter::find(1);
+	    
+	    return new App\Mail\NewsLetter();
+	});
 });
 
 
