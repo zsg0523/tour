@@ -236,7 +236,6 @@
                         console.log('lang is null,language not null');
                         $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language+'&theme_id='+theme_id;
-
                     }
 
                     if(lang==null&&language==null){
@@ -244,45 +243,44 @@
                          $(".selectLang").find("option[lang='en']").prop("selected",true);
                          var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang=en&theme_id='+theme_id;
                     }
-                    setTimeout(function(){
-                        window.location.href = "https://www.wennoanimal.com/animalGame/website/#/AnimalDetail/"+GetQueryString("product_name")+"?lang=en&theme_id="+theme_id;
-                    },1000);
-                    // https://www.wennoanimal.com/animalGame/website/#/AnimalDetail/HOLSTEIN_COW_DOMESTIC
-                    // console.log(url);
-                    // $.ajax({
-                    //     url:url,
-                    //     type:'GET',
-                    //     success:function(data){
-                    //         // console.log(JSON.stringify(data));
-                    //         self.database = data;
-                    //         document.title = data.title;
-                    //         var sound = data.sound;
-                    //         self.Loading = true;
-                    //         self.LoadCompleted = true;  
-                    //         if(sound==undefined){//没有获取到sound
-                    //             self.sound = true;
-                    //             self.path = false;
-                    //         }else{
-                    //             self.sound = false;
-                    //             self.path = true;
-                    //         }
-                    //         var theme_name = data.theme_name;
-                    //         //console.log(theme_name);
-                    //         if(theme_name=='Mesozoic Era'){//恐龙
-                    //             self.dinosaur = true;
-                    //             self.animal = false;
-                    //         }else{
-                    //             self.dinosaur = false;
-                    //             self.animal = true;                                
-                    //         }
+                    // setTimeout(function(){
+                    //     window.location.href = "https://www.wennoanimal.com/animalGame/website/#/AnimalDetail/"+GetQueryString("product_name")+"?lang=en&theme_id="+theme_id;
+                    // },1000);
+                    console.log(url);
+                    $.ajax({
+                        url:url,
+                        type:'GET',
+                        success:function(data){
+                            // console.log(JSON.stringify(data));
+                            self.database = data;
+                            document.title = data.title;
+                            var sound = data.sound;
+                            self.Loading = true;
+                            self.LoadCompleted = true;  
+                            if(sound==undefined){//没有获取到sound
+                                self.sound = true;
+                                self.path = false;
+                            }else{
+                                self.sound = false;
+                                self.path = true;
+                            }
+                            var theme_name = data.theme_name;
+                            //console.log(theme_name);
+                            if(theme_name=='Mesozoic Era'){//恐龙
+                                self.dinosaur = true;
+                                self.animal = false;
+                            }else{
+                                self.dinosaur = false;
+                                self.animal = true;                                
+                            }
 
-                    //     },
-                    //     error:function(XMLHttpRequest, textStatus, errorThrown) {
-                    //         console.log(XMLHttpRequest.status);
-                    //         console.log(XMLHttpRequest.readyState);
-                    //         console.log(textStatus);
-                    //     }
-                    // });                     
+                        },
+                        error:function(XMLHttpRequest, textStatus, errorThrown) {
+                            console.log(XMLHttpRequest.status);
+                            console.log(XMLHttpRequest.readyState);
+                            console.log(textStatus);
+                        }
+                    });                     
                 },
                 setLocale(){
                     function GetQueryString(name){
