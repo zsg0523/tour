@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-07-01 14:19:25
  * @Last Modified by:   eden
- * @Last Modified time: 2020-07-02 18:02:12
+ * @Last Modified time: 2020-07-06 11:03:10
  */
 namespace App\Transformers;
 
@@ -20,6 +20,7 @@ class SaleTransformer extends TransformerAbstract
 			'lang' => $sale->lang,
 			'title' => $sale->title,
 			'description' => $sale->description,
+			'color' => $sale->color,
 			'background' => url('uploads/' . $sale->background),
 			'is_show' => $sale->is_show,
  			'created_at' => $sale->created_at->toDateTimeString(),

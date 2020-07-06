@@ -143,8 +143,10 @@ $api->version('v2', [
             $api->post('users/password/forgot', 'UsersController@forgotPassword');
             // 优惠券查询
             $api->get('coupon_codes/{code}', 'CouponCodesController@show');
-            // sales
+            // 促销开启
             $api->get('sales', 'SalesController@show');
+            // 促销产品列表
+            $api->get('product/sales', 'SalesController@saleProducts');
 
             
             // 登录后可访问
