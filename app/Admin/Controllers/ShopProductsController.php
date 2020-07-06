@@ -103,7 +103,7 @@ class ShopProductsController extends AdminController
                 if ($category) {
                     return [$category->id => $category->full_name];
                 }
-        })->ajax('/api/admin/shop-categories?is_directory=0')->rules('required');
+        })->ajax('/api/admin/shop-categories')->rules('required');
         //  创建一个输入框
         $form->text('title', __('商品名称'))->rules('required');
         
