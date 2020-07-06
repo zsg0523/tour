@@ -45,6 +45,7 @@ class ShopProductsController extends AdminController
         ];
         // 商品是否上架，默认true（on），false(off)
         $grid->column('on_sale', __('On sale'))->switch($states)->help('商品是否上架');
+        $grid->column('sales', __('Sales'))->switch($states)->help('促销商品');
         $grid->column('not_before', __('上架时间'));
         $grid->column('not_after', __('下架时间'));
         $grid->column('created_at', __('Created at'));

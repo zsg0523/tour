@@ -8,7 +8,7 @@ class ShopProduct extends Model
 {
 	
     protected $fillable = [
-                    'title', 'description', 'image', 'on_sale', 
+                    'title', 'description', 'image', 'on_sale', 'sales',
                     'rating', 'sold_count', 'review_count', 'price'
     ];
 
