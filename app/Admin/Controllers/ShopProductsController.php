@@ -117,7 +117,7 @@ class ShopProductsController extends AdminController
         $form->image('image', __('商品图片'))->rules('required|image')->removable();
        
         // 创建一个富文本编辑器
-        $form->editor('description', __('描述'));
+        $form->editor('description', __('描述'))->rules('required');
         $states = [
             'on'  => ['value' => 1, 'text' => 'Yes', 'color' => 'primary'],
             'off' => ['value' => 0, 'text' => 'No', 'color' => 'default'],
