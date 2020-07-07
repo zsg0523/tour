@@ -23,7 +23,7 @@ $factory->define(ShopProduct::class, function (Faker $faker) {
     ]);
 
     // 从数据库中随机取一个类目
-    $shop_category = \App\Models\ShopCategory::query()->where('is_directory', false)->inRandomOrder()->first();
+    $shop_category = \App\Models\ShopCategory::query()->inRandomOrder()->first();
 
     return [
         // 'title'        => $faker->word,
@@ -31,7 +31,10 @@ $factory->define(ShopProduct::class, function (Faker $faker) {
         'description'  => '商品描述',
         'image'        => $image,
         'on_sale'      => true,
+        'sales'        => false,
+        'rebate'       => '10%',
         'price'        => $faker->randomNumber(4),
+        'sales_price'  => $faker->randomNumber(4),
         'rating'       => $faker->numberBetween(0, 5),
         'sold_count'   => $faker->numberBetween(0, 999),
         'review_count' => $faker->numberBetween(0, 999),
