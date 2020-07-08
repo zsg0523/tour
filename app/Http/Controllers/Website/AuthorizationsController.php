@@ -103,32 +103,46 @@ class AuthorizationsController extends Controller
                 if (!$user) {
                     $user = User::create([
                         'name' => $oauthUser->getNickname(),
-                        'avatar' => $oauthUser->getAvatar(),
+                        // 'avatar' => $oauthUser->getAvatar(),
                         'openid' => $oauthUser->getId(),
                     ]);
                 }
                 break;
         }
 
-        return $this->response->array(['token' => $user->id]);
+        $token=\Auth::guard('api')->fromUser($user);
+        return $this->respondWithToken($token);
 
     }
-
+    /** [facebook facebook 授权登录页面] */
     public function facebook()
     {
       return \Socialite::with('facebook')->redirect();
     }
-
+    /**
+     * [facebook_callback 回调地址，.env中需要配置，facebook应用中需要设置有效 OAuth 跳转 URI eg:https://www.wennoanimal.com/api/facebook_callback]
+     * @return [type] [description]
+     */
     public function facebook_callback()
     {
         $oauthUser = \Socialite::with('facebook')->user();
-        
+        // 获取授权信息
         $data = [
-            'nickname' => $oauthUser->getNickname(),
-            'avatar'   => $oauthUser->getAvatar(),
-            'open_id'  => $oauthUser->getId(),
+            'name' => $oauthUser->getNickname(),
+            'openid'  => $oauthUser->getId(),
         ];
-        return $data;
+
+        $user = User::where('openid', $oauthUser->getId())->first();
+        // 没有用户信息创建该用户
+        if (!$user) {
+            $user = User::create([
+                'name' => $oauthUser->getNickname(),
+                'openid' => $oauthUser->getId(),
+            ]);
+        }
+        
+        $token=\Auth::guard('api')->fromUser($user);
+        return $this->respondWithToken($token);
     }
 
 
