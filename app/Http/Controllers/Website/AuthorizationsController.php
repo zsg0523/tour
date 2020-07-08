@@ -126,21 +126,15 @@ class AuthorizationsController extends Controller
     public function facebook_callback()
     {
         $oauthUser = \Socialite::with('facebook')->user();
-        // 获取授权信息
-        $data = [
-            'name' => $oauthUser->getNickname(),
-            'openid'  => $oauthUser->getId(),
-        ];
-
         $user = User::where('openid', $oauthUser->getId())->first();
         // 没有用户信息创建该用户
         if (!$user) {
             $user = User::create([
-                'name' => $oauthUser->getNickname(),
+                'name' => $oauthUser->getName(),
                 'openid' => $oauthUser->getId(),
             ]);
         }
-        
+
         $token=\Auth::guard('api')->fromUser($user);
         return $this->respondWithToken($token);
     }
