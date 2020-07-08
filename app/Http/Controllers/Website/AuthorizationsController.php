@@ -7,6 +7,9 @@ use App\Http\Requests\Api\AuthorizationRequest;
 use App\Models\User;
 use App\Events\RegisteredByApi;
 use Auth;
+use Illuminate\Support\Arr;
+use Illuminate\Auth\AuthenticationException;
+use App\Http\Requests\Api\SocialAuthorizationRequest;
 
 class AuthorizationsController extends Controller
 {
@@ -62,6 +65,55 @@ class AuthorizationsController extends Controller
         ]);
     }
 
+    public function socialStore($type, SocialAuthorizationRequest $request)
+    {
+        $driver = \Socialite::driver($type);
+
+        try {
+            if ($code = $request->code) {
+                // 可以使用code获取acces_token
+                $response = $driver->getAccessTokenResponse($code);
+                $token = Arr::get($response, 'access_token');
+            } else {
+                //  也可以直接使用access_token
+                $token = $request->access_token;
+
+                if ($type == 'weixin') {
+                    $driver->setOpenId($request->openid);
+                }
+            }
+            // 获取第三方授权用户信息
+            $oauthUser = $driver->userFromToken($token);
+
+        } catch (Exception $e) {
+            throw new AuthenticationException('参数错误，未获取用户信息');
+        }
+
+        switch ($type) {
+            case 'weixin':
+                $unionid = $oauthUser->offsetExists('unionid') ? $oauthUser->offsetGet('unionid') : null;
+
+                if ($unionid) {
+                    // $user = User::where('weixin_unionid', $unionid)->first();
+                } else {
+                    $user = User::where('openid', $oauthUser->getId())->first();
+                }
+
+                // 没有用户，默认创建一个用户
+                if (!$user) {
+                    $user = User::create([
+                        'name' => $oauthUser->getNickname(),
+                        'avatar' => $oauthUser->getAvatar(),
+                        'openid' => $oauthUser->getId(),
+                    ]);
+                }
+                break;
+        }
+
+        return $this->response->array(['token' => $user->id]);
+
+    }
+
     public function facebook()
     {
       return \Socialite::with('facebook')->redirect();
@@ -70,7 +122,7 @@ class AuthorizationsController extends Controller
     public function facebook_callback()
     {
         $oauthUser = \Socialite::with('facebook')->user();
-        dd($oauthUser);
+        
         $data = [
             'nickname' => $oauthUser->getNickname(),
             'avatar'   => $oauthUser->getAvatar(),

@@ -130,6 +130,7 @@ $api->version('v2', [
             $api->post('authorizations', 'AuthorizationsController@store'); 
             // 第三方授权登录
             $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')->name('api.socials.authorizations.store');
+            
             $api->get('facebook', 'AuthorizationsController@facebook');
             $api->get('facebook_callback', 'AuthorizationsController@facebook_callback');
             // 刷新token
