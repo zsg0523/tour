@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 17:24:51
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-30 09:51:38
+ * @Last Modified time: 2020-07-07 17:43:08
  */
 namespace App\Services;
 
@@ -52,10 +52,17 @@ class OrderService
                 $item = $order->items()->make([
                     'amount' => $data['amount'],
                     'price'  => $product->price,
+                    'rebate' => $product->rebate,
+                    'sales_price' => $product->sales_price,
                 ]);
                 $item->shopProduct()->associate($product->id);
                 $item->save();
-                $totalAmount += $product->price * $data['amount'];
+                // 促销产品按促销价结算
+                if ($product->sales) {
+                    $totalAmount += $product->sales_price * $data['amount'];
+                } else {
+                    $totalAmount += $product->price * $data['amount'];
+                }
             }
 
             if ($coupon) {
@@ -119,10 +126,18 @@ class OrderService
                 $item = $order->items()->make([
                     'amount' => $data['amount'],
                     'price'  => $product->price,
+                    'rebate' => $product->rebate,
+                    'sales_price' => $product->sales_price,
                 ]);
                 $item->shopProduct()->associate($product->id);
                 $item->save();
-                $totalAmount += $product->price * $data['amount'];
+                // 促销产品按促销价结算
+                if ($product->sales) {
+                    $totalAmount += $product->sales_price * $data['amount'];
+                } else {
+                    $totalAmount += $product->price * $data['amount'];
+                }
+                
             }
             if ($coupon) {
                 // 总金额已经计算出来了，检查是否符合优惠券规则

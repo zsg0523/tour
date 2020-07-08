@@ -35,6 +35,10 @@ class EventServiceProvider extends ServiceProvider
         OrderReviewed::class => [
             UpdateProductRating::class,
         ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            // add your listeners (aka providers) here
+            'SocialiteProviders\\Facebook\\FacebookExtendSocialite@handle',
+        ],
     ];
 
     /**

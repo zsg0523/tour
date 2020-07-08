@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-06-10 10:58:02
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-23 11:03:53
+ * @Last Modified time: 2020-07-07 17:37:11
  */
 namespace App\Transformers;
 
@@ -27,6 +27,8 @@ class OrderItemTransformer extends TransformerAbstract
 			'shop_product_id' => $item->shop_product_id,
 			'amount' => $item->amount,
 			'price' => $item->price,
+			'rebate' => $item->rebate,
+			'sales_price' => $item->sales_price,
 			'rating' => $item->rating,
 			'review' => $item->review,
 			'reviewed_at' => $item->reviewed_at,

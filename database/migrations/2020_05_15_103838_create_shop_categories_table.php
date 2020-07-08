@@ -18,7 +18,7 @@ class CreateShopCategoriesTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('shop_categories')->onDelete('cascade');
-            $table->boolean('is_directory')->default(1);
+            $table->boolean('is_directory')->default(0);
             $table->unsignedInteger('level');
             $table->string('path');
             $table->timestamps();

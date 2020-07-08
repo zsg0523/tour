@@ -62,6 +62,23 @@ class AuthorizationsController extends Controller
         ]);
     }
 
+    public function facebook()
+    {
+      return \Socialite::with('facebook')->redirect();
+    }
+
+    public function facebook_callback()
+    {
+        $oauthUser = \Socialite::with('facebook')->user();
+        dd($oauthUser);
+        $data = [
+            'nickname' => $oauthUser->getNickname(),
+            'avatar'   => $oauthUser->getAvatar(),
+            'open_id'  => $oauthUser->getId(),
+        ];
+        return $data;
+    }
+
 
 
 

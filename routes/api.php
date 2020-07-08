@@ -75,6 +75,24 @@ $api->version('v1', [
 
 });
 
+$api->version('v2', [
+    'namespace' => 'App\Http\Controllers\Api',
+    // 手动注册模型中间件bindings
+    'middleware' => ['serializer:array','bindings', 'web']
+], function($api) {
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => config('api.rate_limits.sign.limit'),
+        'expires' => config('api.rate_limits.sign.expires'),
+    ], function($api) {
+
+            $api->get('/admin/shop-categories', 'AdminController@getShopCategories'); // 新官网分类选项
+        });
+
+
+
+});
+
 
 
 $api->version('v2', [
@@ -90,7 +108,6 @@ $api->version('v2', [
 
             /*********************** wennoanimal backend ********************************/
             $api->get('/admin/categories', 'AdminController@getCategories'); // 分类选项
-            $api->get('/admin/shop-categories', 'AdminController@getShopCategories'); // 新官网分类选项
             $api->get('/admin/answers', 'AdminController@getAnswers'); // 答案选项
             $api->get('/admin/locations', 'AdminController@getLocations'); // 地点选项
             $api->get('/admin/animals', 'AdminController@getAnimals'); // 动物选项
@@ -111,6 +128,10 @@ $api->version('v2', [
             $api->post('users', 'UsersController@store'); 
             // 邮箱登录
             $api->post('authorizations', 'AuthorizationsController@store'); 
+            // 第三方授权登录
+            $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')->name('api.socials.authorizations.store');
+            $api->get('facebook', 'AuthorizationsController@facebook');
+            $api->get('facebook_callback', 'AuthorizationsController@facebook_callback');
             // 刷新token
             $api->put('authorizations/current', 'AuthorizationsController@update')->name('api.authorizations.update');
             // 删除token
