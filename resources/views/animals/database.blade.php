@@ -250,6 +250,9 @@
                     $.ajax({
                         url:url,
                         type:'GET',
+                        headers: {
+                            "Accept": 'application/prs.wenno.v1+json',
+                        },
                         success:function(data){
                             // console.log(JSON.stringify(data));
                             self.database = data;
