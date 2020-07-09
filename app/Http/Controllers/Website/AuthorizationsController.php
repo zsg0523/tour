@@ -119,6 +119,7 @@ class AuthorizationsController extends Controller
     {
       return \Socialite::with('facebook')->redirect();
     }
+    
     /**
      * [facebook_callback 回调地址，.env中需要配置，facebook应用中需要设置有效 OAuth 跳转 URI eg:https://www.wennoanimal.com/api/facebook_callback]
      * @return [type] [description]
