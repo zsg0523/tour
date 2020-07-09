@@ -217,6 +217,9 @@
                         $.ajax({
                             url:'/api/setLocale?lang='+lang,
                             type:'GET',
+                            headers: {
+                                "Accept": 'application/prs.wenno.v1+json',
+                            },
                             success:function(data) {
                                 console.log(JSON.stringify(data));
                                 if(data){
@@ -250,6 +253,9 @@
                     $.ajax({
                         url:url,
                         type:'GET',
+                        headers: {
+                            "Accept": 'application/prs.wenno.v1+json',
+                        },
                         success:function(data){
                             // console.log(JSON.stringify(data));
                             self.database = data;
@@ -294,6 +300,9 @@
                     $.ajax({
                         url:'/api/setLocale?lang='+language,
                         type:'GET',
+                        headers: {
+                            "Accept": 'application/prs.wenno.v1+json',
+                        },
                         success:function(data) {
                             console.log(JSON.stringify(data));
                             if(data){
