@@ -222,7 +222,8 @@
                             success:function(data) {
                                 console.log(JSON.stringify(data));
                                 if(data){
-                                    // sessionStorage.setItem('language',lang);
+                                    sessionStorage.setItem('language',lang);
+                                    // window.location.replace();
                                     window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&theme_id='+theme_id+'&root=0';
                                 }
                             },
