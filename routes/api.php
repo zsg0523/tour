@@ -104,12 +104,15 @@ $api->version('v1', [
         'expires' => config('api.rate_limits.sign.expires'),
     ], function($api) {
 
-            
+            // facebook 授权登录
             $api->get('facebook', 'AuthorizationsController@facebook');
             $api->get('facebook_callback', 'AuthorizationsController@facebook_callback');
             
+            // paypal支付
+            $api->get('payments/orders/{order}/paypal', 'PaymentsController@payByPayPal')->name('api.payments.paypal');
+            $api->post('payments/notify', 'PaymentsController@payPalNotify')->name('api.paypal.notify');
+            $api->get('payments/return', 'PaymentsController@payPalReturn')->name('api.paypal.return');
 
-            
             // 登录后可访问
             $api->group(['middleware' => 'api.auth'], function($api) {
             
