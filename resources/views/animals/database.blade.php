@@ -195,9 +195,8 @@
                     var lang = GetQueryString("lang");
                     var language = sessionStorage.getItem('language');
                     var theme1 = GetQueryString("theme_id");
-                    var theme2 = sessionStorage.getItem('theme_id');
+                    // var theme2 = sessionStorage.getItem('theme_id');
                     var theme_id;
-                    console.log(theme1+'   '+theme2);
                     if(theme1==null||theme1==''){
                         // if(theme2==null){
                         //     theme_id = '';                            
@@ -209,7 +208,7 @@
                         theme_id = theme1;
                     }
                     console.log('language: '+language+'  lang: '+lang+' theme_id: '+theme_id);
-                    sessionStorage.setItem('theme_id',theme_id);
+                    // sessionStorage.setItem('theme_id',theme_id);
                     if(lang!=null){
                         console.log('lang not null');
                         $(".selectLang").find("option[lang='"+lang+"']").prop("selected",true);
@@ -223,7 +222,7 @@
                             success:function(data) {
                                 console.log(JSON.stringify(data));
                                 if(data){
-                                    sessionStorage.setItem('language',lang);
+                                    // sessionStorage.setItem('language',lang);
                                     window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&theme_id='+theme_id+'&root=0';
                                 }
                             },
@@ -295,8 +294,8 @@
                         if(r!=null)return unescape(r[2]); return null;
                     }
                     var language = $('.selectLang').find("option:selected").attr("lang");
-                    var theme_id = sessionStorage.getItem('theme_id');
-                    console.log(language+ '  '+theme_id);
+                    // var theme_id = sessionStorage.getItem('theme_id');
+                    // console.log(language+ '  '+theme_id);
                     $.ajax({
                         url:'/api/setLocale?lang='+language,
                         type:'GET',
@@ -308,7 +307,7 @@
                             if(data){
                                 sessionStorage.setItem('language',language);
                                 // window.location.reload();
-                                window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&theme_id='+theme_id+'&root=0';
+                                window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&theme_id=&root=0';
                             }
                         },
                         error:function(XMLHttpRequest, textStatus, errorThrown) {
