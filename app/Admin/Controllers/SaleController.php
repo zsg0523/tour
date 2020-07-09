@@ -29,6 +29,7 @@ class SaleController extends AdminController
         $grid->column('id', __('Id'))->sortable();
         $grid->column('lang', __('Lang'));
         $grid->column('background', __('Background'))->image(env('APP_URL') . '/uploads/' , 150, 75);
+        $grid->column('color', __('Color'));
         $grid->column('title', __('Title'));
         $grid->column('description', __('Description'));
         // 设置text、color、和存储值
@@ -77,6 +78,7 @@ class SaleController extends AdminController
         $form->text('title', __('Title'));
         $form->textarea('description', __('Description'));
         $form->image('background', __('Background'));
+        $form->color('color', __('Color'));
         $states = [
             'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],
             'off' => ['value' => 0, 'text' => 'OFF', 'color' => 'default'],

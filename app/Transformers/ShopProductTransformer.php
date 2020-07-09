@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-05-19 15:55:05
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-16 15:30:05
+ * @Last Modified time: 2020-07-03 17:27:34
  */
 namespace App\Transformers;
 
@@ -24,13 +24,11 @@ class ShopProductTransformer extends TransformerAbstract
 			'title' => $product->title,
 			'description' => $product->description,
 			'price' => $product->price,
+			'rebate' => $product->rebate,
+			'sales_price' => $product->sales_price,
 			'image_url' => $product->image_url,
+			'not_after' => (string)$product->not_after,
 		];
-	}
-
-	public function includeSkus(ShopProduct $product)
-	{
-		return $this->collection($product->skus, new ShopProductSkuTransformer());
 	}
 
 

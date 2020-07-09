@@ -43,7 +43,7 @@ class ProductsController extends Controller
     	// 如果传入shop_category_id 字段, 并且在数据库中有对应的类目
     	if ($request->input('shop_category_id') && $shopCategory = ShopCategory::find($request->input('shop_category_id'))) {
     		
-    		// 如果这是一个父类目
+    		
     		if ($shopCategory->is_directory) {
     			// 筛选出该父类目下的所有子类目商品
     			$builder->whereHas('shopCategory', function ($query) use ($shopCategory) {

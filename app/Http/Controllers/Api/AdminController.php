@@ -22,11 +22,11 @@ class AdminController extends Controller
 
     public function getShopCategories(Request $request)
     {
+
         // 用户输入的值通过 q 参数获取
         $search = $request->input('q');
 
         $result = ShopCategory::query()
-            ->where('is_directory', boolval($request->input('is_directory', true)))
             ->where('name', 'like', '%'.$search.'%')
             ->paginate();
 

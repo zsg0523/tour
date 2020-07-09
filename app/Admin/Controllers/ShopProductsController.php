@@ -45,6 +45,7 @@ class ShopProductsController extends AdminController
         ];
         // 商品是否上架，默认true（on），false(off)
         $grid->column('on_sale', __('On sale'))->switch($states)->help('商品是否上架');
+        $grid->column('sales', __('Sales'))->switch($states)->help('促销商品');
         $grid->column('not_before', __('上架时间'));
         $grid->column('not_after', __('下架时间'));
         $grid->column('created_at', __('Created at'));
@@ -102,7 +103,7 @@ class ShopProductsController extends AdminController
                 if ($category) {
                     return [$category->id => $category->full_name];
                 }
-        })->ajax('/api/admin/shop-categories?is_directory=0')->rules('required');
+        })->ajax('/api/admin/shop-categories')->rules('required');
         //  创建一个输入框
         $form->text('title', __('商品名称'))->rules('required');
         
@@ -116,7 +117,7 @@ class ShopProductsController extends AdminController
         $form->image('image', __('商品图片'))->rules('required|image')->removable();
        
         // 创建一个富文本编辑器
-        $form->editor('description', __('描述'));
+        $form->editor('description', __('描述'))->rules('required');
         $states = [
             'on'  => ['value' => 1, 'text' => 'Yes', 'color' => 'primary'],
             'off' => ['value' => 0, 'text' => 'No', 'color' => 'default'],

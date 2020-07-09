@@ -76,6 +76,7 @@ class OrdersController extends AdminController
 
         $grid->column('no', __('流水号'));
         $grid->column('user.name', __('买家'))->filter();
+        $grid->column('couponCode.code', __('优惠券编号'));
         $grid->column('email', __('邮箱'));
         $grid->column('total_amount', __('总金额'))->sortable();
         $grid->column('paid_at', __('支付时间'));

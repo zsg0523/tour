@@ -39,12 +39,14 @@
         <td rowspan="{{ $order->items->count() + 1 }}">商品列表</td>
         <td>商品名称</td>
         <td>单价</td>
+        <td>促销价</td>
         <td>数量</td>
       </tr>
       @foreach($order->items as $item)
       <tr>
-        <td>{{ $item->shopProduct->title }} {{ $item->shopProductSku->title }}</td>
+        <td>{{ $item->shopProduct->title }}</td>
         <td>￥{{ $item->price }}</td>
+        <td>￥{{ $item->sales_price }}</td>
         <td>{{ $item->amount }}</td>
       </tr>
       @endforeach
