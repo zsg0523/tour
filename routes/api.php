@@ -93,6 +93,40 @@ $api->version('v2', [
 
 });
 
+$api->version('v1', [
+    'namespace' => 'App\Http\Controllers\Website',
+    // 手动注册模型中间件bindings
+    'middleware' => ['serializer:array','bindings', 'web', 'change-locale']
+], function($api) {
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => config('api.rate_limits.sign.limit'),
+        'expires' => config('api.rate_limits.sign.expires'),
+    ], function($api) {
+
+            
+            $api->get('facebook', 'AuthorizationsController@facebook');
+            $api->get('facebook_callback', 'AuthorizationsController@facebook_callback');
+            
+
+            
+            // 登录后可访问
+            $api->group(['middleware' => 'api.auth'], function($api) {
+            
+                
+            });
+            
+            /*********************** 接口版本测试 ****************************************/
+            $api->get('version', function () {
+                return response('this is version2');
+            });
+            
+        });
+
+
+    
+});
+
 
 
 $api->version('v2', [
