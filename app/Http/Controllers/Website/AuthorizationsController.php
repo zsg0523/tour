@@ -126,11 +126,19 @@ class AuthorizationsController extends Controller
     public function facebook_callback()
     {
         $oauthUser = \Socialite::with('facebook')->user();
-        $user = User::where('openid', $oauthUser->getId())->first();
+        // 检查是否已有邮箱注册身份，有则绑定
+        $user = User::where('email', $oauthUser->getEmail())->first();
         // 没有用户信息创建该用户
         if (!$user) {
             $user = User::create([
                 'name' => $oauthUser->getName(),
+                'email' => $oauthUser->getEmail(),
+                'oauth_type' => 'facebook',
+                'openid' => $oauthUser->getId(),
+            ]);
+        } else {
+            $update = User::where('email', $oauthUser->getEmail())->update([
+                'oauth_type' => 'facebook',
                 'openid' => $oauthUser->getId(),
             ]);
         }

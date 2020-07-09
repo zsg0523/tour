@@ -15,6 +15,7 @@ class AddOpenidToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('openid')->unique()->nullable()->after('password');
+            $table->string('oauth_type')->nullable()->after('openid');
             $table->string('password')->nullable()->change();
             $table->string('email')->nullable()->change();
         });
@@ -29,6 +30,7 @@ class AddOpenidToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('openid');
+            $table->dropColumn('oauth_type');
             $table->string('password')->nullable(false)->change();
             $table->string('email')->nullable(false)->change();
         });
