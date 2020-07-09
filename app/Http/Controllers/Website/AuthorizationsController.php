@@ -147,7 +147,7 @@ class AuthorizationsController extends Controller
         $token=\Auth::guard('api')->fromUser($user);
 
         // return $this->respondWithToken($token);
-        return redirect('https://www.wennoanimal.com/animalGame/website/#/Index');
+        return redirect('https://www.wennoanimal.com/animalGame/website/#/Index?token=' . $token);
     }
 
 
