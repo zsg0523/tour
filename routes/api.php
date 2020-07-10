@@ -107,6 +107,8 @@ $api->version('v1', [
             // facebook 授权登录
             $api->get('facebook', 'AuthorizationsController@facebook');
             $api->get('facebook_callback', 'AuthorizationsController@facebook_callback');
+            $api->get('google', 'AuthorizationsController@google');
+            $api->get('google_callback', 'AuthorizationsController@google_callback');
             
             // paypal支付
             $api->get('payments/orders/{order}/paypal', 'PaymentsController@payByPayPal')->name('api.payments.paypal');

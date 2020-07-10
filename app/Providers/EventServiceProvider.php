@@ -39,6 +39,7 @@ class EventServiceProvider extends ServiceProvider
             // add your listeners (aka providers) here
             'SocialiteProviders\\Facebook\\FacebookExtendSocialite@handle',
             'SocialiteProviders\Weixin\WeixinExtendSocialite@handle',
+            'SocialiteProviders\\Google\\GoogleExtendSocialite@handle',
         ],
     ];
 
