@@ -153,7 +153,7 @@ class AuthorizationsController extends Controller
     /** [google_callback google 授权登录页面] */
     public function google()
     {
-      return \Socialite::with('google')->redirect();
+      return \Socialite::driver('google')->redirect();
     }
     
     /**
@@ -162,7 +162,7 @@ class AuthorizationsController extends Controller
      */
     public function google_callback()
     {
-        $oauthUser = \Socialite::with('google')->user();
+        $oauthUser = \Socialite::driver('google')->user();
         // 检查是否已有邮箱注册身份，有则绑定
         $user = User::where('email', $oauthUser->getEmail())->first();
         // 没有用户信息创建该用户
