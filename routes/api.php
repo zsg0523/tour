@@ -208,7 +208,8 @@ $api->version('v2', [
             $api->get('sales', 'SalesController@show');
             // 促销产品列表
             $api->get('product/sales', 'SalesController@saleProducts');
-
+            // 顺丰柜子
+            $api->get('lockers', 'SflockerController@index');
             
             // 登录后可访问
             $api->group(['middleware' => 'api.auth'], function($api) {
