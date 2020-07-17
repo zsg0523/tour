@@ -35,11 +35,11 @@ class PaymentsController extends Controller
         // 得到支付的链接
         $data =
         [
-            'address'      =>'https://www.sandbox.paypal.com/cgi-bin/webscr',//测试沙盒,该环境不可用CNY
-            // 'address'      =>'https://www.paypal.com/cgi-bin/webscr',//正式地址
+            // 'address'      =>'https://www.sandbox.paypal.com/cgi-bin/webscr',//测试沙盒,该环境不可用CNY
+            'address'      =>'https://www.paypal.com/cgi-bin/webscr',//正式地址
             'cmd'          =>'_xclick',
-            'business'     =>'paypal@ifn-asia.org',//测试商户账号
-            // 'business'     =>'ac.dept@shtoys.com.hk',
+            // 'business'     =>'paypal@ifn-asia.org',//测试商户账号
+            'business'     =>'ac.dept@shtoys.com.hk',
             'item_name'    =>$order->remark ?? '支付 Wenno Shop 的订单：'.$order->no, // 订单描述
             'item_number'  =>$order->no,  // 商品编号
             'invoice'      =>$order->no, // 订单编号
@@ -98,8 +98,8 @@ class PaymentsController extends Controller
 
         $order->update([
             'paid_at'        => Carbon::now(), // 支付时间
-            'payment_method' => 'paypal', // 支付方式
-            'payment_no'     => $map['payer_id'], // 支付宝订单号
+            'payment_method' => 'paypal', // 支付方式 
+            'payment_no'     => $map['payer_id'], // 订单号txn_id
         ]);
 
         // 订单支付成功后触发事件

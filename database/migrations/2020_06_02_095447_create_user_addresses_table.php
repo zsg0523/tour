@@ -20,9 +20,9 @@ class CreateUserAddressesTable extends Migration
             $table->string('region');
             $table->string('receiver');
             $table->string('company')->nullable();
-            $table->string('address_line1');
-            $table->string('address_line2');
-            $table->string('phone');
+            $table->string('address_line1')->nullable();
+            $table->string('address_line2')->nullable();
+            $table->string('phone')->nullable();
             $table->dateTime('last_used_at')->nullable();
             $table->timestamps();
         });
