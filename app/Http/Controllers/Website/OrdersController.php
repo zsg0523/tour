@@ -30,23 +30,31 @@ class OrdersController extends Controller
     {
 
         $user = $request->user();
-        
-        $address = UserAddress::find($request->input('address_id'));
 
         $coupon = null;
 
-        if (! $address) {
-            abort(403, '收货地址不存在');
-        }
-
         // 如果用户提交了优惠码
-        if ($code = $request->coupon_code) {
+        if ($code = $request->coupon_code) {    
             $coupon = CouponCode::where('code', $code)->first();
             if (! $coupon) {
                 throw new CouponCodeUnavailableException("优惠券不存在");
                 
             }
         }
+        
+        if ($request->input('address_id')) {
+            $address = UserAddress::find($request->input('address_id'));
+        } else {
+            $address = json_decode($request->input('address'), true);
+
+            return $orderService->storeByGuest($user, $address, $request->input('remark'), json_decode($request->input('items'), true), $email = null, $coupon);
+        }
+        
+        if (! $address) {
+            abort(403, '收货地址不存在');
+        }
+
+        
         
         return $orderService->store($user, $address, $request->input('remark'), json_decode($request->input('items'), true), $coupon);
     }
@@ -61,7 +69,8 @@ class OrdersController extends Controller
     	// 游客账号
     	$user = User::find(1);
     	// 收货地址信息
-    	$address = json_decode($request->input('address'), true);
+        $address = json_decode($request->input('address'), true);
+
     	// 商品信息
     	$items = json_decode($request->input('items'), true);
 

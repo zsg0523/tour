@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-02-28 17:24:51
  * @Last Modified by:   eden
- * @Last Modified time: 2020-07-07 17:43:08
+ * @Last Modified time: 2020-07-21 16:02:00
  */
 namespace App\Services;
 
@@ -31,7 +31,7 @@ class OrderService
             $order   = new Order([
                 'address'      => [ // 将地址信息放入订单中
                     'address_line1' => $address->address_line1,
-                    'address_line2' => $address->address_line2,
+                    'address_line2' => $address->address_line2 ?? '',
                     'region' => $address->region,
                     'receiver' => $address->receiver,
                     'phone' => $address->phone,
