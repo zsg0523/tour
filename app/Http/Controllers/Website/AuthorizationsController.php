@@ -215,9 +215,9 @@ class AuthorizationsController extends Controller
 
         $config = [
             'google' => [
-                'client_id' => 'your-app-id',
-                'client_secret' => 'your-app-secret',
-                'redirect' => 'http://localhost/socialite/callback.php',
+                'client_id'     => '539496292177-aecj7ktukf7a507v7u9098ihs7225k3s.apps.googleusercontent.com',
+                'client_secret' => 'L8Lv4O1D99I6C-TlG1UgJn6S',
+                'redirect'      => 'https://www.wennoanimal.com/api/google_callback',
             ],
         ];
 
