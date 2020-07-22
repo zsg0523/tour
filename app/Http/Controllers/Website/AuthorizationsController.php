@@ -10,6 +10,7 @@ use Auth;
 use Illuminate\Support\Arr;
 use Illuminate\Auth\AuthenticationException;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
+use Overtrue\Socialite\SocialiteManager;
 
 class AuthorizationsController extends Controller
 {
@@ -151,9 +152,58 @@ class AuthorizationsController extends Controller
     }
 
     /** [google_callback google 授权登录页面] */
+    // public function google()
+    // {
+    //   return \Socialite::driver('google')->redirect();
+    // }
+    
+    // /**
+    //  * [google_callback 回调地址，.env中需要配置，google应用中需要设置有效 OAuth 跳转 URI eg:https://www.wennoanimal.com/api/google_callback]
+    //  * @return [type] [description]
+    //  */
+    // public function google_callback()
+    // {
+    //     $oauthUser = \Socialite::driver('google')->user();
+    //     // 检查是否已有邮箱注册身份，有则绑定
+    //     $user = User::where('email', $oauthUser->getEmail())->first();
+    //     // 没有用户信息创建该用户
+    //     if (!$user) {
+    //         $user = User::create([
+    //             'name' => $oauthUser->getName(),
+    //             'email' => $oauthUser->getEmail(),
+    //             'oauth_type' => 'google',
+    //             'openid' => $oauthUser->getId(),
+    //         ]);
+    //     } else {
+    //         $update = User::where('email', $oauthUser->getEmail())->update([
+    //             'oauth_type' => 'google',
+    //             'openid' => $oauthUser->getId(),
+    //         ]);
+    //     }
+
+    //     $token=\Auth::guard('api')->fromUser($user);
+
+    //     // return $this->respondWithToken($token);
+    //     return redirect('https://www.wennoanimal.com/animalGame/website/#/OtherLogin?token=' . $token);
+    // }
+
+
+    /** [google_callback google 授权登录页面] */
     public function google()
     {
-      return \Socialite::driver('google')->redirect();
+      $config = [
+            'google' => [
+                'client_id'     => '539496292177-aecj7ktukf7a507v7u9098ihs7225k3s.apps.googleusercontent.com',
+                'client_secret' => 'L8Lv4O1D99I6C-TlG1UgJn6S',
+                'redirect'      => 'https://www.wennoanimal.com/api/google_callback',
+            ],
+        ];
+
+        $socialite = new SocialiteManager($config);
+
+        $response = $socialite->driver('google')->redirect();
+
+        return $response;
     }
     
     /**
@@ -162,7 +212,19 @@ class AuthorizationsController extends Controller
      */
     public function google_callback()
     {
-        $oauthUser = \Socialite::driver('google')->user();
+
+        $config = [
+            'google' => [
+                'client_id' => 'your-app-id',
+                'client_secret' => 'your-app-secret',
+                'redirect' => 'http://localhost/socialite/callback.php',
+            ],
+        ];
+
+        $socialite = new SocialiteManager($config);
+
+        $oauthUser = $socialite->driver('google')->user();
+        
         // 检查是否已有邮箱注册身份，有则绑定
         $user = User::where('email', $oauthUser->getEmail())->first();
         // 没有用户信息创建该用户
