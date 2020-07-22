@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-05-14 11:35:35
  * @Last Modified by:   eden
- * @Last Modified time: 2020-05-14 11:37:20
+ * @Last Modified time: 2020-07-22 17:45:43
  */
 namespace App\Transformers;
 
@@ -19,6 +19,7 @@ class UserTransformer extends TransformerAbstract
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
+            'is_newsletter' => $user->is_newsletter,
             'created_at' => (string) $user->created_at,
             'updated_at' => (string) $user->updated_at,
         ];

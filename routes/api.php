@@ -163,6 +163,7 @@ $api->version('v2', [
             $api->get('blogs/{blogs}', 'BlogsController@getNewsData');
             // Newsletter
             $api->post('news_letter', 'UsersController@newsLetter');
+
             // 用户邮箱注册
             $api->post('users', 'UsersController@store'); 
             // 邮箱登录
@@ -215,6 +216,8 @@ $api->version('v2', [
             $api->group(['middleware' => 'api.auth'], function($api) {
                 // 当前登录用户信息
                 $api->get('user', 'UsersController@me');
+                // newsletter 设置
+                $api->post('news_letter/setting', 'UsersController@markAsNewsLetter');
                 // 更换密码
                 $api->post('users/password/change', 'UsersController@changePassword');
                 // 编辑用户信息

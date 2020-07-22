@@ -151,42 +151,6 @@ class AuthorizationsController extends Controller
         return redirect('https://www.wennoanimal.com/animalGame/website/#/OtherLogin?token=' . $token);
     }
 
-    /** [google_callback google 授权登录页面] */
-    // public function google()
-    // {
-    //   return \Socialite::driver('google')->redirect();
-    // }
-    
-    // /**
-    //  * [google_callback 回调地址，.env中需要配置，google应用中需要设置有效 OAuth 跳转 URI eg:https://www.wennoanimal.com/api/google_callback]
-    //  * @return [type] [description]
-    //  */
-    // public function google_callback()
-    // {
-    //     $oauthUser = \Socialite::driver('google')->user();
-    //     // 检查是否已有邮箱注册身份，有则绑定
-    //     $user = User::where('email', $oauthUser->getEmail())->first();
-    //     // 没有用户信息创建该用户
-    //     if (!$user) {
-    //         $user = User::create([
-    //             'name' => $oauthUser->getName(),
-    //             'email' => $oauthUser->getEmail(),
-    //             'oauth_type' => 'google',
-    //             'openid' => $oauthUser->getId(),
-    //         ]);
-    //     } else {
-    //         $update = User::where('email', $oauthUser->getEmail())->update([
-    //             'oauth_type' => 'google',
-    //             'openid' => $oauthUser->getId(),
-    //         ]);
-    //     }
-
-    //     $token=\Auth::guard('api')->fromUser($user);
-
-    //     // return $this->respondWithToken($token);
-    //     return redirect('https://www.wennoanimal.com/animalGame/website/#/OtherLogin?token=' . $token);
-    // }
-
 
     /** [google_callback google 授权登录页面] */
     public function google()
@@ -224,7 +188,7 @@ class AuthorizationsController extends Controller
         $socialite = new SocialiteManager($config);
 
         $oauthUser = $socialite->driver('google')->user();
-        
+
         // 检查是否已有邮箱注册身份，有则绑定
         $user = User::where('email', $oauthUser->getEmail())->first();
         // 没有用户信息创建该用户

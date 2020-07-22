@@ -19,12 +19,19 @@ class UsersController extends Controller
 	/** [store 邮箱注册] */
     public function store(UserRequest $request)
     {
-    	// 创建用户
-    	$user  = User::create([
-    		'name' => $request->username,
-    		'email' => $request->email,
+        $is_newsletter = 0;
+        // 当前邮箱是否接受newsletter
+        if ($request->is_newsletter) {
+            NewsLetter::firstOrCreate(['email' => $request->email]);
+            $is_newsletter = 1;
+        }
+        // 创建用户
+        $user  = User::create([
+            'name' => $request->username,
+            'email' => $request->email,
             'password' => bcrypt($request->password),
-    	]);
+            'is_newsletter' => $is_newsletter,
+        ]);
 
     	// 触发事件发送激活邮件
     	event(new RegisteredByApi($user));
@@ -34,6 +41,30 @@ class UsersController extends Controller
             'message' => '注册成功,激活邮件已经发至您的邮箱,请注意查收',
             'status_code' => 201,
         ])->setStatusCode(201);
+    }
+
+    // newsletter 设置
+    public function markAsNewsLetter(Request $request)
+    {
+        $is_newsletter = $request->is_newsletter;
+
+        // 更新个人订阅状态
+        $users = $this->user()->update(['is_newsletter' => $is_newsletter]);
+        // 删除或增加newsletter邮箱
+        switch ($is_newsletter) {
+            case '1':
+                NewsLetter::firstOrCreate(['email' => $this->user()->email]);
+                break;
+            
+            default:
+                NewsLetter::where(['email' => $this->user()->email])->delete();
+                break;
+        }
+
+        return $this->response->array([
+            'status_code' => 201,
+            'message' => 'set success!'
+        ]);
     }
 
 
