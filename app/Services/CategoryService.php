@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-05-21 10:18:06
  * @Last Modified by:   eden
- * @Last Modified time: 2020-05-21 10:40:54
+ * @Last Modified time: 2020-07-23 16:28:11
  */
 namespace App\Services;
 
@@ -13,11 +13,11 @@ use App\Models\ShopCategory;
 class CategoryService
 {
 
-	public function getCategoryTree($parentId = null, $allCategories = null)
+	public function getCategoryTree($lang, $parentId = null, $allCategories = null)
     {
         if (is_null($allCategories)) {
             // 从数据库中一次性取出所有类目
-            $allCategories = ShopCategory::all();
+            $allCategories = ShopCategory::where('lang', $lang)->get();
         }
 
         return $allCategories
@@ -25,7 +25,7 @@ class CategoryService
             ->where('parent_id', $parentId)
             // 遍历这些类目，并用返回值构建一个新的集合
             ->map(function (ShopCategory $category) use ($allCategories) {
-                $data = ['id' => $category->id, 'name' => $category->name];
+                $data = ['id' => $category->id, 'lang' => $category->lang, 'name' => $category->name];
                 // 如果当前类目不是父类目，则直接返回
                 if (!$category->is_directory) {
                     return $data;

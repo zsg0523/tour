@@ -28,7 +28,7 @@ class SaleController extends AdminController
 
         $grid->column('id', __('Id'))->sortable();
         $grid->column('lang', __('Lang'));
-        $grid->column('background', __('Background'))->image(env('APP_URL') . '/uploads/' , 150, 75);
+        // $grid->column('background', __('Background'))->image(env('APP_URL') . '/uploads/' , 150, 75);
         $grid->column('color', __('Color'));
         $grid->column('title', __('Title'));
         $grid->column('description', __('Description'));
@@ -56,7 +56,7 @@ class SaleController extends AdminController
         $show = new Show(Sale::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('background', __('Background'));
+        // $show->field('background', __('Background'));
         $show->field('title', __('Title'));
         $show->field('description', __('Description'));
         $show->field('is_show', __('Is show'));
@@ -77,7 +77,7 @@ class SaleController extends AdminController
         $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->text('title', __('Title'));
         $form->textarea('description', __('Description'));
-        $form->image('background', __('Background'));
+        // $form->image('background', __('Background'));
         $form->color('color', __('Color'));
         $states = [
             'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],

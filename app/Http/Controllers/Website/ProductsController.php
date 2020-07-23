@@ -13,9 +13,11 @@ class ProductsController extends Controller
 {
 
     /** 分类列表 */
-    public function categoriesIndex(CategoryService $categoryService)
+    public function categoriesIndex(Request $request, CategoryService $categoryService)
     {
-        $categories = $categoryService->getCategoryTree();
+        $lang = $request->header('accept-language') ?? 'en';
+
+        $categories = $categoryService->getCategoryTree($lang);
 
         return $this->response->array($categories->toArray());
     }

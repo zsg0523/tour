@@ -37,6 +37,7 @@ class ShopCategoriesController extends AdminController
         $grid = new Grid(new ShopCategory());
 
         $grid->column('id', __('Id'))->sortable();
+        $grid->column('lang',__('Lang'));
         $grid->column('name', __('名称'));
         // $grid->column('is_directory', __('是否目录'))->display(function ($value) {
         //     return $value ? '是' : '否';
@@ -54,7 +55,8 @@ class ShopCategoriesController extends AdminController
     protected function form($isEditing = false)
     {
         $form = new Form(new ShopCategory);
-
+        
+        $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->text('name', '类目名称')->rules('required');
 
         // 如果是编辑的情况
