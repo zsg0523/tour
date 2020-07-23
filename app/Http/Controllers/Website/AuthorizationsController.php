@@ -135,6 +135,7 @@ class AuthorizationsController extends Controller
             $user = User::create([
                 'name' => $oauthUser->getName(),
                 'email' => $oauthUser->getEmail(),
+                'language' => 'en',
                 'oauth_type' => 'facebook',
                 'openid' => $oauthUser->getId(),
             ]);
@@ -196,6 +197,7 @@ class AuthorizationsController extends Controller
             $user = User::create([
                 'name' => $oauthUser->getName(),
                 'email' => $oauthUser->getEmail(),
+                'language' => 'en',
                 'oauth_type' => 'google',
                 'openid' => $oauthUser->getId(),
             ]);
