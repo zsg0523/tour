@@ -27,7 +27,7 @@ class AuthorizationsController extends Controller
         
         // 检查用户名密码是否正确
         if (!$token = \Auth::guard('api')->attempt($credentials)) {
-            return $this->response->errorUnauthorized('用户名或密码错误');
+            return $this->response->errorUnauthorized(trans('auth.failed'));
         }
 
         // 检查邮箱是否激活

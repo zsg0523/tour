@@ -125,7 +125,7 @@ class UsersController extends Controller
     {
         $user = $this->user();
         
-        $attributes = $request->only(['name']);
+        $attributes = $request->only(['name', 'language']);
 
         $user->update($attributes);
 
