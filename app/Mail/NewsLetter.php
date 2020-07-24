@@ -11,14 +11,17 @@ class NewsLetter extends Mailable
 {
     use Queueable, SerializesModels;
 
+
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($subject, $content)
     {
-        //
+        $this->subject = $subject;
+        $this->content = $content;
     }
 
     /**
@@ -28,6 +31,12 @@ class NewsLetter extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.news_letter');
+
+        return $this->view('emails.news_letter')
+                    ->with([
+                        'subject' => $this->subject,
+                        'content' => $this->content,
+                        'cc' => $this->cc,
+                    ]);       
     }
 }

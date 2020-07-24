@@ -2,17 +2,17 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>News Letter</title>
+  <title>Wennoanimal</title>
 </head>
 <body>
-  <h1>Wnnoanimal.com</h1>
+  <h1>{{ $subject }}</h1>
 
   <p>
-    感谢您订阅本网站的news letter 内容.
+    {{ $content }}
   </p>
 
   <p>
-    如果这不是您本人的操作，请忽略此邮件。
+    If this is not your own operation, please ignore this email.
   </p>
 </body>
 </html>

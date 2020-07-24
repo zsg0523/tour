@@ -8,6 +8,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use App\Admin\Actions\Post\SendEmail;
+use App\Admin\Actions\Post\Email;
 use App\Admin\Actions\Post\BatchSendEmail;
 
 class NewsLetterController extends AdminController
@@ -37,7 +38,8 @@ class NewsLetterController extends AdminController
         $grid->actions(function (Grid\Displayers\Actions $actions) {
             $actions->disableView();
             $actions->disableEdit();
-            $actions->add(new SendEmail);
+            // $actions->add(new SendEmail);
+            $actions->add(new Email);
             // $actions->disableDelete();
         });
         $grid->batchActions(function ($batch) {
