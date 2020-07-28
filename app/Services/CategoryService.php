@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-05-21 10:18:06
  * @Last Modified by:   eden
- * @Last Modified time: 2020-07-23 16:28:11
+ * @Last Modified time: 2020-07-28 09:45:35
  */
 namespace App\Services;
 
@@ -20,6 +20,7 @@ class CategoryService
             $allCategories = ShopCategory::where('lang', $lang)->get();
         }
 
+        // dd($allCategories);
         return $allCategories
             // 从所有类目中挑选出父类目 ID 为 $parentId 的类目
             ->where('parent_id', $parentId)
@@ -31,7 +32,7 @@ class CategoryService
                     return $data;
                 }
                 // 否则递归调用本方法，将返回值放入 children 字段中
-                $data['children'] = $this->getCategoryTree($category->id, $allCategories);
+                $data['children'] = $this->getCategoryTree($lang, $category->id, $allCategories);
 
                 return $data;
             });

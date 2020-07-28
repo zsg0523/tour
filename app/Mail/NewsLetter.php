@@ -36,7 +36,6 @@ class NewsLetter extends Mailable
                     ->with([
                         'subject' => $this->subject,
                         'content' => $this->content,
-                        'cc' => $this->cc,
                     ]);       
     }
 }

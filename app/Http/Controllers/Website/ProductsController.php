@@ -18,6 +18,7 @@ class ProductsController extends Controller
         $lang = $request->header('accept-language') ?? 'en';
 
         $categories = $categoryService->getCategoryTree($lang);
+        // dd($categories);
 
         return $this->response->array($categories->toArray());
     }
@@ -80,7 +81,7 @@ class ProductsController extends Controller
     	$products = $builder->paginate(16);
     	
     	return $this->response->paginator($products, new ShopProductTransformer())->setMeta([
-    		'categoryTree' => $categoryService->getCategoryTree(),
+    		'categoryTree' => $categoryService->getCategoryTree($lang),
     		'category_parent' => $category_parent ?? [],
     		'category_child' => $category_child ?? [],
     	]);
