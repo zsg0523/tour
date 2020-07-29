@@ -46,9 +46,10 @@ Route::group(['middleware' => ['setLocale']], function() {
 
 	// 在浏览器中预览邮件格式
 	Route::get('mailable', function () {
-	    $newsletter = App\Models\NewsLetter::find(1);
+	    $email = "shenggen93@163.com";
+	    $password = "daasdasd";
 	    
-	    return new App\Mail\NewsLetter();
+	    return new App\Mail\UserRegister($email, $password);
 	});
 });
 

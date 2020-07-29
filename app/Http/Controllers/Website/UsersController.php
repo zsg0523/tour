@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Config;
 use App\Transformers\UserTransformer;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserRegister;
 
 
 class UsersController extends Controller
@@ -33,7 +35,8 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
             'is_newsletter' => $is_newsletter,
         ]);
-
+        // 发送注册成功邮件
+        Mail::to($request->email)->send(new UserRegister($request->email,  $request->password));
     	// 触发事件发送激活邮件
     	event(new RegisteredByApi($user));
 
