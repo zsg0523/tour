@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Config;
 use App\Transformers\UserTransformer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NewsSignUp;
 use App\Mail\UserRegister;
 
 
@@ -25,6 +26,8 @@ class UsersController extends Controller
         // 当前邮箱是否接受newsletter
         if ($request->is_newsletter) {
             NewsLetter::firstOrCreate(['email' => $request->email]);
+            // 发送newsletter邮件
+            Mail::to($request->email)->send(new NewsSignUp());
             $is_newsletter = 1;
         }
         // 创建用户
@@ -141,12 +144,13 @@ class UsersController extends Controller
     {
         // 验证是否有效邮箱
         $validatedData = $request->validate([
-            'email' => ['required', 'email', 'unique:news_letters'],
+            'email' => ['required', 'email'],
         ]);
 
         // 验证通过
-        $newsLetter = NewsLetter::create(['email' => $request->email]);
-
+        $newsLetter = NewsLetter::firstOrCreate(['email' => $request->email]);
+        // 发送登记成功通知邮件
+        Mail::to($request->email)->send(new NewsSignUp());
         return $this->response->array([
             'message' => 'Sign up success.',
             'status_code' => 201,

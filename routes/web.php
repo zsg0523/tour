@@ -49,7 +49,7 @@ Route::group(['middleware' => ['setLocale']], function() {
 	    $email = "shenggen93@163.com";
 	    $password = "daasdasd";
 	    
-	    return new App\Mail\UserRegister($email, $password);
+	    return new App\Mail\NewsSignUp();
 	});
 });
 
