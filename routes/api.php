@@ -211,6 +211,7 @@ $api->version('v2', [
             $api->get('product/sales', 'SalesController@saleProducts');
             // 顺丰柜子
             $api->get('lockers', 'SflockerController@index');
+            $api->get('district', 'SflockerController@district');
             
             // 登录后可访问
             $api->group(['middleware' => 'api.auth'], function($api) {

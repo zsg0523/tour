@@ -18,10 +18,11 @@ class NewsLetter extends Mailable
      *
      * @return void
      */
-    public function __construct($subject, $content)
+    public function __construct($subject, $content, $image)
     {
         $this->subject = $subject;
         $this->content = $content;
+        $this->image = $image;
     }
 
     /**
@@ -33,6 +34,7 @@ class NewsLetter extends Mailable
     {
 
         return $this->view('emails.news_letter')
+                    ->attach($this->image)
                     ->with([
                         'subject' => $this->subject,
                         'content' => $this->content,

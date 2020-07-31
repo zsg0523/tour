@@ -49,4 +49,19 @@ class SflockerController extends Controller
     		'district' => $district ?? [],
     	]);
    	}
+
+    public function district(Request $request)
+    {
+        $lang = $request->header('accept-language') ?? 'en';
+
+        // 创建查询构建器
+        $builder = SfLocker::query()->where('lang', $lang);
+
+        // 小区
+        $district = SfLocker::all()->where('lang', $lang)->where('region', $request->region)->pluck('district')->unique()->values()->all();
+        
+        return $this->response->array(['district' => $district]);
+    }
+
+
 }

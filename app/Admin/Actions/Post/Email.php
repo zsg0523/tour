@@ -18,12 +18,13 @@ class Email extends RowAction
     	$cc = $request->get('cc');
     	$subject = $request->get('subject');
     	$content = $request->get('content');
-
+        $image = $request->image;
+        $file = $request->file;
     	// 发送邮件
     	if ($cc) {
-    		Mail::to($model->email)->cc($cc)->send(new NewsLetter($subject, $content, $cc));
+    		Mail::to($model->email)->cc($cc)->send(new NewsLetter($subject, $content));
     	} else {
-    		Mail::to($model->email)->send(new NewsLetter($subject, $content, $cc));
+    		Mail::to($model->email)->send(new NewsLetter($subject, $content, $image));
     	}
 
         return $this->response()->success('Success message.')->refresh();
@@ -34,6 +35,7 @@ class Email extends RowAction
 		$this->email('cc', '抄送');
 		$this->text('subject', '主题')->rules('required');
 	    $this->textarea('content', '正文')->rules('required');
+        $this->image('image', '图片');
 	}
 
 }
