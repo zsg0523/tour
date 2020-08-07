@@ -15,7 +15,10 @@ class BannersController extends Controller
      */
     public function index(Request $request)
     {
-        $banners = Banner::where('is_show', 1)->get();
+        $lang = $request->header('accept-language') ?? 'en';
+
+        $banners = Banner::where('is_show', 1)->where('lang', $lang)->get();
+        
         return $this->response->collection($banners, new BannerTransformer());
     }
 

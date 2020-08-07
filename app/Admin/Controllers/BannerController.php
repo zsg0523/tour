@@ -77,6 +77,7 @@ class BannerController extends AdminController
         $grid = new Grid(new Banner());
 
         $grid->column('id', __('Id'));
+        $grid->column('lang',__('Lang'));
         // $grid->column('type', __('Type'));
         $grid->column('tag_line', __('Tag line'));
         $grid->column('image', __('Image'))->image(url('uploads'), 50,50);
@@ -109,6 +110,7 @@ class BannerController extends AdminController
 
         // $form->number('type', __('Type'))->default(1);
         $form->text('tag_line', __('Tag line'));
+        $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         $form->image('image', __('Image'))->removable();
         $states = [
             'on'  => ['value' => 1, 'text' => 'ON', 'color' => 'primary'],

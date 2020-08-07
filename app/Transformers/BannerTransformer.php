@@ -4,7 +4,7 @@
  * @Author: eden
  * @Date:   2020-05-25 11:19:30
  * @Last Modified by:   eden
- * @Last Modified time: 2020-06-19 18:38:14
+ * @Last Modified time: 2020-08-07 10:18:53
  */
 namespace App\Transformers;
 
@@ -19,6 +19,7 @@ class BannerTransformer extends TransformerAbstract
     {
         return [
             'id' => $banner->id,
+            'lang' => $banner->lang,
             'type' => $banner->type,
             'tag_line' => $banner->tag_line,
             'image' => url('uploads/' . $banner->image),
