@@ -13,7 +13,7 @@
 // 官网
 Route::group(['middleware' => ['setLocale']], function() {
 
-	Route::redirect('/', 'https://www.wennoanimal.com/web/');
+	Route::redirect('/', 'https://www.wennoanimal.com/website/');
 	Route::redirect('/ios', 'https://apps.apple.com/hk/app/wenno/id1071091237?l=en');
 	Route::redirect('/apk', 'https://play.google.com/store/apps/details?id=com.wennoanimal.wenno');
 	Route::redirect('/appAndroid', 'https://www.wennoanimal.com/uploads/download/Wenno.apk');
