@@ -6,7 +6,7 @@
 		<title>{{ __('animals.page-title') }}</title>
 	</head>
     <link rel="stylesheet" href="./animal/css/swiper.min.css" />
-    <link rel="stylesheet" href="./animal/css/animalIndex.css">
+    <!-- <link rel="stylesheet" href="./animal/css/animalIndex.css"> -->
     <script type="text/javascript" src="./animal/js/orientationchange.js" ></script>
     <body class="HolyGrail">
         <div  id="HolyGrailBody">

@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title></title>
     </head>
-    <link rel="stylesheet" href="../animal/css/animalDetails.css">
+    <!-- <link rel="stylesheet" href="../animal/css/animalDetails.css"> -->
     <script type="text/javascript" src="../animal/js/orientationchange.js" ></script>
     <body class="database">
         <div id="database">
