@@ -175,139 +175,153 @@
                     var theme = decodeURI(GetQueryString('theme'));
                     var lang = GetQueryString('lang');
                     var language = sessionStorage.getItem('language');
-                    console.log(language);
-                    console.log(lang);
-                    console.log(theme);
+                    console.log('language: '+language+' lang: '+lang+' theme: '+theme);
+
+                    self.Loading = true;
+                    let newLang = 'en';
+                    let newTheme = '';
+
                     var url = '/api/animals?lang=en&include=sound,animal';
                     if(!theme||theme=='null'){
                           if(lang==null){
                           	   if(language==null){
-			                        url = '/api/animals?lang=en&include=sound,animal';
-			                        langTitle();  
+			                        // url = '/api/animals?lang=en&include=sound,animal';
+			                        // langTitle();  
 			                    }else{
-			                        url = '/api/animals?lang='+language+'&include=sound,animal';
-			                        langTitle(language);		                    	
+			                    	newLang = language;
+			                        // url = '/api/animals?lang='+language+'&include=sound,animal';
+			                        // langTitle(language);		                    	
 			                    }
                           }else{
-		                        url = '/api/animals?lang='+lang+'&include=sound,animal';
-		                        langTitle(lang);	
+                          		newLang = lang;
+		                        // url = '/api/animals?lang='+lang+'&include=sound,animal';
+		                        // langTitle(lang);	
                           }
                     }else{
                     	//theme!=null
                     	if(lang==null){
                              if(language==null){
-		                        url = '/api/animals?lang=en&include=sound,animal';
-		                        langTitle();                                
+		                        // url = '/api/animals?lang=en&include=sound,animal';
+		                        // langTitle();                                
                              }else{
-		                        url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
-		                        langTitle(language);
+                             	newLang = language;
+                    			newTheme = theme;
+		                        // url = '/api/animals?theme='+theme+'&lang='+language+'&include=sound,animal';
+		                        // langTitle(language);
                              }
                     	}else{
-	                        url = '/api/animals?theme='+theme+'&lang='+lang+'&include=sound,animal';
-	                        langTitle(lang);
+                    		newLang = lang;
+                    		newTheme = theme;
+	                        // url = '/api/animals?theme='+theme+'&lang='+lang+'&include=sound,animal';
+	                        // langTitle(lang);
                     	}
                     }
-                    function langTitle(langTitles){
-	                   	switch (langTitles) {
-						    case 'ar':
-						        self.pageTitle = "قاعدة بيانات الحيوان";
-						        break;
-						    case 'da':
-						        self.pageTitle = "Animal Database";
-						         break;
-						    case 'de':
-						         self.pageTitle= "Tier Datenbank";
-						         break;
-						    case 'en':
-						        self.pageTitle = "Animal Database";
-						         break;
-						    case 'es':
-						        self.pageTitle = "Base de datos de animales";
-						         break;
-						    case 'fi':
-						        self.pageTitle = "eläintietokantojen";
-						         break;
-						    case 'fr':
-						        self.pageTitle = "Base de données des animaux";
-						        break;
-						    case 'hi':
-						        self.pageTitle = "पशु डाटाबेस";
-						         break;
-						    case 'it':
-						        self.pageTitle = "Database degli animali";
-						         break;
-						    case 'jp':
-						        self.pageTitle = "動物データベース";
-						         break;
-						    case 'ko':
-						        self.pageTitle = "동물 데이터베이스";
-						         break;
-						    case 'ms':
-						        self.pageTitle = "Pangkalan haiwan";
-						         break;
-						    case 'nl':
-						        self.pageTitle = "Animal Database";
-						        break;
-						    case 'no':
-						        self.pageTitle = "Animal Database";
-						        break;
-						    case 'pt':
-						        self.pageTitle = "Banco de Dados de animais";
-						         break;
-						    case 'ru':
-						        self.pageTitle = "База данных животных";
-						         break;
-						    case 'sv':
-						        self.pageTitle = "Animal Database";
-						         break;
-						    case 'th':
-						        self.pageTitle = "ฐานข้อมูลสัตว์";
-						         break;
-						    case 'tr':
-						        self.pageTitle = "Hayvan Veritabanı";
-						         break;
-						    case 'uk':
-						        self.pageTitle = "База даних тварин";
-						        break;
-						    case 'zh-CN':
-						        self.pageTitle = "动物资料库";
-						         break;
-						    case 'zh-TW':
-						        self.pageTitle = "動物資料庫";
-						        break;
-						    default:
-						        self.pageTitle = "Animal Database";
-						} 
-                   	}
-                    $.ajax({
-				        url:url,
-				        type:'GET',
-				        headers: {
-		                    "Accept": 'application/prs.wenno.v1+json',
-		                },
-				        success:function(data) {
-				            self.swiper = data.meta;
-				            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
-							if(data.data.length==0){
-                                self.noData = true;
-                                self.haveData = false;
-                                self.Loading = true;
-				            	self.LoadCompleted = false; 
-                                self.imageArray = [];
-				            }else{
-                                self.noData = false;
-                                self.haveData = true;
-				            	self.Loading = false;
-				            	self.LoadCompleted = true;	
-				            	self.imageArray = data.data;
-				            }
-				        },
-				        error:function(XMLHttpRequest, textStatus, errorThrown) {
-				            console.log(XMLHttpRequest.status);
-				            console.log(XMLHttpRequest.readyState);
-				            console.log(textStatus);
-				        }
-				    });
+                    setTimeout(function(){
+                        self.Loading = false;
+                        window.location.href = "https://www.wennoanimal.com/website/#/AnimalLibrary?theme="+newTheme+"&lang="+newLang;
+                    },1000);
+
+					// function langTitle(langTitles){
+					// 	switch (langTitles) {
+					// 	    case 'ar':
+					// 	        self.pageTitle = "قاعدة بيانات الحيوان";
+					// 	        break;
+					// 	    case 'da':
+					// 	        self.pageTitle = "Animal Database";
+					// 	         break;
+					// 	    case 'de':
+					// 	         self.pageTitle= "Tier Datenbank";
+					// 	         break;
+					// 	    case 'en':
+					// 	        self.pageTitle = "Animal Database";
+					// 	         break;
+					// 	    case 'es':
+					// 	        self.pageTitle = "Base de datos de animales";
+					// 	         break;
+					// 	    case 'fi':
+					// 	        self.pageTitle = "eläintietokantojen";
+					// 	         break;
+					// 	    case 'fr':
+					// 	        self.pageTitle = "Base de données des animaux";
+					// 	        break;
+					// 	    case 'hi':
+					// 	        self.pageTitle = "पशु डाटाबेस";
+					// 	         break;
+					// 	    case 'it':
+					// 	        self.pageTitle = "Database degli animali";
+					// 	         break;
+					// 	    case 'jp':
+					// 	        self.pageTitle = "動物データベース";
+					// 	         break;
+					// 	    case 'ko':
+					// 	        self.pageTitle = "동물 데이터베이스";
+					// 	         break;
+					// 	    case 'ms':
+					// 	        self.pageTitle = "Pangkalan haiwan";
+					// 	         break;
+					// 	    case 'nl':
+					// 	        self.pageTitle = "Animal Database";
+					// 	        break;
+					// 	    case 'no':
+					// 	        self.pageTitle = "Animal Database";
+					// 	        break;
+					// 	    case 'pt':
+					// 	        self.pageTitle = "Banco de Dados de animais";
+					// 	         break;
+					// 	    case 'ru':
+					// 	        self.pageTitle = "База данных животных";
+					// 	         break;
+					// 	    case 'sv':
+					// 	        self.pageTitle = "Animal Database";
+					// 	         break;
+					// 	    case 'th':
+					// 	        self.pageTitle = "ฐานข้อมูลสัตว์";
+					// 	         break;
+					// 	    case 'tr':
+					// 	        self.pageTitle = "Hayvan Veritabanı";
+					// 	         break;
+					// 	    case 'uk':
+					// 	        self.pageTitle = "База даних тварин";
+					// 	        break;
+					// 	    case 'zh-CN':
+					// 	        self.pageTitle = "动物资料库";
+					// 	         break;
+					// 	    case 'zh-TW':
+					// 	        self.pageTitle = "動物資料庫";
+					// 	        break;
+					// 	    default:
+					// 	        self.pageTitle = "Animal Database";
+					// 	} 
+					// }
+					// $.ajax({
+				 //        url:url,
+				 //        type:'GET',
+				 //        headers: {
+		   //                  "Accept": 'application/prs.wenno.v1+json',
+		   //              },
+				 //        success:function(data) {
+				 //            self.swiper = data.meta;
+				 //            sessionStorage.setItem('theme_id',data.meta[0].theme_id);
+					// 		if(data.data.length==0){
+     //                            self.noData = true;
+     //                            self.haveData = false;
+     //                            self.Loading = true;
+				 //            	self.LoadCompleted = false; 
+     //                            self.imageArray = [];
+				 //            }else{
+     //                            self.noData = false;
+     //                            self.haveData = true;
+				 //            	self.Loading = false;
+				 //            	self.LoadCompleted = true;	
+				 //            	self.imageArray = data.data;
+				 //            }
+				 //        },
+				 //        error:function(XMLHttpRequest, textStatus, errorThrown) {
+				 //            console.log(XMLHttpRequest.status);
+				 //            console.log(XMLHttpRequest.readyState);
+				 //            console.log(textStatus);
+				 //        }
+					// });
                 }
 			},
 			mounted:function(){

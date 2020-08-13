@@ -207,86 +207,89 @@
                     }else{
                         theme_id = theme1;
                     }
+                    self.Loading = true;
+                    let newLang = 'en';
+                    let newTheme_id = theme_id;
                     console.log('language: '+language+'  lang: '+lang+' theme_id: '+theme_id);
-                    // sessionStorage.setItem('theme_id',theme_id);
+
                     if(lang!=null){
+                        newLang = lang;
                         console.log('lang not null');
-                        $(".selectLang").find("option[lang='"+lang+"']").prop("selected",true);
-                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang+'&theme_id='+theme_id;
-                        $.ajax({
-                            url:'/api/setLocale?lang='+lang,
-                            type:'GET',
-                            headers: {
-                                "Accept": 'application/prs.wenno.v1+json',
-                            },
-                            success:function(data) {
-                                console.log(JSON.stringify(data));
-                                if(data){
-                                    sessionStorage.setItem('language',lang);
-                                    // window.location.replace();
-                                    window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&theme_id='+theme_id+'&root=0';
-                                }
-                            },
-                            error:function(XMLHttpRequest, textStatus, errorThrown) {
-                                console.log(XMLHttpRequest.status);
-                                console.log(XMLHttpRequest.readyState);
-                                console.log(textStatus);
-                            }
-                        });
+                        // $(".selectLang").find("option[lang='"+lang+"']").prop("selected",true);
+                        // var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+lang+'&theme_id='+theme_id;
+                        // $.ajax({
+                        //     url:'/api/setLocale?lang='+lang,
+                        //     type:'GET',
+                        //     headers: {
+                        //         "Accept": 'application/prs.wenno.v1+json',
+                        //     },
+                        //     success:function(data) {
+                        //         console.log(JSON.stringify(data));
+                        //         if(data){
+                        //             sessionStorage.setItem('language',lang);
+                        //             // window.location.replace();
+                        //             window.location.href = '/animals/database?product_name='+GetQueryString("product_name")+'&theme_id='+theme_id+'&root=0';
+                        //         }
+                        //     },
+                        //     error:function(XMLHttpRequest, textStatus, errorThrown) {
+                        //         console.log(XMLHttpRequest.status);
+                        //         console.log(XMLHttpRequest.readyState);
+                        //         console.log(textStatus);
+                        //     }
+                        // });
                     }
 
                     if(lang==null&&language!=null){
-                        console.log('lang is null,language not null');
-                        $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
-                        var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language+'&theme_id='+theme_id;
+                        newLang = language;
+                        // console.log('lang is null,language not null');
+                        // $(".selectLang").find("option[lang='"+language+"']").prop("selected",true);
+                        // var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang='+language+'&theme_id='+theme_id;
                     }
+                    // if(lang==null&&language==null){
+                    //     console.log('lang is null,language is null');
+                    //      $(".selectLang").find("option[lang='en']").prop("selected",true);
+                    //      var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang=en&theme_id='+theme_id;
+                    // }
+                    setTimeout(function(){
+                        self.Loading = false;
+                        window.location.href = "https://www.wennoanimal.com/website/#/AnimalDetail/"+GetQueryString("product_name")+"?lang="+newLang+"&theme_id="+newTheme_id;
+                    },1000);
+                    // console.log(url);
+                    // $.ajax({
+                    //     url:url,
+                    //     type:'GET',
+                    //     headers: {
+                    //         "Accept": 'application/prs.wenno.v1+json',
+                    //     },
+                    //     success:function(data){
+                    //         self.database = data;
+                    //         document.title = data.title;
+                    //         var sound = data.sound;
+                    //         self.Loading = true;
+                    //         self.LoadCompleted = true;  
+                    //         if(sound==undefined){//没有获取到sound
+                    //             self.sound = true;
+                    //             self.path = false;
+                    //         }else{
+                    //             self.sound = false;
+                    //             self.path = true;
+                    //         }
+                    //         var theme_name = data.theme_name;
+                    //         if(theme_name=='Mesozoic Era'){//恐龙
+                    //             self.dinosaur = true;
+                    //             self.animal = false;
+                    //         }else{
+                    //             self.dinosaur = false;
+                    //             self.animal = true;                                
+                    //         }
 
-                    if(lang==null&&language==null){
-                        console.log('lang is null,language is null');
-                         $(".selectLang").find("option[lang='en']").prop("selected",true);
-                         var url ='/api/animal?include=sound,animal&product_name='+GetQueryString("product_name")+'&lang=en&theme_id='+theme_id;
-                    }
-                    // setTimeout(function(){
-                    //     window.location.href = "https://www.wennoanimal.com/animalGame/website/#/AnimalDetail/"+GetQueryString("product_name")+"?lang=en&theme_id="+theme_id;
-                    // },1000);
-                    console.log(url);
-                    $.ajax({
-                        url:url,
-                        type:'GET',
-                        headers: {
-                            "Accept": 'application/prs.wenno.v1+json',
-                        },
-                        success:function(data){
-                            // console.log(JSON.stringify(data));
-                            self.database = data;
-                            document.title = data.title;
-                            var sound = data.sound;
-                            self.Loading = true;
-                            self.LoadCompleted = true;  
-                            if(sound==undefined){//没有获取到sound
-                                self.sound = true;
-                                self.path = false;
-                            }else{
-                                self.sound = false;
-                                self.path = true;
-                            }
-                            var theme_name = data.theme_name;
-                            //console.log(theme_name);
-                            if(theme_name=='Mesozoic Era'){//恐龙
-                                self.dinosaur = true;
-                                self.animal = false;
-                            }else{
-                                self.dinosaur = false;
-                                self.animal = true;                                
-                            }
-
-                        },
-                        error:function(XMLHttpRequest, textStatus, errorThrown) {
-                            console.log(XMLHttpRequest.status);
-                            console.log(XMLHttpRequest.readyState);
-                            console.log(textStatus);
-                        }
-                    });                     
+                    //     },
+                    //     error:function(XMLHttpRequest, textStatus, errorThrown) {
+                    //         console.log(XMLHttpRequest.status);
+                    //         console.log(XMLHttpRequest.readyState);
+                    //         console.log(textStatus);
+                    //     }
+                    // });                     
                 },
                 setLocale(){
                     function GetQueryString(name){
