@@ -30,7 +30,6 @@ class NewsController extends AdminController
 
         $grid->column('id', __('Id'))->sortable();
         $grid->column('lang', __('Lang'))->filter(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW']);
-
         $grid->column('title', __('Title'))->filter('like');
         $grid->column('cover', __('Cover'))->image(env('APP_UTL') . '/uploads', 30, 30);
         $grid->column('introduction', __('Introduction'))->limit(30);
