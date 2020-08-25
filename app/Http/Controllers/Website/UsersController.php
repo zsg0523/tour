@@ -166,7 +166,7 @@ class UsersController extends Controller
 
         NewsLetter::where('email', $email)->delete();
 
-        return $this->response->noContent();
+        return view('pages.success', ['msg' => 'unsubscribe succcess!']);
     }
 
 
