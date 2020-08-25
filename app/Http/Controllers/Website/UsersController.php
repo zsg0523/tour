@@ -149,12 +149,24 @@ class UsersController extends Controller
 
         // 验证通过
         $newsLetter = NewsLetter::firstOrCreate(['email' => $request->email]);
+
         // 发送登记成功通知邮件
-        Mail::to($request->email)->send(new NewsSignUp());
+        Mail::to($request->email)->send(new NewsSignUp($request->email));
+
         return $this->response->array([
             'message' => 'Sign up success.',
             'status_code' => 201,
         ]);
+    }
+
+    /** [unsubscribe 取消邮件订阅] */
+    public function unsubscribe(Request $request)
+    {
+        $email = $request->email;
+
+        NewsLetter::where('email', $email)->delete();
+
+        return $this->response->noContent();
     }
 
 

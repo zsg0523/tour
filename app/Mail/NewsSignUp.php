@@ -16,9 +16,9 @@ class NewsSignUp extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($email)
     {
-        //
+        $this->email = $email;
     }
 
     /**
@@ -28,6 +28,7 @@ class NewsSignUp extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.newsletter_signup');
+        return $this->markdown('emails.newsletter_signup')
+                    ->with(['email' => $this->email]);
     }
 }

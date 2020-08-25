@@ -115,6 +115,8 @@ $api->version('v1', [
             $api->post('payments/notify', 'PaymentsController@payPalNotify')->name('api.paypal.notify');
             $api->get('payments/return', 'PaymentsController@payPalReturn')->name('api.paypal.return');
 
+            // 取消邮件订阅
+            $api->get('unsubscribe', 'UsersController@unsubscribe');
             // 登录后可访问
             $api->group(['middleware' => 'api.auth'], function($api) {
             
