@@ -15,12 +15,12 @@
 <body> 
     <div id="app" class="{{ route_class() }}-page">
         <!-- @include('layouts._header') -->
-        @yield('banner')
+        <!-- @yield('banner') -->
         <div class="container">
             @yield('content')
         </div>
         <!-- @include('layouts._footer') -->
-        <span class="icon-top"></span>
+        <!-- <span class="icon-top"></span> -->
     </div>
     <!-- JS 脚本 -->
     <script src="{{ mix('js/app.js') }}"></script>
