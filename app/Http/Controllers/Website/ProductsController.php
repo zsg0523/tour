@@ -78,7 +78,7 @@ class ProductsController extends Controller
             $builder->where('line', $request->input('line'));
         }
 
-    	$products = $builder->paginate(16);
+    	$products = $builder->orderBy('status', 'desc')->paginate(16);
     	
     	return $this->response->paginator($products, new ShopProductTransformer())->setMeta([
     		'categoryTree' => $categoryService->getCategoryTree($lang),

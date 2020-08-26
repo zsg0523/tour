@@ -30,6 +30,9 @@ class ShopProductsController extends AdminController
         $grid = new Grid(new ShopProduct);
 
         $grid->column('id', __('ID'))->sortable();
+    
+        $grid->column('status', __('Order'))->sortable()->editable()->help('数字越大排序靠前');
+
         $grid->column('lang', __('Lang'))->filter(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW']);
         // Laravel-Admin 支持用符号 . 来展示关联关系的字段
         $grid->column('shopCategory.name', 'Category');
@@ -97,7 +100,7 @@ class ShopProductsController extends AdminController
         $form->radio('lang')->options(['en'=>'en', 'zh-CN'=>'zh-CN', 'zh-TW'=>'zh-TW'])->default('en');
         // 产品线
         $form->radio('line',__('产品线'))->options(['10'=>'Land', '20'=>'Ocean', '30'=>'Prehistoric'])->default('10');
-
+        $form->text('status',__('排序'))->default(0);
         $form->select('shop_category_id', '类目')->options(function ($id) {
             $category = ShopCategory::find($id);
                 if ($category) {

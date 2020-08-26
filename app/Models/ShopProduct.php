@@ -5,12 +5,12 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class ShopProduct extends Model
-{
-	
+{	
     protected $fillable = [
                     'title', 'description', 'image', 'on_sale', 'sales',
-                    'rating', 'sold_count', 'review_count', 'price'
+                    'rating', 'sold_count', 'review_count', 'price', 'status'
     ];
+
 
     protected $appends = ['image_url'];
 

@@ -27,6 +27,7 @@ class ProductController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Product);
+        
 
         $grid->column('id', __('Id'));
         $grid->column('category_id', __('Category'))->display(function($category_id){

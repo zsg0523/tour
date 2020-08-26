@@ -159,6 +159,10 @@ $api->version('v2', [
 
             /*********************** wennoanimal Web ***********************************/
             // 游客可访问
+            // 区号列表
+            $api->get('codes', 'CodesController@index');
+            // 校验手机号
+            $api->get('rules', 'CodesController@rule');
             // 博客列表
             $api->get('blogs', 'BlogsController@getNews'); 
             // 博客详情
