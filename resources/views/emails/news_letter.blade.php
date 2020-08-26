@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Wennoanimal</title>
-</head>
-<body>
-  <h1>{{ $subject }}</h1>
+@component('mail::message')
+# {{ $subject }}
 
-  <p>
-    {{ $content }}
-  </p>
+{{ $content }}
 
-  <p>
-    If this is not your own operation, please ignore this email.
-  </p>
-</body>
-</html>
+See you soon!
+
+<p style = "color:#ddd;font-size:14px;">You’re receiving this because you’ve signed up for a new account.</p>
+
+@component('mail::button', ['url' => config('app.url') . '/api/unsubscribe?email=' . $email, 'color' => 'primary'])
+Unsubscribe
+@endcomponent
+
+@endcomponent
