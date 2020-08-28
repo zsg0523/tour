@@ -8,7 +8,7 @@ use App\Exceptions\InvalidRequestException;
 use Carbon\Carbon;
 use App\Events\OrderPaid;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\GuestOrderPaid;
+use App\Mail\Invoice;
 
 class PaymentsController extends Controller
 {
@@ -61,7 +61,7 @@ class PaymentsController extends Controller
     // Paypal前端回调
     public function payPalReturn()
     {
-        return redirect('https://www.wennoanimal.com/animalGame/website/#/payResult');
+        return redirect('https://www.wennoanimal.com/website/#/payResult');
     }
 
     // Paypal后端回调
@@ -103,12 +103,13 @@ class PaymentsController extends Controller
         ]);
 
         // 订单支付成功后触发事件
+        $view = 'emails.' . $order->user->language . '.invoice';
         if ($order->email) {
             // 给游客发送邮件
-            Mail::to($order->email)->send(new GuestOrderPaid($order));
+            Mail::to($order->email)->send(new Invoice($order, $view));
         } else {
             // 给会员发送邮件
-            $this->afterPaid($order);
+            Mail::to($order->user->email)->send(new Invoice($order, $view));
         }
 
         // 通知订单关闭
