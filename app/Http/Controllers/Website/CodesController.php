@@ -48,9 +48,10 @@ class CodesController extends Controller
 
     	if (strpos($rule, '_')) {
     		$rules = explode('_', $rule);
-    		// 正则匹配m-n位数
-	    	$pattern = '/^\d{'. $rule[0] . ',' .$rule[1] . '}$/';
 
+    		// 正则匹配m-n位数
+	    	$pattern = '/^\d{'. $rules[0] . ',' .$rules[1] . '}$/';
+            
 	    	if (!preg_match($pattern, $phone)) {
 	    		return $this->response->array([
 	    			'status' => 401,
