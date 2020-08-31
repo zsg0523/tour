@@ -35,7 +35,7 @@ class AuthorizationsController extends Controller
 
         if(!$user->hasVerifiedEmail()) {
             event(new RegisteredByApi($user));
-        	abort(10001, '邮箱未激活,已发送激活邮件');
+        	abort(423, '邮箱未激活,已发送激活邮件');
         }
 
         // 生成Token返回前端
