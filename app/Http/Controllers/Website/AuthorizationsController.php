@@ -35,7 +35,7 @@ class AuthorizationsController extends Controller
 
         if(!$user->hasVerifiedEmail()) {
             event(new RegisteredByApi($user));
-        	abort(423, 'auth.email_verification');
+        	abort(423, trans('auth.email_verification'));
         }
 
         // 生成Token返回前端
