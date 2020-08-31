@@ -27,7 +27,7 @@ class UsersController extends Controller
         if ($request->is_newsletter) {
             NewsLetter::firstOrCreate(['email' => $request->email]);
             // 发送newsletter邮件
-            Mail::to($request->email)->send(new NewsSignUp());
+            Mail::to($request->email)->send(new NewsSignUp($request->email));
             $is_newsletter = 1;
         }
         // 创建用户
