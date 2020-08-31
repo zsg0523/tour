@@ -38,8 +38,7 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
             'is_newsletter' => $is_newsletter,
         ]);
-        // 发送注册成功邮件
-        Mail::to($request->email)->send(new UserRegister($request->email,  $request->password));
+        
     	// 触发事件发送激活邮件
     	event(new RegisteredByApi($user));
 
@@ -86,6 +85,9 @@ class UsersController extends Controller
         // 激活邮箱
         $id->markEmailAsVerified();
 
+        // 发送注册成功邮件
+        Mail::to($id->email)->send(new UserRegister($id->email,  $id->password));
+
         // 返回token,免密登录
         $token = \Auth::guard('api')->fromUser($id);
 
@@ -97,7 +99,7 @@ class UsersController extends Controller
     }
 
     /**
-     * [testUrl https://wennoanimal.com/animalGame/website/#/VerifyEmail/57/1589519456/25742403efd1108cf23bda65eb7e7f7074c1f5d0ba7bc572949faf3162c429ca]
+     * [testUrl https://wennoanimal.com/website/#/VerifyEmail/57/1589519456/25742403efd1108cf23bda65eb7e7f7074c1f5d0ba7bc572949faf3162c429ca]
      * @param  Request $request [description]
      * @return [type]           [description]
      */
@@ -115,7 +117,7 @@ class UsersController extends Controller
         $expire = strtotime(Carbon::now()->addMinutes(Config::get('auth.verification.expire', 4320)));
         $signature = $url_array['signature'];
 
-        $web_url = url("animalGame/website/#/VerifyEmail/" . $id . '/' . $expire . '/' . $signature);
+        $web_url = url("/website/#/VerifyEmail/" . $id . '/' . $expire . '/' . $signature);
 
         // 激活邮箱接口，激活邮箱界面
         dd($url, $web_url);
