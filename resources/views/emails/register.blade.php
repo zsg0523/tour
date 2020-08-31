@@ -12,7 +12,7 @@
 	</p>
 
 	Log in to your new account<br>
-	<a href="https://www.wennoanimal.com/animalGame/website/?#/Index">https://www.wennoanimal.com/animalGame/website/?#/Index</a>
+	<a href="https://www.wennoanimal.com/website/?#/Index">https://www.wennoanimal.com/animalGame/website/?#/Index</a>
 
 	<p>
 	Your new account<br>

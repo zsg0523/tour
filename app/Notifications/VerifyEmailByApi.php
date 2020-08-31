@@ -68,7 +68,7 @@ class VerifyEmailByApi extends Notification
         $id = $notifiable->getKey();
         $expire = strtotime(Carbon::now()->addMinutes(Config::get('auth.verification.expire', 4320)));
         $signature = $url_array['signature'];
-        $web_url = url("animalGame/website/#/VerifyEmail/" . $id . '/' . $expire . '/' . $signature);
+        $web_url = url("website/#/VerifyEmail/" . $id . '/' . $expire . '/' . $signature);
 
         return $web_url;
     }
