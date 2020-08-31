@@ -49,8 +49,8 @@ class ShopProductsController extends AdminController
         // 商品是否上架，默认true（on），false(off)
         $grid->column('on_sale', __('On sale'))->switch($states)->help('商品是否上架');
         $grid->column('sales', __('Sales'))->switch($states)->help('促销商品');
-        $grid->column('not_before', __('上架时间'));
-        $grid->column('not_after', __('下架时间'));
+        $grid->column('not_before', __('上架时间'))->help('上架时间');
+        $grid->column('not_after', __('下架时间'))->help('下架时间');
         $grid->column('created_at', __('Created at'));
         $grid->fixColumns(3, -3);
         $grid->actions(function ($actions) {
@@ -115,7 +115,7 @@ class ShopProductsController extends AdminController
         // 折扣
         $form->text('rebate', '折扣');
         // 折扣价
-        $form->text('sales_price', '折后价');
+        $form->text('sales_price', '折后价')->rules('required|numeric|min:0.01');
         // 创建一个选择图片框
         $form->image('image', __('商品图片'))->rules('required|image')->removable();
        
