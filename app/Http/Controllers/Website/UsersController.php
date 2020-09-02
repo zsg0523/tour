@@ -30,7 +30,7 @@ class UsersController extends Controller
             NewsLetter::firstOrCreate(['email' => $request->email]);
             // 发送newsletter邮件
             $view = 'emails.' . $lang . '.newsletter';
-            
+
             Mail::to($request->email)->send(new NewsSignUp($request->email, $view));
             $is_newsletter = 1;
         }
@@ -90,7 +90,7 @@ class UsersController extends Controller
         // 激活邮箱
         $id->markEmailAsVerified();
 
-        $view = 'emails.' . $lang . '.register'
+        $view = 'emails.' . $lang . '.register';
 
         // 发送注册成功邮件
         Mail::to($id->email)->send(new UserRegister($id->email, $view));
