@@ -22,10 +22,7 @@
   </p>
 	We have the answer to your questions!<br>
 
-	Please contact us through Facebook (@WennoWorld) or Instagram (@wennoworld).<br>
-	
-	<p style = "color:#ddd;font-size:14px;" >You’re receiving this because you’ve signed up for a new account.
-	Unsubscribe (insert hyperlink for user to unsubscribe)</p>
+	Please contact us through Facebook (@WennoWorld) or Instagram (@wennoworld).
   
 </body>
 </html>

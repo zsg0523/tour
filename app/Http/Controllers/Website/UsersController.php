@@ -22,12 +22,15 @@ class UsersController extends Controller
 	/** [store 邮箱注册] */
     public function store(UserRequest $request)
     {
+        $lang = \App::getLocale();
         $is_newsletter = 0;
         // 当前邮箱是否接受newsletter
         if ($request->is_newsletter) {
+
             NewsLetter::firstOrCreate(['email' => $request->email]);
             // 发送newsletter邮件
-            Mail::to($request->email)->send(new NewsSignUp($request->email));
+            $view = 'emails.' . $lang . '.newsletter'
+            Mail::to($request->email)->send(new NewsSignUp($request->email, $view));
             $is_newsletter = 1;
         }
         // 创建用户
@@ -77,7 +80,8 @@ class UsersController extends Controller
     /** [markEmailAsVerified 邮箱激活] */
     public function markEmailAsVerified(Request $request, User $id)
     {
-        
+        $lang = \App::getLocale();
+
         if ($id->hasVerifiedEmail()) {
             abort(401, '邮箱已激活');
         }
@@ -85,8 +89,10 @@ class UsersController extends Controller
         // 激活邮箱
         $id->markEmailAsVerified();
 
+        $view = 'emails.' . $lang . '.register'
+
         // 发送注册成功邮件
-        Mail::to($id->email)->send(new UserRegister($id->email,  $id->password));
+        Mail::to($id->email)->send(new UserRegister($id->email, $view));
 
         // 返回token,免密登录
         $token = \Auth::guard('api')->fromUser($id);
@@ -146,7 +152,7 @@ class UsersController extends Controller
     {
         // 验证是否有效邮箱
         $validatedData = $request->validate([
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:news_letters'],
         ]);
 
         // 验证通过

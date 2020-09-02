@@ -49,13 +49,13 @@ Route::group(['middleware' => ['setLocale']], function() {
 		$subject = "这是标题";
 		$content = "According to scientists sloths have the slowest metabolism of any animal on Earth. Because of this they need to be frugal with their energy use. So they move slowly and tend not to wander far from their home ranges. Their bodies have evolved from large ground mammals to the tree dwelling sloths of today. They have incredible arm strength and specialized lungs to let them hang upside down for extended periods of time.";
 	    $email = "shenggen93@163.com";
-	    $password = "daasdasd";
-	    $view = "emails.zh-CN.invoice";
+	    $view = "emails.zh-TW.newsletter";
 
 	    // \Mail::to('shenggen93@163.com')->send(new App\Mail\Invoice($order));
-	    // return new App\Mail\NewsSignUp($email);
+	    return new App\Mail\NewsSignUp($email, $view);
 	    // return new App\Mail\NewsLetter($subject, $content, $email, $image='');
-	    return new App\Mail\Invoice($order, $view);
+	    // return new App\Mail\Invoice($order, $view);
+	    // return new App\Mail\UserRegister($email, $view);
 	});
 });
 
