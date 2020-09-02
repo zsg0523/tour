@@ -30,6 +30,7 @@ class NewsSignUp extends Mailable
     public function build()
     {
         return $this->markdown($this->view)
+                    ->subject(trans('email.news_letter_subject'))
                     ->with(['email' => $this->email]);
     }
 }

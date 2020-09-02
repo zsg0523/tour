@@ -151,16 +151,19 @@ class UsersController extends Controller
     /** [newsLetter newsletter登记] */
     public function newsLetter(Request $request)
     {
+        $lang = \App::getLocale();
         // 验证是否有效邮箱
         $validatedData = $request->validate([
             'email' => ['required', 'email', 'unique:news_letters'],
         ]);
 
+        $view = 'emails.' . $lang . '.newsletter';
+
         // 验证通过
         $newsLetter = NewsLetter::firstOrCreate(['email' => $request->email]);
 
         // 发送登记成功通知邮件
-        Mail::to($request->email)->send(new NewsSignUp($request->email));
+        Mail::to($request->email)->send(new NewsSignUp($request->email, $view));
 
         return $this->response->array([
             'message' => 'Sign up success.',
