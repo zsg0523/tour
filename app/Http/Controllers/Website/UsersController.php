@@ -29,7 +29,8 @@ class UsersController extends Controller
 
             NewsLetter::firstOrCreate(['email' => $request->email]);
             // 发送newsletter邮件
-            $view = 'emails.' . $lang . '.newsletter'
+            $view = 'emails.' . $lang . '.newsletter';
+            
             Mail::to($request->email)->send(new NewsSignUp($request->email, $view));
             $is_newsletter = 1;
         }
