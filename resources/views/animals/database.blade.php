@@ -56,7 +56,7 @@
                     }
                     setTimeout(function(){
                         self.Loading = false;
-                        window.location.href = "https://www.wennoanimal.com/website/#/AnimalDetail/"+GetQueryString("product_name")+"?lang="+newLang+"&theme_id="+newTheme_id;
+                        window.location.replace("https://www.wennoanimal.com/website/#/AnimalDetail/"+GetQueryString("product_name")+"?lang="+newLang+"&theme_id="+newTheme_id);
                     },1000);               
                 },
             },

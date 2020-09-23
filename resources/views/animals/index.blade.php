@@ -73,7 +73,7 @@
                     }
                     setTimeout(function(){
                         self.Loading = false;
-                        window.location.href = "https://www.wennoanimal.com/website/#/AnimalLibrary?theme="+newTheme+"&lang="+newLang;
+                        window.location.replace("https://www.wennoanimal.com/website/#/AnimalLibrary?theme="+newTheme+"&lang="+newLang);
                     },1000);
                 }
 			},
