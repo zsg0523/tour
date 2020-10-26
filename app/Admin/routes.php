@@ -14,6 +14,7 @@ Route::group([
 
     $router->resource('brands', BrandController::class); // 首页品牌模块
     $router->resource('medias',MediaController::class); // 首页视频展示模块
+    $router->resource('models', ThreeDModelsController::class); // 3D模型
     $router->resource('news', NewsController::class); // 新闻
     $router->resource('categories', CategoryController::class); // 产品分类
     $router->resource('products', ProductController::class); //产品

@@ -65,6 +65,16 @@ class WebController extends Controller
     	return $this->response->collection($data, new MediaTransformer());
     }
 
+    public function getModelData(Request $request)
+    {
+        $title = trim($request->title);
+        $type = trim($request->type);
+
+        $data = Media::where('title', $title)->where('type', $type)->first();
+       
+        return $this->response->item($data, new MediaTransformer());
+    }
+
     /** [getBrand 品牌推广] */
     public function getBrand()
     {

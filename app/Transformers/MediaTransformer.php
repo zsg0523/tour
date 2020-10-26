@@ -4,7 +4,7 @@
  * @Author: Eden
  * @Date:   2019-10-11 10:59:09
  * @Last Modified by:   Eden
- * @Last Modified time: 2019-10-11 11:41:22
+ * @Last Modified time: 2020-10-26 15:32:53
  */
 namespace App\Transformers;
 
@@ -17,6 +17,7 @@ class MediaTransformer extends TransformerAbstract
 	{
 		return [
 			'id' => $media->id,
+			'title' => $media->title,
 			'media' => url('uploads/' . $media->media),
 			'type' => $media->type,
 			'location' => $media->location,
