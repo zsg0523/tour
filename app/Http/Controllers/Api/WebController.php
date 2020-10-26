@@ -70,9 +70,9 @@ class WebController extends Controller
         $title = trim($request->title);
         $type = trim($request->type);
 
-        $data = Media::where('title', $title)->where('type', $type)->first();
-       
-        return $this->response->item($data, new MediaTransformer());
+        $media = Media::where('title', $title)->where('type', $type)->firstOrFail();
+
+        return $this->response->item($media, new MediaTransformer());
     }
 
     /** [getBrand 品牌推广] */

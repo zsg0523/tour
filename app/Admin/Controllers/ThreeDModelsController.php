@@ -80,7 +80,7 @@ class ThreeDModelsController extends AdminController
 
         $form->hidden('lang')->default('en');
 
-        $form->text('title', __('Title'));
+        $form->text('title', __('Title'))->required();
 
         $form->file('media', __('File'));
 
@@ -89,7 +89,7 @@ class ThreeDModelsController extends AdminController
             '4' => 'jpg',
             '5' => 'bytes'
         ];
-        $form->radio('type', __('Type'))->options($file)->default(1);
+        $form->radio('type', __('Type'))->options($file)->default(3);
 
         $form->hidden('location')->default(40);
 
